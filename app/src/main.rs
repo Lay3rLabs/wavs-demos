@@ -3,33 +3,33 @@ use alloy::{
     primitives::Address,
     providers::{Provider, ProviderBuilder},
 };
-use bindings::wavsservicemanager::WavsServiceManager;
+// use bindings::wavsservicemanager::WavsServiceManager;
 use eyre::Result;
 
 #[tokio::main]
 async fn main() -> Result<()> {
-    let url = "http://127.0.0.1:8545";
-    let provider = ProviderBuilder::new().on_builtin(url).await?;
+    // let url = "http://127.0.0.1:8545";
+    // let provider = ProviderBuilder::new().on_builtin(url).await?;
 
-    let block = provider.get_block_number().await?;
-    if block == 0 {
-        println!("No blocks / interactions on {url} yet.");
-        return Ok(());
-    }
+    // let block = provider.get_block_number().await?;
+    // if block == 0 {
+    //     println!("No blocks / interactions on {url} yet.");
+    //     return Ok(());
+    // }
 
-    println!("Block: {:?}", block);
+    // println!("Block: {:?}", block);
 
-    // TODO: update me with your contract!
-    let contract_address = "0x851356ae760d987E095750cCeb3bC6014560891C".parse::<Address>()?;
-    let contract = WavsServiceManager::new(contract_address, provider.clone());
+    // // TODO: update me with your contract!
+    // let contract_address = "0x851356ae760d987E095750cCeb3bC6014560891C".parse::<Address>()?;
+    // let contract = WavsServiceManager::new(contract_address, provider.clone());
 
-    let resp = contract.getData(1).call().await?;
+    // let resp = contract.getData(1).call().await?;
 
-    let hex = resp.data;
-    println!("Weather Response Hex: {:?}\n", hex);
+    // let hex = resp.data;
+    // println!("Weather Response Hex: {:?}\n", hex);
 
-    let ascii = to_ascii(hex.to_string().as_str())?;
-    println!("Weather Response ASCII: {:?}", ascii);
+    // let ascii = to_ascii(hex.to_string().as_str())?;
+    // println!("Weather Response ASCII: {:?}", ascii);
 
     Ok(())
 }

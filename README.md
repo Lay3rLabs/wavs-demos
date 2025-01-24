@@ -1,16 +1,20 @@
-# WAVS Monorepo Template
+# Safe + WAVS
 
-<!-- ![Rust](https://github.com/gakonst/foundry-rust-template/workflows/Rust/badge.svg)
-![Solidity](https://github.com/gakonst/foundry-rust-template/workflows/Solidity/badge.svg)
-[![Telegram Chat][tg-badge]][tg-url]
+A variety of WASI components that can be leveraged to extend the functionality of the Gnosis Safe with custom Safe Modules and Guards.
 
-[tg-badge]:
-  https://img.shields.io/endpoint?color=neon&style=flat-square&url=https%3A%2F%2Ftg.sumanjay.workers.dev%2Ffoundry_rs
-[tg-url]: https://t.me/foundry_rs -->
+Status: _highly experimental and fun_
 
-**Template for quickly getting started with developing WAVS Rust applications**
+TODO:
+- [ ] Need to more reliably parse output from agent
+- [ ] Safe module could have some extra safety features like permissions
+- [ ] Eth Cosmos Query example needs to be flushed out
+- [ ] Has not yet been tested with WAVS
+- [ ] A guard function that reviews the prompt
 
-A comprehensive template for developing WAVS (WebAssembly AVS) applications using Rust and Solidity. This template provides a pre-configured development environment with integrated testing frameworks for both Rust and Solidity components.
+Reading and Resources:
+- [Zodiac](https://www.zodiac.wiki/documentation): a bunch of useful extensions to the Safe. If you're looking for examples of extending Safe, Zodiac has a ton of them.
+- [Safe Modules](https://docs.safe.global/advanced/smart-account-modules): documentation on Safe Modules, allowing easily extending functionality of a Safe.
+- [Safe Guard](https://docs.safe.global/advanced/smart-account-guards): documentation on Safe Guards, allowing for checks on Safe transactions.
 
 ## Installation
 
