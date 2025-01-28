@@ -13,12 +13,3 @@
 [submodule "lib/openzeppelin-contracts"]
 	path = lib/openzeppelin-contracts
 	url = https://github.com/OpenZeppelin/openzeppelin-contracts
-[submodule "lib/conditional-tokens-contracts"]
-	path = lib/conditional-tokens-contracts
-	url = https://github.com/gnosis/conditional-tokens-contracts
-[submodule "lib/conditional-tokens-market-makers"]
-	path = lib/conditional-tokens-market-makers
-	url = https://github.com/gnosis/conditional-tokens-market-makers
-[submodule "lib/eigenlayer-middleware"]
-	path = lib/eigenlayer-middleware
-	url = https://github.com/Layr-Labs/eigenlayer-middleware
