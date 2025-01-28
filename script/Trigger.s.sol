@@ -5,7 +5,7 @@ import "forge-std/Script.sol";
 import "../src/SafeModule.sol";
 
 contract TriggerScript is Script {
-    function addTrigger(string calldata triggerData) public {
+    function addTrigger(bytes calldata triggerData) public {
         uint256 deployerPrivateKey = vm.envUint("PRIVATE_KEY");
 
         // Deal ETH to the script before broadcast
@@ -13,7 +13,7 @@ contract TriggerScript is Script {
 
         // Log pre-broadcast state
         console.log("Starting trigger addition...");
-        console.log("Trigger data length:", bytes(triggerData).length);
+        console.log("Trigger data length:", triggerData.length);
 
         vm.startBroadcast(deployerPrivateKey);
 

@@ -49,6 +49,7 @@ contract SafeGuardTest is Test {
         SafeGuard.ValidationStatus status,
         string message
     );
+    event NewTrigger(bytes);
 
     function setUp() public {
         // Create accounts
@@ -182,11 +183,17 @@ contract SafeGuardTest is Test {
         );
         vm.stopPrank();
 
-        // Get the actual transaction hash from the emitted event
+        // Get the actual transaction hash from the emitted events
         Vm.Log[] memory entries = vm.getRecordedLogs();
 
+        // Parse the NewTrigger event data
+        bytes memory triggerData = abi.decode(entries[0].data, (bytes));
+        ISimpleTrigger.TriggerInfo memory triggerInfo = abi.decode(
+            triggerData,
+            (ISimpleTrigger.TriggerInfo)
+        );
+
         // The ValidationRequired event should be the second event (index 1)
-        // First event (index 0) is the WavsTriggerEvent
         bytes32 actualTxHash = entries[1].topics[1];
 
         // Rest of the test remains the same...
@@ -260,8 +267,17 @@ contract SafeGuardTest is Test {
         );
         vm.stopPrank();
 
-        // Get the actual transaction hash from the emitted event
+        // Get the actual transaction hash from the emitted events
         Vm.Log[] memory entries = vm.getRecordedLogs();
+
+        // Parse the NewTrigger event data
+        bytes memory triggerData = abi.decode(entries[0].data, (bytes));
+        ISimpleTrigger.TriggerInfo memory triggerInfo = abi.decode(
+            triggerData,
+            (ISimpleTrigger.TriggerInfo)
+        );
+
+        // The ValidationRequired event should be the second event (index 1)
         bytes32 actualTxHash = entries[1].topics[1];
 
         // Move time forward past expiration

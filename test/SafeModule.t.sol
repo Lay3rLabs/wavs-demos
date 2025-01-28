@@ -7,6 +7,7 @@ import "@gnosis.pm/safe-contracts/contracts/Safe.sol";
 import "@gnosis.pm/safe-contracts/contracts/proxies/SafeProxyFactory.sol";
 import "@gnosis.pm/safe-contracts/contracts/base/ModuleManager.sol";
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
+import {ISimpleTrigger} from "../src/interfaces/ISimpleTrigger.sol";
 
 // Test ERC20 token
 contract TestToken is ERC20 {
@@ -218,19 +219,83 @@ contract SafeModuleTest is Test {
     }
 
     function test_AddTrigger() public {
-        string memory triggerData = "test trigger";
+        bytes memory triggerData = "test trigger";
 
         vm.expectEmit(true, true, true, true);
-        emit NewTrigger(bytes(triggerData));
+        emit NewTrigger(
+            abi.encode(
+                ISimpleTrigger.TriggerInfo({
+                    triggerId: ISimpleTrigger.TriggerId.wrap(1),
+                    creator: address(this),
+                    data: triggerData
+                })
+            )
+        );
 
         safeModule.addTrigger{value: 0.1 ether}(triggerData);
 
         assertEq(address(safe).balance, 0.1 ether);
+
+        // Verify trigger storage
+        ISimpleTrigger.TriggerInfo memory info = safeModule.getTrigger(
+            ISimpleTrigger.TriggerId.wrap(1)
+        );
+        assertEq(info.creator, address(this));
+        assertEq(info.data, triggerData);
     }
 
     function testFail_AddTriggerIncorrectPayment() public {
-        string memory triggerData = "test trigger";
+        bytes memory triggerData = "test trigger";
         safeModule.addTrigger{value: 0.05 ether}(triggerData); // Should fail with incorrect payment
+    }
+
+    // Add new test for getTrigger
+    function test_GetTrigger() public {
+        bytes memory triggerData = "test trigger";
+        safeModule.addTrigger{value: 0.1 ether}(triggerData);
+
+        ISimpleTrigger.TriggerInfo memory info = safeModule.getTrigger(
+            ISimpleTrigger.TriggerId.wrap(1)
+        );
+        assertEq(info.creator, address(this));
+        assertEq(info.data, triggerData);
+        assertEq(ISimpleTrigger.TriggerId.unwrap(info.triggerId), 1);
+    }
+
+    // Update test for triggerIdsByCreator
+    function test_TriggerIdsByCreator() public {
+        bytes memory triggerData1 = "test trigger 1";
+        bytes memory triggerData2 = "test trigger 2";
+
+        safeModule.addTrigger{value: 0.1 ether}(triggerData1);
+        safeModule.addTrigger{value: 0.1 ether}(triggerData2);
+
+        // Get all trigger IDs for this creator
+        uint256 count = safeModule.getTriggerCount(address(this));
+        assertEq(count, 2);
+
+        // Verify each trigger ID
+        ISimpleTrigger.TriggerId triggerId1 = safeModule.getTriggerIdAtIndex(
+            address(this),
+            0
+        );
+        ISimpleTrigger.TriggerId triggerId2 = safeModule.getTriggerIdAtIndex(
+            address(this),
+            1
+        );
+
+        assertEq(ISimpleTrigger.TriggerId.unwrap(triggerId1), 1);
+        assertEq(ISimpleTrigger.TriggerId.unwrap(triggerId2), 2);
+    }
+
+    // Add a new test for getTriggerCount
+    function test_GetTriggerCount() public {
+        assertEq(safeModule.getTriggerCount(address(this)), 0);
+
+        bytes memory triggerData = "test trigger";
+        safeModule.addTrigger{value: 0.1 ether}(triggerData);
+
+        assertEq(safeModule.getTriggerCount(address(this)), 1);
     }
 
     receive() external payable {}

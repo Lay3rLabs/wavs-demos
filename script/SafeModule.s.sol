@@ -150,37 +150,6 @@ contract SafeModuleScript is Script {
         vm.stopBroadcast();
     }
 
-    function addNewTrigger(string calldata triggerData) public {
-        uint256 deployerPrivateKey = vm.envUint("PRIVATE_KEY");
-        vm.startBroadcast(deployerPrivateKey);
-
-        // Get the module instance
-        SafeModule module = SafeModule(deployedModuleAddress);
-
-        // Call addTrigger with 0.1 ETH
-        module.addTrigger{value: 0.1 ether}(triggerData);
-        console.log("Added new trigger with data:", triggerData);
-
-        vm.stopBroadcast();
-    }
-
-    function addTriggerExisting(string calldata triggerData) public {
-        uint256 deployerPrivateKey = vm.envUint("PRIVATE_KEY");
-        vm.startBroadcast(deployerPrivateKey);
-
-        // Get the existing module address from environment
-        address existingModuleAddress = vm.envAddress("WAVS_SAFE_MODULE");
-
-        // Get the module instance
-        SafeModule module = SafeModule(existingModuleAddress);
-
-        // Call addTrigger with 0.1 ETH
-        module.addTrigger{value: 0.1 ether}(triggerData);
-        console.log("Added new trigger with data:", triggerData);
-
-        vm.stopBroadcast();
-    }
-
     // Update run function to include new method if needed
     function run() public {
         deployContracts();
@@ -322,7 +291,7 @@ contract SafeModuleScript is Script {
                 "}"
             )
         );
-        vm.writeFile("deployments.json", deploymentInfo);
+        // vm.writeFile("deployments.json", deploymentInfo);
 
         // Update .env file with new addresses
         string memory envPath = ".env";

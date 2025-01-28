@@ -136,6 +136,16 @@ wavs-cli add-task --input "Nashville,TN" --data ./.docker/cli --service-id ${SER
 # Trigger with forge script
 forge script ./script/Trigger.s.sol --sig "addTrigger(string)" "We should donate 1 ETH to 0xDf3679681B87fAE75CE185e4f01d98b64Ddb64a3." -vvvv --broadcast --rpc-url http://localhost:8545
 
+# First encode your trigger data
+TRIGGER_DATA=$(cast abi-encode "f(string)" "test")
+
+# Then run the forge script
+forge script script/Trigger.s.sol \
+    --sig "addTrigger(bytes)" \
+    $TRIGGER_DATA \
+    --rpc-url "http://localhost:8545" \
+    --broadcast
+
 # Grab data from the contract directly
 hex_bytes=$(cast decode-abi "getData(uint64)(bytes)" `cast call ${SERVICE_MANAGER_ADDRESS} "getData(uint64)" 1`)
 echo `cast --to-ascii $hex_bytes`

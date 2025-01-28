@@ -5,6 +5,7 @@ import "@gnosis.pm/safe-contracts/contracts/common/Enum.sol";
 import "@gnosis.pm/safe-contracts/contracts/base/ModuleManager.sol";
 import "@gnosis.pm/safe-contracts/contracts/base/OwnerManager.sol";
 import {IServiceHandler} from "@wavs/interfaces/IServiceHandler.sol";
+import {ISimpleTrigger} from "./interfaces/ISimpleTrigger.sol";
 
 contract SafeModule is IServiceHandler {
     // Address of the Gnosis Safe this module is connected to
@@ -19,7 +20,17 @@ contract SafeModule is IServiceHandler {
     // Flag to prevent re-initialization
     bool public initialized;
 
-    event NewTrigger(bytes triggerData);
+    // Add new storage variables
+    struct Trigger {
+        address creator;
+        bytes data;
+    }
+
+    mapping(ISimpleTrigger.TriggerId => Trigger) public triggersById;
+    mapping(address => ISimpleTrigger.TriggerId[]) public triggerIdsByCreator;
+    ISimpleTrigger.TriggerId public nextTriggerId;
+
+    event NewTrigger(bytes);
 
     modifier onlyOwner() {
         require(msg.sender == owner, "Only owner can call this function");
@@ -79,14 +90,62 @@ contract SafeModule is IServiceHandler {
         require(success, "Module transaction failed");
     }
 
-    function addTrigger(string calldata triggerData) external payable {
+    function addTrigger(bytes memory data) external payable {
         require(msg.value == 0.1 ether, "Payment must be exactly 0.1 ETH");
 
         // Forward the ETH to the Safe using low-level call
         (bool sent, ) = safe.call{value: msg.value}("");
         require(sent, "ETH transfer to Safe failed");
 
-        // Emit the trigger data as bytes
-        emit NewTrigger(bytes(triggerData));
+        // Get the next trigger id
+        nextTriggerId = ISimpleTrigger.TriggerId.wrap(
+            ISimpleTrigger.TriggerId.unwrap(nextTriggerId) + 1
+        );
+        ISimpleTrigger.TriggerId triggerId = nextTriggerId;
+
+        // Create the trigger
+        Trigger memory trigger = Trigger({creator: msg.sender, data: data});
+
+        // Update storage
+        triggersById[triggerId] = trigger;
+        triggerIdsByCreator[msg.sender].push(triggerId);
+
+        // Emit trigger info
+        ISimpleTrigger.TriggerInfo memory triggerInfo = ISimpleTrigger
+            .TriggerInfo({
+                triggerId: triggerId,
+                creator: trigger.creator,
+                data: trigger.data
+            });
+
+        emit NewTrigger(abi.encode(triggerInfo));
+    }
+
+    function getTrigger(
+        ISimpleTrigger.TriggerId triggerId
+    ) external view returns (ISimpleTrigger.TriggerInfo memory) {
+        Trigger storage trigger = triggersById[triggerId];
+
+        return
+            ISimpleTrigger.TriggerInfo({
+                triggerId: triggerId,
+                creator: trigger.creator,
+                data: trigger.data
+            });
+    }
+
+    function getTriggerCount(address creator) external view returns (uint256) {
+        return triggerIdsByCreator[creator].length;
+    }
+
+    function getTriggerIdAtIndex(
+        address creator,
+        uint256 index
+    ) external view returns (ISimpleTrigger.TriggerId) {
+        require(
+            index < triggerIdsByCreator[creator].length,
+            "Index out of bounds"
+        );
+        return triggerIdsByCreator[creator][index];
     }
 }
