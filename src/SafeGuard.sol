@@ -3,11 +3,10 @@ pragma solidity ^0.8.22;
 
 import "@gnosis.pm/safe-contracts/contracts/base/GuardManager.sol";
 import "@gnosis.pm/safe-contracts/contracts/common/Enum.sol";
-import {WavsSDK} from "./WavsSDK.sol";
-import {IWavsSDK} from "./interfaces/IWavsSDK.sol";
+import {IServiceHandler} from "@wavs/interfaces/IServiceHandler.sol";
 import {IWavsTrigger} from "./interfaces/IWavsTrigger.sol";
 
-contract SafeGuard is Guard, WavsSDK, IWavsTrigger {
+contract SafeGuard is Guard, IServiceHandler, IWavsTrigger {
     enum ValidationStatus {
         NotExists,
         Pending,
@@ -31,6 +30,11 @@ contract SafeGuard is Guard, WavsSDK, IWavsTrigger {
     // Address of the Gnosis Safe this guard is connected to
     address public immutable safe;
     uint256 public estimatedProcessingTime = 2 minutes;
+
+    // Address of the authorized service provider
+    address public serviceProvider;
+    // Flag to prevent re-initialization
+    bool public initialized;
 
     // Validation state mappings
     mapping(bytes32 => bool) public validatedTxs;
@@ -61,9 +65,28 @@ contract SafeGuard is Guard, WavsSDK, IWavsTrigger {
     error TransactionExpired();
     error TransactionNotFound();
 
-    constructor(address _safe, address _stakeRegistry) WavsSDK(_stakeRegistry) {
+    modifier onlyServiceProvider() {
+        require(
+            msg.sender == serviceProvider,
+            "Only service provider can call this function"
+        );
+        _;
+    }
+
+    constructor(address _safe) {
         require(_safe != address(0), "Invalid safe address");
         safe = _safe;
+    }
+
+    function initialize(address _serviceProvider) external {
+        require(!initialized, "Already initialized");
+        require(
+            _serviceProvider != address(0),
+            "Invalid service provider address"
+        );
+
+        serviceProvider = _serviceProvider;
+        initialized = true;
     }
 
     function checkTransaction(
@@ -185,13 +208,12 @@ contract SafeGuard is Guard, WavsSDK, IWavsTrigger {
         delete validatedTxs[txHash];
     }
 
-    /// @dev Overrides _handleAddPayload to handle WAVS validation results
-    /// @param signedPayload The signed payload containing validation results
-    function _handleAddPayload(
-        IWavsSDK.SignedPayload calldata signedPayload
-    ) internal override {
+    function handleAddPayload(
+        bytes calldata data,
+        bytes calldata signature
+    ) external override onlyServiceProvider {
         (bytes32 txHash, bool isValid, string memory reason) = abi.decode(
-            signedPayload.data,
+            data,
             (bytes32, bool, string)
         );
 

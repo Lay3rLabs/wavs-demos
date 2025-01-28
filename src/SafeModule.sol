@@ -4,16 +4,20 @@ pragma solidity ^0.8.22;
 import "@gnosis.pm/safe-contracts/contracts/common/Enum.sol";
 import "@gnosis.pm/safe-contracts/contracts/base/ModuleManager.sol";
 import "@gnosis.pm/safe-contracts/contracts/base/OwnerManager.sol";
-import {WavsSDK} from "./WavsSDK.sol";
-import {IWavsSDK} from "./interfaces/IWavsSDK.sol";
+import {IServiceHandler} from "@wavs/interfaces/IServiceHandler.sol";
 
-// TODO: there are a number of obvious improvements to make to this.
-contract SafeModule is WavsSDK {
+contract SafeModule is IServiceHandler {
     // Address of the Gnosis Safe this module is connected to
     address public safe;
 
     // Store the owner who can use this module
     address public owner;
+
+    // Address of the authorized service provider
+    address public serviceProvider;
+
+    // Flag to prevent re-initialization
+    bool public initialized;
 
     modifier onlyOwner() {
         require(msg.sender == owner, "Only owner can call this function");
@@ -25,26 +29,48 @@ contract SafeModule is WavsSDK {
         _;
     }
 
-    constructor(address _safe, address _stakeRegistry) WavsSDK(_stakeRegistry) {
+    modifier onlyServiceProvider() {
+        require(
+            msg.sender == serviceProvider,
+            "Only service provider can call this function"
+        );
+        _;
+    }
+
+    constructor(address _safe) {
         require(_safe != address(0), "Invalid safe address");
         safe = _safe;
         owner = msg.sender;
     }
 
+    function initialize(address _serviceProvider) external onlyOwner {
+        require(!initialized, "Already initialized");
+        require(
+            _serviceProvider != address(0),
+            "Invalid service provider address"
+        );
 
-    /// @dev Overrides _handleAddPayload to execute Safe transactions from signed payloads
-    /// @param signedPayload The signed payload containing Safe transaction data
-    function _handleAddPayload(IWavsSDK.SignedPayload calldata signedPayload) internal override {
+        serviceProvider = _serviceProvider;
+        initialized = true;
+    }
+
+    function handleAddPayload(
+        bytes calldata data,
+        bytes calldata signature
+    ) external override onlyServiceProvider {
         // Decode the transaction parameters from the payload data
-        (address to, uint256 value, bytes memory data) = abi.decode(signedPayload.data, (address, uint256, bytes));
-        
+        (address to, uint256 value, bytes memory txData) = abi.decode(
+            data,
+            (address, uint256, bytes)
+        );
+
         require(to != address(0), "Invalid target address");
 
         // Execute the transaction from the Safe
         bool success = ModuleManager(safe).execTransactionFromModule(
             to,
             value,
-            data,
+            txData,
             Enum.Operation.Call
         );
 

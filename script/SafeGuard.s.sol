@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: UNLICENSED
-pragma solidity ^0.8.22;
+pragma solidity ^0.8.13;
 
 import "forge-std/Script.sol";
 import "../src/SafeGuard.sol";
@@ -7,20 +7,24 @@ import "@gnosis.pm/safe-contracts/contracts/Safe.sol";
 import "@gnosis.pm/safe-contracts/contracts/proxies/SafeProxyFactory.sol";
 
 contract SafeGuardScript is Script {
-    // Known contract addresses - replace with actual addresses for different networks
-    address constant SAFE_SINGLETON_MAINNET =
-        0x41675C099F32341bf84BFc5382aF534df5C7461a;
-    address constant SAFE_FACTORY_MAINNET =
-        0x4e1DCf7AD4e460CfD30791CCC4F9c8a4f820ec67;
+    Safe public safeSingleton;
+    SafeProxyFactory public factory;
 
     function setUp() public {}
 
     function run() public {
+        // Get deployment private key and start broadcasting
         uint256 deployerPrivateKey = vm.envUint("PRIVATE_KEY");
         vm.startBroadcast(deployerPrivateKey);
 
-        // Get the stake registry address from environment
-        address stakeRegistry = vm.envAddress("STAKE_REGISTRY");
+        // Deploy Safe singleton and factory first if needed
+        safeSingleton = new Safe();
+        factory = new SafeProxyFactory();
+        console.log("Deployed Safe singleton at:", address(safeSingleton));
+        console.log("Deployed Safe factory at:", address(factory));
+
+        // Get the service provider address from environment
+        address serviceProvider = vm.envAddress("SERVICE_PROVIDER");
 
         // Get Safe setup parameters from environment
         address[] memory owners = _getOwners();
@@ -37,9 +41,16 @@ contract SafeGuardScript is Script {
             console.log("Using existing Safe at:", safeAddress);
         }
 
-        // Deploy SafeGuard
-        SafeGuard guard = new SafeGuard(safeAddress, stakeRegistry);
+        // Deploy SafeGuard with just the Safe address
+        SafeGuard guard = new SafeGuard(safeAddress);
         console.log("Deployed SafeGuard at:", address(guard));
+
+        // Initialize the guard with service provider
+        guard.initialize(serviceProvider);
+        console.log(
+            "Initialized SafeGuard with service provider:",
+            serviceProvider
+        );
 
         // If we're working with a new Safe, set the guard automatically
         if (vm.envBool("DEPLOY_NEW_SAFE")) {
@@ -53,35 +64,21 @@ contract SafeGuardScript is Script {
         vm.stopBroadcast();
     }
 
-    function _getOwners() internal view returns (address[] memory) {
-        string memory ownersRaw = vm.envString("SAFE_OWNERS");
-        string[] memory ownerStrings = _split(ownersRaw, ",");
-
-        address[] memory owners = new address[](ownerStrings.length);
-        for (uint i = 0; i < ownerStrings.length; i++) {
-            owners[i] = vm.parseAddress(ownerStrings[i]);
-        }
-        return owners;
-    }
-
     function _deploySafe(
         address[] memory owners,
         uint256 threshold,
         address fallbackHandler
     ) internal returns (address) {
-        Safe safeSingleton = Safe(payable(SAFE_SINGLETON_MAINNET));
-        SafeProxyFactory factory = SafeProxyFactory(SAFE_FACTORY_MAINNET);
-
         bytes memory initializer = abi.encodeWithSelector(
             Safe.setup.selector,
             owners,
             threshold,
-            address(0), // to
-            "", // data
+            address(0),
+            "",
             fallbackHandler,
-            address(0), // payment token
-            0, // payment
-            payable(address(0)) // payment receiver
+            address(0),
+            0,
+            payable(address(0))
         );
 
         address safeAddress = address(
@@ -93,7 +90,7 @@ contract SafeGuardScript is Script {
 
     function _setGuard(Safe safe, address guard) internal {
         bytes memory data = abi.encodeWithSelector(
-            bytes4(keccak256("setGuard(address)")),
+            GuardManager.setGuard.selector,
             guard
         );
 
@@ -118,12 +115,41 @@ contract SafeGuardScript is Script {
         return abi.encodePacked(uint256(uint160(owner)), uint256(0), uint8(1));
     }
 
+    function _getOwners() internal view returns (address[] memory) {
+        string memory ownersRaw = vm.envString("SAFE_OWNERS");
+        string[] memory ownerStrings = _split(ownersRaw, ",");
+
+        address[] memory owners = new address[](ownerStrings.length);
+        for (uint i = 0; i < ownerStrings.length; i++) {
+            owners[i] = vm.parseAddress(ownerStrings[i]);
+        }
+        return owners;
+    }
+
     // Helper functions for string manipulation
     function _split(
         string memory _str,
         string memory _delimiter
     ) internal pure returns (string[] memory) {
-        // ... existing code ...
+        uint count = 1;
+        for (uint i = 0; i < bytes(_str).length; i++) {
+            if (bytes(_str)[i] == bytes(_delimiter)[0]) count++;
+        }
+
+        string[] memory parts = new string[](count);
+        count = 0;
+
+        uint lastIndex = 0;
+        for (uint i = 0; i < bytes(_str).length; i++) {
+            if (bytes(_str)[i] == bytes(_delimiter)[0]) {
+                parts[count] = _substring(_str, lastIndex, i);
+                lastIndex = i + 1;
+                count++;
+            }
+        }
+        parts[count] = _substring(_str, lastIndex, bytes(_str).length);
+
+        return parts;
     }
 
     function _substring(
@@ -131,6 +157,11 @@ contract SafeGuardScript is Script {
         uint _start,
         uint _end
     ) internal pure returns (string memory) {
-        // ... existing code ...
+        bytes memory strBytes = bytes(_str);
+        bytes memory result = new bytes(_end - _start);
+        for (uint i = _start; i < _end; i++) {
+            result[i - _start] = strBytes[i];
+        }
+        return string(result);
     }
 }
