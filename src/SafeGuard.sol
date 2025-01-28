@@ -15,7 +15,7 @@ contract SafeGuard is Guard, WavsSDK, IWavsTrigger {
         Rejected,
         Expired
     }
-    
+
     struct TransactionDetails {
         address to;
         uint256 value;
@@ -27,16 +27,20 @@ contract SafeGuard is Guard, WavsSDK, IWavsTrigger {
         string lastStatusMessage;
         uint256 expirationTime;
     }
-    
+
     // Address of the Gnosis Safe this guard is connected to
     address public immutable safe;
     uint256 public estimatedProcessingTime = 2 minutes;
-    
+
     // Validation state mappings
     mapping(bytes32 => bool) public validatedTxs;
     mapping(bytes32 => TransactionDetails) public txDetails;
     mapping(address => bytes32[]) public userPendingTxs;
-    
+
+    // Add new mappings for trigger storage
+    mapping(TriggerId => TriggerInfo) private triggers;
+    TriggerId private nextTriggerId;
+
     event ValidationRequired(
         bytes32 indexed txHash,
         address indexed to,
@@ -46,13 +50,13 @@ contract SafeGuard is Guard, WavsSDK, IWavsTrigger {
         address initiator,
         uint256 estimatedProcessingTime
     );
-    
+
     event ValidationStatusUpdated(
         bytes32 indexed txHash,
         ValidationStatus status,
         string message
     );
-    
+
     error AsyncValidationRequired();
     error TransactionExpired();
     error TransactionNotFound();
@@ -76,7 +80,7 @@ contract SafeGuard is Guard, WavsSDK, IWavsTrigger {
         address msgSender
     ) external override {
         require(msg.sender == safe, "Unauthorized");
-        
+
         bytes32 txHash = keccak256(
             abi.encodePacked(
                 to,
@@ -87,16 +91,18 @@ contract SafeGuard is Guard, WavsSDK, IWavsTrigger {
                 block.timestamp
             )
         );
-        
+
         if (validatedTxs[txHash]) {
             return;
         }
-        
-        if (txDetails[txHash].timestamp != 0 && 
-            block.timestamp > txDetails[txHash].expirationTime) {
+
+        if (
+            txDetails[txHash].timestamp != 0 &&
+            block.timestamp > txDetails[txHash].expirationTime
+        ) {
             revert TransactionExpired();
         }
-        
+
         // Initialize transaction details
         txDetails[txHash] = TransactionDetails({
             to: to,
@@ -109,13 +115,18 @@ contract SafeGuard is Guard, WavsSDK, IWavsTrigger {
             lastStatusMessage: "Validation in progress",
             expirationTime: block.timestamp + estimatedProcessingTime
         });
-        
+
         // Add to user's pending transactions
         userPendingTxs[msgSender].push(txHash);
-        
-        // Emit WAVS trigger
-        emit WavsTriggerEvent(
-            abi.encode(
+
+        // Store trigger info before emitting event
+        TriggerId triggerId = nextTriggerId;
+        nextTriggerId = TriggerId.wrap(TriggerId.unwrap(nextTriggerId) + 1);
+
+        triggers[triggerId] = TriggerInfo({
+            triggerId: triggerId,
+            creator: msgSender,
+            data: abi.encode(
                 "pre",
                 txHash,
                 to,
@@ -124,8 +135,11 @@ contract SafeGuard is Guard, WavsSDK, IWavsTrigger {
                 operation,
                 msgSender
             )
-        );
-        
+        });
+
+        // Emit WAVS trigger with triggerId
+        emit WavsTriggerEvent(triggers[triggerId].data);
+
         emit ValidationRequired(
             txHash,
             to,
@@ -135,91 +149,102 @@ contract SafeGuard is Guard, WavsSDK, IWavsTrigger {
             msgSender,
             estimatedProcessingTime
         );
-        
+
         emit ValidationStatusUpdated(
             txHash,
             ValidationStatus.Pending,
             "Validation in progress"
         );
-        
+
         revert AsyncValidationRequired();
     }
 
-    function checkAfterExecution(bytes32 txHash, bool success) external override {
+    function checkAfterExecution(
+        bytes32 txHash,
+        bool success
+    ) external override {
         require(msg.sender == safe, "Unauthorized");
-        
+
         TransactionDetails storage details = txDetails[txHash];
         _removeFromPendingTxs(details.initiator, txHash);
-        
+
+        // Create and store post-execution trigger
+        TriggerId triggerId = nextTriggerId;
+        nextTriggerId = TriggerId.wrap(TriggerId.unwrap(nextTriggerId) + 1);
+
+        triggers[triggerId] = TriggerInfo({
+            triggerId: triggerId,
+            creator: details.initiator,
+            data: abi.encode("post", txHash, success)
+        });
+
         // Emit WAVS trigger for post-execution validation
-        emit WavsTriggerEvent(
-            abi.encode(
-                "post",
-                txHash,
-                success
-            )
-        );
-        
+        emit WavsTriggerEvent(triggers[triggerId].data);
+
         delete txDetails[txHash];
         delete validatedTxs[txHash];
     }
 
     /// @dev Overrides _handleAddPayload to handle WAVS validation results
     /// @param signedPayload The signed payload containing validation results
-    function _handleAddPayload(IWavsSDK.SignedPayload calldata signedPayload) internal override {
+    function _handleAddPayload(
+        IWavsSDK.SignedPayload calldata signedPayload
+    ) internal override {
         (bytes32 txHash, bool isValid, string memory reason) = abi.decode(
             signedPayload.data,
             (bytes32, bool, string)
         );
-        
+
         TransactionDetails storage details = txDetails[txHash];
         if (details.timestamp == 0) revert TransactionNotFound();
-        
+
         if (block.timestamp > details.expirationTime) {
             details.status = ValidationStatus.Expired;
-            emit ValidationStatusUpdated(txHash, ValidationStatus.Expired, reason);
+            emit ValidationStatusUpdated(
+                txHash,
+                ValidationStatus.Expired,
+                reason
+            );
             revert TransactionExpired();
         }
-        
-        details.status = isValid ? ValidationStatus.Approved : ValidationStatus.Rejected;
+
+        details.status = isValid
+            ? ValidationStatus.Approved
+            : ValidationStatus.Rejected;
         details.lastStatusMessage = reason;
-        
+
         if (isValid) {
             validatedTxs[txHash] = true;
         }
-        
-        emit ValidationStatusUpdated(
-            txHash,
-            details.status,
-            reason
-        );
+
+        emit ValidationStatusUpdated(txHash, details.status, reason);
     }
 
-    function getTransactionStatus(bytes32 txHash) 
-        external 
-        view 
+    function getTransactionStatus(
+        bytes32 txHash
+    )
+        external
+        view
         returns (
             ValidationStatus status,
             string memory message,
             uint256 remainingTime
-        ) 
+        )
     {
         TransactionDetails storage details = txDetails[txHash];
         if (details.timestamp == 0) return (ValidationStatus.NotExists, "", 0);
-        
+
         if (block.timestamp > details.expirationTime) {
             return (ValidationStatus.Expired, details.lastStatusMessage, 0);
         }
-        
+
         uint256 remaining = details.expirationTime - block.timestamp;
         return (details.status, details.lastStatusMessage, remaining);
     }
-    
-    function getUserPendingTransactions(address user) 
-        external 
-        view 
-        returns (bytes32[] memory) 
-    {
+
+    function getUserPendingTransactions(
+        address user
+    ) external view returns (bytes32[] memory) {
         return userPendingTxs[user];
     }
 
@@ -237,7 +262,16 @@ contract SafeGuard is Guard, WavsSDK, IWavsTrigger {
     /// @dev Returns whether the contract implements the given interface
     /// @param interfaceId The interface identifier
     /// @return true if the contract implements the interface
-    function supportsInterface(bytes4 interfaceId) external pure override returns (bool) {
+    function supportsInterface(
+        bytes4 interfaceId
+    ) external pure override returns (bool) {
         return interfaceId == type(Guard).interfaceId;
+    }
+
+    // Add new function to implement IWavsTrigger interface
+    function getTrigger(
+        TriggerId triggerId
+    ) external view override returns (TriggerInfo memory) {
+        return triggers[triggerId];
     }
 }
