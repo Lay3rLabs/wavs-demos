@@ -97,6 +97,11 @@ contract SafeModuleScript is Script {
         SafeModule module = SafeModule(moduleAddress);
         require(address(module).code.length > 0, "No code at module address");
 
+        // Get the Safe address from the module
+        address safeAddress = module.safe();
+        console.log("Safe address from module:", safeAddress);
+        require(safeAddress != address(0), "Invalid Safe address from module");
+
         // Initialize the module
         try module.initialize(serviceProvider) {
             console.log(
@@ -109,14 +114,37 @@ contract SafeModuleScript is Script {
         }
 
         // If we're working with a new Safe, enable the module automatically
-        if (vm.envBool("DEPLOY_NEW_SAFE")) {
-            Safe safe = Safe(payable(deployedSafeAddress));
+        bool deployNewSafe = vm.envBool("DEPLOY_NEW_SAFE");
+        if (deployNewSafe) {
+            Safe safe = Safe(payable(safeAddress));
             _enableModule(safe, moduleAddress);
             console.log("Enabled module on Safe");
         } else {
-            console.log(
-                "Please enable the module manually through the Safe UI"
-            );
+            // Try to get existing Safe address if needed
+            try vm.envAddress("EXISTING_SAFE_ADDRESS") returns (
+                address existingSafe
+            ) {
+                if (existingSafe != address(0)) {
+                    require(
+                        existingSafe == safeAddress,
+                        "Safe address mismatch"
+                    );
+                    Safe safe = Safe(payable(safeAddress));
+                    _enableModule(safe, moduleAddress);
+                    console.log(
+                        "Enabled module on existing Safe at:",
+                        existingSafe
+                    );
+                } else {
+                    console.log(
+                        "Please enable the module manually through the Safe UI"
+                    );
+                }
+            } catch {
+                console.log(
+                    "Please enable the module manually through the Safe UI"
+                );
+            }
         }
 
         vm.stopBroadcast();
@@ -198,25 +226,37 @@ contract SafeModuleScript is Script {
         return safeAddress;
     }
 
-    function _enableModule(Safe safe, address module) internal {
-        bytes memory data = abi.encodeWithSelector(
-            ModuleManager.enableModule.selector,
-            module
-        );
+    function _enableModule(Safe safe, address moduleAddress) internal {
+        // First check if the Safe exists and has code
+        require(address(safe).code.length > 0, "No code at Safe address");
 
-        // Execute transaction to enable module
-        safe.execTransaction(
-            address(safe),
-            0,
-            data,
-            Enum.Operation.Call,
-            0,
-            0,
-            0,
-            address(0),
-            payable(address(0)),
-            _generateSingleSignature(safe)
-        );
+        // Try to get owners to verify it's a valid Safe
+        try safe.getOwners() returns (address[] memory owners) {
+            require(owners.length > 0, "Safe has no owners");
+
+            bytes memory data = abi.encodeWithSelector(
+                ModuleManager.enableModule.selector,
+                moduleAddress
+            );
+
+            // Execute transaction to enable module
+            safe.execTransaction(
+                address(safe),
+                0,
+                data,
+                Enum.Operation.Call,
+                0,
+                0,
+                0,
+                address(0),
+                payable(address(0)),
+                _generateSingleSignature(safe)
+            );
+        } catch {
+            revert(
+                "Failed to interact with Safe - invalid Safe address or not deployed"
+            );
+        }
     }
 
     function _generateSingleSignature(
