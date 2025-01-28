@@ -19,6 +19,8 @@ contract SafeModule is IServiceHandler {
     // Flag to prevent re-initialization
     bool public initialized;
 
+    event NewTrigger(bytes triggerData);
+
     modifier onlyOwner() {
         require(msg.sender == owner, "Only owner can call this function");
         _;
@@ -75,5 +77,16 @@ contract SafeModule is IServiceHandler {
         );
 
         require(success, "Module transaction failed");
+    }
+
+    function addTrigger(string calldata triggerData) external payable {
+        require(msg.value == 0.1 ether, "Payment must be exactly 0.1 ETH");
+
+        // Forward the ETH to the Safe using low-level call
+        (bool sent, ) = safe.call{value: msg.value}("");
+        require(sent, "ETH transfer to Safe failed");
+
+        // Emit the trigger data as bytes
+        emit NewTrigger(bytes(triggerData));
     }
 }

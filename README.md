@@ -78,8 +78,14 @@ make start-all
 ### Upload your WAVS Service Manager
 
 ```bash
+# Deploy Safe
+forge script ./script/SafeModule.s.sol --sig "deployContracts()" --rpc-url http://localhost:8545 --broadcast
+
 # Deploy (override: FOUNDRY_ANVIL_PRIVATE_KEY)
-forge script ./script/WavsServiceManager.s.sol --rpc-url http://localhost:8545 --broadcast
+forge script ./lib/WAVS/contracts/solidity/scripts/LayerServiceManager.s.sol --rpc-url http://localhost:8545 --broadcast
+
+# Initialize Safe
+forge script ./script/SafeModule.s.sol --sig "initializeModule()" -vvvv --rpc-url http://localhost:8545 --broadcast
 
 # Grab deployed service manager from script file output
 export SERVICE_MANAGER_ADDRESS=`jq -r '.service_manager' "./.docker/cli/script_deploy.json"`

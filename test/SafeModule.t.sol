@@ -28,6 +28,7 @@ contract SafeModuleTest is Test {
     address public serviceProvider;
 
     event ExecutionSuccess();
+    event NewTrigger(bytes triggerData);
 
     function setUp() public {
         // Setup accounts
@@ -214,6 +215,22 @@ contract SafeModuleTest is Test {
 
         vm.prank(serviceProvider);
         safeModule.handleAddPayload(payload, "");
+    }
+
+    function test_AddTrigger() public {
+        string memory triggerData = "test trigger";
+
+        vm.expectEmit(true, true, true, true);
+        emit NewTrigger(bytes(triggerData));
+
+        safeModule.addTrigger{value: 0.1 ether}(triggerData);
+
+        assertEq(address(safe).balance, 0.1 ether);
+    }
+
+    function testFail_AddTriggerIncorrectPayment() public {
+        string memory triggerData = "test trigger";
+        safeModule.addTrigger{value: 0.05 ether}(triggerData); // Should fail with incorrect payment
     }
 
     receive() external payable {}
