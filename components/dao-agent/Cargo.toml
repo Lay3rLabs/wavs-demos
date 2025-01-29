@@ -35,7 +35,7 @@ lto = true
 package = "component:eth-dao-agent"
 
 [package.metadata.component.target]
-world = "eth-trigger-world"
+world = "layer-trigger-world"
 
 [package.metadata.component.target.dependencies]
 "wasi:io" = "=0.2.0"

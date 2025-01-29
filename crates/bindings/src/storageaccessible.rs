@@ -86,9 +86,9 @@ pub mod StorageAccessible {
         b"",
     );
     /**Function with signature `getStorageAt(uint256,uint256)` and selector `0x5624b25b`.
-```solidity
-function getStorageAt(uint256 offset, uint256 length) external view returns (bytes memory);
-```*/
+    ```solidity
+    function getStorageAt(uint256 offset, uint256 length) external view returns (bytes memory);
+    ```*/
     #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields)]
     #[derive(Clone)]
     pub struct getStorageAtCall {
@@ -101,20 +101,13 @@ function getStorageAt(uint256 offset, uint256 length) external view returns (byt
     pub struct getStorageAtReturn {
         pub _0: alloy::sol_types::private::Bytes,
     }
-    #[allow(
-        non_camel_case_types,
-        non_snake_case,
-        clippy::pub_underscore_fields,
-        clippy::style
-    )]
+    #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields, clippy::style)]
     const _: () = {
         use alloy::sol_types as alloy_sol_types;
         {
             #[doc(hidden)]
-            type UnderlyingSolTuple<'a> = (
-                alloy::sol_types::sol_data::Uint<256>,
-                alloy::sol_types::sol_data::Uint<256>,
-            );
+            type UnderlyingSolTuple<'a> =
+                (alloy::sol_types::sol_data::Uint<256>, alloy::sol_types::sol_data::Uint<256>);
             #[doc(hidden)]
             type UnderlyingRustTuple<'a> = (
                 alloy::sol_types::private::primitives::aliases::U256,
@@ -122,9 +115,7 @@ function getStorageAt(uint256 offset, uint256 length) external view returns (byt
             );
             #[cfg(test)]
             #[allow(dead_code, unreachable_patterns)]
-            fn _type_assertion(
-                _t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>,
-            ) {
+            fn _type_assertion(_t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>) {
                 match _t {
                     alloy_sol_types::private::AssertTypeEq::<
                         <UnderlyingSolTuple as alloy_sol_types::SolType>::RustType,
@@ -142,10 +133,7 @@ function getStorageAt(uint256 offset, uint256 length) external view returns (byt
             #[doc(hidden)]
             impl ::core::convert::From<UnderlyingRustTuple<'_>> for getStorageAtCall {
                 fn from(tuple: UnderlyingRustTuple<'_>) -> Self {
-                    Self {
-                        offset: tuple.0,
-                        length: tuple.1,
-                    }
+                    Self { offset: tuple.0, length: tuple.1 }
                 }
             }
         }
@@ -156,9 +144,7 @@ function getStorageAt(uint256 offset, uint256 length) external view returns (byt
             type UnderlyingRustTuple<'a> = (alloy::sol_types::private::Bytes,);
             #[cfg(test)]
             #[allow(dead_code, unreachable_patterns)]
-            fn _type_assertion(
-                _t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>,
-            ) {
+            fn _type_assertion(_t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>) {
                 match _t {
                     alloy_sol_types::private::AssertTypeEq::<
                         <UnderlyingSolTuple as alloy_sol_types::SolType>::RustType,
@@ -182,18 +168,12 @@ function getStorageAt(uint256 offset, uint256 length) external view returns (byt
         }
         #[automatically_derived]
         impl alloy_sol_types::SolCall for getStorageAtCall {
-            type Parameters<'a> = (
-                alloy::sol_types::sol_data::Uint<256>,
-                alloy::sol_types::sol_data::Uint<256>,
-            );
-            type Token<'a> = <Self::Parameters<
-                'a,
-            > as alloy_sol_types::SolType>::Token<'a>;
+            type Parameters<'a> =
+                (alloy::sol_types::sol_data::Uint<256>, alloy::sol_types::sol_data::Uint<256>);
+            type Token<'a> = <Self::Parameters<'a> as alloy_sol_types::SolType>::Token<'a>;
             type Return = getStorageAtReturn;
             type ReturnTuple<'a> = (alloy::sol_types::sol_data::Bytes,);
-            type ReturnToken<'a> = <Self::ReturnTuple<
-                'a,
-            > as alloy_sol_types::SolType>::Token<'a>;
+            type ReturnToken<'a> = <Self::ReturnTuple<'a> as alloy_sol_types::SolType>::Token<'a>;
             const SIGNATURE: &'static str = "getStorageAt(uint256,uint256)";
             const SELECTOR: [u8; 4] = [86u8, 36u8, 178u8, 91u8];
             #[inline]
@@ -205,12 +185,12 @@ function getStorageAt(uint256 offset, uint256 length) external view returns (byt
             #[inline]
             fn tokenize(&self) -> Self::Token<'_> {
                 (
-                    <alloy::sol_types::sol_data::Uint<
-                        256,
-                    > as alloy_sol_types::SolType>::tokenize(&self.offset),
-                    <alloy::sol_types::sol_data::Uint<
-                        256,
-                    > as alloy_sol_types::SolType>::tokenize(&self.length),
+                    <alloy::sol_types::sol_data::Uint<256> as alloy_sol_types::SolType>::tokenize(
+                        &self.offset,
+                    ),
+                    <alloy::sol_types::sol_data::Uint<256> as alloy_sol_types::SolType>::tokenize(
+                        &self.length,
+                    ),
                 )
             }
             #[inline]
@@ -218,17 +198,17 @@ function getStorageAt(uint256 offset, uint256 length) external view returns (byt
                 data: &[u8],
                 validate: bool,
             ) -> alloy_sol_types::Result<Self::Return> {
-                <Self::ReturnTuple<
-                    '_,
-                > as alloy_sol_types::SolType>::abi_decode_sequence(data, validate)
-                    .map(Into::into)
+                <Self::ReturnTuple<'_> as alloy_sol_types::SolType>::abi_decode_sequence(
+                    data, validate,
+                )
+                .map(Into::into)
             }
         }
     };
     /**Function with signature `simulateAndRevert(address,bytes)` and selector `0xb4faba09`.
-```solidity
-function simulateAndRevert(address targetContract, bytes memory calldataPayload) external;
-```*/
+    ```solidity
+    function simulateAndRevert(address targetContract, bytes memory calldataPayload) external;
+    ```*/
     #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields)]
     #[derive(Clone)]
     pub struct simulateAndRevertCall {
@@ -239,30 +219,19 @@ function simulateAndRevert(address targetContract, bytes memory calldataPayload)
     #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields)]
     #[derive(Clone)]
     pub struct simulateAndRevertReturn {}
-    #[allow(
-        non_camel_case_types,
-        non_snake_case,
-        clippy::pub_underscore_fields,
-        clippy::style
-    )]
+    #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields, clippy::style)]
     const _: () = {
         use alloy::sol_types as alloy_sol_types;
         {
             #[doc(hidden)]
-            type UnderlyingSolTuple<'a> = (
-                alloy::sol_types::sol_data::Address,
-                alloy::sol_types::sol_data::Bytes,
-            );
+            type UnderlyingSolTuple<'a> =
+                (alloy::sol_types::sol_data::Address, alloy::sol_types::sol_data::Bytes);
             #[doc(hidden)]
-            type UnderlyingRustTuple<'a> = (
-                alloy::sol_types::private::Address,
-                alloy::sol_types::private::Bytes,
-            );
+            type UnderlyingRustTuple<'a> =
+                (alloy::sol_types::private::Address, alloy::sol_types::private::Bytes);
             #[cfg(test)]
             #[allow(dead_code, unreachable_patterns)]
-            fn _type_assertion(
-                _t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>,
-            ) {
+            fn _type_assertion(_t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>) {
                 match _t {
                     alloy_sol_types::private::AssertTypeEq::<
                         <UnderlyingSolTuple as alloy_sol_types::SolType>::RustType,
@@ -271,21 +240,16 @@ function simulateAndRevert(address targetContract, bytes memory calldataPayload)
             }
             #[automatically_derived]
             #[doc(hidden)]
-            impl ::core::convert::From<simulateAndRevertCall>
-            for UnderlyingRustTuple<'_> {
+            impl ::core::convert::From<simulateAndRevertCall> for UnderlyingRustTuple<'_> {
                 fn from(value: simulateAndRevertCall) -> Self {
                     (value.targetContract, value.calldataPayload)
                 }
             }
             #[automatically_derived]
             #[doc(hidden)]
-            impl ::core::convert::From<UnderlyingRustTuple<'_>>
-            for simulateAndRevertCall {
+            impl ::core::convert::From<UnderlyingRustTuple<'_>> for simulateAndRevertCall {
                 fn from(tuple: UnderlyingRustTuple<'_>) -> Self {
-                    Self {
-                        targetContract: tuple.0,
-                        calldataPayload: tuple.1,
-                    }
+                    Self { targetContract: tuple.0, calldataPayload: tuple.1 }
                 }
             }
         }
@@ -296,9 +260,7 @@ function simulateAndRevert(address targetContract, bytes memory calldataPayload)
             type UnderlyingRustTuple<'a> = ();
             #[cfg(test)]
             #[allow(dead_code, unreachable_patterns)]
-            fn _type_assertion(
-                _t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>,
-            ) {
+            fn _type_assertion(_t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>) {
                 match _t {
                     alloy_sol_types::private::AssertTypeEq::<
                         <UnderlyingSolTuple as alloy_sol_types::SolType>::RustType,
@@ -307,16 +269,14 @@ function simulateAndRevert(address targetContract, bytes memory calldataPayload)
             }
             #[automatically_derived]
             #[doc(hidden)]
-            impl ::core::convert::From<simulateAndRevertReturn>
-            for UnderlyingRustTuple<'_> {
+            impl ::core::convert::From<simulateAndRevertReturn> for UnderlyingRustTuple<'_> {
                 fn from(value: simulateAndRevertReturn) -> Self {
                     ()
                 }
             }
             #[automatically_derived]
             #[doc(hidden)]
-            impl ::core::convert::From<UnderlyingRustTuple<'_>>
-            for simulateAndRevertReturn {
+            impl ::core::convert::From<UnderlyingRustTuple<'_>> for simulateAndRevertReturn {
                 fn from(tuple: UnderlyingRustTuple<'_>) -> Self {
                     Self {}
                 }
@@ -324,18 +284,12 @@ function simulateAndRevert(address targetContract, bytes memory calldataPayload)
         }
         #[automatically_derived]
         impl alloy_sol_types::SolCall for simulateAndRevertCall {
-            type Parameters<'a> = (
-                alloy::sol_types::sol_data::Address,
-                alloy::sol_types::sol_data::Bytes,
-            );
-            type Token<'a> = <Self::Parameters<
-                'a,
-            > as alloy_sol_types::SolType>::Token<'a>;
+            type Parameters<'a> =
+                (alloy::sol_types::sol_data::Address, alloy::sol_types::sol_data::Bytes);
+            type Token<'a> = <Self::Parameters<'a> as alloy_sol_types::SolType>::Token<'a>;
             type Return = simulateAndRevertReturn;
             type ReturnTuple<'a> = ();
-            type ReturnToken<'a> = <Self::ReturnTuple<
-                'a,
-            > as alloy_sol_types::SolType>::Token<'a>;
+            type ReturnToken<'a> = <Self::ReturnTuple<'a> as alloy_sol_types::SolType>::Token<'a>;
             const SIGNATURE: &'static str = "simulateAndRevert(address,bytes)";
             const SELECTOR: [u8; 4] = [180u8, 250u8, 186u8, 9u8];
             #[inline]
@@ -360,10 +314,10 @@ function simulateAndRevert(address targetContract, bytes memory calldataPayload)
                 data: &[u8],
                 validate: bool,
             ) -> alloy_sol_types::Result<Self::Return> {
-                <Self::ReturnTuple<
-                    '_,
-                > as alloy_sol_types::SolType>::abi_decode_sequence(data, validate)
-                    .map(Into::into)
+                <Self::ReturnTuple<'_> as alloy_sol_types::SolType>::abi_decode_sequence(
+                    data, validate,
+                )
+                .map(Into::into)
             }
         }
     };
@@ -380,10 +334,8 @@ function simulateAndRevert(address targetContract, bytes memory calldataPayload)
         /// No guarantees are made about the order of the selectors.
         ///
         /// Prefer using `SolInterface` methods instead.
-        pub const SELECTORS: &'static [[u8; 4usize]] = &[
-            [86u8, 36u8, 178u8, 91u8],
-            [180u8, 250u8, 186u8, 9u8],
-        ];
+        pub const SELECTORS: &'static [[u8; 4usize]] =
+            &[[86u8, 36u8, 178u8, 91u8], [180u8, 250u8, 186u8, 9u8]];
     }
     #[automatically_derived]
     impl alloy_sol_types::SolInterface for StorageAccessibleCalls {
@@ -393,9 +345,7 @@ function simulateAndRevert(address targetContract, bytes memory calldataPayload)
         #[inline]
         fn selector(&self) -> [u8; 4] {
             match self {
-                Self::getStorageAt(_) => {
-                    <getStorageAtCall as alloy_sol_types::SolCall>::SELECTOR
-                }
+                Self::getStorageAt(_) => <getStorageAtCall as alloy_sol_types::SolCall>::SELECTOR,
                 Self::simulateAndRevert(_) => {
                     <simulateAndRevertCall as alloy_sol_types::SolCall>::SELECTOR
                 }
@@ -419,17 +369,17 @@ function simulateAndRevert(address targetContract, bytes memory calldataPayload)
             static DECODE_SHIMS: &[fn(
                 &[u8],
                 bool,
-            ) -> alloy_sol_types::Result<StorageAccessibleCalls>] = &[
+            )
+                -> alloy_sol_types::Result<StorageAccessibleCalls>] = &[
                 {
                     fn getStorageAt(
                         data: &[u8],
                         validate: bool,
                     ) -> alloy_sol_types::Result<StorageAccessibleCalls> {
                         <getStorageAtCall as alloy_sol_types::SolCall>::abi_decode_raw(
-                                data,
-                                validate,
-                            )
-                            .map(StorageAccessibleCalls::getStorageAt)
+                            data, validate,
+                        )
+                        .map(StorageAccessibleCalls::getStorageAt)
                     }
                     getStorageAt
                 },
@@ -439,21 +389,18 @@ function simulateAndRevert(address targetContract, bytes memory calldataPayload)
                         validate: bool,
                     ) -> alloy_sol_types::Result<StorageAccessibleCalls> {
                         <simulateAndRevertCall as alloy_sol_types::SolCall>::abi_decode_raw(
-                                data,
-                                validate,
-                            )
-                            .map(StorageAccessibleCalls::simulateAndRevert)
+                            data, validate,
+                        )
+                        .map(StorageAccessibleCalls::simulateAndRevert)
                     }
                     simulateAndRevert
                 },
             ];
             let Ok(idx) = Self::SELECTORS.binary_search(&selector) else {
-                return Err(
-                    alloy_sol_types::Error::unknown_selector(
-                        <Self as alloy_sol_types::SolInterface>::NAME,
-                        selector,
-                    ),
-                );
+                return Err(alloy_sol_types::Error::unknown_selector(
+                    <Self as alloy_sol_types::SolInterface>::NAME,
+                    selector,
+                ));
             };
             DECODE_SHIMS[idx](data, validate)
         }
@@ -461,14 +408,10 @@ function simulateAndRevert(address targetContract, bytes memory calldataPayload)
         fn abi_encoded_size(&self) -> usize {
             match self {
                 Self::getStorageAt(inner) => {
-                    <getStorageAtCall as alloy_sol_types::SolCall>::abi_encoded_size(
-                        inner,
-                    )
+                    <getStorageAtCall as alloy_sol_types::SolCall>::abi_encoded_size(inner)
                 }
                 Self::simulateAndRevert(inner) => {
-                    <simulateAndRevertCall as alloy_sol_types::SolCall>::abi_encoded_size(
-                        inner,
-                    )
+                    <simulateAndRevertCall as alloy_sol_types::SolCall>::abi_encoded_size(inner)
                 }
             }
         }
@@ -476,16 +419,10 @@ function simulateAndRevert(address targetContract, bytes memory calldataPayload)
         fn abi_encode_raw(&self, out: &mut alloy_sol_types::private::Vec<u8>) {
             match self {
                 Self::getStorageAt(inner) => {
-                    <getStorageAtCall as alloy_sol_types::SolCall>::abi_encode_raw(
-                        inner,
-                        out,
-                    )
+                    <getStorageAtCall as alloy_sol_types::SolCall>::abi_encode_raw(inner, out)
                 }
                 Self::simulateAndRevert(inner) => {
-                    <simulateAndRevertCall as alloy_sol_types::SolCall>::abi_encode_raw(
-                        inner,
-                        out,
-                    )
+                    <simulateAndRevertCall as alloy_sol_types::SolCall>::abi_encode_raw(inner, out)
                 }
             }
         }
@@ -493,7 +430,7 @@ function simulateAndRevert(address targetContract, bytes memory calldataPayload)
     use alloy::contract as alloy_contract;
     /**Creates a new wrapper around an on-chain [`StorageAccessible`](self) contract instance.
 
-See the [wrapper's documentation](`StorageAccessibleInstance`) for more details.*/
+    See the [wrapper's documentation](`StorageAccessibleInstance`) for more details.*/
     #[inline]
     pub const fn new<
         T: alloy_contract::private::Transport + ::core::clone::Clone,
@@ -507,9 +444,9 @@ See the [wrapper's documentation](`StorageAccessibleInstance`) for more details.
     }
     /**Deploys this contract using the given `provider` and constructor arguments, if any.
 
-Returns a new instance of the contract, if the deployment was successful.
+    Returns a new instance of the contract, if the deployment was successful.
 
-For more fine-grained control over the deployment process, use [`deploy_builder`] instead.*/
+    For more fine-grained control over the deployment process, use [`deploy_builder`] instead.*/
     #[inline]
     pub fn deploy<
         T: alloy_contract::private::Transport + ::core::clone::Clone,
@@ -517,35 +454,36 @@ For more fine-grained control over the deployment process, use [`deploy_builder`
         N: alloy_contract::private::Network,
     >(
         provider: P,
-    ) -> impl ::core::future::Future<
-        Output = alloy_contract::Result<StorageAccessibleInstance<T, P, N>>,
-    > {
+    ) -> impl ::core::future::Future<Output = alloy_contract::Result<StorageAccessibleInstance<T, P, N>>>
+    {
         StorageAccessibleInstance::<T, P, N>::deploy(provider)
     }
     /**Creates a `RawCallBuilder` for deploying this contract using the given `provider`
-and constructor arguments, if any.
+    and constructor arguments, if any.
 
-This is a simple wrapper around creating a `RawCallBuilder` with the data set to
-the bytecode concatenated with the constructor's ABI-encoded arguments.*/
+    This is a simple wrapper around creating a `RawCallBuilder` with the data set to
+    the bytecode concatenated with the constructor's ABI-encoded arguments.*/
     #[inline]
     pub fn deploy_builder<
         T: alloy_contract::private::Transport + ::core::clone::Clone,
         P: alloy_contract::private::Provider<T, N>,
         N: alloy_contract::private::Network,
-    >(provider: P) -> alloy_contract::RawCallBuilder<T, P, N> {
+    >(
+        provider: P,
+    ) -> alloy_contract::RawCallBuilder<T, P, N> {
         StorageAccessibleInstance::<T, P, N>::deploy_builder(provider)
     }
     /**A [`StorageAccessible`](self) instance.
 
-Contains type-safe methods for interacting with an on-chain instance of the
-[`StorageAccessible`](self) contract located at a given `address`, using a given
-provider `P`.
+    Contains type-safe methods for interacting with an on-chain instance of the
+    [`StorageAccessible`](self) contract located at a given `address`, using a given
+    provider `P`.
 
-If the contract bytecode is available (see the [`sol!`](alloy_sol_types::sol!)
-documentation on how to provide it), the `deploy` and `deploy_builder` methods can
-be used to deploy a new instance of the contract.
+    If the contract bytecode is available (see the [`sol!`](alloy_sol_types::sol!)
+    documentation on how to provide it), the `deploy` and `deploy_builder` methods can
+    be used to deploy a new instance of the contract.
 
-See the [module-level documentation](self) for all the available methods.*/
+    See the [module-level documentation](self) for all the available methods.*/
     #[derive(Clone)]
     pub struct StorageAccessibleInstance<T, P, N = alloy_contract::private::Ethereum> {
         address: alloy_sol_types::private::Address,
@@ -562,29 +500,23 @@ See the [module-level documentation](self) for all the available methods.*/
     /// Instantiation and getters/setters.
     #[automatically_derived]
     impl<
-        T: alloy_contract::private::Transport + ::core::clone::Clone,
-        P: alloy_contract::private::Provider<T, N>,
-        N: alloy_contract::private::Network,
-    > StorageAccessibleInstance<T, P, N> {
+            T: alloy_contract::private::Transport + ::core::clone::Clone,
+            P: alloy_contract::private::Provider<T, N>,
+            N: alloy_contract::private::Network,
+        > StorageAccessibleInstance<T, P, N>
+    {
         /**Creates a new wrapper around an on-chain [`StorageAccessible`](self) contract instance.
 
-See the [wrapper's documentation](`StorageAccessibleInstance`) for more details.*/
+        See the [wrapper's documentation](`StorageAccessibleInstance`) for more details.*/
         #[inline]
-        pub const fn new(
-            address: alloy_sol_types::private::Address,
-            provider: P,
-        ) -> Self {
-            Self {
-                address,
-                provider,
-                _network_transport: ::core::marker::PhantomData,
-            }
+        pub const fn new(address: alloy_sol_types::private::Address, provider: P) -> Self {
+            Self { address, provider, _network_transport: ::core::marker::PhantomData }
         }
         /**Deploys this contract using the given `provider` and constructor arguments, if any.
 
-Returns a new instance of the contract, if the deployment was successful.
+        Returns a new instance of the contract, if the deployment was successful.
 
-For more fine-grained control over the deployment process, use [`deploy_builder`] instead.*/
+        For more fine-grained control over the deployment process, use [`deploy_builder`] instead.*/
         #[inline]
         pub async fn deploy(
             provider: P,
@@ -594,10 +526,10 @@ For more fine-grained control over the deployment process, use [`deploy_builder`
             Ok(Self::new(contract_address, call_builder.provider))
         }
         /**Creates a `RawCallBuilder` for deploying this contract using the given `provider`
-and constructor arguments, if any.
+        and constructor arguments, if any.
 
-This is a simple wrapper around creating a `RawCallBuilder` with the data set to
-the bytecode concatenated with the constructor's ABI-encoded arguments.*/
+        This is a simple wrapper around creating a `RawCallBuilder` with the data set to
+        the bytecode concatenated with the constructor's ABI-encoded arguments.*/
         #[inline]
         pub fn deploy_builder(provider: P) -> alloy_contract::RawCallBuilder<T, P, N> {
             alloy_contract::RawCallBuilder::new_raw_deploy(
@@ -640,10 +572,11 @@ the bytecode concatenated with the constructor's ABI-encoded arguments.*/
     /// Function calls.
     #[automatically_derived]
     impl<
-        T: alloy_contract::private::Transport + ::core::clone::Clone,
-        P: alloy_contract::private::Provider<T, N>,
-        N: alloy_contract::private::Network,
-    > StorageAccessibleInstance<T, P, N> {
+            T: alloy_contract::private::Transport + ::core::clone::Clone,
+            P: alloy_contract::private::Provider<T, N>,
+            N: alloy_contract::private::Network,
+        > StorageAccessibleInstance<T, P, N>
+    {
         /// Creates a new call builder using this contract instance's provider and address.
         ///
         /// Note that the call can be any function call, not just those defined in this
@@ -668,21 +601,17 @@ the bytecode concatenated with the constructor's ABI-encoded arguments.*/
             targetContract: alloy::sol_types::private::Address,
             calldataPayload: alloy::sol_types::private::Bytes,
         ) -> alloy_contract::SolCallBuilder<T, &P, simulateAndRevertCall, N> {
-            self.call_builder(
-                &simulateAndRevertCall {
-                    targetContract,
-                    calldataPayload,
-                },
-            )
+            self.call_builder(&simulateAndRevertCall { targetContract, calldataPayload })
         }
     }
     /// Event filters.
     #[automatically_derived]
     impl<
-        T: alloy_contract::private::Transport + ::core::clone::Clone,
-        P: alloy_contract::private::Provider<T, N>,
-        N: alloy_contract::private::Network,
-    > StorageAccessibleInstance<T, P, N> {
+            T: alloy_contract::private::Transport + ::core::clone::Clone,
+            P: alloy_contract::private::Provider<T, N>,
+            N: alloy_contract::private::Network,
+        > StorageAccessibleInstance<T, P, N>
+    {
         /// Creates a new event filter using this contract instance's provider and address.
         ///
         /// Note that the type can be any event, not just those defined in this contract.

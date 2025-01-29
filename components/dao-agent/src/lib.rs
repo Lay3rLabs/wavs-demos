@@ -7,7 +7,13 @@ mod ollama;
 use alloy_primitives::{Address, Bytes, U256};
 use alloy_sol_types::{sol, SolCall, SolValue};
 use anyhow::Result;
-use bindings::Guest;
+use bindings::{
+    export,
+    lay3r::avs::layer_types::{
+        TriggerData, TriggerDataCosmosContractEvent, TriggerDataEthContractEvent,
+    },
+    Guest, TriggerAction,
+};
 use layer_wasi::wasi::{block_on, Reactor, Request, WasiPollable};
 use models::{DaoContext, SafeTransaction};
 use ollama::OllamaChatResponse;
@@ -30,43 +36,57 @@ sol! {
 struct Component;
 
 impl Guest for Component {
-    fn process_eth_trigger(input: Vec<u8>) -> std::result::Result<Vec<u8>, String> {
-        let prompt =
-            String::from_utf8(input.clone()).map_err(|e| format!("Invalid UTF-8: {}", e))?;
+    fn run(trigger_action: TriggerAction) -> std::result::Result<Vec<u8>, String> {
+        match trigger_action.data {
+            // TriggerData::EthContractEvent(TriggerDataEthContractEvent { chain_name, .. }) => {
+            //     unimplemented!()
+            // }
+            // TriggerData::CosmosContractEvent(TriggerDataCosmosContractEvent { .. }) => {}
+            TriggerData::Raw(input) => {
+                let prompt = String::from_utf8(input.clone())
+                    .map_err(|e| format!("Invalid UTF-8: {}", e))?;
 
-        block_on(|reactor| async move {
-            let response = query_ollama(&reactor, &prompt).await?;
+                return block_on(|reactor| async move {
+                    let response = query_ollama(&reactor, &prompt).await?;
 
-            println!("Response: {}", response);
+                    println!("Response: {}", response);
 
-            // Extract tool call or return no-op if none found
-            let tool_call = match response
-                .split("<tool_call>")
-                .nth(1)
-                .and_then(|s| s.split("</tool_call>").next())
-            {
-                Some(call) => call,
-                None => {
-                    // Return a no-op transaction if no tool call is found
-                    let no_op = create_no_op_transaction("No action needed");
-                    let payload = create_payload_from_safe_tx(&no_op)?;
-                    return Ok(payload.abi_encode().to_vec());
-                }
-            };
+                    // Extract tool call or return no-op if none found
+                    let tool_call = match response
+                        .split("<tool_call>")
+                        .nth(1)
+                        .and_then(|s| s.split("</tool_call>").next())
+                    {
+                        Some(call) => call,
+                        None => {
+                            // Return a no-op transaction if no tool call is found
+                            let no_op = create_no_op_transaction("No action needed");
+                            let payload = create_payload_from_safe_tx(&no_op)?;
+                            return Ok(payload.abi_encode().to_vec());
+                        }
+                    };
 
-            let transaction: SafeTransaction = serde_json::from_str(tool_call)
-                .map_err(|e| format!("Failed to parse transaction: {}", e))?;
+                    let transaction: SafeTransaction = serde_json::from_str(tool_call)
+                        .map_err(|e| format!("Failed to parse transaction: {}", e))?;
 
-            // Return no-op if "to" address is empty or invalid
-            if transaction.to.is_empty() || transaction.to == "0x" || transaction.to.len() < 42 {
-                let no_op = create_no_op_transaction("Invalid or missing destination address");
-                let payload = create_payload_from_safe_tx(&no_op)?;
-                return Ok(payload.abi_encode().to_vec());
-            }
+                    // Return no-op if "to" address is empty or invalid
+                    if transaction.to.is_empty()
+                        || transaction.to == "0x"
+                        || transaction.to.len() < 42
+                    {
+                        let no_op =
+                            create_no_op_transaction("Invalid or missing destination address");
+                        let payload = create_payload_from_safe_tx(&no_op)?;
+                        return Ok(payload.abi_encode().to_vec());
+                    }
 
-            let payload = create_payload_from_safe_tx(&transaction)?;
-            Ok(payload.abi_encode().to_vec())
-        })
+                    let payload = create_payload_from_safe_tx(&transaction)?;
+                    Ok(payload.abi_encode().to_vec())
+                })
+            },
+            _ => Ok(Vec::new())
+        }
+
     }
 }
 
@@ -262,4 +282,4 @@ async fn query_ollama(reactor: &Reactor, prompt: &str) -> Result<String, String>
     }
 }
 
-bindings::export!(Component with_types_in bindings);
+export!(Component with_types_in bindings);

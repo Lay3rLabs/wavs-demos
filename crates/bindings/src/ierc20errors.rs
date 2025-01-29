@@ -134,9 +134,9 @@ pub mod IERC20Errors {
         b"",
     );
     /**Custom error with signature `ERC20InsufficientAllowance(address,uint256,uint256)` and selector `0xfb8f41b2`.
-```solidity
-error ERC20InsufficientAllowance(address spender, uint256 allowance, uint256 needed);
-```*/
+    ```solidity
+    error ERC20InsufficientAllowance(address spender, uint256 allowance, uint256 needed);
+    ```*/
     #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields)]
     #[derive(Clone)]
     pub struct ERC20InsufficientAllowance {
@@ -144,12 +144,7 @@ error ERC20InsufficientAllowance(address spender, uint256 allowance, uint256 nee
         pub allowance: alloy::sol_types::private::primitives::aliases::U256,
         pub needed: alloy::sol_types::private::primitives::aliases::U256,
     }
-    #[allow(
-        non_camel_case_types,
-        non_snake_case,
-        clippy::pub_underscore_fields,
-        clippy::style
-    )]
+    #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields, clippy::style)]
     const _: () = {
         use alloy::sol_types as alloy_sol_types;
         #[doc(hidden)]
@@ -166,9 +161,7 @@ error ERC20InsufficientAllowance(address spender, uint256 allowance, uint256 nee
         );
         #[cfg(test)]
         #[allow(dead_code, unreachable_patterns)]
-        fn _type_assertion(
-            _t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>,
-        ) {
+        fn _type_assertion(_t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>) {
             match _t {
                 alloy_sol_types::private::AssertTypeEq::<
                     <UnderlyingSolTuple as alloy_sol_types::SolType>::RustType,
@@ -177,30 +170,22 @@ error ERC20InsufficientAllowance(address spender, uint256 allowance, uint256 nee
         }
         #[automatically_derived]
         #[doc(hidden)]
-        impl ::core::convert::From<ERC20InsufficientAllowance>
-        for UnderlyingRustTuple<'_> {
+        impl ::core::convert::From<ERC20InsufficientAllowance> for UnderlyingRustTuple<'_> {
             fn from(value: ERC20InsufficientAllowance) -> Self {
                 (value.spender, value.allowance, value.needed)
             }
         }
         #[automatically_derived]
         #[doc(hidden)]
-        impl ::core::convert::From<UnderlyingRustTuple<'_>>
-        for ERC20InsufficientAllowance {
+        impl ::core::convert::From<UnderlyingRustTuple<'_>> for ERC20InsufficientAllowance {
             fn from(tuple: UnderlyingRustTuple<'_>) -> Self {
-                Self {
-                    spender: tuple.0,
-                    allowance: tuple.1,
-                    needed: tuple.2,
-                }
+                Self { spender: tuple.0, allowance: tuple.1, needed: tuple.2 }
             }
         }
         #[automatically_derived]
         impl alloy_sol_types::SolError for ERC20InsufficientAllowance {
             type Parameters<'a> = UnderlyingSolTuple<'a>;
-            type Token<'a> = <Self::Parameters<
-                'a,
-            > as alloy_sol_types::SolType>::Token<'a>;
+            type Token<'a> = <Self::Parameters<'a> as alloy_sol_types::SolType>::Token<'a>;
             const SIGNATURE: &'static str = "ERC20InsufficientAllowance(address,uint256,uint256)";
             const SELECTOR: [u8; 4] = [251u8, 143u8, 65u8, 178u8];
             #[inline]
@@ -215,20 +200,20 @@ error ERC20InsufficientAllowance(address spender, uint256 allowance, uint256 nee
                     <alloy::sol_types::sol_data::Address as alloy_sol_types::SolType>::tokenize(
                         &self.spender,
                     ),
-                    <alloy::sol_types::sol_data::Uint<
-                        256,
-                    > as alloy_sol_types::SolType>::tokenize(&self.allowance),
-                    <alloy::sol_types::sol_data::Uint<
-                        256,
-                    > as alloy_sol_types::SolType>::tokenize(&self.needed),
+                    <alloy::sol_types::sol_data::Uint<256> as alloy_sol_types::SolType>::tokenize(
+                        &self.allowance,
+                    ),
+                    <alloy::sol_types::sol_data::Uint<256> as alloy_sol_types::SolType>::tokenize(
+                        &self.needed,
+                    ),
                 )
             }
         }
     };
     /**Custom error with signature `ERC20InsufficientBalance(address,uint256,uint256)` and selector `0xe450d38c`.
-```solidity
-error ERC20InsufficientBalance(address sender, uint256 balance, uint256 needed);
-```*/
+    ```solidity
+    error ERC20InsufficientBalance(address sender, uint256 balance, uint256 needed);
+    ```*/
     #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields)]
     #[derive(Clone)]
     pub struct ERC20InsufficientBalance {
@@ -236,12 +221,7 @@ error ERC20InsufficientBalance(address sender, uint256 balance, uint256 needed);
         pub balance: alloy::sol_types::private::primitives::aliases::U256,
         pub needed: alloy::sol_types::private::primitives::aliases::U256,
     }
-    #[allow(
-        non_camel_case_types,
-        non_snake_case,
-        clippy::pub_underscore_fields,
-        clippy::style
-    )]
+    #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields, clippy::style)]
     const _: () = {
         use alloy::sol_types as alloy_sol_types;
         #[doc(hidden)]
@@ -258,9 +238,7 @@ error ERC20InsufficientBalance(address sender, uint256 balance, uint256 needed);
         );
         #[cfg(test)]
         #[allow(dead_code, unreachable_patterns)]
-        fn _type_assertion(
-            _t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>,
-        ) {
+        fn _type_assertion(_t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>) {
             match _t {
                 alloy_sol_types::private::AssertTypeEq::<
                     <UnderlyingSolTuple as alloy_sol_types::SolType>::RustType,
@@ -269,30 +247,22 @@ error ERC20InsufficientBalance(address sender, uint256 balance, uint256 needed);
         }
         #[automatically_derived]
         #[doc(hidden)]
-        impl ::core::convert::From<ERC20InsufficientBalance>
-        for UnderlyingRustTuple<'_> {
+        impl ::core::convert::From<ERC20InsufficientBalance> for UnderlyingRustTuple<'_> {
             fn from(value: ERC20InsufficientBalance) -> Self {
                 (value.sender, value.balance, value.needed)
             }
         }
         #[automatically_derived]
         #[doc(hidden)]
-        impl ::core::convert::From<UnderlyingRustTuple<'_>>
-        for ERC20InsufficientBalance {
+        impl ::core::convert::From<UnderlyingRustTuple<'_>> for ERC20InsufficientBalance {
             fn from(tuple: UnderlyingRustTuple<'_>) -> Self {
-                Self {
-                    sender: tuple.0,
-                    balance: tuple.1,
-                    needed: tuple.2,
-                }
+                Self { sender: tuple.0, balance: tuple.1, needed: tuple.2 }
             }
         }
         #[automatically_derived]
         impl alloy_sol_types::SolError for ERC20InsufficientBalance {
             type Parameters<'a> = UnderlyingSolTuple<'a>;
-            type Token<'a> = <Self::Parameters<
-                'a,
-            > as alloy_sol_types::SolType>::Token<'a>;
+            type Token<'a> = <Self::Parameters<'a> as alloy_sol_types::SolType>::Token<'a>;
             const SIGNATURE: &'static str = "ERC20InsufficientBalance(address,uint256,uint256)";
             const SELECTOR: [u8; 4] = [228u8, 80u8, 211u8, 140u8];
             #[inline]
@@ -307,31 +277,26 @@ error ERC20InsufficientBalance(address sender, uint256 balance, uint256 needed);
                     <alloy::sol_types::sol_data::Address as alloy_sol_types::SolType>::tokenize(
                         &self.sender,
                     ),
-                    <alloy::sol_types::sol_data::Uint<
-                        256,
-                    > as alloy_sol_types::SolType>::tokenize(&self.balance),
-                    <alloy::sol_types::sol_data::Uint<
-                        256,
-                    > as alloy_sol_types::SolType>::tokenize(&self.needed),
+                    <alloy::sol_types::sol_data::Uint<256> as alloy_sol_types::SolType>::tokenize(
+                        &self.balance,
+                    ),
+                    <alloy::sol_types::sol_data::Uint<256> as alloy_sol_types::SolType>::tokenize(
+                        &self.needed,
+                    ),
                 )
             }
         }
     };
     /**Custom error with signature `ERC20InvalidApprover(address)` and selector `0xe602df05`.
-```solidity
-error ERC20InvalidApprover(address approver);
-```*/
+    ```solidity
+    error ERC20InvalidApprover(address approver);
+    ```*/
     #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields)]
     #[derive(Clone)]
     pub struct ERC20InvalidApprover {
         pub approver: alloy::sol_types::private::Address,
     }
-    #[allow(
-        non_camel_case_types,
-        non_snake_case,
-        clippy::pub_underscore_fields,
-        clippy::style
-    )]
+    #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields, clippy::style)]
     const _: () = {
         use alloy::sol_types as alloy_sol_types;
         #[doc(hidden)]
@@ -340,9 +305,7 @@ error ERC20InvalidApprover(address approver);
         type UnderlyingRustTuple<'a> = (alloy::sol_types::private::Address,);
         #[cfg(test)]
         #[allow(dead_code, unreachable_patterns)]
-        fn _type_assertion(
-            _t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>,
-        ) {
+        fn _type_assertion(_t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>) {
             match _t {
                 alloy_sol_types::private::AssertTypeEq::<
                     <UnderlyingSolTuple as alloy_sol_types::SolType>::RustType,
@@ -366,9 +329,7 @@ error ERC20InvalidApprover(address approver);
         #[automatically_derived]
         impl alloy_sol_types::SolError for ERC20InvalidApprover {
             type Parameters<'a> = UnderlyingSolTuple<'a>;
-            type Token<'a> = <Self::Parameters<
-                'a,
-            > as alloy_sol_types::SolType>::Token<'a>;
+            type Token<'a> = <Self::Parameters<'a> as alloy_sol_types::SolType>::Token<'a>;
             const SIGNATURE: &'static str = "ERC20InvalidApprover(address)";
             const SELECTOR: [u8; 4] = [230u8, 2u8, 223u8, 5u8];
             #[inline]
@@ -379,29 +340,22 @@ error ERC20InvalidApprover(address approver);
             }
             #[inline]
             fn tokenize(&self) -> Self::Token<'_> {
-                (
-                    <alloy::sol_types::sol_data::Address as alloy_sol_types::SolType>::tokenize(
-                        &self.approver,
-                    ),
-                )
+                (<alloy::sol_types::sol_data::Address as alloy_sol_types::SolType>::tokenize(
+                    &self.approver,
+                ),)
             }
         }
     };
     /**Custom error with signature `ERC20InvalidReceiver(address)` and selector `0xec442f05`.
-```solidity
-error ERC20InvalidReceiver(address receiver);
-```*/
+    ```solidity
+    error ERC20InvalidReceiver(address receiver);
+    ```*/
     #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields)]
     #[derive(Clone)]
     pub struct ERC20InvalidReceiver {
         pub receiver: alloy::sol_types::private::Address,
     }
-    #[allow(
-        non_camel_case_types,
-        non_snake_case,
-        clippy::pub_underscore_fields,
-        clippy::style
-    )]
+    #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields, clippy::style)]
     const _: () = {
         use alloy::sol_types as alloy_sol_types;
         #[doc(hidden)]
@@ -410,9 +364,7 @@ error ERC20InvalidReceiver(address receiver);
         type UnderlyingRustTuple<'a> = (alloy::sol_types::private::Address,);
         #[cfg(test)]
         #[allow(dead_code, unreachable_patterns)]
-        fn _type_assertion(
-            _t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>,
-        ) {
+        fn _type_assertion(_t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>) {
             match _t {
                 alloy_sol_types::private::AssertTypeEq::<
                     <UnderlyingSolTuple as alloy_sol_types::SolType>::RustType,
@@ -436,9 +388,7 @@ error ERC20InvalidReceiver(address receiver);
         #[automatically_derived]
         impl alloy_sol_types::SolError for ERC20InvalidReceiver {
             type Parameters<'a> = UnderlyingSolTuple<'a>;
-            type Token<'a> = <Self::Parameters<
-                'a,
-            > as alloy_sol_types::SolType>::Token<'a>;
+            type Token<'a> = <Self::Parameters<'a> as alloy_sol_types::SolType>::Token<'a>;
             const SIGNATURE: &'static str = "ERC20InvalidReceiver(address)";
             const SELECTOR: [u8; 4] = [236u8, 68u8, 47u8, 5u8];
             #[inline]
@@ -449,29 +399,22 @@ error ERC20InvalidReceiver(address receiver);
             }
             #[inline]
             fn tokenize(&self) -> Self::Token<'_> {
-                (
-                    <alloy::sol_types::sol_data::Address as alloy_sol_types::SolType>::tokenize(
-                        &self.receiver,
-                    ),
-                )
+                (<alloy::sol_types::sol_data::Address as alloy_sol_types::SolType>::tokenize(
+                    &self.receiver,
+                ),)
             }
         }
     };
     /**Custom error with signature `ERC20InvalidSender(address)` and selector `0x96c6fd1e`.
-```solidity
-error ERC20InvalidSender(address sender);
-```*/
+    ```solidity
+    error ERC20InvalidSender(address sender);
+    ```*/
     #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields)]
     #[derive(Clone)]
     pub struct ERC20InvalidSender {
         pub sender: alloy::sol_types::private::Address,
     }
-    #[allow(
-        non_camel_case_types,
-        non_snake_case,
-        clippy::pub_underscore_fields,
-        clippy::style
-    )]
+    #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields, clippy::style)]
     const _: () = {
         use alloy::sol_types as alloy_sol_types;
         #[doc(hidden)]
@@ -480,9 +423,7 @@ error ERC20InvalidSender(address sender);
         type UnderlyingRustTuple<'a> = (alloy::sol_types::private::Address,);
         #[cfg(test)]
         #[allow(dead_code, unreachable_patterns)]
-        fn _type_assertion(
-            _t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>,
-        ) {
+        fn _type_assertion(_t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>) {
             match _t {
                 alloy_sol_types::private::AssertTypeEq::<
                     <UnderlyingSolTuple as alloy_sol_types::SolType>::RustType,
@@ -506,9 +447,7 @@ error ERC20InvalidSender(address sender);
         #[automatically_derived]
         impl alloy_sol_types::SolError for ERC20InvalidSender {
             type Parameters<'a> = UnderlyingSolTuple<'a>;
-            type Token<'a> = <Self::Parameters<
-                'a,
-            > as alloy_sol_types::SolType>::Token<'a>;
+            type Token<'a> = <Self::Parameters<'a> as alloy_sol_types::SolType>::Token<'a>;
             const SIGNATURE: &'static str = "ERC20InvalidSender(address)";
             const SELECTOR: [u8; 4] = [150u8, 198u8, 253u8, 30u8];
             #[inline]
@@ -519,29 +458,22 @@ error ERC20InvalidSender(address sender);
             }
             #[inline]
             fn tokenize(&self) -> Self::Token<'_> {
-                (
-                    <alloy::sol_types::sol_data::Address as alloy_sol_types::SolType>::tokenize(
-                        &self.sender,
-                    ),
-                )
+                (<alloy::sol_types::sol_data::Address as alloy_sol_types::SolType>::tokenize(
+                    &self.sender,
+                ),)
             }
         }
     };
     /**Custom error with signature `ERC20InvalidSpender(address)` and selector `0x94280d62`.
-```solidity
-error ERC20InvalidSpender(address spender);
-```*/
+    ```solidity
+    error ERC20InvalidSpender(address spender);
+    ```*/
     #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields)]
     #[derive(Clone)]
     pub struct ERC20InvalidSpender {
         pub spender: alloy::sol_types::private::Address,
     }
-    #[allow(
-        non_camel_case_types,
-        non_snake_case,
-        clippy::pub_underscore_fields,
-        clippy::style
-    )]
+    #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields, clippy::style)]
     const _: () = {
         use alloy::sol_types as alloy_sol_types;
         #[doc(hidden)]
@@ -550,9 +482,7 @@ error ERC20InvalidSpender(address spender);
         type UnderlyingRustTuple<'a> = (alloy::sol_types::private::Address,);
         #[cfg(test)]
         #[allow(dead_code, unreachable_patterns)]
-        fn _type_assertion(
-            _t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>,
-        ) {
+        fn _type_assertion(_t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>) {
             match _t {
                 alloy_sol_types::private::AssertTypeEq::<
                     <UnderlyingSolTuple as alloy_sol_types::SolType>::RustType,
@@ -576,9 +506,7 @@ error ERC20InvalidSpender(address spender);
         #[automatically_derived]
         impl alloy_sol_types::SolError for ERC20InvalidSpender {
             type Parameters<'a> = UnderlyingSolTuple<'a>;
-            type Token<'a> = <Self::Parameters<
-                'a,
-            > as alloy_sol_types::SolType>::Token<'a>;
+            type Token<'a> = <Self::Parameters<'a> as alloy_sol_types::SolType>::Token<'a>;
             const SIGNATURE: &'static str = "ERC20InvalidSpender(address)";
             const SELECTOR: [u8; 4] = [148u8, 40u8, 13u8, 98u8];
             #[inline]
@@ -589,11 +517,9 @@ error ERC20InvalidSpender(address spender);
             }
             #[inline]
             fn tokenize(&self) -> Self::Token<'_> {
-                (
-                    <alloy::sol_types::sol_data::Address as alloy_sol_types::SolType>::tokenize(
-                        &self.spender,
-                    ),
-                )
+                (<alloy::sol_types::sol_data::Address as alloy_sol_types::SolType>::tokenize(
+                    &self.spender,
+                ),)
             }
         }
     };
@@ -669,17 +595,17 @@ error ERC20InvalidSpender(address spender);
             static DECODE_SHIMS: &[fn(
                 &[u8],
                 bool,
-            ) -> alloy_sol_types::Result<IERC20ErrorsErrors>] = &[
+            )
+                -> alloy_sol_types::Result<IERC20ErrorsErrors>] = &[
                 {
                     fn ERC20InvalidSpender(
                         data: &[u8],
                         validate: bool,
                     ) -> alloy_sol_types::Result<IERC20ErrorsErrors> {
                         <ERC20InvalidSpender as alloy_sol_types::SolError>::abi_decode_raw(
-                                data,
-                                validate,
-                            )
-                            .map(IERC20ErrorsErrors::ERC20InvalidSpender)
+                            data, validate,
+                        )
+                        .map(IERC20ErrorsErrors::ERC20InvalidSpender)
                     }
                     ERC20InvalidSpender
                 },
@@ -689,10 +615,9 @@ error ERC20InvalidSpender(address spender);
                         validate: bool,
                     ) -> alloy_sol_types::Result<IERC20ErrorsErrors> {
                         <ERC20InvalidSender as alloy_sol_types::SolError>::abi_decode_raw(
-                                data,
-                                validate,
-                            )
-                            .map(IERC20ErrorsErrors::ERC20InvalidSender)
+                            data, validate,
+                        )
+                        .map(IERC20ErrorsErrors::ERC20InvalidSender)
                     }
                     ERC20InvalidSender
                 },
@@ -702,10 +627,9 @@ error ERC20InvalidSpender(address spender);
                         validate: bool,
                     ) -> alloy_sol_types::Result<IERC20ErrorsErrors> {
                         <ERC20InsufficientBalance as alloy_sol_types::SolError>::abi_decode_raw(
-                                data,
-                                validate,
-                            )
-                            .map(IERC20ErrorsErrors::ERC20InsufficientBalance)
+                            data, validate,
+                        )
+                        .map(IERC20ErrorsErrors::ERC20InsufficientBalance)
                     }
                     ERC20InsufficientBalance
                 },
@@ -715,10 +639,9 @@ error ERC20InvalidSpender(address spender);
                         validate: bool,
                     ) -> alloy_sol_types::Result<IERC20ErrorsErrors> {
                         <ERC20InvalidApprover as alloy_sol_types::SolError>::abi_decode_raw(
-                                data,
-                                validate,
-                            )
-                            .map(IERC20ErrorsErrors::ERC20InvalidApprover)
+                            data, validate,
+                        )
+                        .map(IERC20ErrorsErrors::ERC20InvalidApprover)
                     }
                     ERC20InvalidApprover
                 },
@@ -728,10 +651,9 @@ error ERC20InvalidSpender(address spender);
                         validate: bool,
                     ) -> alloy_sol_types::Result<IERC20ErrorsErrors> {
                         <ERC20InvalidReceiver as alloy_sol_types::SolError>::abi_decode_raw(
-                                data,
-                                validate,
-                            )
-                            .map(IERC20ErrorsErrors::ERC20InvalidReceiver)
+                            data, validate,
+                        )
+                        .map(IERC20ErrorsErrors::ERC20InvalidReceiver)
                     }
                     ERC20InvalidReceiver
                 },
@@ -741,21 +663,18 @@ error ERC20InvalidSpender(address spender);
                         validate: bool,
                     ) -> alloy_sol_types::Result<IERC20ErrorsErrors> {
                         <ERC20InsufficientAllowance as alloy_sol_types::SolError>::abi_decode_raw(
-                                data,
-                                validate,
-                            )
-                            .map(IERC20ErrorsErrors::ERC20InsufficientAllowance)
+                            data, validate,
+                        )
+                        .map(IERC20ErrorsErrors::ERC20InsufficientAllowance)
                     }
                     ERC20InsufficientAllowance
                 },
             ];
             let Ok(idx) = Self::SELECTORS.binary_search(&selector) else {
-                return Err(
-                    alloy_sol_types::Error::unknown_selector(
-                        <Self as alloy_sol_types::SolInterface>::NAME,
-                        selector,
-                    ),
-                );
+                return Err(alloy_sol_types::Error::unknown_selector(
+                    <Self as alloy_sol_types::SolInterface>::NAME,
+                    selector,
+                ));
             };
             DECODE_SHIMS[idx](data, validate)
         }
@@ -768,29 +687,19 @@ error ERC20InvalidSpender(address spender);
                     )
                 }
                 Self::ERC20InsufficientBalance(inner) => {
-                    <ERC20InsufficientBalance as alloy_sol_types::SolError>::abi_encoded_size(
-                        inner,
-                    )
+                    <ERC20InsufficientBalance as alloy_sol_types::SolError>::abi_encoded_size(inner)
                 }
                 Self::ERC20InvalidApprover(inner) => {
-                    <ERC20InvalidApprover as alloy_sol_types::SolError>::abi_encoded_size(
-                        inner,
-                    )
+                    <ERC20InvalidApprover as alloy_sol_types::SolError>::abi_encoded_size(inner)
                 }
                 Self::ERC20InvalidReceiver(inner) => {
-                    <ERC20InvalidReceiver as alloy_sol_types::SolError>::abi_encoded_size(
-                        inner,
-                    )
+                    <ERC20InvalidReceiver as alloy_sol_types::SolError>::abi_encoded_size(inner)
                 }
                 Self::ERC20InvalidSender(inner) => {
-                    <ERC20InvalidSender as alloy_sol_types::SolError>::abi_encoded_size(
-                        inner,
-                    )
+                    <ERC20InvalidSender as alloy_sol_types::SolError>::abi_encoded_size(inner)
                 }
                 Self::ERC20InvalidSpender(inner) => {
-                    <ERC20InvalidSpender as alloy_sol_types::SolError>::abi_encoded_size(
-                        inner,
-                    )
+                    <ERC20InvalidSpender as alloy_sol_types::SolError>::abi_encoded_size(inner)
                 }
             }
         }
@@ -799,39 +708,25 @@ error ERC20InvalidSpender(address spender);
             match self {
                 Self::ERC20InsufficientAllowance(inner) => {
                     <ERC20InsufficientAllowance as alloy_sol_types::SolError>::abi_encode_raw(
-                        inner,
-                        out,
+                        inner, out,
                     )
                 }
                 Self::ERC20InsufficientBalance(inner) => {
                     <ERC20InsufficientBalance as alloy_sol_types::SolError>::abi_encode_raw(
-                        inner,
-                        out,
+                        inner, out,
                     )
                 }
                 Self::ERC20InvalidApprover(inner) => {
-                    <ERC20InvalidApprover as alloy_sol_types::SolError>::abi_encode_raw(
-                        inner,
-                        out,
-                    )
+                    <ERC20InvalidApprover as alloy_sol_types::SolError>::abi_encode_raw(inner, out)
                 }
                 Self::ERC20InvalidReceiver(inner) => {
-                    <ERC20InvalidReceiver as alloy_sol_types::SolError>::abi_encode_raw(
-                        inner,
-                        out,
-                    )
+                    <ERC20InvalidReceiver as alloy_sol_types::SolError>::abi_encode_raw(inner, out)
                 }
                 Self::ERC20InvalidSender(inner) => {
-                    <ERC20InvalidSender as alloy_sol_types::SolError>::abi_encode_raw(
-                        inner,
-                        out,
-                    )
+                    <ERC20InvalidSender as alloy_sol_types::SolError>::abi_encode_raw(inner, out)
                 }
                 Self::ERC20InvalidSpender(inner) => {
-                    <ERC20InvalidSpender as alloy_sol_types::SolError>::abi_encode_raw(
-                        inner,
-                        out,
-                    )
+                    <ERC20InvalidSpender as alloy_sol_types::SolError>::abi_encode_raw(inner, out)
                 }
             }
         }
@@ -839,7 +734,7 @@ error ERC20InvalidSpender(address spender);
     use alloy::contract as alloy_contract;
     /**Creates a new wrapper around an on-chain [`IERC20Errors`](self) contract instance.
 
-See the [wrapper's documentation](`IERC20ErrorsInstance`) for more details.*/
+    See the [wrapper's documentation](`IERC20ErrorsInstance`) for more details.*/
     #[inline]
     pub const fn new<
         T: alloy_contract::private::Transport + ::core::clone::Clone,
@@ -853,9 +748,9 @@ See the [wrapper's documentation](`IERC20ErrorsInstance`) for more details.*/
     }
     /**Deploys this contract using the given `provider` and constructor arguments, if any.
 
-Returns a new instance of the contract, if the deployment was successful.
+    Returns a new instance of the contract, if the deployment was successful.
 
-For more fine-grained control over the deployment process, use [`deploy_builder`] instead.*/
+    For more fine-grained control over the deployment process, use [`deploy_builder`] instead.*/
     #[inline]
     pub fn deploy<
         T: alloy_contract::private::Transport + ::core::clone::Clone,
@@ -863,35 +758,36 @@ For more fine-grained control over the deployment process, use [`deploy_builder`
         N: alloy_contract::private::Network,
     >(
         provider: P,
-    ) -> impl ::core::future::Future<
-        Output = alloy_contract::Result<IERC20ErrorsInstance<T, P, N>>,
-    > {
+    ) -> impl ::core::future::Future<Output = alloy_contract::Result<IERC20ErrorsInstance<T, P, N>>>
+    {
         IERC20ErrorsInstance::<T, P, N>::deploy(provider)
     }
     /**Creates a `RawCallBuilder` for deploying this contract using the given `provider`
-and constructor arguments, if any.
+    and constructor arguments, if any.
 
-This is a simple wrapper around creating a `RawCallBuilder` with the data set to
-the bytecode concatenated with the constructor's ABI-encoded arguments.*/
+    This is a simple wrapper around creating a `RawCallBuilder` with the data set to
+    the bytecode concatenated with the constructor's ABI-encoded arguments.*/
     #[inline]
     pub fn deploy_builder<
         T: alloy_contract::private::Transport + ::core::clone::Clone,
         P: alloy_contract::private::Provider<T, N>,
         N: alloy_contract::private::Network,
-    >(provider: P) -> alloy_contract::RawCallBuilder<T, P, N> {
+    >(
+        provider: P,
+    ) -> alloy_contract::RawCallBuilder<T, P, N> {
         IERC20ErrorsInstance::<T, P, N>::deploy_builder(provider)
     }
     /**A [`IERC20Errors`](self) instance.
 
-Contains type-safe methods for interacting with an on-chain instance of the
-[`IERC20Errors`](self) contract located at a given `address`, using a given
-provider `P`.
+    Contains type-safe methods for interacting with an on-chain instance of the
+    [`IERC20Errors`](self) contract located at a given `address`, using a given
+    provider `P`.
 
-If the contract bytecode is available (see the [`sol!`](alloy_sol_types::sol!)
-documentation on how to provide it), the `deploy` and `deploy_builder` methods can
-be used to deploy a new instance of the contract.
+    If the contract bytecode is available (see the [`sol!`](alloy_sol_types::sol!)
+    documentation on how to provide it), the `deploy` and `deploy_builder` methods can
+    be used to deploy a new instance of the contract.
 
-See the [module-level documentation](self) for all the available methods.*/
+    See the [module-level documentation](self) for all the available methods.*/
     #[derive(Clone)]
     pub struct IERC20ErrorsInstance<T, P, N = alloy_contract::private::Ethereum> {
         address: alloy_sol_types::private::Address,
@@ -908,42 +804,34 @@ See the [module-level documentation](self) for all the available methods.*/
     /// Instantiation and getters/setters.
     #[automatically_derived]
     impl<
-        T: alloy_contract::private::Transport + ::core::clone::Clone,
-        P: alloy_contract::private::Provider<T, N>,
-        N: alloy_contract::private::Network,
-    > IERC20ErrorsInstance<T, P, N> {
+            T: alloy_contract::private::Transport + ::core::clone::Clone,
+            P: alloy_contract::private::Provider<T, N>,
+            N: alloy_contract::private::Network,
+        > IERC20ErrorsInstance<T, P, N>
+    {
         /**Creates a new wrapper around an on-chain [`IERC20Errors`](self) contract instance.
 
-See the [wrapper's documentation](`IERC20ErrorsInstance`) for more details.*/
+        See the [wrapper's documentation](`IERC20ErrorsInstance`) for more details.*/
         #[inline]
-        pub const fn new(
-            address: alloy_sol_types::private::Address,
-            provider: P,
-        ) -> Self {
-            Self {
-                address,
-                provider,
-                _network_transport: ::core::marker::PhantomData,
-            }
+        pub const fn new(address: alloy_sol_types::private::Address, provider: P) -> Self {
+            Self { address, provider, _network_transport: ::core::marker::PhantomData }
         }
         /**Deploys this contract using the given `provider` and constructor arguments, if any.
 
-Returns a new instance of the contract, if the deployment was successful.
+        Returns a new instance of the contract, if the deployment was successful.
 
-For more fine-grained control over the deployment process, use [`deploy_builder`] instead.*/
+        For more fine-grained control over the deployment process, use [`deploy_builder`] instead.*/
         #[inline]
-        pub async fn deploy(
-            provider: P,
-        ) -> alloy_contract::Result<IERC20ErrorsInstance<T, P, N>> {
+        pub async fn deploy(provider: P) -> alloy_contract::Result<IERC20ErrorsInstance<T, P, N>> {
             let call_builder = Self::deploy_builder(provider);
             let contract_address = call_builder.deploy().await?;
             Ok(Self::new(contract_address, call_builder.provider))
         }
         /**Creates a `RawCallBuilder` for deploying this contract using the given `provider`
-and constructor arguments, if any.
+        and constructor arguments, if any.
 
-This is a simple wrapper around creating a `RawCallBuilder` with the data set to
-the bytecode concatenated with the constructor's ABI-encoded arguments.*/
+        This is a simple wrapper around creating a `RawCallBuilder` with the data set to
+        the bytecode concatenated with the constructor's ABI-encoded arguments.*/
         #[inline]
         pub fn deploy_builder(provider: P) -> alloy_contract::RawCallBuilder<T, P, N> {
             alloy_contract::RawCallBuilder::new_raw_deploy(
@@ -986,10 +874,11 @@ the bytecode concatenated with the constructor's ABI-encoded arguments.*/
     /// Function calls.
     #[automatically_derived]
     impl<
-        T: alloy_contract::private::Transport + ::core::clone::Clone,
-        P: alloy_contract::private::Provider<T, N>,
-        N: alloy_contract::private::Network,
-    > IERC20ErrorsInstance<T, P, N> {
+            T: alloy_contract::private::Transport + ::core::clone::Clone,
+            P: alloy_contract::private::Provider<T, N>,
+            N: alloy_contract::private::Network,
+        > IERC20ErrorsInstance<T, P, N>
+    {
         /// Creates a new call builder using this contract instance's provider and address.
         ///
         /// Note that the call can be any function call, not just those defined in this
@@ -1004,10 +893,11 @@ the bytecode concatenated with the constructor's ABI-encoded arguments.*/
     /// Event filters.
     #[automatically_derived]
     impl<
-        T: alloy_contract::private::Transport + ::core::clone::Clone,
-        P: alloy_contract::private::Provider<T, N>,
-        N: alloy_contract::private::Network,
-    > IERC20ErrorsInstance<T, P, N> {
+            T: alloy_contract::private::Transport + ::core::clone::Clone,
+            P: alloy_contract::private::Provider<T, N>,
+            N: alloy_contract::private::Network,
+        > IERC20ErrorsInstance<T, P, N>
+    {
         /// Creates a new event filter using this contract instance's provider and address.
         ///
         /// Note that the type can be any event, not just those defined in this contract.

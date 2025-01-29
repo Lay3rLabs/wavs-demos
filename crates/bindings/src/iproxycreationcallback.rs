@@ -71,9 +71,9 @@ pub mod IProxyCreationCallback {
         b"",
     );
     /**Function with signature `proxyCreated(address,address,bytes,uint256)` and selector `0x1e52b518`.
-```solidity
-function proxyCreated(address proxy, address _singleton, bytes memory initializer, uint256 saltNonce) external;
-```*/
+    ```solidity
+    function proxyCreated(address proxy, address _singleton, bytes memory initializer, uint256 saltNonce) external;
+    ```*/
     #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields)]
     #[derive(Clone)]
     pub struct proxyCreatedCall {
@@ -86,12 +86,7 @@ function proxyCreated(address proxy, address _singleton, bytes memory initialize
     #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields)]
     #[derive(Clone)]
     pub struct proxyCreatedReturn {}
-    #[allow(
-        non_camel_case_types,
-        non_snake_case,
-        clippy::pub_underscore_fields,
-        clippy::style
-    )]
+    #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields, clippy::style)]
     const _: () = {
         use alloy::sol_types as alloy_sol_types;
         {
@@ -111,9 +106,7 @@ function proxyCreated(address proxy, address _singleton, bytes memory initialize
             );
             #[cfg(test)]
             #[allow(dead_code, unreachable_patterns)]
-            fn _type_assertion(
-                _t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>,
-            ) {
+            fn _type_assertion(_t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>) {
                 match _t {
                     alloy_sol_types::private::AssertTypeEq::<
                         <UnderlyingSolTuple as alloy_sol_types::SolType>::RustType,
@@ -147,9 +140,7 @@ function proxyCreated(address proxy, address _singleton, bytes memory initialize
             type UnderlyingRustTuple<'a> = ();
             #[cfg(test)]
             #[allow(dead_code, unreachable_patterns)]
-            fn _type_assertion(
-                _t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>,
-            ) {
+            fn _type_assertion(_t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>) {
                 match _t {
                     alloy_sol_types::private::AssertTypeEq::<
                         <UnderlyingSolTuple as alloy_sol_types::SolType>::RustType,
@@ -179,14 +170,10 @@ function proxyCreated(address proxy, address _singleton, bytes memory initialize
                 alloy::sol_types::sol_data::Bytes,
                 alloy::sol_types::sol_data::Uint<256>,
             );
-            type Token<'a> = <Self::Parameters<
-                'a,
-            > as alloy_sol_types::SolType>::Token<'a>;
+            type Token<'a> = <Self::Parameters<'a> as alloy_sol_types::SolType>::Token<'a>;
             type Return = proxyCreatedReturn;
             type ReturnTuple<'a> = ();
-            type ReturnToken<'a> = <Self::ReturnTuple<
-                'a,
-            > as alloy_sol_types::SolType>::Token<'a>;
+            type ReturnToken<'a> = <Self::ReturnTuple<'a> as alloy_sol_types::SolType>::Token<'a>;
             const SIGNATURE: &'static str = "proxyCreated(address,address,bytes,uint256)";
             const SELECTOR: [u8; 4] = [30u8, 82u8, 181u8, 24u8];
             #[inline]
@@ -207,9 +194,9 @@ function proxyCreated(address proxy, address _singleton, bytes memory initialize
                     <alloy::sol_types::sol_data::Bytes as alloy_sol_types::SolType>::tokenize(
                         &self.initializer,
                     ),
-                    <alloy::sol_types::sol_data::Uint<
-                        256,
-                    > as alloy_sol_types::SolType>::tokenize(&self.saltNonce),
+                    <alloy::sol_types::sol_data::Uint<256> as alloy_sol_types::SolType>::tokenize(
+                        &self.saltNonce,
+                    ),
                 )
             }
             #[inline]
@@ -217,10 +204,10 @@ function proxyCreated(address proxy, address _singleton, bytes memory initialize
                 data: &[u8],
                 validate: bool,
             ) -> alloy_sol_types::Result<Self::Return> {
-                <Self::ReturnTuple<
-                    '_,
-                > as alloy_sol_types::SolType>::abi_decode_sequence(data, validate)
-                    .map(Into::into)
+                <Self::ReturnTuple<'_> as alloy_sol_types::SolType>::abi_decode_sequence(
+                    data, validate,
+                )
+                .map(Into::into)
             }
         }
     };
@@ -246,9 +233,7 @@ function proxyCreated(address proxy, address _singleton, bytes memory initialize
         #[inline]
         fn selector(&self) -> [u8; 4] {
             match self {
-                Self::proxyCreated(_) => {
-                    <proxyCreatedCall as alloy_sol_types::SolCall>::SELECTOR
-                }
+                Self::proxyCreated(_) => <proxyCreatedCall as alloy_sol_types::SolCall>::SELECTOR,
             }
         }
         #[inline]
@@ -269,28 +254,22 @@ function proxyCreated(address proxy, address _singleton, bytes memory initialize
             static DECODE_SHIMS: &[fn(
                 &[u8],
                 bool,
-            ) -> alloy_sol_types::Result<IProxyCreationCallbackCalls>] = &[
-                {
-                    fn proxyCreated(
-                        data: &[u8],
-                        validate: bool,
-                    ) -> alloy_sol_types::Result<IProxyCreationCallbackCalls> {
-                        <proxyCreatedCall as alloy_sol_types::SolCall>::abi_decode_raw(
-                                data,
-                                validate,
-                            )
-                            .map(IProxyCreationCallbackCalls::proxyCreated)
-                    }
-                    proxyCreated
-                },
-            ];
+            )
+                -> alloy_sol_types::Result<IProxyCreationCallbackCalls>] = &[{
+                fn proxyCreated(
+                    data: &[u8],
+                    validate: bool,
+                ) -> alloy_sol_types::Result<IProxyCreationCallbackCalls> {
+                    <proxyCreatedCall as alloy_sol_types::SolCall>::abi_decode_raw(data, validate)
+                        .map(IProxyCreationCallbackCalls::proxyCreated)
+                }
+                proxyCreated
+            }];
             let Ok(idx) = Self::SELECTORS.binary_search(&selector) else {
-                return Err(
-                    alloy_sol_types::Error::unknown_selector(
-                        <Self as alloy_sol_types::SolInterface>::NAME,
-                        selector,
-                    ),
-                );
+                return Err(alloy_sol_types::Error::unknown_selector(
+                    <Self as alloy_sol_types::SolInterface>::NAME,
+                    selector,
+                ));
             };
             DECODE_SHIMS[idx](data, validate)
         }
@@ -298,9 +277,7 @@ function proxyCreated(address proxy, address _singleton, bytes memory initialize
         fn abi_encoded_size(&self) -> usize {
             match self {
                 Self::proxyCreated(inner) => {
-                    <proxyCreatedCall as alloy_sol_types::SolCall>::abi_encoded_size(
-                        inner,
-                    )
+                    <proxyCreatedCall as alloy_sol_types::SolCall>::abi_encoded_size(inner)
                 }
             }
         }
@@ -308,10 +285,7 @@ function proxyCreated(address proxy, address _singleton, bytes memory initialize
         fn abi_encode_raw(&self, out: &mut alloy_sol_types::private::Vec<u8>) {
             match self {
                 Self::proxyCreated(inner) => {
-                    <proxyCreatedCall as alloy_sol_types::SolCall>::abi_encode_raw(
-                        inner,
-                        out,
-                    )
+                    <proxyCreatedCall as alloy_sol_types::SolCall>::abi_encode_raw(inner, out)
                 }
             }
         }
@@ -319,7 +293,7 @@ function proxyCreated(address proxy, address _singleton, bytes memory initialize
     use alloy::contract as alloy_contract;
     /**Creates a new wrapper around an on-chain [`IProxyCreationCallback`](self) contract instance.
 
-See the [wrapper's documentation](`IProxyCreationCallbackInstance`) for more details.*/
+    See the [wrapper's documentation](`IProxyCreationCallbackInstance`) for more details.*/
     #[inline]
     pub const fn new<
         T: alloy_contract::private::Transport + ::core::clone::Clone,
@@ -333,9 +307,9 @@ See the [wrapper's documentation](`IProxyCreationCallbackInstance`) for more det
     }
     /**Deploys this contract using the given `provider` and constructor arguments, if any.
 
-Returns a new instance of the contract, if the deployment was successful.
+    Returns a new instance of the contract, if the deployment was successful.
 
-For more fine-grained control over the deployment process, use [`deploy_builder`] instead.*/
+    For more fine-grained control over the deployment process, use [`deploy_builder`] instead.*/
     #[inline]
     pub fn deploy<
         T: alloy_contract::private::Transport + ::core::clone::Clone,
@@ -349,35 +323,33 @@ For more fine-grained control over the deployment process, use [`deploy_builder`
         IProxyCreationCallbackInstance::<T, P, N>::deploy(provider)
     }
     /**Creates a `RawCallBuilder` for deploying this contract using the given `provider`
-and constructor arguments, if any.
+    and constructor arguments, if any.
 
-This is a simple wrapper around creating a `RawCallBuilder` with the data set to
-the bytecode concatenated with the constructor's ABI-encoded arguments.*/
+    This is a simple wrapper around creating a `RawCallBuilder` with the data set to
+    the bytecode concatenated with the constructor's ABI-encoded arguments.*/
     #[inline]
     pub fn deploy_builder<
         T: alloy_contract::private::Transport + ::core::clone::Clone,
         P: alloy_contract::private::Provider<T, N>,
         N: alloy_contract::private::Network,
-    >(provider: P) -> alloy_contract::RawCallBuilder<T, P, N> {
+    >(
+        provider: P,
+    ) -> alloy_contract::RawCallBuilder<T, P, N> {
         IProxyCreationCallbackInstance::<T, P, N>::deploy_builder(provider)
     }
     /**A [`IProxyCreationCallback`](self) instance.
 
-Contains type-safe methods for interacting with an on-chain instance of the
-[`IProxyCreationCallback`](self) contract located at a given `address`, using a given
-provider `P`.
+    Contains type-safe methods for interacting with an on-chain instance of the
+    [`IProxyCreationCallback`](self) contract located at a given `address`, using a given
+    provider `P`.
 
-If the contract bytecode is available (see the [`sol!`](alloy_sol_types::sol!)
-documentation on how to provide it), the `deploy` and `deploy_builder` methods can
-be used to deploy a new instance of the contract.
+    If the contract bytecode is available (see the [`sol!`](alloy_sol_types::sol!)
+    documentation on how to provide it), the `deploy` and `deploy_builder` methods can
+    be used to deploy a new instance of the contract.
 
-See the [module-level documentation](self) for all the available methods.*/
+    See the [module-level documentation](self) for all the available methods.*/
     #[derive(Clone)]
-    pub struct IProxyCreationCallbackInstance<
-        T,
-        P,
-        N = alloy_contract::private::Ethereum,
-    > {
+    pub struct IProxyCreationCallbackInstance<T, P, N = alloy_contract::private::Ethereum> {
         address: alloy_sol_types::private::Address,
         provider: P,
         _network_transport: ::core::marker::PhantomData<(N, T)>,
@@ -392,29 +364,23 @@ See the [module-level documentation](self) for all the available methods.*/
     /// Instantiation and getters/setters.
     #[automatically_derived]
     impl<
-        T: alloy_contract::private::Transport + ::core::clone::Clone,
-        P: alloy_contract::private::Provider<T, N>,
-        N: alloy_contract::private::Network,
-    > IProxyCreationCallbackInstance<T, P, N> {
+            T: alloy_contract::private::Transport + ::core::clone::Clone,
+            P: alloy_contract::private::Provider<T, N>,
+            N: alloy_contract::private::Network,
+        > IProxyCreationCallbackInstance<T, P, N>
+    {
         /**Creates a new wrapper around an on-chain [`IProxyCreationCallback`](self) contract instance.
 
-See the [wrapper's documentation](`IProxyCreationCallbackInstance`) for more details.*/
+        See the [wrapper's documentation](`IProxyCreationCallbackInstance`) for more details.*/
         #[inline]
-        pub const fn new(
-            address: alloy_sol_types::private::Address,
-            provider: P,
-        ) -> Self {
-            Self {
-                address,
-                provider,
-                _network_transport: ::core::marker::PhantomData,
-            }
+        pub const fn new(address: alloy_sol_types::private::Address, provider: P) -> Self {
+            Self { address, provider, _network_transport: ::core::marker::PhantomData }
         }
         /**Deploys this contract using the given `provider` and constructor arguments, if any.
 
-Returns a new instance of the contract, if the deployment was successful.
+        Returns a new instance of the contract, if the deployment was successful.
 
-For more fine-grained control over the deployment process, use [`deploy_builder`] instead.*/
+        For more fine-grained control over the deployment process, use [`deploy_builder`] instead.*/
         #[inline]
         pub async fn deploy(
             provider: P,
@@ -424,10 +390,10 @@ For more fine-grained control over the deployment process, use [`deploy_builder`
             Ok(Self::new(contract_address, call_builder.provider))
         }
         /**Creates a `RawCallBuilder` for deploying this contract using the given `provider`
-and constructor arguments, if any.
+        and constructor arguments, if any.
 
-This is a simple wrapper around creating a `RawCallBuilder` with the data set to
-the bytecode concatenated with the constructor's ABI-encoded arguments.*/
+        This is a simple wrapper around creating a `RawCallBuilder` with the data set to
+        the bytecode concatenated with the constructor's ABI-encoded arguments.*/
         #[inline]
         pub fn deploy_builder(provider: P) -> alloy_contract::RawCallBuilder<T, P, N> {
             alloy_contract::RawCallBuilder::new_raw_deploy(
@@ -470,10 +436,11 @@ the bytecode concatenated with the constructor's ABI-encoded arguments.*/
     /// Function calls.
     #[automatically_derived]
     impl<
-        T: alloy_contract::private::Transport + ::core::clone::Clone,
-        P: alloy_contract::private::Provider<T, N>,
-        N: alloy_contract::private::Network,
-    > IProxyCreationCallbackInstance<T, P, N> {
+            T: alloy_contract::private::Transport + ::core::clone::Clone,
+            P: alloy_contract::private::Provider<T, N>,
+            N: alloy_contract::private::Network,
+        > IProxyCreationCallbackInstance<T, P, N>
+    {
         /// Creates a new call builder using this contract instance's provider and address.
         ///
         /// Note that the call can be any function call, not just those defined in this
@@ -492,23 +459,17 @@ the bytecode concatenated with the constructor's ABI-encoded arguments.*/
             initializer: alloy::sol_types::private::Bytes,
             saltNonce: alloy::sol_types::private::primitives::aliases::U256,
         ) -> alloy_contract::SolCallBuilder<T, &P, proxyCreatedCall, N> {
-            self.call_builder(
-                &proxyCreatedCall {
-                    proxy,
-                    _singleton,
-                    initializer,
-                    saltNonce,
-                },
-            )
+            self.call_builder(&proxyCreatedCall { proxy, _singleton, initializer, saltNonce })
         }
     }
     /// Event filters.
     #[automatically_derived]
     impl<
-        T: alloy_contract::private::Transport + ::core::clone::Clone,
-        P: alloy_contract::private::Provider<T, N>,
-        N: alloy_contract::private::Network,
-    > IProxyCreationCallbackInstance<T, P, N> {
+            T: alloy_contract::private::Transport + ::core::clone::Clone,
+            P: alloy_contract::private::Provider<T, N>,
+            N: alloy_contract::private::Network,
+        > IProxyCreationCallbackInstance<T, P, N>
+    {
         /// Creates a new event filter using this contract instance's provider and address.
         ///
         /// Note that the type can be any event, not just those defined in this contract.

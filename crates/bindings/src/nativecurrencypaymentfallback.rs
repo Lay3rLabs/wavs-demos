@@ -68,15 +68,10 @@ pub mod NativeCurrencyPaymentFallback {
         b"",
     );
     /**Event with signature `SafeReceived(address,uint256)` and selector `0x3d0ce9bfc3ed7d6862dbb28b2dea94561fe714a1b4d019aa8af39730d1ad7c3d`.
-```solidity
-event SafeReceived(address indexed sender, uint256 value);
-```*/
-    #[allow(
-        non_camel_case_types,
-        non_snake_case,
-        clippy::pub_underscore_fields,
-        clippy::style
-    )]
+    ```solidity
+    event SafeReceived(address indexed sender, uint256 value);
+    ```*/
+    #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields, clippy::style)]
     #[derive(Clone)]
     pub struct SafeReceived {
         #[allow(missing_docs)]
@@ -84,59 +79,22 @@ event SafeReceived(address indexed sender, uint256 value);
         #[allow(missing_docs)]
         pub value: alloy::sol_types::private::primitives::aliases::U256,
     }
-    #[allow(
-        non_camel_case_types,
-        non_snake_case,
-        clippy::pub_underscore_fields,
-        clippy::style
-    )]
+    #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields, clippy::style)]
     const _: () = {
         use alloy::sol_types as alloy_sol_types;
         #[automatically_derived]
         impl alloy_sol_types::SolEvent for SafeReceived {
             type DataTuple<'a> = (alloy::sol_types::sol_data::Uint<256>,);
-            type DataToken<'a> = <Self::DataTuple<
-                'a,
-            > as alloy_sol_types::SolType>::Token<'a>;
-            type TopicList = (
-                alloy_sol_types::sol_data::FixedBytes<32>,
-                alloy::sol_types::sol_data::Address,
-            );
+            type DataToken<'a> = <Self::DataTuple<'a> as alloy_sol_types::SolType>::Token<'a>;
+            type TopicList =
+                (alloy_sol_types::sol_data::FixedBytes<32>, alloy::sol_types::sol_data::Address);
             const SIGNATURE: &'static str = "SafeReceived(address,uint256)";
-            const SIGNATURE_HASH: alloy_sol_types::private::B256 = alloy_sol_types::private::B256::new([
-                61u8,
-                12u8,
-                233u8,
-                191u8,
-                195u8,
-                237u8,
-                125u8,
-                104u8,
-                98u8,
-                219u8,
-                178u8,
-                139u8,
-                45u8,
-                234u8,
-                148u8,
-                86u8,
-                31u8,
-                231u8,
-                20u8,
-                161u8,
-                180u8,
-                208u8,
-                25u8,
-                170u8,
-                138u8,
-                243u8,
-                151u8,
-                48u8,
-                209u8,
-                173u8,
-                124u8,
-                61u8,
-            ]);
+            const SIGNATURE_HASH: alloy_sol_types::private::B256 =
+                alloy_sol_types::private::B256::new([
+                    61u8, 12u8, 233u8, 191u8, 195u8, 237u8, 125u8, 104u8, 98u8, 219u8, 178u8,
+                    139u8, 45u8, 234u8, 148u8, 86u8, 31u8, 231u8, 20u8, 161u8, 180u8, 208u8, 25u8,
+                    170u8, 138u8, 243u8, 151u8, 48u8, 209u8, 173u8, 124u8, 61u8,
+                ]);
             const ANONYMOUS: bool = false;
             #[allow(unused_variables)]
             #[inline]
@@ -144,33 +102,26 @@ event SafeReceived(address indexed sender, uint256 value);
                 topics: <Self::TopicList as alloy_sol_types::SolType>::RustType,
                 data: <Self::DataTuple<'_> as alloy_sol_types::SolType>::RustType,
             ) -> Self {
-                Self {
-                    sender: topics.1,
-                    value: data.0,
-                }
+                Self { sender: topics.1, value: data.0 }
             }
             #[inline]
             fn check_signature(
                 topics: &<Self::TopicList as alloy_sol_types::SolType>::RustType,
             ) -> alloy_sol_types::Result<()> {
                 if topics.0 != Self::SIGNATURE_HASH {
-                    return Err(
-                        alloy_sol_types::Error::invalid_event_signature_hash(
-                            Self::SIGNATURE,
-                            topics.0,
-                            Self::SIGNATURE_HASH,
-                        ),
-                    );
+                    return Err(alloy_sol_types::Error::invalid_event_signature_hash(
+                        Self::SIGNATURE,
+                        topics.0,
+                        Self::SIGNATURE_HASH,
+                    ));
                 }
                 Ok(())
             }
             #[inline]
             fn tokenize_body(&self) -> Self::DataToken<'_> {
-                (
-                    <alloy::sol_types::sol_data::Uint<
-                        256,
-                    > as alloy_sol_types::SolType>::tokenize(&self.value),
-                )
+                (<alloy::sol_types::sol_data::Uint<256> as alloy_sol_types::SolType>::tokenize(
+                    &self.value,
+                ),)
             }
             #[inline]
             fn topics(&self) -> <Self::TopicList as alloy_sol_types::SolType>::RustType {
@@ -184,9 +135,7 @@ event SafeReceived(address indexed sender, uint256 value);
                 if out.len() < <Self::TopicList as alloy_sol_types::TopicList>::COUNT {
                     return Err(alloy_sol_types::Error::Overrun);
                 }
-                out[0usize] = alloy_sol_types::abi::token::WordToken(
-                    Self::SIGNATURE_HASH,
-                );
+                out[0usize] = alloy_sol_types::abi::token::WordToken(Self::SIGNATURE_HASH);
                 out[1usize] = <alloy::sol_types::sol_data::Address as alloy_sol_types::EventTopic>::encode_topic(
                     &self.sender,
                 );
@@ -222,42 +171,11 @@ event SafeReceived(address indexed sender, uint256 value);
         /// No guarantees are made about the order of the selectors.
         ///
         /// Prefer using `SolInterface` methods instead.
-        pub const SELECTORS: &'static [[u8; 32usize]] = &[
-            [
-                61u8,
-                12u8,
-                233u8,
-                191u8,
-                195u8,
-                237u8,
-                125u8,
-                104u8,
-                98u8,
-                219u8,
-                178u8,
-                139u8,
-                45u8,
-                234u8,
-                148u8,
-                86u8,
-                31u8,
-                231u8,
-                20u8,
-                161u8,
-                180u8,
-                208u8,
-                25u8,
-                170u8,
-                138u8,
-                243u8,
-                151u8,
-                48u8,
-                209u8,
-                173u8,
-                124u8,
-                61u8,
-            ],
-        ];
+        pub const SELECTORS: &'static [[u8; 32usize]] = &[[
+            61u8, 12u8, 233u8, 191u8, 195u8, 237u8, 125u8, 104u8, 98u8, 219u8, 178u8, 139u8, 45u8,
+            234u8, 148u8, 86u8, 31u8, 231u8, 20u8, 161u8, 180u8, 208u8, 25u8, 170u8, 138u8, 243u8,
+            151u8, 48u8, 209u8, 173u8, 124u8, 61u8,
+        ]];
     }
     #[automatically_derived]
     impl alloy_sol_types::SolEventInterface for NativeCurrencyPaymentFallbackEvents {
@@ -271,23 +189,19 @@ event SafeReceived(address indexed sender, uint256 value);
             match topics.first().copied() {
                 Some(<SafeReceived as alloy_sol_types::SolEvent>::SIGNATURE_HASH) => {
                     <SafeReceived as alloy_sol_types::SolEvent>::decode_raw_log(
-                            topics,
-                            data,
-                            validate,
-                        )
-                        .map(Self::SafeReceived)
+                        topics, data, validate,
+                    )
+                    .map(Self::SafeReceived)
                 }
-                _ => {
-                    alloy_sol_types::private::Err(alloy_sol_types::Error::InvalidLog {
-                        name: <Self as alloy_sol_types::SolEventInterface>::NAME,
-                        log: alloy_sol_types::private::Box::new(
-                            alloy_sol_types::private::LogData::new_unchecked(
-                                topics.to_vec(),
-                                data.to_vec().into(),
-                            ),
+                _ => alloy_sol_types::private::Err(alloy_sol_types::Error::InvalidLog {
+                    name: <Self as alloy_sol_types::SolEventInterface>::NAME,
+                    log: alloy_sol_types::private::Box::new(
+                        alloy_sol_types::private::LogData::new_unchecked(
+                            topics.to_vec(),
+                            data.to_vec().into(),
                         ),
-                    })
-                }
+                    ),
+                }),
             }
         }
     }
@@ -311,7 +225,7 @@ event SafeReceived(address indexed sender, uint256 value);
     use alloy::contract as alloy_contract;
     /**Creates a new wrapper around an on-chain [`NativeCurrencyPaymentFallback`](self) contract instance.
 
-See the [wrapper's documentation](`NativeCurrencyPaymentFallbackInstance`) for more details.*/
+    See the [wrapper's documentation](`NativeCurrencyPaymentFallbackInstance`) for more details.*/
     #[inline]
     pub const fn new<
         T: alloy_contract::private::Transport + ::core::clone::Clone,
@@ -325,9 +239,9 @@ See the [wrapper's documentation](`NativeCurrencyPaymentFallbackInstance`) for m
     }
     /**Deploys this contract using the given `provider` and constructor arguments, if any.
 
-Returns a new instance of the contract, if the deployment was successful.
+    Returns a new instance of the contract, if the deployment was successful.
 
-For more fine-grained control over the deployment process, use [`deploy_builder`] instead.*/
+    For more fine-grained control over the deployment process, use [`deploy_builder`] instead.*/
     #[inline]
     pub fn deploy<
         T: alloy_contract::private::Transport + ::core::clone::Clone,
@@ -341,35 +255,33 @@ For more fine-grained control over the deployment process, use [`deploy_builder`
         NativeCurrencyPaymentFallbackInstance::<T, P, N>::deploy(provider)
     }
     /**Creates a `RawCallBuilder` for deploying this contract using the given `provider`
-and constructor arguments, if any.
+    and constructor arguments, if any.
 
-This is a simple wrapper around creating a `RawCallBuilder` with the data set to
-the bytecode concatenated with the constructor's ABI-encoded arguments.*/
+    This is a simple wrapper around creating a `RawCallBuilder` with the data set to
+    the bytecode concatenated with the constructor's ABI-encoded arguments.*/
     #[inline]
     pub fn deploy_builder<
         T: alloy_contract::private::Transport + ::core::clone::Clone,
         P: alloy_contract::private::Provider<T, N>,
         N: alloy_contract::private::Network,
-    >(provider: P) -> alloy_contract::RawCallBuilder<T, P, N> {
+    >(
+        provider: P,
+    ) -> alloy_contract::RawCallBuilder<T, P, N> {
         NativeCurrencyPaymentFallbackInstance::<T, P, N>::deploy_builder(provider)
     }
     /**A [`NativeCurrencyPaymentFallback`](self) instance.
 
-Contains type-safe methods for interacting with an on-chain instance of the
-[`NativeCurrencyPaymentFallback`](self) contract located at a given `address`, using a given
-provider `P`.
+    Contains type-safe methods for interacting with an on-chain instance of the
+    [`NativeCurrencyPaymentFallback`](self) contract located at a given `address`, using a given
+    provider `P`.
 
-If the contract bytecode is available (see the [`sol!`](alloy_sol_types::sol!)
-documentation on how to provide it), the `deploy` and `deploy_builder` methods can
-be used to deploy a new instance of the contract.
+    If the contract bytecode is available (see the [`sol!`](alloy_sol_types::sol!)
+    documentation on how to provide it), the `deploy` and `deploy_builder` methods can
+    be used to deploy a new instance of the contract.
 
-See the [module-level documentation](self) for all the available methods.*/
+    See the [module-level documentation](self) for all the available methods.*/
     #[derive(Clone)]
-    pub struct NativeCurrencyPaymentFallbackInstance<
-        T,
-        P,
-        N = alloy_contract::private::Ethereum,
-    > {
+    pub struct NativeCurrencyPaymentFallbackInstance<T, P, N = alloy_contract::private::Ethereum> {
         address: alloy_sol_types::private::Address,
         provider: P,
         _network_transport: ::core::marker::PhantomData<(N, T)>,
@@ -378,37 +290,29 @@ See the [module-level documentation](self) for all the available methods.*/
     impl<T, P, N> ::core::fmt::Debug for NativeCurrencyPaymentFallbackInstance<T, P, N> {
         #[inline]
         fn fmt(&self, f: &mut ::core::fmt::Formatter<'_>) -> ::core::fmt::Result {
-            f.debug_tuple("NativeCurrencyPaymentFallbackInstance")
-                .field(&self.address)
-                .finish()
+            f.debug_tuple("NativeCurrencyPaymentFallbackInstance").field(&self.address).finish()
         }
     }
     /// Instantiation and getters/setters.
     #[automatically_derived]
     impl<
-        T: alloy_contract::private::Transport + ::core::clone::Clone,
-        P: alloy_contract::private::Provider<T, N>,
-        N: alloy_contract::private::Network,
-    > NativeCurrencyPaymentFallbackInstance<T, P, N> {
+            T: alloy_contract::private::Transport + ::core::clone::Clone,
+            P: alloy_contract::private::Provider<T, N>,
+            N: alloy_contract::private::Network,
+        > NativeCurrencyPaymentFallbackInstance<T, P, N>
+    {
         /**Creates a new wrapper around an on-chain [`NativeCurrencyPaymentFallback`](self) contract instance.
 
-See the [wrapper's documentation](`NativeCurrencyPaymentFallbackInstance`) for more details.*/
+        See the [wrapper's documentation](`NativeCurrencyPaymentFallbackInstance`) for more details.*/
         #[inline]
-        pub const fn new(
-            address: alloy_sol_types::private::Address,
-            provider: P,
-        ) -> Self {
-            Self {
-                address,
-                provider,
-                _network_transport: ::core::marker::PhantomData,
-            }
+        pub const fn new(address: alloy_sol_types::private::Address, provider: P) -> Self {
+            Self { address, provider, _network_transport: ::core::marker::PhantomData }
         }
         /**Deploys this contract using the given `provider` and constructor arguments, if any.
 
-Returns a new instance of the contract, if the deployment was successful.
+        Returns a new instance of the contract, if the deployment was successful.
 
-For more fine-grained control over the deployment process, use [`deploy_builder`] instead.*/
+        For more fine-grained control over the deployment process, use [`deploy_builder`] instead.*/
         #[inline]
         pub async fn deploy(
             provider: P,
@@ -418,10 +322,10 @@ For more fine-grained control over the deployment process, use [`deploy_builder`
             Ok(Self::new(contract_address, call_builder.provider))
         }
         /**Creates a `RawCallBuilder` for deploying this contract using the given `provider`
-and constructor arguments, if any.
+        and constructor arguments, if any.
 
-This is a simple wrapper around creating a `RawCallBuilder` with the data set to
-the bytecode concatenated with the constructor's ABI-encoded arguments.*/
+        This is a simple wrapper around creating a `RawCallBuilder` with the data set to
+        the bytecode concatenated with the constructor's ABI-encoded arguments.*/
         #[inline]
         pub fn deploy_builder(provider: P) -> alloy_contract::RawCallBuilder<T, P, N> {
             alloy_contract::RawCallBuilder::new_raw_deploy(
@@ -453,9 +357,7 @@ the bytecode concatenated with the constructor's ABI-encoded arguments.*/
     impl<T, P: ::core::clone::Clone, N> NativeCurrencyPaymentFallbackInstance<T, &P, N> {
         /// Clones the provider and returns a new instance with the cloned provider.
         #[inline]
-        pub fn with_cloned_provider(
-            self,
-        ) -> NativeCurrencyPaymentFallbackInstance<T, P, N> {
+        pub fn with_cloned_provider(self) -> NativeCurrencyPaymentFallbackInstance<T, P, N> {
             NativeCurrencyPaymentFallbackInstance {
                 address: self.address,
                 provider: ::core::clone::Clone::clone(&self.provider),
@@ -466,10 +368,11 @@ the bytecode concatenated with the constructor's ABI-encoded arguments.*/
     /// Function calls.
     #[automatically_derived]
     impl<
-        T: alloy_contract::private::Transport + ::core::clone::Clone,
-        P: alloy_contract::private::Provider<T, N>,
-        N: alloy_contract::private::Network,
-    > NativeCurrencyPaymentFallbackInstance<T, P, N> {
+            T: alloy_contract::private::Transport + ::core::clone::Clone,
+            P: alloy_contract::private::Provider<T, N>,
+            N: alloy_contract::private::Network,
+        > NativeCurrencyPaymentFallbackInstance<T, P, N>
+    {
         /// Creates a new call builder using this contract instance's provider and address.
         ///
         /// Note that the call can be any function call, not just those defined in this
@@ -484,10 +387,11 @@ the bytecode concatenated with the constructor's ABI-encoded arguments.*/
     /// Event filters.
     #[automatically_derived]
     impl<
-        T: alloy_contract::private::Transport + ::core::clone::Clone,
-        P: alloy_contract::private::Provider<T, N>,
-        N: alloy_contract::private::Network,
-    > NativeCurrencyPaymentFallbackInstance<T, P, N> {
+            T: alloy_contract::private::Transport + ::core::clone::Clone,
+            P: alloy_contract::private::Provider<T, N>,
+            N: alloy_contract::private::Network,
+        > NativeCurrencyPaymentFallbackInstance<T, P, N>
+    {
         /// Creates a new event filter using this contract instance's provider and address.
         ///
         /// Note that the type can be any event, not just those defined in this contract.
@@ -498,9 +402,7 @@ the bytecode concatenated with the constructor's ABI-encoded arguments.*/
             alloy_contract::Event::new_sol(&self.provider, &self.address)
         }
         ///Creates a new event filter for the [`SafeReceived`] event.
-        pub fn SafeReceived_filter(
-            &self,
-        ) -> alloy_contract::Event<T, &P, SafeReceived, N> {
+        pub fn SafeReceived_filter(&self) -> alloy_contract::Event<T, &P, SafeReceived, N> {
             self.event_filter::<SafeReceived>()
         }
     }

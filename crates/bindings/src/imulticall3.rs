@@ -516,37 +516,26 @@ pub mod IMulticall3 {
         b"",
     );
     /**```solidity
-struct Call { address target; bytes callData; }
-```*/
+    struct Call { address target; bytes callData; }
+    ```*/
     #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields)]
     #[derive(Clone)]
     pub struct Call {
         pub target: alloy::sol_types::private::Address,
         pub callData: alloy::sol_types::private::Bytes,
     }
-    #[allow(
-        non_camel_case_types,
-        non_snake_case,
-        clippy::pub_underscore_fields,
-        clippy::style
-    )]
+    #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields, clippy::style)]
     const _: () = {
         use alloy::sol_types as alloy_sol_types;
         #[doc(hidden)]
-        type UnderlyingSolTuple<'a> = (
-            alloy::sol_types::sol_data::Address,
-            alloy::sol_types::sol_data::Bytes,
-        );
+        type UnderlyingSolTuple<'a> =
+            (alloy::sol_types::sol_data::Address, alloy::sol_types::sol_data::Bytes);
         #[doc(hidden)]
-        type UnderlyingRustTuple<'a> = (
-            alloy::sol_types::private::Address,
-            alloy::sol_types::private::Bytes,
-        );
+        type UnderlyingRustTuple<'a> =
+            (alloy::sol_types::private::Address, alloy::sol_types::private::Bytes);
         #[cfg(test)]
         #[allow(dead_code, unreachable_patterns)]
-        fn _type_assertion(
-            _t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>,
-        ) {
+        fn _type_assertion(_t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>) {
             match _t {
                 alloy_sol_types::private::AssertTypeEq::<
                     <UnderlyingSolTuple as alloy_sol_types::SolType>::RustType,
@@ -564,10 +553,7 @@ struct Call { address target; bytes callData; }
         #[doc(hidden)]
         impl ::core::convert::From<UnderlyingRustTuple<'_>> for Call {
             fn from(tuple: UnderlyingRustTuple<'_>) -> Self {
-                Self {
-                    target: tuple.0,
-                    callData: tuple.1,
-                }
+                Self { target: tuple.0, callData: tuple.1 }
             }
         }
         #[automatically_derived]
@@ -592,64 +578,50 @@ struct Call { address target; bytes callData; }
                 if let Some(size) = <Self as alloy_sol_types::SolType>::ENCODED_SIZE {
                     return size;
                 }
-                let tuple = <UnderlyingRustTuple<
-                    '_,
-                > as ::core::convert::From<Self>>::from(self.clone());
-                <UnderlyingSolTuple<
-                    '_,
-                > as alloy_sol_types::SolType>::abi_encoded_size(&tuple)
+                let tuple =
+                    <UnderlyingRustTuple<'_> as ::core::convert::From<Self>>::from(self.clone());
+                <UnderlyingSolTuple<'_> as alloy_sol_types::SolType>::abi_encoded_size(&tuple)
             }
             #[inline]
             fn stv_eip712_data_word(&self) -> alloy_sol_types::Word {
                 <Self as alloy_sol_types::SolStruct>::eip712_hash_struct(self)
             }
             #[inline]
-            fn stv_abi_encode_packed_to(
-                &self,
-                out: &mut alloy_sol_types::private::Vec<u8>,
-            ) {
-                let tuple = <UnderlyingRustTuple<
-                    '_,
-                > as ::core::convert::From<Self>>::from(self.clone());
-                <UnderlyingSolTuple<
-                    '_,
-                > as alloy_sol_types::SolType>::abi_encode_packed_to(&tuple, out)
+            fn stv_abi_encode_packed_to(&self, out: &mut alloy_sol_types::private::Vec<u8>) {
+                let tuple =
+                    <UnderlyingRustTuple<'_> as ::core::convert::From<Self>>::from(self.clone());
+                <UnderlyingSolTuple<'_> as alloy_sol_types::SolType>::abi_encode_packed_to(
+                    &tuple, out,
+                )
             }
             #[inline]
             fn stv_abi_packed_encoded_size(&self) -> usize {
                 if let Some(size) = <Self as alloy_sol_types::SolType>::PACKED_ENCODED_SIZE {
                     return size;
                 }
-                let tuple = <UnderlyingRustTuple<
-                    '_,
-                > as ::core::convert::From<Self>>::from(self.clone());
-                <UnderlyingSolTuple<
-                    '_,
-                > as alloy_sol_types::SolType>::abi_packed_encoded_size(&tuple)
+                let tuple =
+                    <UnderlyingRustTuple<'_> as ::core::convert::From<Self>>::from(self.clone());
+                <UnderlyingSolTuple<'_> as alloy_sol_types::SolType>::abi_packed_encoded_size(
+                    &tuple,
+                )
             }
         }
         #[automatically_derived]
         impl alloy_sol_types::SolType for Call {
             type RustType = Self;
-            type Token<'a> = <UnderlyingSolTuple<
-                'a,
-            > as alloy_sol_types::SolType>::Token<'a>;
+            type Token<'a> = <UnderlyingSolTuple<'a> as alloy_sol_types::SolType>::Token<'a>;
             const SOL_NAME: &'static str = <Self as alloy_sol_types::SolStruct>::NAME;
-            const ENCODED_SIZE: Option<usize> = <UnderlyingSolTuple<
-                '_,
-            > as alloy_sol_types::SolType>::ENCODED_SIZE;
-            const PACKED_ENCODED_SIZE: Option<usize> = <UnderlyingSolTuple<
-                '_,
-            > as alloy_sol_types::SolType>::PACKED_ENCODED_SIZE;
+            const ENCODED_SIZE: Option<usize> =
+                <UnderlyingSolTuple<'_> as alloy_sol_types::SolType>::ENCODED_SIZE;
+            const PACKED_ENCODED_SIZE: Option<usize> =
+                <UnderlyingSolTuple<'_> as alloy_sol_types::SolType>::PACKED_ENCODED_SIZE;
             #[inline]
             fn valid_token(token: &Self::Token<'_>) -> bool {
                 <UnderlyingSolTuple<'_> as alloy_sol_types::SolType>::valid_token(token)
             }
             #[inline]
             fn detokenize(token: Self::Token<'_>) -> Self::RustType {
-                let tuple = <UnderlyingSolTuple<
-                    '_,
-                > as alloy_sol_types::SolType>::detokenize(token);
+                let tuple = <UnderlyingSolTuple<'_> as alloy_sol_types::SolType>::detokenize(token);
                 <Self as ::core::convert::From<UnderlyingRustTuple<'_>>>::from(tuple)
             }
         }
@@ -658,14 +630,12 @@ struct Call { address target; bytes callData; }
             const NAME: &'static str = "Call";
             #[inline]
             fn eip712_root_type() -> alloy_sol_types::private::Cow<'static, str> {
-                alloy_sol_types::private::Cow::Borrowed(
-                    "Call(address target,bytes callData)",
-                )
+                alloy_sol_types::private::Cow::Borrowed("Call(address target,bytes callData)")
             }
             #[inline]
-            fn eip712_components() -> alloy_sol_types::private::Vec<
-                alloy_sol_types::private::Cow<'static, str>,
-            > {
+            fn eip712_components(
+            ) -> alloy_sol_types::private::Vec<alloy_sol_types::private::Cow<'static, str>>
+            {
                 alloy_sol_types::private::Vec::new()
             }
             #[inline]
@@ -704,9 +674,7 @@ struct Call { address target; bytes callData; }
                 rust: &Self::RustType,
                 out: &mut alloy_sol_types::private::Vec<u8>,
             ) {
-                out.reserve(
-                    <Self as alloy_sol_types::EventTopic>::topic_preimage_length(rust),
-                );
+                out.reserve(<Self as alloy_sol_types::EventTopic>::topic_preimage_length(rust));
                 <alloy::sol_types::sol_data::Address as alloy_sol_types::EventTopic>::encode_topic_preimage(
                     &rust.target,
                     out,
@@ -717,23 +685,16 @@ struct Call { address target; bytes callData; }
                 );
             }
             #[inline]
-            fn encode_topic(
-                rust: &Self::RustType,
-            ) -> alloy_sol_types::abi::token::WordToken {
+            fn encode_topic(rust: &Self::RustType) -> alloy_sol_types::abi::token::WordToken {
                 let mut out = alloy_sol_types::private::Vec::new();
-                <Self as alloy_sol_types::EventTopic>::encode_topic_preimage(
-                    rust,
-                    &mut out,
-                );
-                alloy_sol_types::abi::token::WordToken(
-                    alloy_sol_types::private::keccak256(out),
-                )
+                <Self as alloy_sol_types::EventTopic>::encode_topic_preimage(rust, &mut out);
+                alloy_sol_types::abi::token::WordToken(alloy_sol_types::private::keccak256(out))
             }
         }
     };
     /**```solidity
-struct Call3 { address target; bool allowFailure; bytes callData; }
-```*/
+    struct Call3 { address target; bool allowFailure; bytes callData; }
+    ```*/
     #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields)]
     #[derive(Clone)]
     pub struct Call3 {
@@ -741,12 +702,7 @@ struct Call3 { address target; bool allowFailure; bytes callData; }
         pub allowFailure: bool,
         pub callData: alloy::sol_types::private::Bytes,
     }
-    #[allow(
-        non_camel_case_types,
-        non_snake_case,
-        clippy::pub_underscore_fields,
-        clippy::style
-    )]
+    #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields, clippy::style)]
     const _: () = {
         use alloy::sol_types as alloy_sol_types;
         #[doc(hidden)]
@@ -756,16 +712,11 @@ struct Call3 { address target; bool allowFailure; bytes callData; }
             alloy::sol_types::sol_data::Bytes,
         );
         #[doc(hidden)]
-        type UnderlyingRustTuple<'a> = (
-            alloy::sol_types::private::Address,
-            bool,
-            alloy::sol_types::private::Bytes,
-        );
+        type UnderlyingRustTuple<'a> =
+            (alloy::sol_types::private::Address, bool, alloy::sol_types::private::Bytes);
         #[cfg(test)]
         #[allow(dead_code, unreachable_patterns)]
-        fn _type_assertion(
-            _t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>,
-        ) {
+        fn _type_assertion(_t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>) {
             match _t {
                 alloy_sol_types::private::AssertTypeEq::<
                     <UnderlyingSolTuple as alloy_sol_types::SolType>::RustType,
@@ -783,11 +734,7 @@ struct Call3 { address target; bool allowFailure; bytes callData; }
         #[doc(hidden)]
         impl ::core::convert::From<UnderlyingRustTuple<'_>> for Call3 {
             fn from(tuple: UnderlyingRustTuple<'_>) -> Self {
-                Self {
-                    target: tuple.0,
-                    allowFailure: tuple.1,
-                    callData: tuple.2,
-                }
+                Self { target: tuple.0, allowFailure: tuple.1, callData: tuple.2 }
             }
         }
         #[automatically_derived]
@@ -815,64 +762,50 @@ struct Call3 { address target; bool allowFailure; bytes callData; }
                 if let Some(size) = <Self as alloy_sol_types::SolType>::ENCODED_SIZE {
                     return size;
                 }
-                let tuple = <UnderlyingRustTuple<
-                    '_,
-                > as ::core::convert::From<Self>>::from(self.clone());
-                <UnderlyingSolTuple<
-                    '_,
-                > as alloy_sol_types::SolType>::abi_encoded_size(&tuple)
+                let tuple =
+                    <UnderlyingRustTuple<'_> as ::core::convert::From<Self>>::from(self.clone());
+                <UnderlyingSolTuple<'_> as alloy_sol_types::SolType>::abi_encoded_size(&tuple)
             }
             #[inline]
             fn stv_eip712_data_word(&self) -> alloy_sol_types::Word {
                 <Self as alloy_sol_types::SolStruct>::eip712_hash_struct(self)
             }
             #[inline]
-            fn stv_abi_encode_packed_to(
-                &self,
-                out: &mut alloy_sol_types::private::Vec<u8>,
-            ) {
-                let tuple = <UnderlyingRustTuple<
-                    '_,
-                > as ::core::convert::From<Self>>::from(self.clone());
-                <UnderlyingSolTuple<
-                    '_,
-                > as alloy_sol_types::SolType>::abi_encode_packed_to(&tuple, out)
+            fn stv_abi_encode_packed_to(&self, out: &mut alloy_sol_types::private::Vec<u8>) {
+                let tuple =
+                    <UnderlyingRustTuple<'_> as ::core::convert::From<Self>>::from(self.clone());
+                <UnderlyingSolTuple<'_> as alloy_sol_types::SolType>::abi_encode_packed_to(
+                    &tuple, out,
+                )
             }
             #[inline]
             fn stv_abi_packed_encoded_size(&self) -> usize {
                 if let Some(size) = <Self as alloy_sol_types::SolType>::PACKED_ENCODED_SIZE {
                     return size;
                 }
-                let tuple = <UnderlyingRustTuple<
-                    '_,
-                > as ::core::convert::From<Self>>::from(self.clone());
-                <UnderlyingSolTuple<
-                    '_,
-                > as alloy_sol_types::SolType>::abi_packed_encoded_size(&tuple)
+                let tuple =
+                    <UnderlyingRustTuple<'_> as ::core::convert::From<Self>>::from(self.clone());
+                <UnderlyingSolTuple<'_> as alloy_sol_types::SolType>::abi_packed_encoded_size(
+                    &tuple,
+                )
             }
         }
         #[automatically_derived]
         impl alloy_sol_types::SolType for Call3 {
             type RustType = Self;
-            type Token<'a> = <UnderlyingSolTuple<
-                'a,
-            > as alloy_sol_types::SolType>::Token<'a>;
+            type Token<'a> = <UnderlyingSolTuple<'a> as alloy_sol_types::SolType>::Token<'a>;
             const SOL_NAME: &'static str = <Self as alloy_sol_types::SolStruct>::NAME;
-            const ENCODED_SIZE: Option<usize> = <UnderlyingSolTuple<
-                '_,
-            > as alloy_sol_types::SolType>::ENCODED_SIZE;
-            const PACKED_ENCODED_SIZE: Option<usize> = <UnderlyingSolTuple<
-                '_,
-            > as alloy_sol_types::SolType>::PACKED_ENCODED_SIZE;
+            const ENCODED_SIZE: Option<usize> =
+                <UnderlyingSolTuple<'_> as alloy_sol_types::SolType>::ENCODED_SIZE;
+            const PACKED_ENCODED_SIZE: Option<usize> =
+                <UnderlyingSolTuple<'_> as alloy_sol_types::SolType>::PACKED_ENCODED_SIZE;
             #[inline]
             fn valid_token(token: &Self::Token<'_>) -> bool {
                 <UnderlyingSolTuple<'_> as alloy_sol_types::SolType>::valid_token(token)
             }
             #[inline]
             fn detokenize(token: Self::Token<'_>) -> Self::RustType {
-                let tuple = <UnderlyingSolTuple<
-                    '_,
-                > as alloy_sol_types::SolType>::detokenize(token);
+                let tuple = <UnderlyingSolTuple<'_> as alloy_sol_types::SolType>::detokenize(token);
                 <Self as ::core::convert::From<UnderlyingRustTuple<'_>>>::from(tuple)
             }
         }
@@ -886,9 +819,9 @@ struct Call3 { address target; bool allowFailure; bytes callData; }
                 )
             }
             #[inline]
-            fn eip712_components() -> alloy_sol_types::private::Vec<
-                alloy_sol_types::private::Cow<'static, str>,
-            > {
+            fn eip712_components(
+            ) -> alloy_sol_types::private::Vec<alloy_sol_types::private::Cow<'static, str>>
+            {
                 alloy_sol_types::private::Vec::new()
             }
             #[inline]
@@ -934,9 +867,7 @@ struct Call3 { address target; bool allowFailure; bytes callData; }
                 rust: &Self::RustType,
                 out: &mut alloy_sol_types::private::Vec<u8>,
             ) {
-                out.reserve(
-                    <Self as alloy_sol_types::EventTopic>::topic_preimage_length(rust),
-                );
+                out.reserve(<Self as alloy_sol_types::EventTopic>::topic_preimage_length(rust));
                 <alloy::sol_types::sol_data::Address as alloy_sol_types::EventTopic>::encode_topic_preimage(
                     &rust.target,
                     out,
@@ -951,23 +882,16 @@ struct Call3 { address target; bool allowFailure; bytes callData; }
                 );
             }
             #[inline]
-            fn encode_topic(
-                rust: &Self::RustType,
-            ) -> alloy_sol_types::abi::token::WordToken {
+            fn encode_topic(rust: &Self::RustType) -> alloy_sol_types::abi::token::WordToken {
                 let mut out = alloy_sol_types::private::Vec::new();
-                <Self as alloy_sol_types::EventTopic>::encode_topic_preimage(
-                    rust,
-                    &mut out,
-                );
-                alloy_sol_types::abi::token::WordToken(
-                    alloy_sol_types::private::keccak256(out),
-                )
+                <Self as alloy_sol_types::EventTopic>::encode_topic_preimage(rust, &mut out);
+                alloy_sol_types::abi::token::WordToken(alloy_sol_types::private::keccak256(out))
             }
         }
     };
     /**```solidity
-struct Call3Value { address target; bool allowFailure; uint256 value; bytes callData; }
-```*/
+    struct Call3Value { address target; bool allowFailure; uint256 value; bytes callData; }
+    ```*/
     #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields)]
     #[derive(Clone)]
     pub struct Call3Value {
@@ -976,12 +900,7 @@ struct Call3Value { address target; bool allowFailure; uint256 value; bytes call
         pub value: alloy::sol_types::private::primitives::aliases::U256,
         pub callData: alloy::sol_types::private::Bytes,
     }
-    #[allow(
-        non_camel_case_types,
-        non_snake_case,
-        clippy::pub_underscore_fields,
-        clippy::style
-    )]
+    #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields, clippy::style)]
     const _: () = {
         use alloy::sol_types as alloy_sol_types;
         #[doc(hidden)]
@@ -1000,9 +919,7 @@ struct Call3Value { address target; bool allowFailure; uint256 value; bytes call
         );
         #[cfg(test)]
         #[allow(dead_code, unreachable_patterns)]
-        fn _type_assertion(
-            _t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>,
-        ) {
+        fn _type_assertion(_t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>) {
             match _t {
                 alloy_sol_types::private::AssertTypeEq::<
                     <UnderlyingSolTuple as alloy_sol_types::SolType>::RustType,
@@ -1020,12 +937,7 @@ struct Call3Value { address target; bool allowFailure; uint256 value; bytes call
         #[doc(hidden)]
         impl ::core::convert::From<UnderlyingRustTuple<'_>> for Call3Value {
             fn from(tuple: UnderlyingRustTuple<'_>) -> Self {
-                Self {
-                    target: tuple.0,
-                    allowFailure: tuple.1,
-                    value: tuple.2,
-                    callData: tuple.3,
-                }
+                Self { target: tuple.0, allowFailure: tuple.1, value: tuple.2, callData: tuple.3 }
             }
         }
         #[automatically_derived]
@@ -1043,9 +955,9 @@ struct Call3Value { address target; bool allowFailure; uint256 value; bytes call
                     <alloy::sol_types::sol_data::Bool as alloy_sol_types::SolType>::tokenize(
                         &self.allowFailure,
                     ),
-                    <alloy::sol_types::sol_data::Uint<
-                        256,
-                    > as alloy_sol_types::SolType>::tokenize(&self.value),
+                    <alloy::sol_types::sol_data::Uint<256> as alloy_sol_types::SolType>::tokenize(
+                        &self.value,
+                    ),
                     <alloy::sol_types::sol_data::Bytes as alloy_sol_types::SolType>::tokenize(
                         &self.callData,
                     ),
@@ -1056,64 +968,50 @@ struct Call3Value { address target; bool allowFailure; uint256 value; bytes call
                 if let Some(size) = <Self as alloy_sol_types::SolType>::ENCODED_SIZE {
                     return size;
                 }
-                let tuple = <UnderlyingRustTuple<
-                    '_,
-                > as ::core::convert::From<Self>>::from(self.clone());
-                <UnderlyingSolTuple<
-                    '_,
-                > as alloy_sol_types::SolType>::abi_encoded_size(&tuple)
+                let tuple =
+                    <UnderlyingRustTuple<'_> as ::core::convert::From<Self>>::from(self.clone());
+                <UnderlyingSolTuple<'_> as alloy_sol_types::SolType>::abi_encoded_size(&tuple)
             }
             #[inline]
             fn stv_eip712_data_word(&self) -> alloy_sol_types::Word {
                 <Self as alloy_sol_types::SolStruct>::eip712_hash_struct(self)
             }
             #[inline]
-            fn stv_abi_encode_packed_to(
-                &self,
-                out: &mut alloy_sol_types::private::Vec<u8>,
-            ) {
-                let tuple = <UnderlyingRustTuple<
-                    '_,
-                > as ::core::convert::From<Self>>::from(self.clone());
-                <UnderlyingSolTuple<
-                    '_,
-                > as alloy_sol_types::SolType>::abi_encode_packed_to(&tuple, out)
+            fn stv_abi_encode_packed_to(&self, out: &mut alloy_sol_types::private::Vec<u8>) {
+                let tuple =
+                    <UnderlyingRustTuple<'_> as ::core::convert::From<Self>>::from(self.clone());
+                <UnderlyingSolTuple<'_> as alloy_sol_types::SolType>::abi_encode_packed_to(
+                    &tuple, out,
+                )
             }
             #[inline]
             fn stv_abi_packed_encoded_size(&self) -> usize {
                 if let Some(size) = <Self as alloy_sol_types::SolType>::PACKED_ENCODED_SIZE {
                     return size;
                 }
-                let tuple = <UnderlyingRustTuple<
-                    '_,
-                > as ::core::convert::From<Self>>::from(self.clone());
-                <UnderlyingSolTuple<
-                    '_,
-                > as alloy_sol_types::SolType>::abi_packed_encoded_size(&tuple)
+                let tuple =
+                    <UnderlyingRustTuple<'_> as ::core::convert::From<Self>>::from(self.clone());
+                <UnderlyingSolTuple<'_> as alloy_sol_types::SolType>::abi_packed_encoded_size(
+                    &tuple,
+                )
             }
         }
         #[automatically_derived]
         impl alloy_sol_types::SolType for Call3Value {
             type RustType = Self;
-            type Token<'a> = <UnderlyingSolTuple<
-                'a,
-            > as alloy_sol_types::SolType>::Token<'a>;
+            type Token<'a> = <UnderlyingSolTuple<'a> as alloy_sol_types::SolType>::Token<'a>;
             const SOL_NAME: &'static str = <Self as alloy_sol_types::SolStruct>::NAME;
-            const ENCODED_SIZE: Option<usize> = <UnderlyingSolTuple<
-                '_,
-            > as alloy_sol_types::SolType>::ENCODED_SIZE;
-            const PACKED_ENCODED_SIZE: Option<usize> = <UnderlyingSolTuple<
-                '_,
-            > as alloy_sol_types::SolType>::PACKED_ENCODED_SIZE;
+            const ENCODED_SIZE: Option<usize> =
+                <UnderlyingSolTuple<'_> as alloy_sol_types::SolType>::ENCODED_SIZE;
+            const PACKED_ENCODED_SIZE: Option<usize> =
+                <UnderlyingSolTuple<'_> as alloy_sol_types::SolType>::PACKED_ENCODED_SIZE;
             #[inline]
             fn valid_token(token: &Self::Token<'_>) -> bool {
                 <UnderlyingSolTuple<'_> as alloy_sol_types::SolType>::valid_token(token)
             }
             #[inline]
             fn detokenize(token: Self::Token<'_>) -> Self::RustType {
-                let tuple = <UnderlyingSolTuple<
-                    '_,
-                > as alloy_sol_types::SolType>::detokenize(token);
+                let tuple = <UnderlyingSolTuple<'_> as alloy_sol_types::SolType>::detokenize(token);
                 <Self as ::core::convert::From<UnderlyingRustTuple<'_>>>::from(tuple)
             }
         }
@@ -1127,9 +1025,9 @@ struct Call3Value { address target; bool allowFailure; uint256 value; bytes call
                 )
             }
             #[inline]
-            fn eip712_components() -> alloy_sol_types::private::Vec<
-                alloy_sol_types::private::Cow<'static, str>,
-            > {
+            fn eip712_components(
+            ) -> alloy_sol_types::private::Vec<alloy_sol_types::private::Cow<'static, str>>
+            {
                 alloy_sol_types::private::Vec::new()
             }
             #[inline]
@@ -1182,9 +1080,7 @@ struct Call3Value { address target; bool allowFailure; uint256 value; bytes call
                 rust: &Self::RustType,
                 out: &mut alloy_sol_types::private::Vec<u8>,
             ) {
-                out.reserve(
-                    <Self as alloy_sol_types::EventTopic>::topic_preimage_length(rust),
-                );
+                out.reserve(<Self as alloy_sol_types::EventTopic>::topic_preimage_length(rust));
                 <alloy::sol_types::sol_data::Address as alloy_sol_types::EventTopic>::encode_topic_preimage(
                     &rust.target,
                     out,
@@ -1205,49 +1101,33 @@ struct Call3Value { address target; bool allowFailure; uint256 value; bytes call
                 );
             }
             #[inline]
-            fn encode_topic(
-                rust: &Self::RustType,
-            ) -> alloy_sol_types::abi::token::WordToken {
+            fn encode_topic(rust: &Self::RustType) -> alloy_sol_types::abi::token::WordToken {
                 let mut out = alloy_sol_types::private::Vec::new();
-                <Self as alloy_sol_types::EventTopic>::encode_topic_preimage(
-                    rust,
-                    &mut out,
-                );
-                alloy_sol_types::abi::token::WordToken(
-                    alloy_sol_types::private::keccak256(out),
-                )
+                <Self as alloy_sol_types::EventTopic>::encode_topic_preimage(rust, &mut out);
+                alloy_sol_types::abi::token::WordToken(alloy_sol_types::private::keccak256(out))
             }
         }
     };
     /**```solidity
-struct Result { bool success; bytes returnData; }
-```*/
+    struct Result { bool success; bytes returnData; }
+    ```*/
     #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields)]
     #[derive(Clone)]
     pub struct Result {
         pub success: bool,
         pub returnData: alloy::sol_types::private::Bytes,
     }
-    #[allow(
-        non_camel_case_types,
-        non_snake_case,
-        clippy::pub_underscore_fields,
-        clippy::style
-    )]
+    #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields, clippy::style)]
     const _: () = {
         use alloy::sol_types as alloy_sol_types;
         #[doc(hidden)]
-        type UnderlyingSolTuple<'a> = (
-            alloy::sol_types::sol_data::Bool,
-            alloy::sol_types::sol_data::Bytes,
-        );
+        type UnderlyingSolTuple<'a> =
+            (alloy::sol_types::sol_data::Bool, alloy::sol_types::sol_data::Bytes);
         #[doc(hidden)]
         type UnderlyingRustTuple<'a> = (bool, alloy::sol_types::private::Bytes);
         #[cfg(test)]
         #[allow(dead_code, unreachable_patterns)]
-        fn _type_assertion(
-            _t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>,
-        ) {
+        fn _type_assertion(_t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>) {
             match _t {
                 alloy_sol_types::private::AssertTypeEq::<
                     <UnderlyingSolTuple as alloy_sol_types::SolType>::RustType,
@@ -1265,10 +1145,7 @@ struct Result { bool success; bytes returnData; }
         #[doc(hidden)]
         impl ::core::convert::From<UnderlyingRustTuple<'_>> for Result {
             fn from(tuple: UnderlyingRustTuple<'_>) -> Self {
-                Self {
-                    success: tuple.0,
-                    returnData: tuple.1,
-                }
+                Self { success: tuple.0, returnData: tuple.1 }
             }
         }
         #[automatically_derived]
@@ -1293,64 +1170,50 @@ struct Result { bool success; bytes returnData; }
                 if let Some(size) = <Self as alloy_sol_types::SolType>::ENCODED_SIZE {
                     return size;
                 }
-                let tuple = <UnderlyingRustTuple<
-                    '_,
-                > as ::core::convert::From<Self>>::from(self.clone());
-                <UnderlyingSolTuple<
-                    '_,
-                > as alloy_sol_types::SolType>::abi_encoded_size(&tuple)
+                let tuple =
+                    <UnderlyingRustTuple<'_> as ::core::convert::From<Self>>::from(self.clone());
+                <UnderlyingSolTuple<'_> as alloy_sol_types::SolType>::abi_encoded_size(&tuple)
             }
             #[inline]
             fn stv_eip712_data_word(&self) -> alloy_sol_types::Word {
                 <Self as alloy_sol_types::SolStruct>::eip712_hash_struct(self)
             }
             #[inline]
-            fn stv_abi_encode_packed_to(
-                &self,
-                out: &mut alloy_sol_types::private::Vec<u8>,
-            ) {
-                let tuple = <UnderlyingRustTuple<
-                    '_,
-                > as ::core::convert::From<Self>>::from(self.clone());
-                <UnderlyingSolTuple<
-                    '_,
-                > as alloy_sol_types::SolType>::abi_encode_packed_to(&tuple, out)
+            fn stv_abi_encode_packed_to(&self, out: &mut alloy_sol_types::private::Vec<u8>) {
+                let tuple =
+                    <UnderlyingRustTuple<'_> as ::core::convert::From<Self>>::from(self.clone());
+                <UnderlyingSolTuple<'_> as alloy_sol_types::SolType>::abi_encode_packed_to(
+                    &tuple, out,
+                )
             }
             #[inline]
             fn stv_abi_packed_encoded_size(&self) -> usize {
                 if let Some(size) = <Self as alloy_sol_types::SolType>::PACKED_ENCODED_SIZE {
                     return size;
                 }
-                let tuple = <UnderlyingRustTuple<
-                    '_,
-                > as ::core::convert::From<Self>>::from(self.clone());
-                <UnderlyingSolTuple<
-                    '_,
-                > as alloy_sol_types::SolType>::abi_packed_encoded_size(&tuple)
+                let tuple =
+                    <UnderlyingRustTuple<'_> as ::core::convert::From<Self>>::from(self.clone());
+                <UnderlyingSolTuple<'_> as alloy_sol_types::SolType>::abi_packed_encoded_size(
+                    &tuple,
+                )
             }
         }
         #[automatically_derived]
         impl alloy_sol_types::SolType for Result {
             type RustType = Self;
-            type Token<'a> = <UnderlyingSolTuple<
-                'a,
-            > as alloy_sol_types::SolType>::Token<'a>;
+            type Token<'a> = <UnderlyingSolTuple<'a> as alloy_sol_types::SolType>::Token<'a>;
             const SOL_NAME: &'static str = <Self as alloy_sol_types::SolStruct>::NAME;
-            const ENCODED_SIZE: Option<usize> = <UnderlyingSolTuple<
-                '_,
-            > as alloy_sol_types::SolType>::ENCODED_SIZE;
-            const PACKED_ENCODED_SIZE: Option<usize> = <UnderlyingSolTuple<
-                '_,
-            > as alloy_sol_types::SolType>::PACKED_ENCODED_SIZE;
+            const ENCODED_SIZE: Option<usize> =
+                <UnderlyingSolTuple<'_> as alloy_sol_types::SolType>::ENCODED_SIZE;
+            const PACKED_ENCODED_SIZE: Option<usize> =
+                <UnderlyingSolTuple<'_> as alloy_sol_types::SolType>::PACKED_ENCODED_SIZE;
             #[inline]
             fn valid_token(token: &Self::Token<'_>) -> bool {
                 <UnderlyingSolTuple<'_> as alloy_sol_types::SolType>::valid_token(token)
             }
             #[inline]
             fn detokenize(token: Self::Token<'_>) -> Self::RustType {
-                let tuple = <UnderlyingSolTuple<
-                    '_,
-                > as alloy_sol_types::SolType>::detokenize(token);
+                let tuple = <UnderlyingSolTuple<'_> as alloy_sol_types::SolType>::detokenize(token);
                 <Self as ::core::convert::From<UnderlyingRustTuple<'_>>>::from(tuple)
             }
         }
@@ -1359,14 +1222,12 @@ struct Result { bool success; bytes returnData; }
             const NAME: &'static str = "Result";
             #[inline]
             fn eip712_root_type() -> alloy_sol_types::private::Cow<'static, str> {
-                alloy_sol_types::private::Cow::Borrowed(
-                    "Result(bool success,bytes returnData)",
-                )
+                alloy_sol_types::private::Cow::Borrowed("Result(bool success,bytes returnData)")
             }
             #[inline]
-            fn eip712_components() -> alloy_sol_types::private::Vec<
-                alloy_sol_types::private::Cow<'static, str>,
-            > {
+            fn eip712_components(
+            ) -> alloy_sol_types::private::Vec<alloy_sol_types::private::Cow<'static, str>>
+            {
                 alloy_sol_types::private::Vec::new()
             }
             #[inline]
@@ -1405,9 +1266,7 @@ struct Result { bool success; bytes returnData; }
                 rust: &Self::RustType,
                 out: &mut alloy_sol_types::private::Vec<u8>,
             ) {
-                out.reserve(
-                    <Self as alloy_sol_types::EventTopic>::topic_preimage_length(rust),
-                );
+                out.reserve(<Self as alloy_sol_types::EventTopic>::topic_preimage_length(rust));
                 <alloy::sol_types::sol_data::Bool as alloy_sol_types::EventTopic>::encode_topic_preimage(
                     &rust.success,
                     out,
@@ -1418,30 +1277,21 @@ struct Result { bool success; bytes returnData; }
                 );
             }
             #[inline]
-            fn encode_topic(
-                rust: &Self::RustType,
-            ) -> alloy_sol_types::abi::token::WordToken {
+            fn encode_topic(rust: &Self::RustType) -> alloy_sol_types::abi::token::WordToken {
                 let mut out = alloy_sol_types::private::Vec::new();
-                <Self as alloy_sol_types::EventTopic>::encode_topic_preimage(
-                    rust,
-                    &mut out,
-                );
-                alloy_sol_types::abi::token::WordToken(
-                    alloy_sol_types::private::keccak256(out),
-                )
+                <Self as alloy_sol_types::EventTopic>::encode_topic_preimage(rust, &mut out);
+                alloy_sol_types::abi::token::WordToken(alloy_sol_types::private::keccak256(out))
             }
         }
     };
     /**Function with signature `aggregate((address,bytes)[])` and selector `0x252dba42`.
-```solidity
-function aggregate(Call[] memory calls) external payable returns (uint256 blockNumber, bytes[] memory returnData);
-```*/
+    ```solidity
+    function aggregate(Call[] memory calls) external payable returns (uint256 blockNumber, bytes[] memory returnData);
+    ```*/
     #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields)]
     #[derive(Clone)]
     pub struct aggregateCall {
-        pub calls: alloy::sol_types::private::Vec<
-            <Call as alloy::sol_types::SolType>::RustType,
-        >,
+        pub calls: alloy::sol_types::private::Vec<<Call as alloy::sol_types::SolType>::RustType>,
     }
     ///Container type for the return parameters of the [`aggregate((address,bytes)[])`](aggregateCall) function.
     #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields)]
@@ -1450,28 +1300,18 @@ function aggregate(Call[] memory calls) external payable returns (uint256 blockN
         pub blockNumber: alloy::sol_types::private::primitives::aliases::U256,
         pub returnData: alloy::sol_types::private::Vec<alloy::sol_types::private::Bytes>,
     }
-    #[allow(
-        non_camel_case_types,
-        non_snake_case,
-        clippy::pub_underscore_fields,
-        clippy::style
-    )]
+    #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields, clippy::style)]
     const _: () = {
         use alloy::sol_types as alloy_sol_types;
         {
             #[doc(hidden)]
             type UnderlyingSolTuple<'a> = (alloy::sol_types::sol_data::Array<Call>,);
             #[doc(hidden)]
-            type UnderlyingRustTuple<'a> = (
-                alloy::sol_types::private::Vec<
-                    <Call as alloy::sol_types::SolType>::RustType,
-                >,
-            );
+            type UnderlyingRustTuple<'a> =
+                (alloy::sol_types::private::Vec<<Call as alloy::sol_types::SolType>::RustType>,);
             #[cfg(test)]
             #[allow(dead_code, unreachable_patterns)]
-            fn _type_assertion(
-                _t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>,
-            ) {
+            fn _type_assertion(_t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>) {
                 match _t {
                     alloy_sol_types::private::AssertTypeEq::<
                         <UnderlyingSolTuple as alloy_sol_types::SolType>::RustType,
@@ -1506,9 +1346,7 @@ function aggregate(Call[] memory calls) external payable returns (uint256 blockN
             );
             #[cfg(test)]
             #[allow(dead_code, unreachable_patterns)]
-            fn _type_assertion(
-                _t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>,
-            ) {
+            fn _type_assertion(_t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>) {
                 match _t {
                     alloy_sol_types::private::AssertTypeEq::<
                         <UnderlyingSolTuple as alloy_sol_types::SolType>::RustType,
@@ -1526,27 +1364,20 @@ function aggregate(Call[] memory calls) external payable returns (uint256 blockN
             #[doc(hidden)]
             impl ::core::convert::From<UnderlyingRustTuple<'_>> for aggregateReturn {
                 fn from(tuple: UnderlyingRustTuple<'_>) -> Self {
-                    Self {
-                        blockNumber: tuple.0,
-                        returnData: tuple.1,
-                    }
+                    Self { blockNumber: tuple.0, returnData: tuple.1 }
                 }
             }
         }
         #[automatically_derived]
         impl alloy_sol_types::SolCall for aggregateCall {
             type Parameters<'a> = (alloy::sol_types::sol_data::Array<Call>,);
-            type Token<'a> = <Self::Parameters<
-                'a,
-            > as alloy_sol_types::SolType>::Token<'a>;
+            type Token<'a> = <Self::Parameters<'a> as alloy_sol_types::SolType>::Token<'a>;
             type Return = aggregateReturn;
             type ReturnTuple<'a> = (
                 alloy::sol_types::sol_data::Uint<256>,
                 alloy::sol_types::sol_data::Array<alloy::sol_types::sol_data::Bytes>,
             );
-            type ReturnToken<'a> = <Self::ReturnTuple<
-                'a,
-            > as alloy_sol_types::SolType>::Token<'a>;
+            type ReturnToken<'a> = <Self::ReturnTuple<'a> as alloy_sol_types::SolType>::Token<'a>;
             const SIGNATURE: &'static str = "aggregate((address,bytes)[])";
             const SELECTOR: [u8; 4] = [37u8, 45u8, 186u8, 66u8];
             #[inline]
@@ -1557,65 +1388,50 @@ function aggregate(Call[] memory calls) external payable returns (uint256 blockN
             }
             #[inline]
             fn tokenize(&self) -> Self::Token<'_> {
-                (
-                    <alloy::sol_types::sol_data::Array<
-                        Call,
-                    > as alloy_sol_types::SolType>::tokenize(&self.calls),
-                )
+                (<alloy::sol_types::sol_data::Array<Call> as alloy_sol_types::SolType>::tokenize(
+                    &self.calls,
+                ),)
             }
             #[inline]
             fn abi_decode_returns(
                 data: &[u8],
                 validate: bool,
             ) -> alloy_sol_types::Result<Self::Return> {
-                <Self::ReturnTuple<
-                    '_,
-                > as alloy_sol_types::SolType>::abi_decode_sequence(data, validate)
-                    .map(Into::into)
+                <Self::ReturnTuple<'_> as alloy_sol_types::SolType>::abi_decode_sequence(
+                    data, validate,
+                )
+                .map(Into::into)
             }
         }
     };
     /**Function with signature `aggregate3((address,bool,bytes)[])` and selector `0x82ad56cb`.
-```solidity
-function aggregate3(Call3[] memory calls) external payable returns (Result[] memory returnData);
-```*/
+    ```solidity
+    function aggregate3(Call3[] memory calls) external payable returns (Result[] memory returnData);
+    ```*/
     #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields)]
     #[derive(Clone)]
     pub struct aggregate3Call {
-        pub calls: alloy::sol_types::private::Vec<
-            <Call3 as alloy::sol_types::SolType>::RustType,
-        >,
+        pub calls: alloy::sol_types::private::Vec<<Call3 as alloy::sol_types::SolType>::RustType>,
     }
     ///Container type for the return parameters of the [`aggregate3((address,bool,bytes)[])`](aggregate3Call) function.
     #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields)]
     #[derive(Clone)]
     pub struct aggregate3Return {
-        pub returnData: alloy::sol_types::private::Vec<
-            <Result as alloy::sol_types::SolType>::RustType,
-        >,
+        pub returnData:
+            alloy::sol_types::private::Vec<<Result as alloy::sol_types::SolType>::RustType>,
     }
-    #[allow(
-        non_camel_case_types,
-        non_snake_case,
-        clippy::pub_underscore_fields,
-        clippy::style
-    )]
+    #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields, clippy::style)]
     const _: () = {
         use alloy::sol_types as alloy_sol_types;
         {
             #[doc(hidden)]
             type UnderlyingSolTuple<'a> = (alloy::sol_types::sol_data::Array<Call3>,);
             #[doc(hidden)]
-            type UnderlyingRustTuple<'a> = (
-                alloy::sol_types::private::Vec<
-                    <Call3 as alloy::sol_types::SolType>::RustType,
-                >,
-            );
+            type UnderlyingRustTuple<'a> =
+                (alloy::sol_types::private::Vec<<Call3 as alloy::sol_types::SolType>::RustType>,);
             #[cfg(test)]
             #[allow(dead_code, unreachable_patterns)]
-            fn _type_assertion(
-                _t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>,
-            ) {
+            fn _type_assertion(_t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>) {
                 match _t {
                     alloy_sol_types::private::AssertTypeEq::<
                         <UnderlyingSolTuple as alloy_sol_types::SolType>::RustType,
@@ -1641,16 +1457,11 @@ function aggregate3(Call3[] memory calls) external payable returns (Result[] mem
             #[doc(hidden)]
             type UnderlyingSolTuple<'a> = (alloy::sol_types::sol_data::Array<Result>,);
             #[doc(hidden)]
-            type UnderlyingRustTuple<'a> = (
-                alloy::sol_types::private::Vec<
-                    <Result as alloy::sol_types::SolType>::RustType,
-                >,
-            );
+            type UnderlyingRustTuple<'a> =
+                (alloy::sol_types::private::Vec<<Result as alloy::sol_types::SolType>::RustType>,);
             #[cfg(test)]
             #[allow(dead_code, unreachable_patterns)]
-            fn _type_assertion(
-                _t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>,
-            ) {
+            fn _type_assertion(_t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>) {
                 match _t {
                     alloy_sol_types::private::AssertTypeEq::<
                         <UnderlyingSolTuple as alloy_sol_types::SolType>::RustType,
@@ -1675,14 +1486,10 @@ function aggregate3(Call3[] memory calls) external payable returns (Result[] mem
         #[automatically_derived]
         impl alloy_sol_types::SolCall for aggregate3Call {
             type Parameters<'a> = (alloy::sol_types::sol_data::Array<Call3>,);
-            type Token<'a> = <Self::Parameters<
-                'a,
-            > as alloy_sol_types::SolType>::Token<'a>;
+            type Token<'a> = <Self::Parameters<'a> as alloy_sol_types::SolType>::Token<'a>;
             type Return = aggregate3Return;
             type ReturnTuple<'a> = (alloy::sol_types::sol_data::Array<Result>,);
-            type ReturnToken<'a> = <Self::ReturnTuple<
-                'a,
-            > as alloy_sol_types::SolType>::Token<'a>;
+            type ReturnToken<'a> = <Self::ReturnTuple<'a> as alloy_sol_types::SolType>::Token<'a>;
             const SIGNATURE: &'static str = "aggregate3((address,bool,bytes)[])";
             const SELECTOR: [u8; 4] = [130u8, 173u8, 86u8, 203u8];
             #[inline]
@@ -1693,67 +1500,52 @@ function aggregate3(Call3[] memory calls) external payable returns (Result[] mem
             }
             #[inline]
             fn tokenize(&self) -> Self::Token<'_> {
-                (
-                    <alloy::sol_types::sol_data::Array<
-                        Call3,
-                    > as alloy_sol_types::SolType>::tokenize(&self.calls),
-                )
+                (<alloy::sol_types::sol_data::Array<Call3> as alloy_sol_types::SolType>::tokenize(
+                    &self.calls,
+                ),)
             }
             #[inline]
             fn abi_decode_returns(
                 data: &[u8],
                 validate: bool,
             ) -> alloy_sol_types::Result<Self::Return> {
-                <Self::ReturnTuple<
-                    '_,
-                > as alloy_sol_types::SolType>::abi_decode_sequence(data, validate)
-                    .map(Into::into)
+                <Self::ReturnTuple<'_> as alloy_sol_types::SolType>::abi_decode_sequence(
+                    data, validate,
+                )
+                .map(Into::into)
             }
         }
     };
     /**Function with signature `aggregate3Value((address,bool,uint256,bytes)[])` and selector `0x174dea71`.
-```solidity
-function aggregate3Value(Call3Value[] memory calls) external payable returns (Result[] memory returnData);
-```*/
+    ```solidity
+    function aggregate3Value(Call3Value[] memory calls) external payable returns (Result[] memory returnData);
+    ```*/
     #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields)]
     #[derive(Clone)]
     pub struct aggregate3ValueCall {
-        pub calls: alloy::sol_types::private::Vec<
-            <Call3Value as alloy::sol_types::SolType>::RustType,
-        >,
+        pub calls:
+            alloy::sol_types::private::Vec<<Call3Value as alloy::sol_types::SolType>::RustType>,
     }
     ///Container type for the return parameters of the [`aggregate3Value((address,bool,uint256,bytes)[])`](aggregate3ValueCall) function.
     #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields)]
     #[derive(Clone)]
     pub struct aggregate3ValueReturn {
-        pub returnData: alloy::sol_types::private::Vec<
-            <Result as alloy::sol_types::SolType>::RustType,
-        >,
+        pub returnData:
+            alloy::sol_types::private::Vec<<Result as alloy::sol_types::SolType>::RustType>,
     }
-    #[allow(
-        non_camel_case_types,
-        non_snake_case,
-        clippy::pub_underscore_fields,
-        clippy::style
-    )]
+    #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields, clippy::style)]
     const _: () = {
         use alloy::sol_types as alloy_sol_types;
         {
             #[doc(hidden)]
-            type UnderlyingSolTuple<'a> = (
-                alloy::sol_types::sol_data::Array<Call3Value>,
-            );
+            type UnderlyingSolTuple<'a> = (alloy::sol_types::sol_data::Array<Call3Value>,);
             #[doc(hidden)]
             type UnderlyingRustTuple<'a> = (
-                alloy::sol_types::private::Vec<
-                    <Call3Value as alloy::sol_types::SolType>::RustType,
-                >,
+                alloy::sol_types::private::Vec<<Call3Value as alloy::sol_types::SolType>::RustType>,
             );
             #[cfg(test)]
             #[allow(dead_code, unreachable_patterns)]
-            fn _type_assertion(
-                _t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>,
-            ) {
+            fn _type_assertion(_t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>) {
                 match _t {
                     alloy_sol_types::private::AssertTypeEq::<
                         <UnderlyingSolTuple as alloy_sol_types::SolType>::RustType,
@@ -1779,16 +1571,11 @@ function aggregate3Value(Call3Value[] memory calls) external payable returns (Re
             #[doc(hidden)]
             type UnderlyingSolTuple<'a> = (alloy::sol_types::sol_data::Array<Result>,);
             #[doc(hidden)]
-            type UnderlyingRustTuple<'a> = (
-                alloy::sol_types::private::Vec<
-                    <Result as alloy::sol_types::SolType>::RustType,
-                >,
-            );
+            type UnderlyingRustTuple<'a> =
+                (alloy::sol_types::private::Vec<<Result as alloy::sol_types::SolType>::RustType>,);
             #[cfg(test)]
             #[allow(dead_code, unreachable_patterns)]
-            fn _type_assertion(
-                _t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>,
-            ) {
+            fn _type_assertion(_t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>) {
                 match _t {
                     alloy_sol_types::private::AssertTypeEq::<
                         <UnderlyingSolTuple as alloy_sol_types::SolType>::RustType,
@@ -1797,16 +1584,14 @@ function aggregate3Value(Call3Value[] memory calls) external payable returns (Re
             }
             #[automatically_derived]
             #[doc(hidden)]
-            impl ::core::convert::From<aggregate3ValueReturn>
-            for UnderlyingRustTuple<'_> {
+            impl ::core::convert::From<aggregate3ValueReturn> for UnderlyingRustTuple<'_> {
                 fn from(value: aggregate3ValueReturn) -> Self {
                     (value.returnData,)
                 }
             }
             #[automatically_derived]
             #[doc(hidden)]
-            impl ::core::convert::From<UnderlyingRustTuple<'_>>
-            for aggregate3ValueReturn {
+            impl ::core::convert::From<UnderlyingRustTuple<'_>> for aggregate3ValueReturn {
                 fn from(tuple: UnderlyingRustTuple<'_>) -> Self {
                     Self { returnData: tuple.0 }
                 }
@@ -1815,14 +1600,10 @@ function aggregate3Value(Call3Value[] memory calls) external payable returns (Re
         #[automatically_derived]
         impl alloy_sol_types::SolCall for aggregate3ValueCall {
             type Parameters<'a> = (alloy::sol_types::sol_data::Array<Call3Value>,);
-            type Token<'a> = <Self::Parameters<
-                'a,
-            > as alloy_sol_types::SolType>::Token<'a>;
+            type Token<'a> = <Self::Parameters<'a> as alloy_sol_types::SolType>::Token<'a>;
             type Return = aggregate3ValueReturn;
             type ReturnTuple<'a> = (alloy::sol_types::sol_data::Array<Result>,);
-            type ReturnToken<'a> = <Self::ReturnTuple<
-                'a,
-            > as alloy_sol_types::SolType>::Token<'a>;
+            type ReturnToken<'a> = <Self::ReturnTuple<'a> as alloy_sol_types::SolType>::Token<'a>;
             const SIGNATURE: &'static str = "aggregate3Value((address,bool,uint256,bytes)[])";
             const SELECTOR: [u8; 4] = [23u8, 77u8, 234u8, 113u8];
             #[inline]
@@ -1844,23 +1625,21 @@ function aggregate3Value(Call3Value[] memory calls) external payable returns (Re
                 data: &[u8],
                 validate: bool,
             ) -> alloy_sol_types::Result<Self::Return> {
-                <Self::ReturnTuple<
-                    '_,
-                > as alloy_sol_types::SolType>::abi_decode_sequence(data, validate)
-                    .map(Into::into)
+                <Self::ReturnTuple<'_> as alloy_sol_types::SolType>::abi_decode_sequence(
+                    data, validate,
+                )
+                .map(Into::into)
             }
         }
     };
     /**Function with signature `blockAndAggregate((address,bytes)[])` and selector `0xc3077fa9`.
-```solidity
-function blockAndAggregate(Call[] memory calls) external payable returns (uint256 blockNumber, bytes32 blockHash, Result[] memory returnData);
-```*/
+    ```solidity
+    function blockAndAggregate(Call[] memory calls) external payable returns (uint256 blockNumber, bytes32 blockHash, Result[] memory returnData);
+    ```*/
     #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields)]
     #[derive(Clone)]
     pub struct blockAndAggregateCall {
-        pub calls: alloy::sol_types::private::Vec<
-            <Call as alloy::sol_types::SolType>::RustType,
-        >,
+        pub calls: alloy::sol_types::private::Vec<<Call as alloy::sol_types::SolType>::RustType>,
     }
     ///Container type for the return parameters of the [`blockAndAggregate((address,bytes)[])`](blockAndAggregateCall) function.
     #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields)]
@@ -1868,32 +1647,21 @@ function blockAndAggregate(Call[] memory calls) external payable returns (uint25
     pub struct blockAndAggregateReturn {
         pub blockNumber: alloy::sol_types::private::primitives::aliases::U256,
         pub blockHash: alloy::sol_types::private::FixedBytes<32>,
-        pub returnData: alloy::sol_types::private::Vec<
-            <Result as alloy::sol_types::SolType>::RustType,
-        >,
+        pub returnData:
+            alloy::sol_types::private::Vec<<Result as alloy::sol_types::SolType>::RustType>,
     }
-    #[allow(
-        non_camel_case_types,
-        non_snake_case,
-        clippy::pub_underscore_fields,
-        clippy::style
-    )]
+    #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields, clippy::style)]
     const _: () = {
         use alloy::sol_types as alloy_sol_types;
         {
             #[doc(hidden)]
             type UnderlyingSolTuple<'a> = (alloy::sol_types::sol_data::Array<Call>,);
             #[doc(hidden)]
-            type UnderlyingRustTuple<'a> = (
-                alloy::sol_types::private::Vec<
-                    <Call as alloy::sol_types::SolType>::RustType,
-                >,
-            );
+            type UnderlyingRustTuple<'a> =
+                (alloy::sol_types::private::Vec<<Call as alloy::sol_types::SolType>::RustType>,);
             #[cfg(test)]
             #[allow(dead_code, unreachable_patterns)]
-            fn _type_assertion(
-                _t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>,
-            ) {
+            fn _type_assertion(_t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>) {
                 match _t {
                     alloy_sol_types::private::AssertTypeEq::<
                         <UnderlyingSolTuple as alloy_sol_types::SolType>::RustType,
@@ -1902,16 +1670,14 @@ function blockAndAggregate(Call[] memory calls) external payable returns (uint25
             }
             #[automatically_derived]
             #[doc(hidden)]
-            impl ::core::convert::From<blockAndAggregateCall>
-            for UnderlyingRustTuple<'_> {
+            impl ::core::convert::From<blockAndAggregateCall> for UnderlyingRustTuple<'_> {
                 fn from(value: blockAndAggregateCall) -> Self {
                     (value.calls,)
                 }
             }
             #[automatically_derived]
             #[doc(hidden)]
-            impl ::core::convert::From<UnderlyingRustTuple<'_>>
-            for blockAndAggregateCall {
+            impl ::core::convert::From<UnderlyingRustTuple<'_>> for blockAndAggregateCall {
                 fn from(tuple: UnderlyingRustTuple<'_>) -> Self {
                     Self { calls: tuple.0 }
                 }
@@ -1928,15 +1694,11 @@ function blockAndAggregate(Call[] memory calls) external payable returns (uint25
             type UnderlyingRustTuple<'a> = (
                 alloy::sol_types::private::primitives::aliases::U256,
                 alloy::sol_types::private::FixedBytes<32>,
-                alloy::sol_types::private::Vec<
-                    <Result as alloy::sol_types::SolType>::RustType,
-                >,
+                alloy::sol_types::private::Vec<<Result as alloy::sol_types::SolType>::RustType>,
             );
             #[cfg(test)]
             #[allow(dead_code, unreachable_patterns)]
-            fn _type_assertion(
-                _t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>,
-            ) {
+            fn _type_assertion(_t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>) {
                 match _t {
                     alloy_sol_types::private::AssertTypeEq::<
                         <UnderlyingSolTuple as alloy_sol_types::SolType>::RustType,
@@ -1945,40 +1707,30 @@ function blockAndAggregate(Call[] memory calls) external payable returns (uint25
             }
             #[automatically_derived]
             #[doc(hidden)]
-            impl ::core::convert::From<blockAndAggregateReturn>
-            for UnderlyingRustTuple<'_> {
+            impl ::core::convert::From<blockAndAggregateReturn> for UnderlyingRustTuple<'_> {
                 fn from(value: blockAndAggregateReturn) -> Self {
                     (value.blockNumber, value.blockHash, value.returnData)
                 }
             }
             #[automatically_derived]
             #[doc(hidden)]
-            impl ::core::convert::From<UnderlyingRustTuple<'_>>
-            for blockAndAggregateReturn {
+            impl ::core::convert::From<UnderlyingRustTuple<'_>> for blockAndAggregateReturn {
                 fn from(tuple: UnderlyingRustTuple<'_>) -> Self {
-                    Self {
-                        blockNumber: tuple.0,
-                        blockHash: tuple.1,
-                        returnData: tuple.2,
-                    }
+                    Self { blockNumber: tuple.0, blockHash: tuple.1, returnData: tuple.2 }
                 }
             }
         }
         #[automatically_derived]
         impl alloy_sol_types::SolCall for blockAndAggregateCall {
             type Parameters<'a> = (alloy::sol_types::sol_data::Array<Call>,);
-            type Token<'a> = <Self::Parameters<
-                'a,
-            > as alloy_sol_types::SolType>::Token<'a>;
+            type Token<'a> = <Self::Parameters<'a> as alloy_sol_types::SolType>::Token<'a>;
             type Return = blockAndAggregateReturn;
             type ReturnTuple<'a> = (
                 alloy::sol_types::sol_data::Uint<256>,
                 alloy::sol_types::sol_data::FixedBytes<32>,
                 alloy::sol_types::sol_data::Array<Result>,
             );
-            type ReturnToken<'a> = <Self::ReturnTuple<
-                'a,
-            > as alloy_sol_types::SolType>::Token<'a>;
+            type ReturnToken<'a> = <Self::ReturnTuple<'a> as alloy_sol_types::SolType>::Token<'a>;
             const SIGNATURE: &'static str = "blockAndAggregate((address,bytes)[])";
             const SELECTOR: [u8; 4] = [195u8, 7u8, 127u8, 169u8];
             #[inline]
@@ -1989,28 +1741,26 @@ function blockAndAggregate(Call[] memory calls) external payable returns (uint25
             }
             #[inline]
             fn tokenize(&self) -> Self::Token<'_> {
-                (
-                    <alloy::sol_types::sol_data::Array<
-                        Call,
-                    > as alloy_sol_types::SolType>::tokenize(&self.calls),
-                )
+                (<alloy::sol_types::sol_data::Array<Call> as alloy_sol_types::SolType>::tokenize(
+                    &self.calls,
+                ),)
             }
             #[inline]
             fn abi_decode_returns(
                 data: &[u8],
                 validate: bool,
             ) -> alloy_sol_types::Result<Self::Return> {
-                <Self::ReturnTuple<
-                    '_,
-                > as alloy_sol_types::SolType>::abi_decode_sequence(data, validate)
-                    .map(Into::into)
+                <Self::ReturnTuple<'_> as alloy_sol_types::SolType>::abi_decode_sequence(
+                    data, validate,
+                )
+                .map(Into::into)
             }
         }
     };
     /**Function with signature `getBasefee()` and selector `0x3e64a696`.
-```solidity
-function getBasefee() external view returns (uint256 basefee);
-```*/
+    ```solidity
+    function getBasefee() external view returns (uint256 basefee);
+    ```*/
     #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields)]
     #[derive(Clone)]
     pub struct getBasefeeCall {}
@@ -2020,12 +1770,7 @@ function getBasefee() external view returns (uint256 basefee);
     pub struct getBasefeeReturn {
         pub basefee: alloy::sol_types::private::primitives::aliases::U256,
     }
-    #[allow(
-        non_camel_case_types,
-        non_snake_case,
-        clippy::pub_underscore_fields,
-        clippy::style
-    )]
+    #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields, clippy::style)]
     const _: () = {
         use alloy::sol_types as alloy_sol_types;
         {
@@ -2035,9 +1780,7 @@ function getBasefee() external view returns (uint256 basefee);
             type UnderlyingRustTuple<'a> = ();
             #[cfg(test)]
             #[allow(dead_code, unreachable_patterns)]
-            fn _type_assertion(
-                _t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>,
-            ) {
+            fn _type_assertion(_t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>) {
                 match _t {
                     alloy_sol_types::private::AssertTypeEq::<
                         <UnderlyingSolTuple as alloy_sol_types::SolType>::RustType,
@@ -2063,14 +1806,10 @@ function getBasefee() external view returns (uint256 basefee);
             #[doc(hidden)]
             type UnderlyingSolTuple<'a> = (alloy::sol_types::sol_data::Uint<256>,);
             #[doc(hidden)]
-            type UnderlyingRustTuple<'a> = (
-                alloy::sol_types::private::primitives::aliases::U256,
-            );
+            type UnderlyingRustTuple<'a> = (alloy::sol_types::private::primitives::aliases::U256,);
             #[cfg(test)]
             #[allow(dead_code, unreachable_patterns)]
-            fn _type_assertion(
-                _t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>,
-            ) {
+            fn _type_assertion(_t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>) {
                 match _t {
                     alloy_sol_types::private::AssertTypeEq::<
                         <UnderlyingSolTuple as alloy_sol_types::SolType>::RustType,
@@ -2095,14 +1834,10 @@ function getBasefee() external view returns (uint256 basefee);
         #[automatically_derived]
         impl alloy_sol_types::SolCall for getBasefeeCall {
             type Parameters<'a> = ();
-            type Token<'a> = <Self::Parameters<
-                'a,
-            > as alloy_sol_types::SolType>::Token<'a>;
+            type Token<'a> = <Self::Parameters<'a> as alloy_sol_types::SolType>::Token<'a>;
             type Return = getBasefeeReturn;
             type ReturnTuple<'a> = (alloy::sol_types::sol_data::Uint<256>,);
-            type ReturnToken<'a> = <Self::ReturnTuple<
-                'a,
-            > as alloy_sol_types::SolType>::Token<'a>;
+            type ReturnToken<'a> = <Self::ReturnTuple<'a> as alloy_sol_types::SolType>::Token<'a>;
             const SIGNATURE: &'static str = "getBasefee()";
             const SELECTOR: [u8; 4] = [62u8, 100u8, 166u8, 150u8];
             #[inline]
@@ -2120,17 +1855,17 @@ function getBasefee() external view returns (uint256 basefee);
                 data: &[u8],
                 validate: bool,
             ) -> alloy_sol_types::Result<Self::Return> {
-                <Self::ReturnTuple<
-                    '_,
-                > as alloy_sol_types::SolType>::abi_decode_sequence(data, validate)
-                    .map(Into::into)
+                <Self::ReturnTuple<'_> as alloy_sol_types::SolType>::abi_decode_sequence(
+                    data, validate,
+                )
+                .map(Into::into)
             }
         }
     };
     /**Function with signature `getBlockHash(uint256)` and selector `0xee82ac5e`.
-```solidity
-function getBlockHash(uint256 blockNumber) external view returns (bytes32 blockHash);
-```*/
+    ```solidity
+    function getBlockHash(uint256 blockNumber) external view returns (bytes32 blockHash);
+    ```*/
     #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields)]
     #[derive(Clone)]
     pub struct getBlockHashCall {
@@ -2142,26 +1877,17 @@ function getBlockHash(uint256 blockNumber) external view returns (bytes32 blockH
     pub struct getBlockHashReturn {
         pub blockHash: alloy::sol_types::private::FixedBytes<32>,
     }
-    #[allow(
-        non_camel_case_types,
-        non_snake_case,
-        clippy::pub_underscore_fields,
-        clippy::style
-    )]
+    #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields, clippy::style)]
     const _: () = {
         use alloy::sol_types as alloy_sol_types;
         {
             #[doc(hidden)]
             type UnderlyingSolTuple<'a> = (alloy::sol_types::sol_data::Uint<256>,);
             #[doc(hidden)]
-            type UnderlyingRustTuple<'a> = (
-                alloy::sol_types::private::primitives::aliases::U256,
-            );
+            type UnderlyingRustTuple<'a> = (alloy::sol_types::private::primitives::aliases::U256,);
             #[cfg(test)]
             #[allow(dead_code, unreachable_patterns)]
-            fn _type_assertion(
-                _t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>,
-            ) {
+            fn _type_assertion(_t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>) {
                 match _t {
                     alloy_sol_types::private::AssertTypeEq::<
                         <UnderlyingSolTuple as alloy_sol_types::SolType>::RustType,
@@ -2190,9 +1916,7 @@ function getBlockHash(uint256 blockNumber) external view returns (bytes32 blockH
             type UnderlyingRustTuple<'a> = (alloy::sol_types::private::FixedBytes<32>,);
             #[cfg(test)]
             #[allow(dead_code, unreachable_patterns)]
-            fn _type_assertion(
-                _t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>,
-            ) {
+            fn _type_assertion(_t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>) {
                 match _t {
                     alloy_sol_types::private::AssertTypeEq::<
                         <UnderlyingSolTuple as alloy_sol_types::SolType>::RustType,
@@ -2217,14 +1941,10 @@ function getBlockHash(uint256 blockNumber) external view returns (bytes32 blockH
         #[automatically_derived]
         impl alloy_sol_types::SolCall for getBlockHashCall {
             type Parameters<'a> = (alloy::sol_types::sol_data::Uint<256>,);
-            type Token<'a> = <Self::Parameters<
-                'a,
-            > as alloy_sol_types::SolType>::Token<'a>;
+            type Token<'a> = <Self::Parameters<'a> as alloy_sol_types::SolType>::Token<'a>;
             type Return = getBlockHashReturn;
             type ReturnTuple<'a> = (alloy::sol_types::sol_data::FixedBytes<32>,);
-            type ReturnToken<'a> = <Self::ReturnTuple<
-                'a,
-            > as alloy_sol_types::SolType>::Token<'a>;
+            type ReturnToken<'a> = <Self::ReturnTuple<'a> as alloy_sol_types::SolType>::Token<'a>;
             const SIGNATURE: &'static str = "getBlockHash(uint256)";
             const SELECTOR: [u8; 4] = [238u8, 130u8, 172u8, 94u8];
             #[inline]
@@ -2235,28 +1955,26 @@ function getBlockHash(uint256 blockNumber) external view returns (bytes32 blockH
             }
             #[inline]
             fn tokenize(&self) -> Self::Token<'_> {
-                (
-                    <alloy::sol_types::sol_data::Uint<
-                        256,
-                    > as alloy_sol_types::SolType>::tokenize(&self.blockNumber),
-                )
+                (<alloy::sol_types::sol_data::Uint<256> as alloy_sol_types::SolType>::tokenize(
+                    &self.blockNumber,
+                ),)
             }
             #[inline]
             fn abi_decode_returns(
                 data: &[u8],
                 validate: bool,
             ) -> alloy_sol_types::Result<Self::Return> {
-                <Self::ReturnTuple<
-                    '_,
-                > as alloy_sol_types::SolType>::abi_decode_sequence(data, validate)
-                    .map(Into::into)
+                <Self::ReturnTuple<'_> as alloy_sol_types::SolType>::abi_decode_sequence(
+                    data, validate,
+                )
+                .map(Into::into)
             }
         }
     };
     /**Function with signature `getBlockNumber()` and selector `0x42cbb15c`.
-```solidity
-function getBlockNumber() external view returns (uint256 blockNumber);
-```*/
+    ```solidity
+    function getBlockNumber() external view returns (uint256 blockNumber);
+    ```*/
     #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields)]
     #[derive(Clone)]
     pub struct getBlockNumberCall {}
@@ -2266,12 +1984,7 @@ function getBlockNumber() external view returns (uint256 blockNumber);
     pub struct getBlockNumberReturn {
         pub blockNumber: alloy::sol_types::private::primitives::aliases::U256,
     }
-    #[allow(
-        non_camel_case_types,
-        non_snake_case,
-        clippy::pub_underscore_fields,
-        clippy::style
-    )]
+    #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields, clippy::style)]
     const _: () = {
         use alloy::sol_types as alloy_sol_types;
         {
@@ -2281,9 +1994,7 @@ function getBlockNumber() external view returns (uint256 blockNumber);
             type UnderlyingRustTuple<'a> = ();
             #[cfg(test)]
             #[allow(dead_code, unreachable_patterns)]
-            fn _type_assertion(
-                _t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>,
-            ) {
+            fn _type_assertion(_t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>) {
                 match _t {
                     alloy_sol_types::private::AssertTypeEq::<
                         <UnderlyingSolTuple as alloy_sol_types::SolType>::RustType,
@@ -2309,14 +2020,10 @@ function getBlockNumber() external view returns (uint256 blockNumber);
             #[doc(hidden)]
             type UnderlyingSolTuple<'a> = (alloy::sol_types::sol_data::Uint<256>,);
             #[doc(hidden)]
-            type UnderlyingRustTuple<'a> = (
-                alloy::sol_types::private::primitives::aliases::U256,
-            );
+            type UnderlyingRustTuple<'a> = (alloy::sol_types::private::primitives::aliases::U256,);
             #[cfg(test)]
             #[allow(dead_code, unreachable_patterns)]
-            fn _type_assertion(
-                _t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>,
-            ) {
+            fn _type_assertion(_t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>) {
                 match _t {
                     alloy_sol_types::private::AssertTypeEq::<
                         <UnderlyingSolTuple as alloy_sol_types::SolType>::RustType,
@@ -2325,16 +2032,14 @@ function getBlockNumber() external view returns (uint256 blockNumber);
             }
             #[automatically_derived]
             #[doc(hidden)]
-            impl ::core::convert::From<getBlockNumberReturn>
-            for UnderlyingRustTuple<'_> {
+            impl ::core::convert::From<getBlockNumberReturn> for UnderlyingRustTuple<'_> {
                 fn from(value: getBlockNumberReturn) -> Self {
                     (value.blockNumber,)
                 }
             }
             #[automatically_derived]
             #[doc(hidden)]
-            impl ::core::convert::From<UnderlyingRustTuple<'_>>
-            for getBlockNumberReturn {
+            impl ::core::convert::From<UnderlyingRustTuple<'_>> for getBlockNumberReturn {
                 fn from(tuple: UnderlyingRustTuple<'_>) -> Self {
                     Self { blockNumber: tuple.0 }
                 }
@@ -2343,14 +2048,10 @@ function getBlockNumber() external view returns (uint256 blockNumber);
         #[automatically_derived]
         impl alloy_sol_types::SolCall for getBlockNumberCall {
             type Parameters<'a> = ();
-            type Token<'a> = <Self::Parameters<
-                'a,
-            > as alloy_sol_types::SolType>::Token<'a>;
+            type Token<'a> = <Self::Parameters<'a> as alloy_sol_types::SolType>::Token<'a>;
             type Return = getBlockNumberReturn;
             type ReturnTuple<'a> = (alloy::sol_types::sol_data::Uint<256>,);
-            type ReturnToken<'a> = <Self::ReturnTuple<
-                'a,
-            > as alloy_sol_types::SolType>::Token<'a>;
+            type ReturnToken<'a> = <Self::ReturnTuple<'a> as alloy_sol_types::SolType>::Token<'a>;
             const SIGNATURE: &'static str = "getBlockNumber()";
             const SELECTOR: [u8; 4] = [66u8, 203u8, 177u8, 92u8];
             #[inline]
@@ -2368,17 +2069,17 @@ function getBlockNumber() external view returns (uint256 blockNumber);
                 data: &[u8],
                 validate: bool,
             ) -> alloy_sol_types::Result<Self::Return> {
-                <Self::ReturnTuple<
-                    '_,
-                > as alloy_sol_types::SolType>::abi_decode_sequence(data, validate)
-                    .map(Into::into)
+                <Self::ReturnTuple<'_> as alloy_sol_types::SolType>::abi_decode_sequence(
+                    data, validate,
+                )
+                .map(Into::into)
             }
         }
     };
     /**Function with signature `getChainId()` and selector `0x3408e470`.
-```solidity
-function getChainId() external view returns (uint256 chainid);
-```*/
+    ```solidity
+    function getChainId() external view returns (uint256 chainid);
+    ```*/
     #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields)]
     #[derive(Clone)]
     pub struct getChainIdCall {}
@@ -2388,12 +2089,7 @@ function getChainId() external view returns (uint256 chainid);
     pub struct getChainIdReturn {
         pub chainid: alloy::sol_types::private::primitives::aliases::U256,
     }
-    #[allow(
-        non_camel_case_types,
-        non_snake_case,
-        clippy::pub_underscore_fields,
-        clippy::style
-    )]
+    #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields, clippy::style)]
     const _: () = {
         use alloy::sol_types as alloy_sol_types;
         {
@@ -2403,9 +2099,7 @@ function getChainId() external view returns (uint256 chainid);
             type UnderlyingRustTuple<'a> = ();
             #[cfg(test)]
             #[allow(dead_code, unreachable_patterns)]
-            fn _type_assertion(
-                _t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>,
-            ) {
+            fn _type_assertion(_t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>) {
                 match _t {
                     alloy_sol_types::private::AssertTypeEq::<
                         <UnderlyingSolTuple as alloy_sol_types::SolType>::RustType,
@@ -2431,14 +2125,10 @@ function getChainId() external view returns (uint256 chainid);
             #[doc(hidden)]
             type UnderlyingSolTuple<'a> = (alloy::sol_types::sol_data::Uint<256>,);
             #[doc(hidden)]
-            type UnderlyingRustTuple<'a> = (
-                alloy::sol_types::private::primitives::aliases::U256,
-            );
+            type UnderlyingRustTuple<'a> = (alloy::sol_types::private::primitives::aliases::U256,);
             #[cfg(test)]
             #[allow(dead_code, unreachable_patterns)]
-            fn _type_assertion(
-                _t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>,
-            ) {
+            fn _type_assertion(_t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>) {
                 match _t {
                     alloy_sol_types::private::AssertTypeEq::<
                         <UnderlyingSolTuple as alloy_sol_types::SolType>::RustType,
@@ -2463,14 +2153,10 @@ function getChainId() external view returns (uint256 chainid);
         #[automatically_derived]
         impl alloy_sol_types::SolCall for getChainIdCall {
             type Parameters<'a> = ();
-            type Token<'a> = <Self::Parameters<
-                'a,
-            > as alloy_sol_types::SolType>::Token<'a>;
+            type Token<'a> = <Self::Parameters<'a> as alloy_sol_types::SolType>::Token<'a>;
             type Return = getChainIdReturn;
             type ReturnTuple<'a> = (alloy::sol_types::sol_data::Uint<256>,);
-            type ReturnToken<'a> = <Self::ReturnTuple<
-                'a,
-            > as alloy_sol_types::SolType>::Token<'a>;
+            type ReturnToken<'a> = <Self::ReturnTuple<'a> as alloy_sol_types::SolType>::Token<'a>;
             const SIGNATURE: &'static str = "getChainId()";
             const SELECTOR: [u8; 4] = [52u8, 8u8, 228u8, 112u8];
             #[inline]
@@ -2488,17 +2174,17 @@ function getChainId() external view returns (uint256 chainid);
                 data: &[u8],
                 validate: bool,
             ) -> alloy_sol_types::Result<Self::Return> {
-                <Self::ReturnTuple<
-                    '_,
-                > as alloy_sol_types::SolType>::abi_decode_sequence(data, validate)
-                    .map(Into::into)
+                <Self::ReturnTuple<'_> as alloy_sol_types::SolType>::abi_decode_sequence(
+                    data, validate,
+                )
+                .map(Into::into)
             }
         }
     };
     /**Function with signature `getCurrentBlockCoinbase()` and selector `0xa8b0574e`.
-```solidity
-function getCurrentBlockCoinbase() external view returns (address coinbase);
-```*/
+    ```solidity
+    function getCurrentBlockCoinbase() external view returns (address coinbase);
+    ```*/
     #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields)]
     #[derive(Clone)]
     pub struct getCurrentBlockCoinbaseCall {}
@@ -2508,12 +2194,7 @@ function getCurrentBlockCoinbase() external view returns (address coinbase);
     pub struct getCurrentBlockCoinbaseReturn {
         pub coinbase: alloy::sol_types::private::Address,
     }
-    #[allow(
-        non_camel_case_types,
-        non_snake_case,
-        clippy::pub_underscore_fields,
-        clippy::style
-    )]
+    #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields, clippy::style)]
     const _: () = {
         use alloy::sol_types as alloy_sol_types;
         {
@@ -2523,9 +2204,7 @@ function getCurrentBlockCoinbase() external view returns (address coinbase);
             type UnderlyingRustTuple<'a> = ();
             #[cfg(test)]
             #[allow(dead_code, unreachable_patterns)]
-            fn _type_assertion(
-                _t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>,
-            ) {
+            fn _type_assertion(_t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>) {
                 match _t {
                     alloy_sol_types::private::AssertTypeEq::<
                         <UnderlyingSolTuple as alloy_sol_types::SolType>::RustType,
@@ -2534,16 +2213,14 @@ function getCurrentBlockCoinbase() external view returns (address coinbase);
             }
             #[automatically_derived]
             #[doc(hidden)]
-            impl ::core::convert::From<getCurrentBlockCoinbaseCall>
-            for UnderlyingRustTuple<'_> {
+            impl ::core::convert::From<getCurrentBlockCoinbaseCall> for UnderlyingRustTuple<'_> {
                 fn from(value: getCurrentBlockCoinbaseCall) -> Self {
                     ()
                 }
             }
             #[automatically_derived]
             #[doc(hidden)]
-            impl ::core::convert::From<UnderlyingRustTuple<'_>>
-            for getCurrentBlockCoinbaseCall {
+            impl ::core::convert::From<UnderlyingRustTuple<'_>> for getCurrentBlockCoinbaseCall {
                 fn from(tuple: UnderlyingRustTuple<'_>) -> Self {
                     Self {}
                 }
@@ -2556,9 +2233,7 @@ function getCurrentBlockCoinbase() external view returns (address coinbase);
             type UnderlyingRustTuple<'a> = (alloy::sol_types::private::Address,);
             #[cfg(test)]
             #[allow(dead_code, unreachable_patterns)]
-            fn _type_assertion(
-                _t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>,
-            ) {
+            fn _type_assertion(_t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>) {
                 match _t {
                     alloy_sol_types::private::AssertTypeEq::<
                         <UnderlyingSolTuple as alloy_sol_types::SolType>::RustType,
@@ -2567,16 +2242,14 @@ function getCurrentBlockCoinbase() external view returns (address coinbase);
             }
             #[automatically_derived]
             #[doc(hidden)]
-            impl ::core::convert::From<getCurrentBlockCoinbaseReturn>
-            for UnderlyingRustTuple<'_> {
+            impl ::core::convert::From<getCurrentBlockCoinbaseReturn> for UnderlyingRustTuple<'_> {
                 fn from(value: getCurrentBlockCoinbaseReturn) -> Self {
                     (value.coinbase,)
                 }
             }
             #[automatically_derived]
             #[doc(hidden)]
-            impl ::core::convert::From<UnderlyingRustTuple<'_>>
-            for getCurrentBlockCoinbaseReturn {
+            impl ::core::convert::From<UnderlyingRustTuple<'_>> for getCurrentBlockCoinbaseReturn {
                 fn from(tuple: UnderlyingRustTuple<'_>) -> Self {
                     Self { coinbase: tuple.0 }
                 }
@@ -2585,14 +2258,10 @@ function getCurrentBlockCoinbase() external view returns (address coinbase);
         #[automatically_derived]
         impl alloy_sol_types::SolCall for getCurrentBlockCoinbaseCall {
             type Parameters<'a> = ();
-            type Token<'a> = <Self::Parameters<
-                'a,
-            > as alloy_sol_types::SolType>::Token<'a>;
+            type Token<'a> = <Self::Parameters<'a> as alloy_sol_types::SolType>::Token<'a>;
             type Return = getCurrentBlockCoinbaseReturn;
             type ReturnTuple<'a> = (alloy::sol_types::sol_data::Address,);
-            type ReturnToken<'a> = <Self::ReturnTuple<
-                'a,
-            > as alloy_sol_types::SolType>::Token<'a>;
+            type ReturnToken<'a> = <Self::ReturnTuple<'a> as alloy_sol_types::SolType>::Token<'a>;
             const SIGNATURE: &'static str = "getCurrentBlockCoinbase()";
             const SELECTOR: [u8; 4] = [168u8, 176u8, 87u8, 78u8];
             #[inline]
@@ -2610,17 +2279,17 @@ function getCurrentBlockCoinbase() external view returns (address coinbase);
                 data: &[u8],
                 validate: bool,
             ) -> alloy_sol_types::Result<Self::Return> {
-                <Self::ReturnTuple<
-                    '_,
-                > as alloy_sol_types::SolType>::abi_decode_sequence(data, validate)
-                    .map(Into::into)
+                <Self::ReturnTuple<'_> as alloy_sol_types::SolType>::abi_decode_sequence(
+                    data, validate,
+                )
+                .map(Into::into)
             }
         }
     };
     /**Function with signature `getCurrentBlockDifficulty()` and selector `0x72425d9d`.
-```solidity
-function getCurrentBlockDifficulty() external view returns (uint256 difficulty);
-```*/
+    ```solidity
+    function getCurrentBlockDifficulty() external view returns (uint256 difficulty);
+    ```*/
     #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields)]
     #[derive(Clone)]
     pub struct getCurrentBlockDifficultyCall {}
@@ -2630,12 +2299,7 @@ function getCurrentBlockDifficulty() external view returns (uint256 difficulty);
     pub struct getCurrentBlockDifficultyReturn {
         pub difficulty: alloy::sol_types::private::primitives::aliases::U256,
     }
-    #[allow(
-        non_camel_case_types,
-        non_snake_case,
-        clippy::pub_underscore_fields,
-        clippy::style
-    )]
+    #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields, clippy::style)]
     const _: () = {
         use alloy::sol_types as alloy_sol_types;
         {
@@ -2645,9 +2309,7 @@ function getCurrentBlockDifficulty() external view returns (uint256 difficulty);
             type UnderlyingRustTuple<'a> = ();
             #[cfg(test)]
             #[allow(dead_code, unreachable_patterns)]
-            fn _type_assertion(
-                _t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>,
-            ) {
+            fn _type_assertion(_t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>) {
                 match _t {
                     alloy_sol_types::private::AssertTypeEq::<
                         <UnderlyingSolTuple as alloy_sol_types::SolType>::RustType,
@@ -2656,16 +2318,14 @@ function getCurrentBlockDifficulty() external view returns (uint256 difficulty);
             }
             #[automatically_derived]
             #[doc(hidden)]
-            impl ::core::convert::From<getCurrentBlockDifficultyCall>
-            for UnderlyingRustTuple<'_> {
+            impl ::core::convert::From<getCurrentBlockDifficultyCall> for UnderlyingRustTuple<'_> {
                 fn from(value: getCurrentBlockDifficultyCall) -> Self {
                     ()
                 }
             }
             #[automatically_derived]
             #[doc(hidden)]
-            impl ::core::convert::From<UnderlyingRustTuple<'_>>
-            for getCurrentBlockDifficultyCall {
+            impl ::core::convert::From<UnderlyingRustTuple<'_>> for getCurrentBlockDifficultyCall {
                 fn from(tuple: UnderlyingRustTuple<'_>) -> Self {
                     Self {}
                 }
@@ -2675,14 +2335,10 @@ function getCurrentBlockDifficulty() external view returns (uint256 difficulty);
             #[doc(hidden)]
             type UnderlyingSolTuple<'a> = (alloy::sol_types::sol_data::Uint<256>,);
             #[doc(hidden)]
-            type UnderlyingRustTuple<'a> = (
-                alloy::sol_types::private::primitives::aliases::U256,
-            );
+            type UnderlyingRustTuple<'a> = (alloy::sol_types::private::primitives::aliases::U256,);
             #[cfg(test)]
             #[allow(dead_code, unreachable_patterns)]
-            fn _type_assertion(
-                _t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>,
-            ) {
+            fn _type_assertion(_t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>) {
                 match _t {
                     alloy_sol_types::private::AssertTypeEq::<
                         <UnderlyingSolTuple as alloy_sol_types::SolType>::RustType,
@@ -2691,16 +2347,14 @@ function getCurrentBlockDifficulty() external view returns (uint256 difficulty);
             }
             #[automatically_derived]
             #[doc(hidden)]
-            impl ::core::convert::From<getCurrentBlockDifficultyReturn>
-            for UnderlyingRustTuple<'_> {
+            impl ::core::convert::From<getCurrentBlockDifficultyReturn> for UnderlyingRustTuple<'_> {
                 fn from(value: getCurrentBlockDifficultyReturn) -> Self {
                     (value.difficulty,)
                 }
             }
             #[automatically_derived]
             #[doc(hidden)]
-            impl ::core::convert::From<UnderlyingRustTuple<'_>>
-            for getCurrentBlockDifficultyReturn {
+            impl ::core::convert::From<UnderlyingRustTuple<'_>> for getCurrentBlockDifficultyReturn {
                 fn from(tuple: UnderlyingRustTuple<'_>) -> Self {
                     Self { difficulty: tuple.0 }
                 }
@@ -2709,14 +2363,10 @@ function getCurrentBlockDifficulty() external view returns (uint256 difficulty);
         #[automatically_derived]
         impl alloy_sol_types::SolCall for getCurrentBlockDifficultyCall {
             type Parameters<'a> = ();
-            type Token<'a> = <Self::Parameters<
-                'a,
-            > as alloy_sol_types::SolType>::Token<'a>;
+            type Token<'a> = <Self::Parameters<'a> as alloy_sol_types::SolType>::Token<'a>;
             type Return = getCurrentBlockDifficultyReturn;
             type ReturnTuple<'a> = (alloy::sol_types::sol_data::Uint<256>,);
-            type ReturnToken<'a> = <Self::ReturnTuple<
-                'a,
-            > as alloy_sol_types::SolType>::Token<'a>;
+            type ReturnToken<'a> = <Self::ReturnTuple<'a> as alloy_sol_types::SolType>::Token<'a>;
             const SIGNATURE: &'static str = "getCurrentBlockDifficulty()";
             const SELECTOR: [u8; 4] = [114u8, 66u8, 93u8, 157u8];
             #[inline]
@@ -2734,17 +2384,17 @@ function getCurrentBlockDifficulty() external view returns (uint256 difficulty);
                 data: &[u8],
                 validate: bool,
             ) -> alloy_sol_types::Result<Self::Return> {
-                <Self::ReturnTuple<
-                    '_,
-                > as alloy_sol_types::SolType>::abi_decode_sequence(data, validate)
-                    .map(Into::into)
+                <Self::ReturnTuple<'_> as alloy_sol_types::SolType>::abi_decode_sequence(
+                    data, validate,
+                )
+                .map(Into::into)
             }
         }
     };
     /**Function with signature `getCurrentBlockGasLimit()` and selector `0x86d516e8`.
-```solidity
-function getCurrentBlockGasLimit() external view returns (uint256 gaslimit);
-```*/
+    ```solidity
+    function getCurrentBlockGasLimit() external view returns (uint256 gaslimit);
+    ```*/
     #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields)]
     #[derive(Clone)]
     pub struct getCurrentBlockGasLimitCall {}
@@ -2754,12 +2404,7 @@ function getCurrentBlockGasLimit() external view returns (uint256 gaslimit);
     pub struct getCurrentBlockGasLimitReturn {
         pub gaslimit: alloy::sol_types::private::primitives::aliases::U256,
     }
-    #[allow(
-        non_camel_case_types,
-        non_snake_case,
-        clippy::pub_underscore_fields,
-        clippy::style
-    )]
+    #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields, clippy::style)]
     const _: () = {
         use alloy::sol_types as alloy_sol_types;
         {
@@ -2769,9 +2414,7 @@ function getCurrentBlockGasLimit() external view returns (uint256 gaslimit);
             type UnderlyingRustTuple<'a> = ();
             #[cfg(test)]
             #[allow(dead_code, unreachable_patterns)]
-            fn _type_assertion(
-                _t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>,
-            ) {
+            fn _type_assertion(_t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>) {
                 match _t {
                     alloy_sol_types::private::AssertTypeEq::<
                         <UnderlyingSolTuple as alloy_sol_types::SolType>::RustType,
@@ -2780,16 +2423,14 @@ function getCurrentBlockGasLimit() external view returns (uint256 gaslimit);
             }
             #[automatically_derived]
             #[doc(hidden)]
-            impl ::core::convert::From<getCurrentBlockGasLimitCall>
-            for UnderlyingRustTuple<'_> {
+            impl ::core::convert::From<getCurrentBlockGasLimitCall> for UnderlyingRustTuple<'_> {
                 fn from(value: getCurrentBlockGasLimitCall) -> Self {
                     ()
                 }
             }
             #[automatically_derived]
             #[doc(hidden)]
-            impl ::core::convert::From<UnderlyingRustTuple<'_>>
-            for getCurrentBlockGasLimitCall {
+            impl ::core::convert::From<UnderlyingRustTuple<'_>> for getCurrentBlockGasLimitCall {
                 fn from(tuple: UnderlyingRustTuple<'_>) -> Self {
                     Self {}
                 }
@@ -2799,14 +2440,10 @@ function getCurrentBlockGasLimit() external view returns (uint256 gaslimit);
             #[doc(hidden)]
             type UnderlyingSolTuple<'a> = (alloy::sol_types::sol_data::Uint<256>,);
             #[doc(hidden)]
-            type UnderlyingRustTuple<'a> = (
-                alloy::sol_types::private::primitives::aliases::U256,
-            );
+            type UnderlyingRustTuple<'a> = (alloy::sol_types::private::primitives::aliases::U256,);
             #[cfg(test)]
             #[allow(dead_code, unreachable_patterns)]
-            fn _type_assertion(
-                _t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>,
-            ) {
+            fn _type_assertion(_t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>) {
                 match _t {
                     alloy_sol_types::private::AssertTypeEq::<
                         <UnderlyingSolTuple as alloy_sol_types::SolType>::RustType,
@@ -2815,16 +2452,14 @@ function getCurrentBlockGasLimit() external view returns (uint256 gaslimit);
             }
             #[automatically_derived]
             #[doc(hidden)]
-            impl ::core::convert::From<getCurrentBlockGasLimitReturn>
-            for UnderlyingRustTuple<'_> {
+            impl ::core::convert::From<getCurrentBlockGasLimitReturn> for UnderlyingRustTuple<'_> {
                 fn from(value: getCurrentBlockGasLimitReturn) -> Self {
                     (value.gaslimit,)
                 }
             }
             #[automatically_derived]
             #[doc(hidden)]
-            impl ::core::convert::From<UnderlyingRustTuple<'_>>
-            for getCurrentBlockGasLimitReturn {
+            impl ::core::convert::From<UnderlyingRustTuple<'_>> for getCurrentBlockGasLimitReturn {
                 fn from(tuple: UnderlyingRustTuple<'_>) -> Self {
                     Self { gaslimit: tuple.0 }
                 }
@@ -2833,14 +2468,10 @@ function getCurrentBlockGasLimit() external view returns (uint256 gaslimit);
         #[automatically_derived]
         impl alloy_sol_types::SolCall for getCurrentBlockGasLimitCall {
             type Parameters<'a> = ();
-            type Token<'a> = <Self::Parameters<
-                'a,
-            > as alloy_sol_types::SolType>::Token<'a>;
+            type Token<'a> = <Self::Parameters<'a> as alloy_sol_types::SolType>::Token<'a>;
             type Return = getCurrentBlockGasLimitReturn;
             type ReturnTuple<'a> = (alloy::sol_types::sol_data::Uint<256>,);
-            type ReturnToken<'a> = <Self::ReturnTuple<
-                'a,
-            > as alloy_sol_types::SolType>::Token<'a>;
+            type ReturnToken<'a> = <Self::ReturnTuple<'a> as alloy_sol_types::SolType>::Token<'a>;
             const SIGNATURE: &'static str = "getCurrentBlockGasLimit()";
             const SELECTOR: [u8; 4] = [134u8, 213u8, 22u8, 232u8];
             #[inline]
@@ -2858,17 +2489,17 @@ function getCurrentBlockGasLimit() external view returns (uint256 gaslimit);
                 data: &[u8],
                 validate: bool,
             ) -> alloy_sol_types::Result<Self::Return> {
-                <Self::ReturnTuple<
-                    '_,
-                > as alloy_sol_types::SolType>::abi_decode_sequence(data, validate)
-                    .map(Into::into)
+                <Self::ReturnTuple<'_> as alloy_sol_types::SolType>::abi_decode_sequence(
+                    data, validate,
+                )
+                .map(Into::into)
             }
         }
     };
     /**Function with signature `getCurrentBlockTimestamp()` and selector `0x0f28c97d`.
-```solidity
-function getCurrentBlockTimestamp() external view returns (uint256 timestamp);
-```*/
+    ```solidity
+    function getCurrentBlockTimestamp() external view returns (uint256 timestamp);
+    ```*/
     #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields)]
     #[derive(Clone)]
     pub struct getCurrentBlockTimestampCall {}
@@ -2878,12 +2509,7 @@ function getCurrentBlockTimestamp() external view returns (uint256 timestamp);
     pub struct getCurrentBlockTimestampReturn {
         pub timestamp: alloy::sol_types::private::primitives::aliases::U256,
     }
-    #[allow(
-        non_camel_case_types,
-        non_snake_case,
-        clippy::pub_underscore_fields,
-        clippy::style
-    )]
+    #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields, clippy::style)]
     const _: () = {
         use alloy::sol_types as alloy_sol_types;
         {
@@ -2893,9 +2519,7 @@ function getCurrentBlockTimestamp() external view returns (uint256 timestamp);
             type UnderlyingRustTuple<'a> = ();
             #[cfg(test)]
             #[allow(dead_code, unreachable_patterns)]
-            fn _type_assertion(
-                _t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>,
-            ) {
+            fn _type_assertion(_t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>) {
                 match _t {
                     alloy_sol_types::private::AssertTypeEq::<
                         <UnderlyingSolTuple as alloy_sol_types::SolType>::RustType,
@@ -2904,16 +2528,14 @@ function getCurrentBlockTimestamp() external view returns (uint256 timestamp);
             }
             #[automatically_derived]
             #[doc(hidden)]
-            impl ::core::convert::From<getCurrentBlockTimestampCall>
-            for UnderlyingRustTuple<'_> {
+            impl ::core::convert::From<getCurrentBlockTimestampCall> for UnderlyingRustTuple<'_> {
                 fn from(value: getCurrentBlockTimestampCall) -> Self {
                     ()
                 }
             }
             #[automatically_derived]
             #[doc(hidden)]
-            impl ::core::convert::From<UnderlyingRustTuple<'_>>
-            for getCurrentBlockTimestampCall {
+            impl ::core::convert::From<UnderlyingRustTuple<'_>> for getCurrentBlockTimestampCall {
                 fn from(tuple: UnderlyingRustTuple<'_>) -> Self {
                     Self {}
                 }
@@ -2923,14 +2545,10 @@ function getCurrentBlockTimestamp() external view returns (uint256 timestamp);
             #[doc(hidden)]
             type UnderlyingSolTuple<'a> = (alloy::sol_types::sol_data::Uint<256>,);
             #[doc(hidden)]
-            type UnderlyingRustTuple<'a> = (
-                alloy::sol_types::private::primitives::aliases::U256,
-            );
+            type UnderlyingRustTuple<'a> = (alloy::sol_types::private::primitives::aliases::U256,);
             #[cfg(test)]
             #[allow(dead_code, unreachable_patterns)]
-            fn _type_assertion(
-                _t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>,
-            ) {
+            fn _type_assertion(_t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>) {
                 match _t {
                     alloy_sol_types::private::AssertTypeEq::<
                         <UnderlyingSolTuple as alloy_sol_types::SolType>::RustType,
@@ -2939,16 +2557,14 @@ function getCurrentBlockTimestamp() external view returns (uint256 timestamp);
             }
             #[automatically_derived]
             #[doc(hidden)]
-            impl ::core::convert::From<getCurrentBlockTimestampReturn>
-            for UnderlyingRustTuple<'_> {
+            impl ::core::convert::From<getCurrentBlockTimestampReturn> for UnderlyingRustTuple<'_> {
                 fn from(value: getCurrentBlockTimestampReturn) -> Self {
                     (value.timestamp,)
                 }
             }
             #[automatically_derived]
             #[doc(hidden)]
-            impl ::core::convert::From<UnderlyingRustTuple<'_>>
-            for getCurrentBlockTimestampReturn {
+            impl ::core::convert::From<UnderlyingRustTuple<'_>> for getCurrentBlockTimestampReturn {
                 fn from(tuple: UnderlyingRustTuple<'_>) -> Self {
                     Self { timestamp: tuple.0 }
                 }
@@ -2957,14 +2573,10 @@ function getCurrentBlockTimestamp() external view returns (uint256 timestamp);
         #[automatically_derived]
         impl alloy_sol_types::SolCall for getCurrentBlockTimestampCall {
             type Parameters<'a> = ();
-            type Token<'a> = <Self::Parameters<
-                'a,
-            > as alloy_sol_types::SolType>::Token<'a>;
+            type Token<'a> = <Self::Parameters<'a> as alloy_sol_types::SolType>::Token<'a>;
             type Return = getCurrentBlockTimestampReturn;
             type ReturnTuple<'a> = (alloy::sol_types::sol_data::Uint<256>,);
-            type ReturnToken<'a> = <Self::ReturnTuple<
-                'a,
-            > as alloy_sol_types::SolType>::Token<'a>;
+            type ReturnToken<'a> = <Self::ReturnTuple<'a> as alloy_sol_types::SolType>::Token<'a>;
             const SIGNATURE: &'static str = "getCurrentBlockTimestamp()";
             const SELECTOR: [u8; 4] = [15u8, 40u8, 201u8, 125u8];
             #[inline]
@@ -2982,17 +2594,17 @@ function getCurrentBlockTimestamp() external view returns (uint256 timestamp);
                 data: &[u8],
                 validate: bool,
             ) -> alloy_sol_types::Result<Self::Return> {
-                <Self::ReturnTuple<
-                    '_,
-                > as alloy_sol_types::SolType>::abi_decode_sequence(data, validate)
-                    .map(Into::into)
+                <Self::ReturnTuple<'_> as alloy_sol_types::SolType>::abi_decode_sequence(
+                    data, validate,
+                )
+                .map(Into::into)
             }
         }
     };
     /**Function with signature `getEthBalance(address)` and selector `0x4d2301cc`.
-```solidity
-function getEthBalance(address addr) external view returns (uint256 balance);
-```*/
+    ```solidity
+    function getEthBalance(address addr) external view returns (uint256 balance);
+    ```*/
     #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields)]
     #[derive(Clone)]
     pub struct getEthBalanceCall {
@@ -3004,12 +2616,7 @@ function getEthBalance(address addr) external view returns (uint256 balance);
     pub struct getEthBalanceReturn {
         pub balance: alloy::sol_types::private::primitives::aliases::U256,
     }
-    #[allow(
-        non_camel_case_types,
-        non_snake_case,
-        clippy::pub_underscore_fields,
-        clippy::style
-    )]
+    #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields, clippy::style)]
     const _: () = {
         use alloy::sol_types as alloy_sol_types;
         {
@@ -3019,9 +2626,7 @@ function getEthBalance(address addr) external view returns (uint256 balance);
             type UnderlyingRustTuple<'a> = (alloy::sol_types::private::Address,);
             #[cfg(test)]
             #[allow(dead_code, unreachable_patterns)]
-            fn _type_assertion(
-                _t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>,
-            ) {
+            fn _type_assertion(_t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>) {
                 match _t {
                     alloy_sol_types::private::AssertTypeEq::<
                         <UnderlyingSolTuple as alloy_sol_types::SolType>::RustType,
@@ -3047,14 +2652,10 @@ function getEthBalance(address addr) external view returns (uint256 balance);
             #[doc(hidden)]
             type UnderlyingSolTuple<'a> = (alloy::sol_types::sol_data::Uint<256>,);
             #[doc(hidden)]
-            type UnderlyingRustTuple<'a> = (
-                alloy::sol_types::private::primitives::aliases::U256,
-            );
+            type UnderlyingRustTuple<'a> = (alloy::sol_types::private::primitives::aliases::U256,);
             #[cfg(test)]
             #[allow(dead_code, unreachable_patterns)]
-            fn _type_assertion(
-                _t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>,
-            ) {
+            fn _type_assertion(_t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>) {
                 match _t {
                     alloy_sol_types::private::AssertTypeEq::<
                         <UnderlyingSolTuple as alloy_sol_types::SolType>::RustType,
@@ -3079,14 +2680,10 @@ function getEthBalance(address addr) external view returns (uint256 balance);
         #[automatically_derived]
         impl alloy_sol_types::SolCall for getEthBalanceCall {
             type Parameters<'a> = (alloy::sol_types::sol_data::Address,);
-            type Token<'a> = <Self::Parameters<
-                'a,
-            > as alloy_sol_types::SolType>::Token<'a>;
+            type Token<'a> = <Self::Parameters<'a> as alloy_sol_types::SolType>::Token<'a>;
             type Return = getEthBalanceReturn;
             type ReturnTuple<'a> = (alloy::sol_types::sol_data::Uint<256>,);
-            type ReturnToken<'a> = <Self::ReturnTuple<
-                'a,
-            > as alloy_sol_types::SolType>::Token<'a>;
+            type ReturnToken<'a> = <Self::ReturnTuple<'a> as alloy_sol_types::SolType>::Token<'a>;
             const SIGNATURE: &'static str = "getEthBalance(address)";
             const SELECTOR: [u8; 4] = [77u8, 35u8, 1u8, 204u8];
             #[inline]
@@ -3097,28 +2694,26 @@ function getEthBalance(address addr) external view returns (uint256 balance);
             }
             #[inline]
             fn tokenize(&self) -> Self::Token<'_> {
-                (
-                    <alloy::sol_types::sol_data::Address as alloy_sol_types::SolType>::tokenize(
-                        &self.addr,
-                    ),
-                )
+                (<alloy::sol_types::sol_data::Address as alloy_sol_types::SolType>::tokenize(
+                    &self.addr,
+                ),)
             }
             #[inline]
             fn abi_decode_returns(
                 data: &[u8],
                 validate: bool,
             ) -> alloy_sol_types::Result<Self::Return> {
-                <Self::ReturnTuple<
-                    '_,
-                > as alloy_sol_types::SolType>::abi_decode_sequence(data, validate)
-                    .map(Into::into)
+                <Self::ReturnTuple<'_> as alloy_sol_types::SolType>::abi_decode_sequence(
+                    data, validate,
+                )
+                .map(Into::into)
             }
         }
     };
     /**Function with signature `getLastBlockHash()` and selector `0x27e86d6e`.
-```solidity
-function getLastBlockHash() external view returns (bytes32 blockHash);
-```*/
+    ```solidity
+    function getLastBlockHash() external view returns (bytes32 blockHash);
+    ```*/
     #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields)]
     #[derive(Clone)]
     pub struct getLastBlockHashCall {}
@@ -3128,12 +2723,7 @@ function getLastBlockHash() external view returns (bytes32 blockHash);
     pub struct getLastBlockHashReturn {
         pub blockHash: alloy::sol_types::private::FixedBytes<32>,
     }
-    #[allow(
-        non_camel_case_types,
-        non_snake_case,
-        clippy::pub_underscore_fields,
-        clippy::style
-    )]
+    #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields, clippy::style)]
     const _: () = {
         use alloy::sol_types as alloy_sol_types;
         {
@@ -3143,9 +2733,7 @@ function getLastBlockHash() external view returns (bytes32 blockHash);
             type UnderlyingRustTuple<'a> = ();
             #[cfg(test)]
             #[allow(dead_code, unreachable_patterns)]
-            fn _type_assertion(
-                _t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>,
-            ) {
+            fn _type_assertion(_t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>) {
                 match _t {
                     alloy_sol_types::private::AssertTypeEq::<
                         <UnderlyingSolTuple as alloy_sol_types::SolType>::RustType,
@@ -3154,16 +2742,14 @@ function getLastBlockHash() external view returns (bytes32 blockHash);
             }
             #[automatically_derived]
             #[doc(hidden)]
-            impl ::core::convert::From<getLastBlockHashCall>
-            for UnderlyingRustTuple<'_> {
+            impl ::core::convert::From<getLastBlockHashCall> for UnderlyingRustTuple<'_> {
                 fn from(value: getLastBlockHashCall) -> Self {
                     ()
                 }
             }
             #[automatically_derived]
             #[doc(hidden)]
-            impl ::core::convert::From<UnderlyingRustTuple<'_>>
-            for getLastBlockHashCall {
+            impl ::core::convert::From<UnderlyingRustTuple<'_>> for getLastBlockHashCall {
                 fn from(tuple: UnderlyingRustTuple<'_>) -> Self {
                     Self {}
                 }
@@ -3176,9 +2762,7 @@ function getLastBlockHash() external view returns (bytes32 blockHash);
             type UnderlyingRustTuple<'a> = (alloy::sol_types::private::FixedBytes<32>,);
             #[cfg(test)]
             #[allow(dead_code, unreachable_patterns)]
-            fn _type_assertion(
-                _t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>,
-            ) {
+            fn _type_assertion(_t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>) {
                 match _t {
                     alloy_sol_types::private::AssertTypeEq::<
                         <UnderlyingSolTuple as alloy_sol_types::SolType>::RustType,
@@ -3187,16 +2771,14 @@ function getLastBlockHash() external view returns (bytes32 blockHash);
             }
             #[automatically_derived]
             #[doc(hidden)]
-            impl ::core::convert::From<getLastBlockHashReturn>
-            for UnderlyingRustTuple<'_> {
+            impl ::core::convert::From<getLastBlockHashReturn> for UnderlyingRustTuple<'_> {
                 fn from(value: getLastBlockHashReturn) -> Self {
                     (value.blockHash,)
                 }
             }
             #[automatically_derived]
             #[doc(hidden)]
-            impl ::core::convert::From<UnderlyingRustTuple<'_>>
-            for getLastBlockHashReturn {
+            impl ::core::convert::From<UnderlyingRustTuple<'_>> for getLastBlockHashReturn {
                 fn from(tuple: UnderlyingRustTuple<'_>) -> Self {
                     Self { blockHash: tuple.0 }
                 }
@@ -3205,14 +2787,10 @@ function getLastBlockHash() external view returns (bytes32 blockHash);
         #[automatically_derived]
         impl alloy_sol_types::SolCall for getLastBlockHashCall {
             type Parameters<'a> = ();
-            type Token<'a> = <Self::Parameters<
-                'a,
-            > as alloy_sol_types::SolType>::Token<'a>;
+            type Token<'a> = <Self::Parameters<'a> as alloy_sol_types::SolType>::Token<'a>;
             type Return = getLastBlockHashReturn;
             type ReturnTuple<'a> = (alloy::sol_types::sol_data::FixedBytes<32>,);
-            type ReturnToken<'a> = <Self::ReturnTuple<
-                'a,
-            > as alloy_sol_types::SolType>::Token<'a>;
+            type ReturnToken<'a> = <Self::ReturnTuple<'a> as alloy_sol_types::SolType>::Token<'a>;
             const SIGNATURE: &'static str = "getLastBlockHash()";
             const SELECTOR: [u8; 4] = [39u8, 232u8, 109u8, 110u8];
             #[inline]
@@ -3230,59 +2808,45 @@ function getLastBlockHash() external view returns (bytes32 blockHash);
                 data: &[u8],
                 validate: bool,
             ) -> alloy_sol_types::Result<Self::Return> {
-                <Self::ReturnTuple<
-                    '_,
-                > as alloy_sol_types::SolType>::abi_decode_sequence(data, validate)
-                    .map(Into::into)
+                <Self::ReturnTuple<'_> as alloy_sol_types::SolType>::abi_decode_sequence(
+                    data, validate,
+                )
+                .map(Into::into)
             }
         }
     };
     /**Function with signature `tryAggregate(bool,(address,bytes)[])` and selector `0xbce38bd7`.
-```solidity
-function tryAggregate(bool requireSuccess, Call[] memory calls) external payable returns (Result[] memory returnData);
-```*/
+    ```solidity
+    function tryAggregate(bool requireSuccess, Call[] memory calls) external payable returns (Result[] memory returnData);
+    ```*/
     #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields)]
     #[derive(Clone)]
     pub struct tryAggregateCall {
         pub requireSuccess: bool,
-        pub calls: alloy::sol_types::private::Vec<
-            <Call as alloy::sol_types::SolType>::RustType,
-        >,
+        pub calls: alloy::sol_types::private::Vec<<Call as alloy::sol_types::SolType>::RustType>,
     }
     ///Container type for the return parameters of the [`tryAggregate(bool,(address,bytes)[])`](tryAggregateCall) function.
     #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields)]
     #[derive(Clone)]
     pub struct tryAggregateReturn {
-        pub returnData: alloy::sol_types::private::Vec<
-            <Result as alloy::sol_types::SolType>::RustType,
-        >,
+        pub returnData:
+            alloy::sol_types::private::Vec<<Result as alloy::sol_types::SolType>::RustType>,
     }
-    #[allow(
-        non_camel_case_types,
-        non_snake_case,
-        clippy::pub_underscore_fields,
-        clippy::style
-    )]
+    #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields, clippy::style)]
     const _: () = {
         use alloy::sol_types as alloy_sol_types;
         {
             #[doc(hidden)]
-            type UnderlyingSolTuple<'a> = (
-                alloy::sol_types::sol_data::Bool,
-                alloy::sol_types::sol_data::Array<Call>,
-            );
+            type UnderlyingSolTuple<'a> =
+                (alloy::sol_types::sol_data::Bool, alloy::sol_types::sol_data::Array<Call>);
             #[doc(hidden)]
             type UnderlyingRustTuple<'a> = (
                 bool,
-                alloy::sol_types::private::Vec<
-                    <Call as alloy::sol_types::SolType>::RustType,
-                >,
+                alloy::sol_types::private::Vec<<Call as alloy::sol_types::SolType>::RustType>,
             );
             #[cfg(test)]
             #[allow(dead_code, unreachable_patterns)]
-            fn _type_assertion(
-                _t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>,
-            ) {
+            fn _type_assertion(_t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>) {
                 match _t {
                     alloy_sol_types::private::AssertTypeEq::<
                         <UnderlyingSolTuple as alloy_sol_types::SolType>::RustType,
@@ -3300,10 +2864,7 @@ function tryAggregate(bool requireSuccess, Call[] memory calls) external payable
             #[doc(hidden)]
             impl ::core::convert::From<UnderlyingRustTuple<'_>> for tryAggregateCall {
                 fn from(tuple: UnderlyingRustTuple<'_>) -> Self {
-                    Self {
-                        requireSuccess: tuple.0,
-                        calls: tuple.1,
-                    }
+                    Self { requireSuccess: tuple.0, calls: tuple.1 }
                 }
             }
         }
@@ -3311,16 +2872,11 @@ function tryAggregate(bool requireSuccess, Call[] memory calls) external payable
             #[doc(hidden)]
             type UnderlyingSolTuple<'a> = (alloy::sol_types::sol_data::Array<Result>,);
             #[doc(hidden)]
-            type UnderlyingRustTuple<'a> = (
-                alloy::sol_types::private::Vec<
-                    <Result as alloy::sol_types::SolType>::RustType,
-                >,
-            );
+            type UnderlyingRustTuple<'a> =
+                (alloy::sol_types::private::Vec<<Result as alloy::sol_types::SolType>::RustType>,);
             #[cfg(test)]
             #[allow(dead_code, unreachable_patterns)]
-            fn _type_assertion(
-                _t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>,
-            ) {
+            fn _type_assertion(_t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>) {
                 match _t {
                     alloy_sol_types::private::AssertTypeEq::<
                         <UnderlyingSolTuple as alloy_sol_types::SolType>::RustType,
@@ -3344,18 +2900,12 @@ function tryAggregate(bool requireSuccess, Call[] memory calls) external payable
         }
         #[automatically_derived]
         impl alloy_sol_types::SolCall for tryAggregateCall {
-            type Parameters<'a> = (
-                alloy::sol_types::sol_data::Bool,
-                alloy::sol_types::sol_data::Array<Call>,
-            );
-            type Token<'a> = <Self::Parameters<
-                'a,
-            > as alloy_sol_types::SolType>::Token<'a>;
+            type Parameters<'a> =
+                (alloy::sol_types::sol_data::Bool, alloy::sol_types::sol_data::Array<Call>);
+            type Token<'a> = <Self::Parameters<'a> as alloy_sol_types::SolType>::Token<'a>;
             type Return = tryAggregateReturn;
             type ReturnTuple<'a> = (alloy::sol_types::sol_data::Array<Result>,);
-            type ReturnToken<'a> = <Self::ReturnTuple<
-                'a,
-            > as alloy_sol_types::SolType>::Token<'a>;
+            type ReturnToken<'a> = <Self::ReturnTuple<'a> as alloy_sol_types::SolType>::Token<'a>;
             const SIGNATURE: &'static str = "tryAggregate(bool,(address,bytes)[])";
             const SELECTOR: [u8; 4] = [188u8, 227u8, 139u8, 215u8];
             #[inline]
@@ -3370,9 +2920,9 @@ function tryAggregate(bool requireSuccess, Call[] memory calls) external payable
                     <alloy::sol_types::sol_data::Bool as alloy_sol_types::SolType>::tokenize(
                         &self.requireSuccess,
                     ),
-                    <alloy::sol_types::sol_data::Array<
-                        Call,
-                    > as alloy_sol_types::SolType>::tokenize(&self.calls),
+                    <alloy::sol_types::sol_data::Array<Call> as alloy_sol_types::SolType>::tokenize(
+                        &self.calls,
+                    ),
                 )
             }
             #[inline]
@@ -3380,24 +2930,22 @@ function tryAggregate(bool requireSuccess, Call[] memory calls) external payable
                 data: &[u8],
                 validate: bool,
             ) -> alloy_sol_types::Result<Self::Return> {
-                <Self::ReturnTuple<
-                    '_,
-                > as alloy_sol_types::SolType>::abi_decode_sequence(data, validate)
-                    .map(Into::into)
+                <Self::ReturnTuple<'_> as alloy_sol_types::SolType>::abi_decode_sequence(
+                    data, validate,
+                )
+                .map(Into::into)
             }
         }
     };
     /**Function with signature `tryBlockAndAggregate(bool,(address,bytes)[])` and selector `0x399542e9`.
-```solidity
-function tryBlockAndAggregate(bool requireSuccess, Call[] memory calls) external payable returns (uint256 blockNumber, bytes32 blockHash, Result[] memory returnData);
-```*/
+    ```solidity
+    function tryBlockAndAggregate(bool requireSuccess, Call[] memory calls) external payable returns (uint256 blockNumber, bytes32 blockHash, Result[] memory returnData);
+    ```*/
     #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields)]
     #[derive(Clone)]
     pub struct tryBlockAndAggregateCall {
         pub requireSuccess: bool,
-        pub calls: alloy::sol_types::private::Vec<
-            <Call as alloy::sol_types::SolType>::RustType,
-        >,
+        pub calls: alloy::sol_types::private::Vec<<Call as alloy::sol_types::SolType>::RustType>,
     }
     ///Container type for the return parameters of the [`tryBlockAndAggregate(bool,(address,bytes)[])`](tryBlockAndAggregateCall) function.
     #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields)]
@@ -3405,36 +2953,24 @@ function tryBlockAndAggregate(bool requireSuccess, Call[] memory calls) external
     pub struct tryBlockAndAggregateReturn {
         pub blockNumber: alloy::sol_types::private::primitives::aliases::U256,
         pub blockHash: alloy::sol_types::private::FixedBytes<32>,
-        pub returnData: alloy::sol_types::private::Vec<
-            <Result as alloy::sol_types::SolType>::RustType,
-        >,
+        pub returnData:
+            alloy::sol_types::private::Vec<<Result as alloy::sol_types::SolType>::RustType>,
     }
-    #[allow(
-        non_camel_case_types,
-        non_snake_case,
-        clippy::pub_underscore_fields,
-        clippy::style
-    )]
+    #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields, clippy::style)]
     const _: () = {
         use alloy::sol_types as alloy_sol_types;
         {
             #[doc(hidden)]
-            type UnderlyingSolTuple<'a> = (
-                alloy::sol_types::sol_data::Bool,
-                alloy::sol_types::sol_data::Array<Call>,
-            );
+            type UnderlyingSolTuple<'a> =
+                (alloy::sol_types::sol_data::Bool, alloy::sol_types::sol_data::Array<Call>);
             #[doc(hidden)]
             type UnderlyingRustTuple<'a> = (
                 bool,
-                alloy::sol_types::private::Vec<
-                    <Call as alloy::sol_types::SolType>::RustType,
-                >,
+                alloy::sol_types::private::Vec<<Call as alloy::sol_types::SolType>::RustType>,
             );
             #[cfg(test)]
             #[allow(dead_code, unreachable_patterns)]
-            fn _type_assertion(
-                _t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>,
-            ) {
+            fn _type_assertion(_t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>) {
                 match _t {
                     alloy_sol_types::private::AssertTypeEq::<
                         <UnderlyingSolTuple as alloy_sol_types::SolType>::RustType,
@@ -3443,21 +2979,16 @@ function tryBlockAndAggregate(bool requireSuccess, Call[] memory calls) external
             }
             #[automatically_derived]
             #[doc(hidden)]
-            impl ::core::convert::From<tryBlockAndAggregateCall>
-            for UnderlyingRustTuple<'_> {
+            impl ::core::convert::From<tryBlockAndAggregateCall> for UnderlyingRustTuple<'_> {
                 fn from(value: tryBlockAndAggregateCall) -> Self {
                     (value.requireSuccess, value.calls)
                 }
             }
             #[automatically_derived]
             #[doc(hidden)]
-            impl ::core::convert::From<UnderlyingRustTuple<'_>>
-            for tryBlockAndAggregateCall {
+            impl ::core::convert::From<UnderlyingRustTuple<'_>> for tryBlockAndAggregateCall {
                 fn from(tuple: UnderlyingRustTuple<'_>) -> Self {
-                    Self {
-                        requireSuccess: tuple.0,
-                        calls: tuple.1,
-                    }
+                    Self { requireSuccess: tuple.0, calls: tuple.1 }
                 }
             }
         }
@@ -3472,15 +3003,11 @@ function tryBlockAndAggregate(bool requireSuccess, Call[] memory calls) external
             type UnderlyingRustTuple<'a> = (
                 alloy::sol_types::private::primitives::aliases::U256,
                 alloy::sol_types::private::FixedBytes<32>,
-                alloy::sol_types::private::Vec<
-                    <Result as alloy::sol_types::SolType>::RustType,
-                >,
+                alloy::sol_types::private::Vec<<Result as alloy::sol_types::SolType>::RustType>,
             );
             #[cfg(test)]
             #[allow(dead_code, unreachable_patterns)]
-            fn _type_assertion(
-                _t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>,
-            ) {
+            fn _type_assertion(_t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>) {
                 match _t {
                     alloy_sol_types::private::AssertTypeEq::<
                         <UnderlyingSolTuple as alloy_sol_types::SolType>::RustType,
@@ -3489,43 +3016,31 @@ function tryBlockAndAggregate(bool requireSuccess, Call[] memory calls) external
             }
             #[automatically_derived]
             #[doc(hidden)]
-            impl ::core::convert::From<tryBlockAndAggregateReturn>
-            for UnderlyingRustTuple<'_> {
+            impl ::core::convert::From<tryBlockAndAggregateReturn> for UnderlyingRustTuple<'_> {
                 fn from(value: tryBlockAndAggregateReturn) -> Self {
                     (value.blockNumber, value.blockHash, value.returnData)
                 }
             }
             #[automatically_derived]
             #[doc(hidden)]
-            impl ::core::convert::From<UnderlyingRustTuple<'_>>
-            for tryBlockAndAggregateReturn {
+            impl ::core::convert::From<UnderlyingRustTuple<'_>> for tryBlockAndAggregateReturn {
                 fn from(tuple: UnderlyingRustTuple<'_>) -> Self {
-                    Self {
-                        blockNumber: tuple.0,
-                        blockHash: tuple.1,
-                        returnData: tuple.2,
-                    }
+                    Self { blockNumber: tuple.0, blockHash: tuple.1, returnData: tuple.2 }
                 }
             }
         }
         #[automatically_derived]
         impl alloy_sol_types::SolCall for tryBlockAndAggregateCall {
-            type Parameters<'a> = (
-                alloy::sol_types::sol_data::Bool,
-                alloy::sol_types::sol_data::Array<Call>,
-            );
-            type Token<'a> = <Self::Parameters<
-                'a,
-            > as alloy_sol_types::SolType>::Token<'a>;
+            type Parameters<'a> =
+                (alloy::sol_types::sol_data::Bool, alloy::sol_types::sol_data::Array<Call>);
+            type Token<'a> = <Self::Parameters<'a> as alloy_sol_types::SolType>::Token<'a>;
             type Return = tryBlockAndAggregateReturn;
             type ReturnTuple<'a> = (
                 alloy::sol_types::sol_data::Uint<256>,
                 alloy::sol_types::sol_data::FixedBytes<32>,
                 alloy::sol_types::sol_data::Array<Result>,
             );
-            type ReturnToken<'a> = <Self::ReturnTuple<
-                'a,
-            > as alloy_sol_types::SolType>::Token<'a>;
+            type ReturnToken<'a> = <Self::ReturnTuple<'a> as alloy_sol_types::SolType>::Token<'a>;
             const SIGNATURE: &'static str = "tryBlockAndAggregate(bool,(address,bytes)[])";
             const SELECTOR: [u8; 4] = [57u8, 149u8, 66u8, 233u8];
             #[inline]
@@ -3540,9 +3055,9 @@ function tryBlockAndAggregate(bool requireSuccess, Call[] memory calls) external
                     <alloy::sol_types::sol_data::Bool as alloy_sol_types::SolType>::tokenize(
                         &self.requireSuccess,
                     ),
-                    <alloy::sol_types::sol_data::Array<
-                        Call,
-                    > as alloy_sol_types::SolType>::tokenize(&self.calls),
+                    <alloy::sol_types::sol_data::Array<Call> as alloy_sol_types::SolType>::tokenize(
+                        &self.calls,
+                    ),
                 )
             }
             #[inline]
@@ -3550,10 +3065,10 @@ function tryBlockAndAggregate(bool requireSuccess, Call[] memory calls) external
                 data: &[u8],
                 validate: bool,
             ) -> alloy_sol_types::Result<Self::Return> {
-                <Self::ReturnTuple<
-                    '_,
-                > as alloy_sol_types::SolType>::abi_decode_sequence(data, validate)
-                    .map(Into::into)
+                <Self::ReturnTuple<'_> as alloy_sol_types::SolType>::abi_decode_sequence(
+                    data, validate,
+                )
+                .map(Into::into)
             }
         }
     };
@@ -3611,30 +3126,20 @@ function tryBlockAndAggregate(bool requireSuccess, Call[] memory calls) external
         #[inline]
         fn selector(&self) -> [u8; 4] {
             match self {
-                Self::aggregate(_) => {
-                    <aggregateCall as alloy_sol_types::SolCall>::SELECTOR
-                }
-                Self::aggregate3(_) => {
-                    <aggregate3Call as alloy_sol_types::SolCall>::SELECTOR
-                }
+                Self::aggregate(_) => <aggregateCall as alloy_sol_types::SolCall>::SELECTOR,
+                Self::aggregate3(_) => <aggregate3Call as alloy_sol_types::SolCall>::SELECTOR,
                 Self::aggregate3Value(_) => {
                     <aggregate3ValueCall as alloy_sol_types::SolCall>::SELECTOR
                 }
                 Self::blockAndAggregate(_) => {
                     <blockAndAggregateCall as alloy_sol_types::SolCall>::SELECTOR
                 }
-                Self::getBasefee(_) => {
-                    <getBasefeeCall as alloy_sol_types::SolCall>::SELECTOR
-                }
-                Self::getBlockHash(_) => {
-                    <getBlockHashCall as alloy_sol_types::SolCall>::SELECTOR
-                }
+                Self::getBasefee(_) => <getBasefeeCall as alloy_sol_types::SolCall>::SELECTOR,
+                Self::getBlockHash(_) => <getBlockHashCall as alloy_sol_types::SolCall>::SELECTOR,
                 Self::getBlockNumber(_) => {
                     <getBlockNumberCall as alloy_sol_types::SolCall>::SELECTOR
                 }
-                Self::getChainId(_) => {
-                    <getChainIdCall as alloy_sol_types::SolCall>::SELECTOR
-                }
+                Self::getChainId(_) => <getChainIdCall as alloy_sol_types::SolCall>::SELECTOR,
                 Self::getCurrentBlockCoinbase(_) => {
                     <getCurrentBlockCoinbaseCall as alloy_sol_types::SolCall>::SELECTOR
                 }
@@ -3647,15 +3152,11 @@ function tryBlockAndAggregate(bool requireSuccess, Call[] memory calls) external
                 Self::getCurrentBlockTimestamp(_) => {
                     <getCurrentBlockTimestampCall as alloy_sol_types::SolCall>::SELECTOR
                 }
-                Self::getEthBalance(_) => {
-                    <getEthBalanceCall as alloy_sol_types::SolCall>::SELECTOR
-                }
+                Self::getEthBalance(_) => <getEthBalanceCall as alloy_sol_types::SolCall>::SELECTOR,
                 Self::getLastBlockHash(_) => {
                     <getLastBlockHashCall as alloy_sol_types::SolCall>::SELECTOR
                 }
-                Self::tryAggregate(_) => {
-                    <tryAggregateCall as alloy_sol_types::SolCall>::SELECTOR
-                }
+                Self::tryAggregate(_) => <tryAggregateCall as alloy_sol_types::SolCall>::SELECTOR,
                 Self::tryBlockAndAggregate(_) => {
                     <tryBlockAndAggregateCall as alloy_sol_types::SolCall>::SELECTOR
                 }
@@ -3676,226 +3177,210 @@ function tryBlockAndAggregate(bool requireSuccess, Call[] memory calls) external
             data: &[u8],
             validate: bool,
         ) -> alloy_sol_types::Result<Self> {
-            static DECODE_SHIMS: &[fn(
-                &[u8],
-                bool,
-            ) -> alloy_sol_types::Result<IMulticall3Calls>] = &[
-                {
-                    fn getCurrentBlockTimestamp(
-                        data: &[u8],
-                        validate: bool,
-                    ) -> alloy_sol_types::Result<IMulticall3Calls> {
-                        <getCurrentBlockTimestampCall as alloy_sol_types::SolCall>::abi_decode_raw(
+            static DECODE_SHIMS: &[fn(&[u8], bool) -> alloy_sol_types::Result<IMulticall3Calls>] =
+                &[
+                    {
+                        fn getCurrentBlockTimestamp(
+                            data: &[u8],
+                            validate: bool,
+                        ) -> alloy_sol_types::Result<IMulticall3Calls> {
+                            <getCurrentBlockTimestampCall as alloy_sol_types::SolCall>::abi_decode_raw(
                                 data,
                                 validate,
                             )
                             .map(IMulticall3Calls::getCurrentBlockTimestamp)
-                    }
-                    getCurrentBlockTimestamp
-                },
-                {
-                    fn aggregate3Value(
-                        data: &[u8],
-                        validate: bool,
-                    ) -> alloy_sol_types::Result<IMulticall3Calls> {
-                        <aggregate3ValueCall as alloy_sol_types::SolCall>::abi_decode_raw(
-                                data,
-                                validate,
+                        }
+                        getCurrentBlockTimestamp
+                    },
+                    {
+                        fn aggregate3Value(
+                            data: &[u8],
+                            validate: bool,
+                        ) -> alloy_sol_types::Result<IMulticall3Calls> {
+                            <aggregate3ValueCall as alloy_sol_types::SolCall>::abi_decode_raw(
+                                data, validate,
                             )
                             .map(IMulticall3Calls::aggregate3Value)
-                    }
-                    aggregate3Value
-                },
-                {
-                    fn aggregate(
-                        data: &[u8],
-                        validate: bool,
-                    ) -> alloy_sol_types::Result<IMulticall3Calls> {
-                        <aggregateCall as alloy_sol_types::SolCall>::abi_decode_raw(
-                                data,
-                                validate,
+                        }
+                        aggregate3Value
+                    },
+                    {
+                        fn aggregate(
+                            data: &[u8],
+                            validate: bool,
+                        ) -> alloy_sol_types::Result<IMulticall3Calls> {
+                            <aggregateCall as alloy_sol_types::SolCall>::abi_decode_raw(
+                                data, validate,
                             )
                             .map(IMulticall3Calls::aggregate)
-                    }
-                    aggregate
-                },
-                {
-                    fn getLastBlockHash(
-                        data: &[u8],
-                        validate: bool,
-                    ) -> alloy_sol_types::Result<IMulticall3Calls> {
-                        <getLastBlockHashCall as alloy_sol_types::SolCall>::abi_decode_raw(
-                                data,
-                                validate,
+                        }
+                        aggregate
+                    },
+                    {
+                        fn getLastBlockHash(
+                            data: &[u8],
+                            validate: bool,
+                        ) -> alloy_sol_types::Result<IMulticall3Calls> {
+                            <getLastBlockHashCall as alloy_sol_types::SolCall>::abi_decode_raw(
+                                data, validate,
                             )
                             .map(IMulticall3Calls::getLastBlockHash)
-                    }
-                    getLastBlockHash
-                },
-                {
-                    fn getChainId(
-                        data: &[u8],
-                        validate: bool,
-                    ) -> alloy_sol_types::Result<IMulticall3Calls> {
-                        <getChainIdCall as alloy_sol_types::SolCall>::abi_decode_raw(
-                                data,
-                                validate,
+                        }
+                        getLastBlockHash
+                    },
+                    {
+                        fn getChainId(
+                            data: &[u8],
+                            validate: bool,
+                        ) -> alloy_sol_types::Result<IMulticall3Calls> {
+                            <getChainIdCall as alloy_sol_types::SolCall>::abi_decode_raw(
+                                data, validate,
                             )
                             .map(IMulticall3Calls::getChainId)
-                    }
-                    getChainId
-                },
-                {
-                    fn tryBlockAndAggregate(
-                        data: &[u8],
-                        validate: bool,
-                    ) -> alloy_sol_types::Result<IMulticall3Calls> {
-                        <tryBlockAndAggregateCall as alloy_sol_types::SolCall>::abi_decode_raw(
-                                data,
-                                validate,
+                        }
+                        getChainId
+                    },
+                    {
+                        fn tryBlockAndAggregate(
+                            data: &[u8],
+                            validate: bool,
+                        ) -> alloy_sol_types::Result<IMulticall3Calls> {
+                            <tryBlockAndAggregateCall as alloy_sol_types::SolCall>::abi_decode_raw(
+                                data, validate,
                             )
                             .map(IMulticall3Calls::tryBlockAndAggregate)
-                    }
-                    tryBlockAndAggregate
-                },
-                {
-                    fn getBasefee(
-                        data: &[u8],
-                        validate: bool,
-                    ) -> alloy_sol_types::Result<IMulticall3Calls> {
-                        <getBasefeeCall as alloy_sol_types::SolCall>::abi_decode_raw(
-                                data,
-                                validate,
+                        }
+                        tryBlockAndAggregate
+                    },
+                    {
+                        fn getBasefee(
+                            data: &[u8],
+                            validate: bool,
+                        ) -> alloy_sol_types::Result<IMulticall3Calls> {
+                            <getBasefeeCall as alloy_sol_types::SolCall>::abi_decode_raw(
+                                data, validate,
                             )
                             .map(IMulticall3Calls::getBasefee)
-                    }
-                    getBasefee
-                },
-                {
-                    fn getBlockNumber(
-                        data: &[u8],
-                        validate: bool,
-                    ) -> alloy_sol_types::Result<IMulticall3Calls> {
-                        <getBlockNumberCall as alloy_sol_types::SolCall>::abi_decode_raw(
-                                data,
-                                validate,
+                        }
+                        getBasefee
+                    },
+                    {
+                        fn getBlockNumber(
+                            data: &[u8],
+                            validate: bool,
+                        ) -> alloy_sol_types::Result<IMulticall3Calls> {
+                            <getBlockNumberCall as alloy_sol_types::SolCall>::abi_decode_raw(
+                                data, validate,
                             )
                             .map(IMulticall3Calls::getBlockNumber)
-                    }
-                    getBlockNumber
-                },
-                {
-                    fn getEthBalance(
-                        data: &[u8],
-                        validate: bool,
-                    ) -> alloy_sol_types::Result<IMulticall3Calls> {
-                        <getEthBalanceCall as alloy_sol_types::SolCall>::abi_decode_raw(
-                                data,
-                                validate,
+                        }
+                        getBlockNumber
+                    },
+                    {
+                        fn getEthBalance(
+                            data: &[u8],
+                            validate: bool,
+                        ) -> alloy_sol_types::Result<IMulticall3Calls> {
+                            <getEthBalanceCall as alloy_sol_types::SolCall>::abi_decode_raw(
+                                data, validate,
                             )
                             .map(IMulticall3Calls::getEthBalance)
-                    }
-                    getEthBalance
-                },
-                {
-                    fn getCurrentBlockDifficulty(
-                        data: &[u8],
-                        validate: bool,
-                    ) -> alloy_sol_types::Result<IMulticall3Calls> {
-                        <getCurrentBlockDifficultyCall as alloy_sol_types::SolCall>::abi_decode_raw(
+                        }
+                        getEthBalance
+                    },
+                    {
+                        fn getCurrentBlockDifficulty(
+                            data: &[u8],
+                            validate: bool,
+                        ) -> alloy_sol_types::Result<IMulticall3Calls> {
+                            <getCurrentBlockDifficultyCall as alloy_sol_types::SolCall>::abi_decode_raw(
                                 data,
                                 validate,
                             )
                             .map(IMulticall3Calls::getCurrentBlockDifficulty)
-                    }
-                    getCurrentBlockDifficulty
-                },
-                {
-                    fn aggregate3(
-                        data: &[u8],
-                        validate: bool,
-                    ) -> alloy_sol_types::Result<IMulticall3Calls> {
-                        <aggregate3Call as alloy_sol_types::SolCall>::abi_decode_raw(
-                                data,
-                                validate,
+                        }
+                        getCurrentBlockDifficulty
+                    },
+                    {
+                        fn aggregate3(
+                            data: &[u8],
+                            validate: bool,
+                        ) -> alloy_sol_types::Result<IMulticall3Calls> {
+                            <aggregate3Call as alloy_sol_types::SolCall>::abi_decode_raw(
+                                data, validate,
                             )
                             .map(IMulticall3Calls::aggregate3)
-                    }
-                    aggregate3
-                },
-                {
-                    fn getCurrentBlockGasLimit(
-                        data: &[u8],
-                        validate: bool,
-                    ) -> alloy_sol_types::Result<IMulticall3Calls> {
-                        <getCurrentBlockGasLimitCall as alloy_sol_types::SolCall>::abi_decode_raw(
+                        }
+                        aggregate3
+                    },
+                    {
+                        fn getCurrentBlockGasLimit(
+                            data: &[u8],
+                            validate: bool,
+                        ) -> alloy_sol_types::Result<IMulticall3Calls> {
+                            <getCurrentBlockGasLimitCall as alloy_sol_types::SolCall>::abi_decode_raw(
                                 data,
                                 validate,
                             )
                             .map(IMulticall3Calls::getCurrentBlockGasLimit)
-                    }
-                    getCurrentBlockGasLimit
-                },
-                {
-                    fn getCurrentBlockCoinbase(
-                        data: &[u8],
-                        validate: bool,
-                    ) -> alloy_sol_types::Result<IMulticall3Calls> {
-                        <getCurrentBlockCoinbaseCall as alloy_sol_types::SolCall>::abi_decode_raw(
+                        }
+                        getCurrentBlockGasLimit
+                    },
+                    {
+                        fn getCurrentBlockCoinbase(
+                            data: &[u8],
+                            validate: bool,
+                        ) -> alloy_sol_types::Result<IMulticall3Calls> {
+                            <getCurrentBlockCoinbaseCall as alloy_sol_types::SolCall>::abi_decode_raw(
                                 data,
                                 validate,
                             )
                             .map(IMulticall3Calls::getCurrentBlockCoinbase)
-                    }
-                    getCurrentBlockCoinbase
-                },
-                {
-                    fn tryAggregate(
-                        data: &[u8],
-                        validate: bool,
-                    ) -> alloy_sol_types::Result<IMulticall3Calls> {
-                        <tryAggregateCall as alloy_sol_types::SolCall>::abi_decode_raw(
-                                data,
-                                validate,
+                        }
+                        getCurrentBlockCoinbase
+                    },
+                    {
+                        fn tryAggregate(
+                            data: &[u8],
+                            validate: bool,
+                        ) -> alloy_sol_types::Result<IMulticall3Calls> {
+                            <tryAggregateCall as alloy_sol_types::SolCall>::abi_decode_raw(
+                                data, validate,
                             )
                             .map(IMulticall3Calls::tryAggregate)
-                    }
-                    tryAggregate
-                },
-                {
-                    fn blockAndAggregate(
-                        data: &[u8],
-                        validate: bool,
-                    ) -> alloy_sol_types::Result<IMulticall3Calls> {
-                        <blockAndAggregateCall as alloy_sol_types::SolCall>::abi_decode_raw(
-                                data,
-                                validate,
+                        }
+                        tryAggregate
+                    },
+                    {
+                        fn blockAndAggregate(
+                            data: &[u8],
+                            validate: bool,
+                        ) -> alloy_sol_types::Result<IMulticall3Calls> {
+                            <blockAndAggregateCall as alloy_sol_types::SolCall>::abi_decode_raw(
+                                data, validate,
                             )
                             .map(IMulticall3Calls::blockAndAggregate)
-                    }
-                    blockAndAggregate
-                },
-                {
-                    fn getBlockHash(
-                        data: &[u8],
-                        validate: bool,
-                    ) -> alloy_sol_types::Result<IMulticall3Calls> {
-                        <getBlockHashCall as alloy_sol_types::SolCall>::abi_decode_raw(
-                                data,
-                                validate,
+                        }
+                        blockAndAggregate
+                    },
+                    {
+                        fn getBlockHash(
+                            data: &[u8],
+                            validate: bool,
+                        ) -> alloy_sol_types::Result<IMulticall3Calls> {
+                            <getBlockHashCall as alloy_sol_types::SolCall>::abi_decode_raw(
+                                data, validate,
                             )
                             .map(IMulticall3Calls::getBlockHash)
-                    }
-                    getBlockHash
-                },
-            ];
+                        }
+                        getBlockHash
+                    },
+                ];
             let Ok(idx) = Self::SELECTORS.binary_search(&selector) else {
-                return Err(
-                    alloy_sol_types::Error::unknown_selector(
-                        <Self as alloy_sol_types::SolInterface>::NAME,
-                        selector,
-                    ),
-                );
+                return Err(alloy_sol_types::Error::unknown_selector(
+                    <Self as alloy_sol_types::SolInterface>::NAME,
+                    selector,
+                ));
             };
             DECODE_SHIMS[idx](data, validate)
         }
@@ -3909,27 +3394,19 @@ function tryBlockAndAggregate(bool requireSuccess, Call[] memory calls) external
                     <aggregate3Call as alloy_sol_types::SolCall>::abi_encoded_size(inner)
                 }
                 Self::aggregate3Value(inner) => {
-                    <aggregate3ValueCall as alloy_sol_types::SolCall>::abi_encoded_size(
-                        inner,
-                    )
+                    <aggregate3ValueCall as alloy_sol_types::SolCall>::abi_encoded_size(inner)
                 }
                 Self::blockAndAggregate(inner) => {
-                    <blockAndAggregateCall as alloy_sol_types::SolCall>::abi_encoded_size(
-                        inner,
-                    )
+                    <blockAndAggregateCall as alloy_sol_types::SolCall>::abi_encoded_size(inner)
                 }
                 Self::getBasefee(inner) => {
                     <getBasefeeCall as alloy_sol_types::SolCall>::abi_encoded_size(inner)
                 }
                 Self::getBlockHash(inner) => {
-                    <getBlockHashCall as alloy_sol_types::SolCall>::abi_encoded_size(
-                        inner,
-                    )
+                    <getBlockHashCall as alloy_sol_types::SolCall>::abi_encoded_size(inner)
                 }
                 Self::getBlockNumber(inner) => {
-                    <getBlockNumberCall as alloy_sol_types::SolCall>::abi_encoded_size(
-                        inner,
-                    )
+                    <getBlockNumberCall as alloy_sol_types::SolCall>::abi_encoded_size(inner)
                 }
                 Self::getChainId(inner) => {
                     <getChainIdCall as alloy_sol_types::SolCall>::abi_encoded_size(inner)
@@ -3955,24 +3432,16 @@ function tryBlockAndAggregate(bool requireSuccess, Call[] memory calls) external
                     )
                 }
                 Self::getEthBalance(inner) => {
-                    <getEthBalanceCall as alloy_sol_types::SolCall>::abi_encoded_size(
-                        inner,
-                    )
+                    <getEthBalanceCall as alloy_sol_types::SolCall>::abi_encoded_size(inner)
                 }
                 Self::getLastBlockHash(inner) => {
-                    <getLastBlockHashCall as alloy_sol_types::SolCall>::abi_encoded_size(
-                        inner,
-                    )
+                    <getLastBlockHashCall as alloy_sol_types::SolCall>::abi_encoded_size(inner)
                 }
                 Self::tryAggregate(inner) => {
-                    <tryAggregateCall as alloy_sol_types::SolCall>::abi_encoded_size(
-                        inner,
-                    )
+                    <tryAggregateCall as alloy_sol_types::SolCall>::abi_encoded_size(inner)
                 }
                 Self::tryBlockAndAggregate(inner) => {
-                    <tryBlockAndAggregateCall as alloy_sol_types::SolCall>::abi_encoded_size(
-                        inner,
-                    )
+                    <tryBlockAndAggregateCall as alloy_sol_types::SolCall>::abi_encoded_size(inner)
                 }
             }
         }
@@ -3980,99 +3449,61 @@ function tryBlockAndAggregate(bool requireSuccess, Call[] memory calls) external
         fn abi_encode_raw(&self, out: &mut alloy_sol_types::private::Vec<u8>) {
             match self {
                 Self::aggregate(inner) => {
-                    <aggregateCall as alloy_sol_types::SolCall>::abi_encode_raw(
-                        inner,
-                        out,
-                    )
+                    <aggregateCall as alloy_sol_types::SolCall>::abi_encode_raw(inner, out)
                 }
                 Self::aggregate3(inner) => {
-                    <aggregate3Call as alloy_sol_types::SolCall>::abi_encode_raw(
-                        inner,
-                        out,
-                    )
+                    <aggregate3Call as alloy_sol_types::SolCall>::abi_encode_raw(inner, out)
                 }
                 Self::aggregate3Value(inner) => {
-                    <aggregate3ValueCall as alloy_sol_types::SolCall>::abi_encode_raw(
-                        inner,
-                        out,
-                    )
+                    <aggregate3ValueCall as alloy_sol_types::SolCall>::abi_encode_raw(inner, out)
                 }
                 Self::blockAndAggregate(inner) => {
-                    <blockAndAggregateCall as alloy_sol_types::SolCall>::abi_encode_raw(
-                        inner,
-                        out,
-                    )
+                    <blockAndAggregateCall as alloy_sol_types::SolCall>::abi_encode_raw(inner, out)
                 }
                 Self::getBasefee(inner) => {
-                    <getBasefeeCall as alloy_sol_types::SolCall>::abi_encode_raw(
-                        inner,
-                        out,
-                    )
+                    <getBasefeeCall as alloy_sol_types::SolCall>::abi_encode_raw(inner, out)
                 }
                 Self::getBlockHash(inner) => {
-                    <getBlockHashCall as alloy_sol_types::SolCall>::abi_encode_raw(
-                        inner,
-                        out,
-                    )
+                    <getBlockHashCall as alloy_sol_types::SolCall>::abi_encode_raw(inner, out)
                 }
                 Self::getBlockNumber(inner) => {
-                    <getBlockNumberCall as alloy_sol_types::SolCall>::abi_encode_raw(
-                        inner,
-                        out,
-                    )
+                    <getBlockNumberCall as alloy_sol_types::SolCall>::abi_encode_raw(inner, out)
                 }
                 Self::getChainId(inner) => {
-                    <getChainIdCall as alloy_sol_types::SolCall>::abi_encode_raw(
-                        inner,
-                        out,
-                    )
+                    <getChainIdCall as alloy_sol_types::SolCall>::abi_encode_raw(inner, out)
                 }
                 Self::getCurrentBlockCoinbase(inner) => {
                     <getCurrentBlockCoinbaseCall as alloy_sol_types::SolCall>::abi_encode_raw(
-                        inner,
-                        out,
+                        inner, out,
                     )
                 }
                 Self::getCurrentBlockDifficulty(inner) => {
                     <getCurrentBlockDifficultyCall as alloy_sol_types::SolCall>::abi_encode_raw(
-                        inner,
-                        out,
+                        inner, out,
                     )
                 }
                 Self::getCurrentBlockGasLimit(inner) => {
                     <getCurrentBlockGasLimitCall as alloy_sol_types::SolCall>::abi_encode_raw(
-                        inner,
-                        out,
+                        inner, out,
                     )
                 }
                 Self::getCurrentBlockTimestamp(inner) => {
                     <getCurrentBlockTimestampCall as alloy_sol_types::SolCall>::abi_encode_raw(
-                        inner,
-                        out,
+                        inner, out,
                     )
                 }
                 Self::getEthBalance(inner) => {
-                    <getEthBalanceCall as alloy_sol_types::SolCall>::abi_encode_raw(
-                        inner,
-                        out,
-                    )
+                    <getEthBalanceCall as alloy_sol_types::SolCall>::abi_encode_raw(inner, out)
                 }
                 Self::getLastBlockHash(inner) => {
-                    <getLastBlockHashCall as alloy_sol_types::SolCall>::abi_encode_raw(
-                        inner,
-                        out,
-                    )
+                    <getLastBlockHashCall as alloy_sol_types::SolCall>::abi_encode_raw(inner, out)
                 }
                 Self::tryAggregate(inner) => {
-                    <tryAggregateCall as alloy_sol_types::SolCall>::abi_encode_raw(
-                        inner,
-                        out,
-                    )
+                    <tryAggregateCall as alloy_sol_types::SolCall>::abi_encode_raw(inner, out)
                 }
                 Self::tryBlockAndAggregate(inner) => {
                     <tryBlockAndAggregateCall as alloy_sol_types::SolCall>::abi_encode_raw(
-                        inner,
-                        out,
+                        inner, out,
                     )
                 }
             }
@@ -4081,7 +3512,7 @@ function tryBlockAndAggregate(bool requireSuccess, Call[] memory calls) external
     use alloy::contract as alloy_contract;
     /**Creates a new wrapper around an on-chain [`IMulticall3`](self) contract instance.
 
-See the [wrapper's documentation](`IMulticall3Instance`) for more details.*/
+    See the [wrapper's documentation](`IMulticall3Instance`) for more details.*/
     #[inline]
     pub const fn new<
         T: alloy_contract::private::Transport + ::core::clone::Clone,
@@ -4095,9 +3526,9 @@ See the [wrapper's documentation](`IMulticall3Instance`) for more details.*/
     }
     /**Deploys this contract using the given `provider` and constructor arguments, if any.
 
-Returns a new instance of the contract, if the deployment was successful.
+    Returns a new instance of the contract, if the deployment was successful.
 
-For more fine-grained control over the deployment process, use [`deploy_builder`] instead.*/
+    For more fine-grained control over the deployment process, use [`deploy_builder`] instead.*/
     #[inline]
     pub fn deploy<
         T: alloy_contract::private::Transport + ::core::clone::Clone,
@@ -4105,35 +3536,36 @@ For more fine-grained control over the deployment process, use [`deploy_builder`
         N: alloy_contract::private::Network,
     >(
         provider: P,
-    ) -> impl ::core::future::Future<
-        Output = alloy_contract::Result<IMulticall3Instance<T, P, N>>,
-    > {
+    ) -> impl ::core::future::Future<Output = alloy_contract::Result<IMulticall3Instance<T, P, N>>>
+    {
         IMulticall3Instance::<T, P, N>::deploy(provider)
     }
     /**Creates a `RawCallBuilder` for deploying this contract using the given `provider`
-and constructor arguments, if any.
+    and constructor arguments, if any.
 
-This is a simple wrapper around creating a `RawCallBuilder` with the data set to
-the bytecode concatenated with the constructor's ABI-encoded arguments.*/
+    This is a simple wrapper around creating a `RawCallBuilder` with the data set to
+    the bytecode concatenated with the constructor's ABI-encoded arguments.*/
     #[inline]
     pub fn deploy_builder<
         T: alloy_contract::private::Transport + ::core::clone::Clone,
         P: alloy_contract::private::Provider<T, N>,
         N: alloy_contract::private::Network,
-    >(provider: P) -> alloy_contract::RawCallBuilder<T, P, N> {
+    >(
+        provider: P,
+    ) -> alloy_contract::RawCallBuilder<T, P, N> {
         IMulticall3Instance::<T, P, N>::deploy_builder(provider)
     }
     /**A [`IMulticall3`](self) instance.
 
-Contains type-safe methods for interacting with an on-chain instance of the
-[`IMulticall3`](self) contract located at a given `address`, using a given
-provider `P`.
+    Contains type-safe methods for interacting with an on-chain instance of the
+    [`IMulticall3`](self) contract located at a given `address`, using a given
+    provider `P`.
 
-If the contract bytecode is available (see the [`sol!`](alloy_sol_types::sol!)
-documentation on how to provide it), the `deploy` and `deploy_builder` methods can
-be used to deploy a new instance of the contract.
+    If the contract bytecode is available (see the [`sol!`](alloy_sol_types::sol!)
+    documentation on how to provide it), the `deploy` and `deploy_builder` methods can
+    be used to deploy a new instance of the contract.
 
-See the [module-level documentation](self) for all the available methods.*/
+    See the [module-level documentation](self) for all the available methods.*/
     #[derive(Clone)]
     pub struct IMulticall3Instance<T, P, N = alloy_contract::private::Ethereum> {
         address: alloy_sol_types::private::Address,
@@ -4150,42 +3582,34 @@ See the [module-level documentation](self) for all the available methods.*/
     /// Instantiation and getters/setters.
     #[automatically_derived]
     impl<
-        T: alloy_contract::private::Transport + ::core::clone::Clone,
-        P: alloy_contract::private::Provider<T, N>,
-        N: alloy_contract::private::Network,
-    > IMulticall3Instance<T, P, N> {
+            T: alloy_contract::private::Transport + ::core::clone::Clone,
+            P: alloy_contract::private::Provider<T, N>,
+            N: alloy_contract::private::Network,
+        > IMulticall3Instance<T, P, N>
+    {
         /**Creates a new wrapper around an on-chain [`IMulticall3`](self) contract instance.
 
-See the [wrapper's documentation](`IMulticall3Instance`) for more details.*/
+        See the [wrapper's documentation](`IMulticall3Instance`) for more details.*/
         #[inline]
-        pub const fn new(
-            address: alloy_sol_types::private::Address,
-            provider: P,
-        ) -> Self {
-            Self {
-                address,
-                provider,
-                _network_transport: ::core::marker::PhantomData,
-            }
+        pub const fn new(address: alloy_sol_types::private::Address, provider: P) -> Self {
+            Self { address, provider, _network_transport: ::core::marker::PhantomData }
         }
         /**Deploys this contract using the given `provider` and constructor arguments, if any.
 
-Returns a new instance of the contract, if the deployment was successful.
+        Returns a new instance of the contract, if the deployment was successful.
 
-For more fine-grained control over the deployment process, use [`deploy_builder`] instead.*/
+        For more fine-grained control over the deployment process, use [`deploy_builder`] instead.*/
         #[inline]
-        pub async fn deploy(
-            provider: P,
-        ) -> alloy_contract::Result<IMulticall3Instance<T, P, N>> {
+        pub async fn deploy(provider: P) -> alloy_contract::Result<IMulticall3Instance<T, P, N>> {
             let call_builder = Self::deploy_builder(provider);
             let contract_address = call_builder.deploy().await?;
             Ok(Self::new(contract_address, call_builder.provider))
         }
         /**Creates a `RawCallBuilder` for deploying this contract using the given `provider`
-and constructor arguments, if any.
+        and constructor arguments, if any.
 
-This is a simple wrapper around creating a `RawCallBuilder` with the data set to
-the bytecode concatenated with the constructor's ABI-encoded arguments.*/
+        This is a simple wrapper around creating a `RawCallBuilder` with the data set to
+        the bytecode concatenated with the constructor's ABI-encoded arguments.*/
         #[inline]
         pub fn deploy_builder(provider: P) -> alloy_contract::RawCallBuilder<T, P, N> {
             alloy_contract::RawCallBuilder::new_raw_deploy(
@@ -4228,10 +3652,11 @@ the bytecode concatenated with the constructor's ABI-encoded arguments.*/
     /// Function calls.
     #[automatically_derived]
     impl<
-        T: alloy_contract::private::Transport + ::core::clone::Clone,
-        P: alloy_contract::private::Provider<T, N>,
-        N: alloy_contract::private::Network,
-    > IMulticall3Instance<T, P, N> {
+            T: alloy_contract::private::Transport + ::core::clone::Clone,
+            P: alloy_contract::private::Provider<T, N>,
+            N: alloy_contract::private::Network,
+        > IMulticall3Instance<T, P, N>
+    {
         /// Creates a new call builder using this contract instance's provider and address.
         ///
         /// Note that the call can be any function call, not just those defined in this
@@ -4245,18 +3670,14 @@ the bytecode concatenated with the constructor's ABI-encoded arguments.*/
         ///Creates a new call builder for the [`aggregate`] function.
         pub fn aggregate(
             &self,
-            calls: alloy::sol_types::private::Vec<
-                <Call as alloy::sol_types::SolType>::RustType,
-            >,
+            calls: alloy::sol_types::private::Vec<<Call as alloy::sol_types::SolType>::RustType>,
         ) -> alloy_contract::SolCallBuilder<T, &P, aggregateCall, N> {
             self.call_builder(&aggregateCall { calls })
         }
         ///Creates a new call builder for the [`aggregate3`] function.
         pub fn aggregate3(
             &self,
-            calls: alloy::sol_types::private::Vec<
-                <Call3 as alloy::sol_types::SolType>::RustType,
-            >,
+            calls: alloy::sol_types::private::Vec<<Call3 as alloy::sol_types::SolType>::RustType>,
         ) -> alloy_contract::SolCallBuilder<T, &P, aggregate3Call, N> {
             self.call_builder(&aggregate3Call { calls })
         }
@@ -4272,16 +3693,12 @@ the bytecode concatenated with the constructor's ABI-encoded arguments.*/
         ///Creates a new call builder for the [`blockAndAggregate`] function.
         pub fn blockAndAggregate(
             &self,
-            calls: alloy::sol_types::private::Vec<
-                <Call as alloy::sol_types::SolType>::RustType,
-            >,
+            calls: alloy::sol_types::private::Vec<<Call as alloy::sol_types::SolType>::RustType>,
         ) -> alloy_contract::SolCallBuilder<T, &P, blockAndAggregateCall, N> {
             self.call_builder(&blockAndAggregateCall { calls })
         }
         ///Creates a new call builder for the [`getBasefee`] function.
-        pub fn getBasefee(
-            &self,
-        ) -> alloy_contract::SolCallBuilder<T, &P, getBasefeeCall, N> {
+        pub fn getBasefee(&self) -> alloy_contract::SolCallBuilder<T, &P, getBasefeeCall, N> {
             self.call_builder(&getBasefeeCall {})
         }
         ///Creates a new call builder for the [`getBlockHash`] function.
@@ -4298,9 +3715,7 @@ the bytecode concatenated with the constructor's ABI-encoded arguments.*/
             self.call_builder(&getBlockNumberCall {})
         }
         ///Creates a new call builder for the [`getChainId`] function.
-        pub fn getChainId(
-            &self,
-        ) -> alloy_contract::SolCallBuilder<T, &P, getChainIdCall, N> {
+        pub fn getChainId(&self) -> alloy_contract::SolCallBuilder<T, &P, getChainIdCall, N> {
             self.call_builder(&getChainIdCall {})
         }
         ///Creates a new call builder for the [`getCurrentBlockCoinbase`] function.
@@ -4344,40 +3759,27 @@ the bytecode concatenated with the constructor's ABI-encoded arguments.*/
         pub fn tryAggregate(
             &self,
             requireSuccess: bool,
-            calls: alloy::sol_types::private::Vec<
-                <Call as alloy::sol_types::SolType>::RustType,
-            >,
+            calls: alloy::sol_types::private::Vec<<Call as alloy::sol_types::SolType>::RustType>,
         ) -> alloy_contract::SolCallBuilder<T, &P, tryAggregateCall, N> {
-            self.call_builder(
-                &tryAggregateCall {
-                    requireSuccess,
-                    calls,
-                },
-            )
+            self.call_builder(&tryAggregateCall { requireSuccess, calls })
         }
         ///Creates a new call builder for the [`tryBlockAndAggregate`] function.
         pub fn tryBlockAndAggregate(
             &self,
             requireSuccess: bool,
-            calls: alloy::sol_types::private::Vec<
-                <Call as alloy::sol_types::SolType>::RustType,
-            >,
+            calls: alloy::sol_types::private::Vec<<Call as alloy::sol_types::SolType>::RustType>,
         ) -> alloy_contract::SolCallBuilder<T, &P, tryBlockAndAggregateCall, N> {
-            self.call_builder(
-                &tryBlockAndAggregateCall {
-                    requireSuccess,
-                    calls,
-                },
-            )
+            self.call_builder(&tryBlockAndAggregateCall { requireSuccess, calls })
         }
     }
     /// Event filters.
     #[automatically_derived]
     impl<
-        T: alloy_contract::private::Transport + ::core::clone::Clone,
-        P: alloy_contract::private::Provider<T, N>,
-        N: alloy_contract::private::Network,
-    > IMulticall3Instance<T, P, N> {
+            T: alloy_contract::private::Transport + ::core::clone::Clone,
+            P: alloy_contract::private::Provider<T, N>,
+            N: alloy_contract::private::Network,
+        > IMulticall3Instance<T, P, N>
+    {
         /// Creates a new event filter using this contract instance's provider and address.
         ///
         /// Note that the type can be any event, not just those defined in this contract.

@@ -77,6 +77,47 @@ make start-all
 
 ### Upload your WAVS Service Manager
 
+Deploy safe.
+
+``` bash
+forge script ./script/SafeModule.s.sol --sig "deployContracts()" --rpc-url http://localhost:8545 --broadcast
+```
+
+Deploy core Eigen contracts:
+
+``` bash
+wavs-cli deploy-eigen-core
+```
+
+Deploy service manager:
+
+``` bash
+wavs-cli deploy-eigen-service-manager --service-handler <safe_module>
+```
+
+Initialize safe with service manager:
+
+``` bash
+forge script ./script/SafeModule.s.sol --sig "initializeModule()" -vvvv --rpc-url http://localhost:8545 --broadcast
+```
+
+Make a task:
+
+``` bash
+# First encode your trigger data
+TRIGGER_DATA=$(cast abi-encode "f(string)" "test")
+
+# Then run the forge script
+forge script script/Trigger.s.sol \
+    --sig "addTrigger(bytes)" \
+    $TRIGGER_DATA \
+    --rpc-url "http://localhost:8545" \
+    --broadcast
+```
+
+
+### Upload your WAVS Service Manager
+
 ```bash
 # Deploy Safe
 forge script ./script/SafeModule.s.sol --sig "deployContracts()" --rpc-url http://localhost:8545 --broadcast

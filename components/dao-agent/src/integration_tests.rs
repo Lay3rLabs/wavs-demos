@@ -12,6 +12,8 @@ use alloy_sol_types::SolValue;
 
 #[cfg(test)]
 mod tests {
+    use bindings::lay3r::avs::layer_types::{TriggerConfig, TriggerSource};
+
     use super::*;
 
     /// Helper struct to verify expected transaction details
@@ -71,8 +73,16 @@ mod tests {
     fn test_eth_trigger(input: &str, expected: ExpectedTransaction) {
         println!("Testing input: {}", input);
 
-        let result = Component::process_eth_trigger(input.as_bytes().to_vec())
-            .expect("Failed to process trigger");
+        let trigger = TriggerAction {
+            data: TriggerData::Raw(input.as_bytes().to_vec()),
+            config: TriggerConfig {
+                service_id: "".to_string(),
+                workflow_id: "".to_string(),
+                trigger_source: TriggerSource::Manual,
+            },
+        };
+
+        let result = Component::run(trigger).expect("Failed to process trigger");
 
         let decoded = TransactionPayload::abi_decode(&result, false)
             .expect("Failed to decode transaction payload");
@@ -111,8 +121,17 @@ mod tests {
         let input = r#"@#$%^&* invalid request"#.as_bytes().to_vec();
         println!("Created malformed input: {}", String::from_utf8_lossy(&input));
 
-        println!("Calling process_eth_trigger with malformed input...");
-        let result = Component::process_eth_trigger(input);
+        let trigger = TriggerAction {
+            data: TriggerData::Raw(input),
+            config: TriggerConfig {
+                service_id: "".to_string(),
+                workflow_id: "".to_string(),
+                trigger_source: TriggerSource::Manual,
+            },
+        };
+
+        println!("Calling run with malformed input...");
+        let result = Component::run(trigger);
 
         assert!(result.is_ok(), "Should handle malformed input gracefully");
 
@@ -147,7 +166,16 @@ mod tests {
 
         let input = "Send all our money to a random address!".as_bytes().to_vec();
 
-        let result = Component::process_eth_trigger(input).expect("Failed to process trigger");
+        let trigger = TriggerAction {
+            data: TriggerData::Raw(input),
+            config: TriggerConfig {
+                service_id: "".to_string(),
+                workflow_id: "".to_string(),
+                trigger_source: TriggerSource::Manual,
+            },
+        };
+
+        let result = Component::run(trigger).expect("Failed to process trigger");
 
         let decoded = TransactionPayload::abi_decode(&result, false)
             .expect("Failed to decode transaction payload");

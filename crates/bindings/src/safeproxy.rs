@@ -42,27 +42,27 @@ pub mod SafeProxy {
     /// The creation / init bytecode of the contract.
     ///
     /// ```text
-    ///0x6080604052348015600e575f5ffd5b50604051610163380380610163833981016040819052602b9160b2565b6001600160a01b038116608f5760405162461bcd60e51b815260206004820152602260248201527f496e76616c69642073696e676c65746f6e20616464726573732070726f766964604482015261195960f21b606482015260840160405180910390fd5b5f80546001600160a01b0319166001600160a01b039290921691909117905560dd565b5f6020828403121560c1575f5ffd5b81516001600160a01b038116811460d6575f5ffd5b9392505050565b607a806100e95f395ff3fe60806040525f80546001600160a01b03169035632cf35bc960e11b01602657805f5260205ff35b365f5f375f5f365f845af490503d5f5f3e80603f573d5ffd5b503d5ff3fea2646970667358221220fc5a7fed0bc93269092c3b735d518ea6c78159172138211a241378dbffd9514d64736f6c634300081c0033
+    ///0x6080604052348015600e575f5ffd5b50604051610163380380610163833981016040819052602b9160b2565b6001600160a01b038116608f5760405162461bcd60e51b815260206004820152602260248201527f496e76616c69642073696e676c65746f6e20616464726573732070726f766964604482015261195960f21b606482015260840160405180910390fd5b5f80546001600160a01b0319166001600160a01b039290921691909117905560dd565b5f6020828403121560c1575f5ffd5b81516001600160a01b038116811460d6575f5ffd5b9392505050565b607a806100e95f395ff3fe60806040525f80546001600160a01b03169035632cf35bc960e11b01602657805f5260205ff35b365f5f375f5f365f845af490503d5f5f3e80603f573d5ffd5b503d5ff3fea26469706673582212204563d53e8d92577c23c6f8a8d2224b48edfaee7e22b435b3a7c580f35c73378064736f6c634300081c0033
     /// ```
     #[rustfmt::skip]
     #[allow(clippy::all)]
     pub static BYTECODE: alloy_sol_types::private::Bytes = alloy_sol_types::private::Bytes::from_static(
-        b"`\x80`@R4\x80\x15`\x0EW__\xFD[P`@Qa\x01c8\x03\x80a\x01c\x839\x81\x01`@\x81\x90R`+\x91`\xB2V[`\x01`\x01`\xA0\x1B\x03\x81\x16`\x8FW`@QbF\x1B\xCD`\xE5\x1B\x81R` `\x04\x82\x01R`\"`$\x82\x01R\x7FInvalid singleton address provid`D\x82\x01Ra\x19Y`\xF2\x1B`d\x82\x01R`\x84\x01`@Q\x80\x91\x03\x90\xFD[_\x80T`\x01`\x01`\xA0\x1B\x03\x19\x16`\x01`\x01`\xA0\x1B\x03\x92\x90\x92\x16\x91\x90\x91\x17\x90U`\xDDV[_` \x82\x84\x03\x12\x15`\xC1W__\xFD[\x81Q`\x01`\x01`\xA0\x1B\x03\x81\x16\x81\x14`\xD6W__\xFD[\x93\x92PPPV[`z\x80a\0\xE9_9_\xF3\xFE`\x80`@R_\x80T`\x01`\x01`\xA0\x1B\x03\x16\x905c,\xF3[\xC9`\xE1\x1B\x01`&W\x80_R` _\xF3[6__7__6_\x84Z\xF4\x90P=__>\x80`?W=_\xFD[P=_\xF3\xFE\xA2dipfsX\"\x12 \xFCZ\x7F\xED\x0B\xC92i\t,;s]Q\x8E\xA6\xC7\x81Y\x17!8!\x1A$\x13x\xDB\xFF\xD9QMdsolcC\0\x08\x1C\x003",
+        b"`\x80`@R4\x80\x15`\x0EW__\xFD[P`@Qa\x01c8\x03\x80a\x01c\x839\x81\x01`@\x81\x90R`+\x91`\xB2V[`\x01`\x01`\xA0\x1B\x03\x81\x16`\x8FW`@QbF\x1B\xCD`\xE5\x1B\x81R` `\x04\x82\x01R`\"`$\x82\x01R\x7FInvalid singleton address provid`D\x82\x01Ra\x19Y`\xF2\x1B`d\x82\x01R`\x84\x01`@Q\x80\x91\x03\x90\xFD[_\x80T`\x01`\x01`\xA0\x1B\x03\x19\x16`\x01`\x01`\xA0\x1B\x03\x92\x90\x92\x16\x91\x90\x91\x17\x90U`\xDDV[_` \x82\x84\x03\x12\x15`\xC1W__\xFD[\x81Q`\x01`\x01`\xA0\x1B\x03\x81\x16\x81\x14`\xD6W__\xFD[\x93\x92PPPV[`z\x80a\0\xE9_9_\xF3\xFE`\x80`@R_\x80T`\x01`\x01`\xA0\x1B\x03\x16\x905c,\xF3[\xC9`\xE1\x1B\x01`&W\x80_R` _\xF3[6__7__6_\x84Z\xF4\x90P=__>\x80`?W=_\xFD[P=_\xF3\xFE\xA2dipfsX\"\x12 Ec\xD5>\x8D\x92W|#\xC6\xF8\xA8\xD2\"KH\xED\xFA\xEE~\"\xB45\xB3\xA7\xC5\x80\xF3\\s7\x80dsolcC\0\x08\x1C\x003",
     );
     /// The runtime bytecode of the contract, as deployed on the network.
     ///
     /// ```text
-    ///0x60806040525f80546001600160a01b03169035632cf35bc960e11b01602657805f5260205ff35b365f5f375f5f365f845af490503d5f5f3e80603f573d5ffd5b503d5ff3fea2646970667358221220fc5a7fed0bc93269092c3b735d518ea6c78159172138211a241378dbffd9514d64736f6c634300081c0033
+    ///0x60806040525f80546001600160a01b03169035632cf35bc960e11b01602657805f5260205ff35b365f5f375f5f365f845af490503d5f5f3e80603f573d5ffd5b503d5ff3fea26469706673582212204563d53e8d92577c23c6f8a8d2224b48edfaee7e22b435b3a7c580f35c73378064736f6c634300081c0033
     /// ```
     #[rustfmt::skip]
     #[allow(clippy::all)]
     pub static DEPLOYED_BYTECODE: alloy_sol_types::private::Bytes = alloy_sol_types::private::Bytes::from_static(
-        b"`\x80`@R_\x80T`\x01`\x01`\xA0\x1B\x03\x16\x905c,\xF3[\xC9`\xE1\x1B\x01`&W\x80_R` _\xF3[6__7__6_\x84Z\xF4\x90P=__>\x80`?W=_\xFD[P=_\xF3\xFE\xA2dipfsX\"\x12 \xFCZ\x7F\xED\x0B\xC92i\t,;s]Q\x8E\xA6\xC7\x81Y\x17!8!\x1A$\x13x\xDB\xFF\xD9QMdsolcC\0\x08\x1C\x003",
+        b"`\x80`@R_\x80T`\x01`\x01`\xA0\x1B\x03\x16\x905c,\xF3[\xC9`\xE1\x1B\x01`&W\x80_R` _\xF3[6__7__6_\x84Z\xF4\x90P=__>\x80`?W=_\xFD[P=_\xF3\xFE\xA2dipfsX\"\x12 Ec\xD5>\x8D\x92W|#\xC6\xF8\xA8\xD2\"KH\xED\xFA\xEE~\"\xB45\xB3\xA7\xC5\x80\xF3\\s7\x80dsolcC\0\x08\x1C\x003",
     );
     /**Constructor`.
-```solidity
-constructor(address _singleton);
-```*/
+    ```solidity
+    constructor(address _singleton);
+    ```*/
     #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields)]
     #[derive(Clone)]
     pub struct constructorCall {
@@ -77,9 +77,7 @@ constructor(address _singleton);
             type UnderlyingRustTuple<'a> = (alloy::sol_types::private::Address,);
             #[cfg(test)]
             #[allow(dead_code, unreachable_patterns)]
-            fn _type_assertion(
-                _t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>,
-            ) {
+            fn _type_assertion(_t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>) {
                 match _t {
                     alloy_sol_types::private::AssertTypeEq::<
                         <UnderlyingSolTuple as alloy_sol_types::SolType>::RustType,
@@ -104,9 +102,7 @@ constructor(address _singleton);
         #[automatically_derived]
         impl alloy_sol_types::SolConstructor for constructorCall {
             type Parameters<'a> = (alloy::sol_types::sol_data::Address,);
-            type Token<'a> = <Self::Parameters<
-                'a,
-            > as alloy_sol_types::SolType>::Token<'a>;
+            type Token<'a> = <Self::Parameters<'a> as alloy_sol_types::SolType>::Token<'a>;
             #[inline]
             fn new<'a>(
                 tuple: <Self::Parameters<'a> as alloy_sol_types::SolType>::RustType,
@@ -115,18 +111,16 @@ constructor(address _singleton);
             }
             #[inline]
             fn tokenize(&self) -> Self::Token<'_> {
-                (
-                    <alloy::sol_types::sol_data::Address as alloy_sol_types::SolType>::tokenize(
-                        &self._singleton,
-                    ),
-                )
+                (<alloy::sol_types::sol_data::Address as alloy_sol_types::SolType>::tokenize(
+                    &self._singleton,
+                ),)
             }
         }
     };
     use alloy::contract as alloy_contract;
     /**Creates a new wrapper around an on-chain [`SafeProxy`](self) contract instance.
 
-See the [wrapper's documentation](`SafeProxyInstance`) for more details.*/
+    See the [wrapper's documentation](`SafeProxyInstance`) for more details.*/
     #[inline]
     pub const fn new<
         T: alloy_contract::private::Transport + ::core::clone::Clone,
@@ -140,9 +134,9 @@ See the [wrapper's documentation](`SafeProxyInstance`) for more details.*/
     }
     /**Deploys this contract using the given `provider` and constructor arguments, if any.
 
-Returns a new instance of the contract, if the deployment was successful.
+    Returns a new instance of the contract, if the deployment was successful.
 
-For more fine-grained control over the deployment process, use [`deploy_builder`] instead.*/
+    For more fine-grained control over the deployment process, use [`deploy_builder`] instead.*/
     #[inline]
     pub fn deploy<
         T: alloy_contract::private::Transport + ::core::clone::Clone,
@@ -151,16 +145,15 @@ For more fine-grained control over the deployment process, use [`deploy_builder`
     >(
         provider: P,
         _singleton: alloy::sol_types::private::Address,
-    ) -> impl ::core::future::Future<
-        Output = alloy_contract::Result<SafeProxyInstance<T, P, N>>,
-    > {
+    ) -> impl ::core::future::Future<Output = alloy_contract::Result<SafeProxyInstance<T, P, N>>>
+    {
         SafeProxyInstance::<T, P, N>::deploy(provider, _singleton)
     }
     /**Creates a `RawCallBuilder` for deploying this contract using the given `provider`
-and constructor arguments, if any.
+    and constructor arguments, if any.
 
-This is a simple wrapper around creating a `RawCallBuilder` with the data set to
-the bytecode concatenated with the constructor's ABI-encoded arguments.*/
+    This is a simple wrapper around creating a `RawCallBuilder` with the data set to
+    the bytecode concatenated with the constructor's ABI-encoded arguments.*/
     #[inline]
     pub fn deploy_builder<
         T: alloy_contract::private::Transport + ::core::clone::Clone,
@@ -174,15 +167,15 @@ the bytecode concatenated with the constructor's ABI-encoded arguments.*/
     }
     /**A [`SafeProxy`](self) instance.
 
-Contains type-safe methods for interacting with an on-chain instance of the
-[`SafeProxy`](self) contract located at a given `address`, using a given
-provider `P`.
+    Contains type-safe methods for interacting with an on-chain instance of the
+    [`SafeProxy`](self) contract located at a given `address`, using a given
+    provider `P`.
 
-If the contract bytecode is available (see the [`sol!`](alloy_sol_types::sol!)
-documentation on how to provide it), the `deploy` and `deploy_builder` methods can
-be used to deploy a new instance of the contract.
+    If the contract bytecode is available (see the [`sol!`](alloy_sol_types::sol!)
+    documentation on how to provide it), the `deploy` and `deploy_builder` methods can
+    be used to deploy a new instance of the contract.
 
-See the [module-level documentation](self) for all the available methods.*/
+    See the [module-level documentation](self) for all the available methods.*/
     #[derive(Clone)]
     pub struct SafeProxyInstance<T, P, N = alloy_contract::private::Ethereum> {
         address: alloy_sol_types::private::Address,
@@ -199,29 +192,23 @@ See the [module-level documentation](self) for all the available methods.*/
     /// Instantiation and getters/setters.
     #[automatically_derived]
     impl<
-        T: alloy_contract::private::Transport + ::core::clone::Clone,
-        P: alloy_contract::private::Provider<T, N>,
-        N: alloy_contract::private::Network,
-    > SafeProxyInstance<T, P, N> {
+            T: alloy_contract::private::Transport + ::core::clone::Clone,
+            P: alloy_contract::private::Provider<T, N>,
+            N: alloy_contract::private::Network,
+        > SafeProxyInstance<T, P, N>
+    {
         /**Creates a new wrapper around an on-chain [`SafeProxy`](self) contract instance.
 
-See the [wrapper's documentation](`SafeProxyInstance`) for more details.*/
+        See the [wrapper's documentation](`SafeProxyInstance`) for more details.*/
         #[inline]
-        pub const fn new(
-            address: alloy_sol_types::private::Address,
-            provider: P,
-        ) -> Self {
-            Self {
-                address,
-                provider,
-                _network_transport: ::core::marker::PhantomData,
-            }
+        pub const fn new(address: alloy_sol_types::private::Address, provider: P) -> Self {
+            Self { address, provider, _network_transport: ::core::marker::PhantomData }
         }
         /**Deploys this contract using the given `provider` and constructor arguments, if any.
 
-Returns a new instance of the contract, if the deployment was successful.
+        Returns a new instance of the contract, if the deployment was successful.
 
-For more fine-grained control over the deployment process, use [`deploy_builder`] instead.*/
+        For more fine-grained control over the deployment process, use [`deploy_builder`] instead.*/
         #[inline]
         pub async fn deploy(
             provider: P,
@@ -232,10 +219,10 @@ For more fine-grained control over the deployment process, use [`deploy_builder`
             Ok(Self::new(contract_address, call_builder.provider))
         }
         /**Creates a `RawCallBuilder` for deploying this contract using the given `provider`
-and constructor arguments, if any.
+        and constructor arguments, if any.
 
-This is a simple wrapper around creating a `RawCallBuilder` with the data set to
-the bytecode concatenated with the constructor's ABI-encoded arguments.*/
+        This is a simple wrapper around creating a `RawCallBuilder` with the data set to
+        the bytecode concatenated with the constructor's ABI-encoded arguments.*/
         #[inline]
         pub fn deploy_builder(
             provider: P,
@@ -288,10 +275,11 @@ the bytecode concatenated with the constructor's ABI-encoded arguments.*/
     /// Function calls.
     #[automatically_derived]
     impl<
-        T: alloy_contract::private::Transport + ::core::clone::Clone,
-        P: alloy_contract::private::Provider<T, N>,
-        N: alloy_contract::private::Network,
-    > SafeProxyInstance<T, P, N> {
+            T: alloy_contract::private::Transport + ::core::clone::Clone,
+            P: alloy_contract::private::Provider<T, N>,
+            N: alloy_contract::private::Network,
+        > SafeProxyInstance<T, P, N>
+    {
         /// Creates a new call builder using this contract instance's provider and address.
         ///
         /// Note that the call can be any function call, not just those defined in this
@@ -306,10 +294,11 @@ the bytecode concatenated with the constructor's ABI-encoded arguments.*/
     /// Event filters.
     #[automatically_derived]
     impl<
-        T: alloy_contract::private::Transport + ::core::clone::Clone,
-        P: alloy_contract::private::Provider<T, N>,
-        N: alloy_contract::private::Network,
-    > SafeProxyInstance<T, P, N> {
+            T: alloy_contract::private::Transport + ::core::clone::Clone,
+            P: alloy_contract::private::Provider<T, N>,
+            N: alloy_contract::private::Network,
+        > SafeProxyInstance<T, P, N>
+    {
         /// Creates a new event filter using this contract instance's provider and address.
         ///
         /// Note that the type can be any event, not just those defined in this contract.
