@@ -31,6 +31,7 @@ contract SafeModule is IServiceHandler {
     ISimpleTrigger.TriggerId public nextTriggerId;
 
     event NewTrigger(bytes);
+    event Funded(address sender, uint256 amount);
 
     modifier onlyOwner() {
         require(msg.sender == owner, "Only owner can call this function");
@@ -65,6 +66,11 @@ contract SafeModule is IServiceHandler {
 
         serviceProvider = _serviceProvider;
         initialized = true;
+    }
+
+    function fundModule() external payable {
+        // Accept ETH funding
+        emit Funded(msg.sender, msg.value);
     }
 
     function handleAddPayload(

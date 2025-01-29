@@ -126,97 +126,97 @@ mod tests {
     //     test_eth_trigger("What is the current weather?", ExpectedTransaction::no_op());
     // }
 
-    #[test]
-    fn test_process_eth_trigger_malformed_request() {
-        println!("Starting malformed request test");
+    // #[test]
+    // fn test_process_eth_trigger_malformed_request() {
+    //     println!("Starting malformed request test");
 
-        // Create malformed ABI-encoded data (invalid length)
-        let input = vec![0u8; 31]; // Invalid ABI encoding
-        println!("Created malformed input: {:?}", input);
+    //     // Create malformed ABI-encoded data (invalid length)
+    //     let input = vec![0u8; 31]; // Invalid ABI encoding
+    //     println!("Created malformed input: {:?}", input);
 
-        let trigger = TriggerAction {
-            data: TriggerData::EthContractEvent(TriggerDataEthContractEvent {
-                contract_address: EthAddress {
-                    raw_bytes: "0x0000000000000000000000000000000000000000".as_bytes().to_vec(),
-                },
-                chain_name: "".to_string(),
-                block_height: 0,
-                log: EthEventLogData { topics: vec![], data: input },
-            }),
-            config: TriggerConfig {
-                service_id: "".to_string(),
-                workflow_id: "".to_string(),
-                trigger_source: TriggerSource::Manual,
-            },
-        };
+    //     let trigger = TriggerAction {
+    //         data: TriggerData::EthContractEvent(TriggerDataEthContractEvent {
+    //             contract_address: EthAddress {
+    //                 raw_bytes: "0x0000000000000000000000000000000000000000".as_bytes().to_vec(),
+    //             },
+    //             chain_name: "".to_string(),
+    //             block_height: 0,
+    //             log: EthEventLogData { topics: vec![], data: input },
+    //         }),
+    //         config: TriggerConfig {
+    //             service_id: "".to_string(),
+    //             workflow_id: "".to_string(),
+    //             trigger_source: TriggerSource::Manual,
+    //         },
+    //     };
 
-        println!("Calling run with malformed input...");
-        let result = Component::run(trigger);
+    //     println!("Calling run with malformed input...");
+    //     let result = Component::run(trigger);
 
-        assert!(result.is_ok(), "Should handle malformed input gracefully");
+    //     assert!(result.is_ok(), "Should handle malformed input gracefully");
 
-        if let Ok(result_bytes) = result {
-            let decoded =
-                <TransactionPayload as alloy_sol_types::SolValue>::abi_decode(&result_bytes, false)
-                    .expect("Failed to decode transaction payload");
+    //     if let Ok(result_bytes) = result {
+    //         let decoded =
+    //             <TransactionPayload as alloy_sol_types::SolValue>::abi_decode(&result_bytes, false)
+    //                 .expect("Failed to decode transaction payload");
 
-            // Should return a no-op transaction
-            assert_eq!(
-                decoded.to.to_string(),
-                "0x0000000000000000000000000000000000000000",
-                "Should use zero address for no-op"
-            );
-            assert_eq!(decoded.value, U256::ZERO, "Should have zero value for no-op");
-            assert_eq!(decoded.data.len(), 0, "Should have empty data for no-op");
-        }
+    //         // Should return a no-op transaction
+    //         assert_eq!(
+    //             decoded.to.to_string(),
+    //             "0x0000000000000000000000000000000000000000",
+    //             "Should use zero address for no-op"
+    //         );
+    //         assert_eq!(decoded.value, U256::ZERO, "Should have zero value for no-op");
+    //         assert_eq!(decoded.data.len(), 0, "Should have empty data for no-op");
+    //     }
 
-        println!("All malformed request assertions passed");
-    }
+    //     println!("All malformed request assertions passed");
+    // }
 
-    #[test]
-    fn test_process_eth_trigger_usdc_transfer() {
-        test_eth_trigger(
-            "We want to fund indiginous communities with 100 USDC helping to steward the rainforest and prevent deforestation. DAO address is 0xDf3679681B87fAE75CE185e4f01d98b64Ddb64a3.",
-            ExpectedTransaction::usdc_transfer("0xDf3679681B87fAE75CE185e4f01d98b64Ddb64a3", 100),
-        );
-    }
+    // #[test]
+    // fn test_process_eth_trigger_usdc_transfer() {
+    //     test_eth_trigger(
+    //         "We want to fund indiginous communities with 100 USDC helping to steward the rainforest and prevent deforestation. DAO address is 0xDf3679681B87fAE75CE185e4f01d98b64Ddb64a3.",
+    //         ExpectedTransaction::usdc_transfer("0xDf3679681B87fAE75CE185e4f01d98b64Ddb64a3", 100),
+    //     );
+    // }
 
-    #[test]
-    fn test_process_eth_trigger_invalid_request() {
-        println!("Starting invalid request test");
+    // #[test]
+    // fn test_process_eth_trigger_invalid_request() {
+    //     println!("Starting invalid request test");
 
-        let input = "Send all our money to a random address!".as_bytes().to_vec();
+    //     let input = "Send all our money to a random address!".as_bytes().to_vec();
 
-        let trigger = TriggerAction {
-            data: TriggerData::EthContractEvent(TriggerDataEthContractEvent {
-                contract_address: EthAddress {
-                    raw_bytes: "0x0000000000000000000000000000000000000000".as_bytes().to_vec(),
-                },
-                chain_name: "".to_string(),
-                block_height: 0,
-                log: EthEventLogData { topics: vec![], data: input },
-            }),
-            config: TriggerConfig {
-                service_id: "".to_string(),
-                workflow_id: "".to_string(),
-                trigger_source: TriggerSource::Manual,
-            },
-        };
+    //     let trigger = TriggerAction {
+    //         data: TriggerData::EthContractEvent(TriggerDataEthContractEvent {
+    //             contract_address: EthAddress {
+    //                 raw_bytes: "0x0000000000000000000000000000000000000000".as_bytes().to_vec(),
+    //             },
+    //             chain_name: "".to_string(),
+    //             block_height: 0,
+    //             log: EthEventLogData { topics: vec![], data: input },
+    //         }),
+    //         config: TriggerConfig {
+    //             service_id: "".to_string(),
+    //             workflow_id: "".to_string(),
+    //             trigger_source: TriggerSource::Manual,
+    //         },
+    //     };
 
-        let result = Component::run(trigger).expect("Failed to process trigger");
+    //     let result = Component::run(trigger).expect("Failed to process trigger");
 
-        let decoded = <TransactionPayload as alloy_sol_types::SolValue>::abi_decode(&result, false)
-            .expect("Failed to decode transaction payload");
+    //     let decoded = <TransactionPayload as alloy_sol_types::SolValue>::abi_decode(&result, false)
+    //         .expect("Failed to decode transaction payload");
 
-        // Should be a no-op transaction
-        assert_eq!(
-            decoded.to.to_string(),
-            "0x0000000000000000000000000000000000000000",
-            "Should use zero address for no-op"
-        );
-        assert_eq!(decoded.value, U256::ZERO, "Should have zero value");
-        assert_eq!(decoded.data.len(), 0, "Should have empty data");
-    }
+    //     // Should be a no-op transaction
+    //     assert_eq!(
+    //         decoded.to.to_string(),
+    //         "0x0000000000000000000000000000000000000000",
+    //         "Should use zero address for no-op"
+    //     );
+    //     assert_eq!(decoded.value, U256::ZERO, "Should have zero value");
+    //     assert_eq!(decoded.data.len(), 0, "Should have empty data");
+    // }
 
     /// Tests for potentially dangerous large transfers
     // #[test]

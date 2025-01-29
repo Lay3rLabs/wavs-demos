@@ -58,12 +58,24 @@ contract SafeModuleScript is Script {
             }
         }
 
-        // Deploy SafeModule with the Safe proxy address (not the singleton)
+        // Fund the Safe proxy (not the singleton or module) with 1 ETH
+        payable(deployedSafeAddress).transfer(1 ether);
+        console.log("Funded Safe proxy at", deployedSafeAddress, "with 1 ETH");
+
+        // Deploy SafeModule with the Safe proxy address
         SafeModule module = new SafeModule(deployedSafeAddress);
         deployedModuleAddress = address(module);
         console.log("Deployed SafeModule at:", deployedModuleAddress);
         console.log("Module owner:", module.owner());
         console.log("Module safe:", module.safe());
+
+        // Fund the module using receive() function
+        try module.fundModule{value: 1 ether}() {
+            console.log("Funded module with:", 1 ether, "wei (1 ETH)");
+        } catch Error(string memory reason) {
+            console.log("Failed to fund module:", reason);
+            revert(reason);
+        }
 
         // Write deployment info to files
         _writeDeploymentToFile();
