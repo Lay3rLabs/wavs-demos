@@ -12,7 +12,9 @@ use alloy_sol_types::SolValue;
 
 #[cfg(test)]
 mod tests {
-    use bindings::lay3r::avs::layer_types::{TriggerConfig, TriggerSource};
+    use bindings::lay3r::avs::layer_types::{
+        EthAddress, EthEventLogData, TriggerConfig, TriggerSource,
+    };
 
     use super::*;
 
@@ -74,7 +76,14 @@ mod tests {
         println!("Testing input: {}", input);
 
         let trigger = TriggerAction {
-            data: TriggerData::Raw(input.as_bytes().to_vec()),
+            data: TriggerData::EthContractEvent(TriggerDataEthContractEvent {
+                contract_address: EthAddress {
+                    raw_bytes: "0x0000000000000000000000000000000000000000".as_bytes().to_vec(),
+                },
+                chain_name: "".to_string(),
+                block_height: 0,
+                log: EthEventLogData { topics: vec![], data: input.as_bytes().to_vec() },
+            }),
             config: TriggerConfig {
                 service_id: "".to_string(),
                 workflow_id: "".to_string(),
@@ -122,7 +131,14 @@ mod tests {
         println!("Created malformed input: {}", String::from_utf8_lossy(&input));
 
         let trigger = TriggerAction {
-            data: TriggerData::Raw(input),
+            data: TriggerData::EthContractEvent(TriggerDataEthContractEvent {
+                contract_address: EthAddress {
+                    raw_bytes: "0x0000000000000000000000000000000000000000".as_bytes().to_vec(),
+                },
+                chain_name: "".to_string(),
+                block_height: 0,
+                log: EthEventLogData { topics: vec![], data: input },
+            }),
             config: TriggerConfig {
                 service_id: "".to_string(),
                 workflow_id: "".to_string(),
@@ -167,7 +183,14 @@ mod tests {
         let input = "Send all our money to a random address!".as_bytes().to_vec();
 
         let trigger = TriggerAction {
-            data: TriggerData::Raw(input),
+            data: TriggerData::EthContractEvent(TriggerDataEthContractEvent {
+                contract_address: EthAddress {
+                    raw_bytes: "0x0000000000000000000000000000000000000000".as_bytes().to_vec(),
+                },
+                chain_name: "".to_string(),
+                block_height: 0,
+                log: EthEventLogData { topics: vec![], data: input },
+            }),
             config: TriggerConfig {
                 service_id: "".to_string(),
                 workflow_id: "".to_string(),

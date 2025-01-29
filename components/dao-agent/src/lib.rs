@@ -38,12 +38,8 @@ struct Component;
 impl Guest for Component {
     fn run(trigger_action: TriggerAction) -> std::result::Result<Vec<u8>, String> {
         match trigger_action.data {
-            // TriggerData::EthContractEvent(TriggerDataEthContractEvent { chain_name, .. }) => {
-            //     unimplemented!()
-            // }
-            // TriggerData::CosmosContractEvent(TriggerDataCosmosContractEvent { .. }) => {}
-            TriggerData::Raw(input) => {
-                let prompt = String::from_utf8(input.clone())
+            TriggerData::EthContractEvent(TriggerDataEthContractEvent { log, .. }) => {
+                let prompt = String::from_utf8(log.data.clone())
                     .map_err(|e| format!("Invalid UTF-8: {}", e))?;
 
                 return block_on(|reactor| async move {
@@ -82,11 +78,12 @@ impl Guest for Component {
 
                     let payload = create_payload_from_safe_tx(&transaction)?;
                     Ok(payload.abi_encode().to_vec())
-                })
-            },
-            _ => Ok(Vec::new())
+                });
+            }
+            // TriggerData::CosmosContractEvent(TriggerDataCosmosContractEvent { .. }) => {}
+            // TriggerData::Raw(input) => {}
+            _ => Err("Unsupported trigger data".to_string()),
         }
-
     }
 }
 
