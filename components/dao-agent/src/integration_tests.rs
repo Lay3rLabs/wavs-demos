@@ -75,6 +75,9 @@ mod tests {
     fn test_eth_trigger(input: &str, expected: ExpectedTransaction) {
         println!("Testing input: {}", input);
 
+        // ABI encode the input string
+        let encoded_input = alloy_sol_types::sol_data::String::abi_encode(&input.to_string());
+
         let trigger = TriggerAction {
             data: TriggerData::EthContractEvent(TriggerDataEthContractEvent {
                 contract_address: EthAddress {
@@ -82,7 +85,7 @@ mod tests {
                 },
                 chain_name: "".to_string(),
                 block_height: 0,
-                log: EthEventLogData { topics: vec![], data: input.as_bytes().to_vec() },
+                log: EthEventLogData { topics: vec![], data: encoded_input },
             }),
             config: TriggerConfig {
                 service_id: "".to_string(),
@@ -93,7 +96,7 @@ mod tests {
 
         let result = Component::run(trigger).expect("Failed to process trigger");
 
-        let decoded = TransactionPayload::abi_decode(&result, false)
+        let decoded = <TransactionPayload as alloy_sol_types::SolValue>::abi_decode(&result, false)
             .expect("Failed to decode transaction payload");
 
         // Compare addresses in lowercase
@@ -127,8 +130,9 @@ mod tests {
     fn test_process_eth_trigger_malformed_request() {
         println!("Starting malformed request test");
 
-        let input = r#"@#$%^&* invalid request"#.as_bytes().to_vec();
-        println!("Created malformed input: {}", String::from_utf8_lossy(&input));
+        // Create malformed ABI-encoded data (invalid length)
+        let input = vec![0u8; 31]; // Invalid ABI encoding
+        println!("Created malformed input: {:?}", input);
 
         let trigger = TriggerAction {
             data: TriggerData::EthContractEvent(TriggerDataEthContractEvent {
@@ -152,8 +156,9 @@ mod tests {
         assert!(result.is_ok(), "Should handle malformed input gracefully");
 
         if let Ok(result_bytes) = result {
-            let decoded = TransactionPayload::abi_decode(&result_bytes, false)
-                .expect("Failed to decode transaction payload");
+            let decoded =
+                <TransactionPayload as alloy_sol_types::SolValue>::abi_decode(&result_bytes, false)
+                    .expect("Failed to decode transaction payload");
 
             // Should return a no-op transaction
             assert_eq!(
@@ -200,7 +205,7 @@ mod tests {
 
         let result = Component::run(trigger).expect("Failed to process trigger");
 
-        let decoded = TransactionPayload::abi_decode(&result, false)
+        let decoded = <TransactionPayload as alloy_sol_types::SolValue>::abi_decode(&result, false)
             .expect("Failed to decode transaction payload");
 
         // Should be a no-op transaction

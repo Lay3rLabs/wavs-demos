@@ -104,7 +104,7 @@ forge script ./script/SafeModule.s.sol --sig "initializeModule()" -vvvv --rpc-ur
 Deploy component:
 
 ``` bash
-wavs-cli deploy-service --trigger raw \               
+wavs-cli deploy-service --trigger eth-contract-event \               
   --trigger-event-name $(cast sig-event "NewTrigger(bytes)") \
   --trigger-address <wavs_safe_module> \                       
   --component ./compiled/dao_agent.wasm \

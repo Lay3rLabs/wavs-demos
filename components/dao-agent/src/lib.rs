@@ -5,13 +5,11 @@ mod models;
 mod ollama;
 
 use alloy_primitives::{Address, Bytes, U256};
-use alloy_sol_types::{sol, SolCall, SolValue};
+use alloy_sol_types::{sol, SolCall, SolType, SolValue};
 use anyhow::Result;
 use bindings::{
     export,
-    lay3r::avs::layer_types::{
-        TriggerData, TriggerDataCosmosContractEvent, TriggerDataEthContractEvent,
-    },
+    lay3r::avs::layer_types::{TriggerData, TriggerDataEthContractEvent},
     Guest, TriggerAction,
 };
 use layer_wasi::wasi::{block_on, Reactor, Request, WasiPollable};
@@ -39,8 +37,11 @@ impl Guest for Component {
     fn run(trigger_action: TriggerAction) -> std::result::Result<Vec<u8>, String> {
         match trigger_action.data {
             TriggerData::EthContractEvent(TriggerDataEthContractEvent { log, .. }) => {
-                let prompt = String::from_utf8(log.data.clone())
-                    .map_err(|e| format!("Invalid UTF-8: {}", e))?;
+                // Decode the ABI-encoded string first
+                let decoded = alloy_sol_types::sol_data::String::abi_decode(&log.data, false)
+                    .map_err(|e| format!("Failed to decode ABI string: {}", e))?;
+
+                let prompt = decoded.to_string();
 
                 return block_on(|reactor| async move {
                     let response = query_ollama(&reactor, &prompt).await?;
