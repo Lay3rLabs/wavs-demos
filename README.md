@@ -90,7 +90,7 @@ forge script script/DeployNFTWithTrigger.s.sol:InitializeNFTWithTrigger --rpc-ur
 Deploy component:
 ``` bash
 wavs-cli deploy-service --trigger eth-contract-event \
-  --trigger-event-name $(cast sig-event "NewTrigger(bytes)") \
+  --trigger-event-name $(cast sig-event "NewTrigger(uint64,address,bytes)") \
   --trigger-address $NFT_ADDRESS \
   --component ./compiled/dao_agent.wasm \
   --submit-address $SERVICE_PROVIDER
@@ -101,13 +101,6 @@ Make a task:
 ``` bash
 # First encode your trigger data
 TRIGGER_DATA=$(cast abi-encode "f(string)" "We should donate 1 ETH to 0xDf3679681B87fAE75CE185e4f01d98b64Ddb64a3.")
-
-# Then run the forge script
-forge script script/Trigger.s.sol \
-    --sig "addTrigger(bytes)" \
-    $TRIGGER_DATA \
-    --rpc-url "http://localhost:8545" \
-    --broadcast
 
 
 forge script script/DeployNFTWithTrigger.s.sol:TestTrigger \
