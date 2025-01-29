@@ -99,13 +99,9 @@ wavs-cli deploy-service --trigger eth-contract-event \
 Make a task:
 
 ``` bash
-# First encode your trigger data
-TRIGGER_DATA=$(cast abi-encode "f(string)" "We should donate 1 ETH to 0xDf3679681B87fAE75CE185e4f01d98b64Ddb64a3.")
-
-
 forge script script/DeployNFTWithTrigger.s.sol:TestTrigger \
     --sig "run(string)" \
-    "We should donate 1 ETH to 0xDf3679681B87fAE75CE185e4f01d98b64Ddb64a3." \
+    "How can I be a great artist?" \
     --rpc-url "http://localhost:8545" \
     --broadcast
 ```
