@@ -1,20 +1,5 @@
-# Safe + WAVS
-
-A variety of WASI components that can be leveraged to extend the functionality of the Gnosis Safe with custom Safe Modules and Guards.
-
-Status: _highly experimental and fun_
-
-TODO:
-- [ ] Need to more reliably parse output from agent
-- [ ] Safe module could have some extra safety features like permissions
-- [ ] Eth Cosmos Query example needs to be flushed out
-- [ ] Has not yet been tested with WAVS
-- [ ] A guard function that reviews the prompt
-
-Reading and Resources:
-- [Zodiac](https://www.zodiac.wiki/documentation): a bunch of useful extensions to the Safe. If you're looking for examples of extending Safe, Zodiac has a ton of them.
-- [Safe Modules](https://docs.safe.global/advanced/smart-account-modules): documentation on Safe Modules, allowing easily extending functionality of a Safe.
-- [Safe Guard](https://docs.safe.global/advanced/smart-account-guards): documentation on Safe Guards, allowing for checks on Safe transactions.
+# NFT + WAVS example
+An NFT example.
 
 ## Installation
 
