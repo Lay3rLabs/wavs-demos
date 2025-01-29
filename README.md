@@ -101,6 +101,16 @@ Initialize safe with service manager:
 forge script ./script/SafeModule.s.sol --sig "initializeModule()" -vvvv --rpc-url http://localhost:8545 --broadcast
 ```
 
+Deploy component:
+
+``` bash
+wavs-cli deploy-service --trigger raw \               
+  --trigger-event-name $(cast sig-event "NewTrigger(bytes)") \
+  --trigger-address <wavs_safe_module> \                       
+  --component ./compiled/dao_agent.wasm \
+  --submit-address <service_manager>
+```
+
 Make a task:
 
 ``` bash
