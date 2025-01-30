@@ -1,5 +1,5 @@
 # NFT + WAVS example
-An NFT example.
+An NFT example where the NFT is minted via an WAVS AVS.
 
 ## Installation
 
@@ -50,9 +50,6 @@ make test
 # copy over the .env file
 cp .env.example .env
 
-# [!] Get your key from: https://openweathermap.org/
-# Update the WAVS_ENV_OPEN_WEATHER_API_KEY in the .env file with your key`
-
 # MacOS Docker:
 # Docker Engine -> Settings -> Resources -> Network -> 'Enable Host Networking'
 # or
@@ -92,7 +89,7 @@ Deploy component:
 wavs-cli deploy-service --trigger eth-contract-event \
   --trigger-event-name $(cast sig-event "NewTrigger(uint64,address,bytes)") \
   --trigger-address $NFT_ADDRESS \
-  --component ./compiled/dao_agent.wasm \
+  --component ./compiled/autonomous_artist.wasm \
   --submit-address $SERVICE_PROVIDER
 ```
 

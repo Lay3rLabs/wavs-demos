@@ -51,6 +51,7 @@ contract NFTWithTrigger is
     );
 
     constructor() ERC721("TriggerNFT", "TNFT") EIP712("TriggerNFT", "1") {
+        // TODO consider what the permissions of this contract should be
         _grantRole(DEFAULT_ADMIN_ROLE, msg.sender);
         _grantRole(PAUSER_ROLE, msg.sender);
         _grantRole(SERVICE_PROVIDER_ROLE, msg.sender);
