@@ -112,11 +112,9 @@ contract NFTWithTrigger is
             "Only service provider"
         );
 
-        // Decode the mint parameters from the payload data
-        (address creator, TriggerId triggerId, string memory dataUri) = abi
-            .decode(data, (address, TriggerId, string));
-
-        require(triggersById[triggerId].creator == creator, "Invalid trigger");
+        // Decode the parameters directly from the ABI-encoded data
+        (address creator, uint256 triggerId, string memory dataUri) = abi
+            .decode(data, (address, uint256, string));
 
         // Mint new NFT
         uint256 tokenId = _nextTokenId++;
@@ -124,7 +122,7 @@ contract NFTWithTrigger is
         _tokenURIs[tokenId] = dataUri;
 
         // Clean up trigger state
-        delete triggersById[triggerId];
+        delete triggersById[TriggerId.wrap(uint64(triggerId))];
 
         emit NFTMinted(creator, tokenId, dataUri);
     }

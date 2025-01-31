@@ -1,6 +1,6 @@
 #[allow(warnings)]
 mod bindings;
-use alloy_sol_types::{sol, SolType, SolValue};
+use alloy_sol_types::{sol, SolValue};
 use anyhow::Result;
 use base64;
 use base64::Engine;
@@ -67,7 +67,7 @@ impl Guest for Component {
     fn run(trigger_action: TriggerAction) -> std::result::Result<Vec<u8>, String> {
         match trigger_action.data {
             TriggerData::EthContractEvent(TriggerDataEthContractEvent { log, .. }) => {
-                let trigger_info = <TriggerInfo as SolType>::abi_decode(&log.data, false)
+                let trigger_info = <TriggerInfo as SolValue>::abi_decode(&log.data, false)
                     .map_err(|e| format!("Failed to decode TriggerInfo: {}", e))?;
 
                 let prompt = trigger_info.prompt;
@@ -97,12 +97,14 @@ impl Guest for Component {
                     );
 
                     // Use proper encoding for ReturnData
-                    let return_struct = ReturnData {
+                    let return_data = ReturnData {
                         creator,
                         triggerId: trigger_info.triggerId,
                         dataUri: data_uri,
                     };
-                    Ok(<ReturnData as SolType>::abi_encode(&return_struct))
+
+                    // Encode using abi.encode format
+                    Ok(return_data.abi_encode())
                 })
             }
             _ => Err("Unsupported trigger data".to_string()),
