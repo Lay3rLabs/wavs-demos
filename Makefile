@@ -7,10 +7,12 @@ default: build
 CARGO=cargo
 
 ## bindings: generating bindings
+## TODO: don't skip the market related stuff
 bindings: _build_forge
 # Generate new bindings
 	@forge bind --bindings-path ./crates/bindings --crate-name bindings --overwrite \
-		--alloy --alloy-version v0.9.2 --skip Enum
+		--alloy --alloy-version v0.9.2 --skip Enum \
+		--skip HyperstitionMarket --skip LMSRMarketMaker
 	@$(CARGO) fmt --manifest-path ./crates/bindings/Cargo.toml
 
 ## build: building the project

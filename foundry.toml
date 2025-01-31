@@ -4,11 +4,11 @@ out = 'out'
 libs = ['lib']
 solidity_version = '0.8.22'
 evm_version = 'shanghai'
-fs_permissions = [{ access = "read-write", path = "./" },]
+fs_permissions = [{ access = "read-write", path = "./" }]
 via_ir = false
 exclude = [
-    "lib/WAVS/**/*.sol",    # Exclude all Solidity files under lib/WAVS
-    "lib/WAVS/lib/**/*.sol"  # Explicitly exclude all Solidity files in WAVS lib subdirectories
+    "lib/WAVS/**/*.sol",     # Exclude all Solidity files under lib/WAVS
+    "lib/WAVS/lib/**/*.sol", # Explicitly exclude all Solidity files in WAVS lib subdirectories
 ]
 
 remappings = [
@@ -30,6 +30,8 @@ remappings = [
     '@eigenlayer-contracts=lib/WAVS/lib/eigenlayer-middleware/lib/eigenlayer-contracts/src/contracts/',
     '@openzeppelin-upgrades/=lib/WAVS/lib/eigenlayer-middleware/lib/openzeppelin-contracts-upgradeable/',
     '@openzeppelin-contracts/=lib/WAVS/lib/eigenlayer-middleware/lib/openzeppelin-contracts/contracts/',
+    '@lay3rlabs/conditional-tokens-contracts/=lib/conditional-tokens-contracts/contracts/',
+    '@lay3rlabs/conditional-tokens-market-makers/=lib/conditional-tokens-market-makers/contracts/',
 ]
 
 [profile.bind]
