@@ -120,6 +120,7 @@ contract BuyYesHyperstitionMarket is Script {
         address conditionalTokensAddress = vm.envAddress(
             "CONDITIONAL_TOKENS_ADDRESS"
         );
+        int256 buying = 1e18;
 
         marketMaker = LMSRMarketMaker(marketMakerAddress);
         conditionalTokens = ConditionalTokens(conditionalTokensAddress);
@@ -130,18 +131,25 @@ contract BuyYesHyperstitionMarket is Script {
         console.log("Market maker address:", marketMakerAddress);
         console.log("Collateral token address:", collateralTokenAddress);
         console.log("Conditional tokens address:", conditionalTokensAddress);
+
         vm.startBroadcast(deployerPrivateKey);
 
-        collateralToken.mint(deployer, 1e18);
+        collateralToken.mint(deployer, uint256(buying));
+        collateralToken.approve(address(marketMaker), uint256(buying));
 
         bytes32 conditionId = conditionalTokens.getConditionId(
             factoryAddress,
             bytes32(0),
             2
         );
+        bytes32 collectionId = conditionalTokens.getCollectionId(
+            bytes32(0),
+            conditionId,
+            1
+        );
         uint256 positionId = conditionalTokens.getPositionId(
             IERC20(collateralTokenAddress),
-            conditionId
+            collectionId
         );
         console.log(
             "Collateral balance before:",
@@ -154,13 +162,9 @@ contract BuyYesHyperstitionMarket is Script {
 
         // buy all YES
         int256[] memory outcomeTokenAmounts = new int256[](2);
-        outcomeTokenAmounts[0] = 1e18;
+        outcomeTokenAmounts[0] = buying;
         outcomeTokenAmounts[1] = 0;
-        int256 collateralLimit = 1e18;
-        int256 netCost = marketMaker.trade(
-            outcomeTokenAmounts,
-            collateralLimit
-        );
+        int256 netCost = marketMaker.trade(outcomeTokenAmounts, buying);
 
         console.log("Net cost:", netCost);
         console.log(
@@ -197,18 +201,22 @@ contract RedeemHyperstitionMarket is Script {
         console.log("Factory address:", factoryAddress);
         console.log("Collateral token address:", collateralTokenAddress);
         console.log("Conditional tokens address:", conditionalTokensAddress);
-        vm.startBroadcast(deployerPrivateKey);
 
-        collateralToken.mint(deployer, 1e18);
+        vm.startBroadcast(deployerPrivateKey);
 
         bytes32 conditionId = conditionalTokens.getConditionId(
             factoryAddress,
             bytes32(0),
             2
         );
+        bytes32 collectionId = conditionalTokens.getCollectionId(
+            bytes32(0),
+            conditionId,
+            1
+        );
         uint256 positionId = conditionalTokens.getPositionId(
             IERC20(collateralTokenAddress),
-            conditionId
+            collectionId
         );
         console.log(
             "Collateral balance before:",
@@ -221,7 +229,7 @@ contract RedeemHyperstitionMarket is Script {
 
         // redeem payout
         uint256[] memory indexSets = new uint256[](1);
-        indexSets[0] = 0;
+        indexSets[0] = 1;
         conditionalTokens.redeemPositions(
             IERC20(collateralTokenAddress),
             bytes32(0),
@@ -244,7 +252,7 @@ contract RedeemHyperstitionMarket is Script {
 
 contract ResolveHyperstitionMarketTrigger is Script {
     function run() public {
-        uint256 userPrivateKey = vm.envUint("PRIVATE_KEY");
+        uint256 deployerPrivateKey = vm.envUint("PRIVATE_KEY");
 
         address factoryAddress = vm.envAddress("HYPERSTITION_FACTORY_ADDRESS");
         address marketMakerAddress = vm.envAddress("MARKET_MAKER_ADDRESS");
@@ -256,7 +264,7 @@ contract ResolveHyperstitionMarketTrigger is Script {
             factoryAddress
         );
 
-        vm.startBroadcast(userPrivateKey);
+        vm.startBroadcast(deployerPrivateKey);
 
         // Create test trigger data using the provided message
         HyperstitionMarketFactory.TriggerData
