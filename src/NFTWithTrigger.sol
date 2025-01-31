@@ -112,7 +112,7 @@ contract NFTWithTrigger is
             "Only service provider"
         );
 
-        // Decode the parameters directly from the ABI-encoded data
+        // Decode the parameters using abi.decode
         (address creator, uint256 triggerId, string memory dataUri) = abi
             .decode(data, (address, uint256, string));
 

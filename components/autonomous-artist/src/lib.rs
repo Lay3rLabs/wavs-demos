@@ -96,7 +96,7 @@ impl Guest for Component {
                         base64::engine::general_purpose::STANDARD.encode(json)
                     );
 
-                    // Use proper encoding for ReturnData
+                    // Create the return data
                     let return_data = ReturnData {
                         creator,
                         triggerId: trigger_info.triggerId,
