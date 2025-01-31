@@ -2432,6 +2432,24 @@ dependencies = [
 ]
 
 [[package]]
+name = "hyperstition-market-resolver"
+version = "0.1.0"
+dependencies = [
+ "alloy-primitives",
+ "alloy-sol-types",
+ "anyhow",
+ "base64 0.22.1",
+ "ethabi",
+ "hex",
+ "layer-wasi",
+ "mockall",
+ "primitive-types 0.13.1",
+ "serde",
+ "serde_json",
+ "wit-bindgen-rt 0.37.0",
+]
+
+[[package]]
 name = "ibc-proto"
 version = "0.49.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
