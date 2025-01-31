@@ -24,7 +24,12 @@ remappings = [
     'eigenlayer-contracts/=lib/WAVS/lib/eigenlayer-middleware/lib/eigenlayer-contracts/',
     'eigenlayer-middleware/=lib/WAVS/lib/eigenlayer-middleware/',
     '@gnosis.pm/zodiac/=lib/zodiac/',
-    '@wavs=lib/WAVS/sdk/contracts/solidity/'
+    '@wavs=lib/WAVS/sdk/contracts/solidity/',
+    '@layer-contracts=lib/WAVS/sdk/solidity/contracts/',
+    '@eigenlayer-middleware=lib/WAVS/lib/eigenlayer-middleware/',
+    '@eigenlayer-contracts=lib/WAVS/lib/eigenlayer-middleware/lib/eigenlayer-contracts/src/contracts/',
+    '@openzeppelin-upgrades/=lib/WAVS/lib/eigenlayer-middleware/lib/openzeppelin-contracts-upgradeable/',
+    '@openzeppelin-contracts/=lib/WAVS/lib/eigenlayer-middleware/lib/openzeppelin-contracts/contracts/',
 ]
 
 [profile.bind]

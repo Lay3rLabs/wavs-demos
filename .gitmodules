@@ -4,6 +4,7 @@
 [submodule "lib/WAVS"]
 	path = lib/WAVS
 	url = git@github.com:Lay3rLabs/WAVS.git
+	branch = 58b1d93fef05b056cbd02e7c6be3ba76c39eed89
 [submodule "lib/safe-contracts"]
 	path = lib/safe-contracts
 	url = https://github.com/safe-global/safe-contracts

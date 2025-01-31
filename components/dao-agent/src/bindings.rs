@@ -789,7 +789,7 @@ macro_rules! __export_layer_trigger_world_impl {
 #[doc(inline)]
 pub(crate) use __export_layer_trigger_world_impl as export;
 #[cfg(target_arch = "wasm32")]
-#[link_section = "component-type:wit-bindgen:0.35.0:lay3r:avs@0.3.0:layer-trigger-world:encoded world"]
+#[link_section = "component-type:wit-bindgen:0.31.0:lay3r:avs@0.3.0:layer-trigger-world:encoded world"]
 #[doc(hidden)]
 pub static __WIT_BINDGEN_COMPONENT_TYPE: [u8; 1454] = *b"\
 \0asm\x0d\0\x01\0\0\x19\x16wit-component-encoding\x04\0\x07\xa4\x0a\x01A\x02\x01\
@@ -811,16 +811,16 @@ ontract-event\x03\0\x19\x01r\x04\x10contract-address\x01\x0achain-names\x05event
 \x05\x0cblock-heightw\x04\0\"trigger-data-cosmos-contract-event\x03\0\x1b\x01q\x03\
 \x12eth-contract-event\x01\x1a\0\x15cosmos-contract-event\x01\x1c\0\x03raw\x01\x09\
 \0\x04\0\x0ctrigger-data\x03\0\x1d\x01r\x02\x06config\x18\x04data\x1e\x04\0\x0et\
-rigger-action\x03\0\x1f\x03\0\x1blay3r:avs/layer-types@0.3.0\x05\0\x02\x03\0\0\x0e\
-trigger-action\x03\0\x0etrigger-action\x03\0\x01\x02\x03\0\0\x10eth-chain-config\
-\x02\x03\0\0\x13cosmos-chain-config\x01B\x0a\x02\x03\x02\x01\x03\x04\0\x10eth-ch\
-ain-config\x03\0\0\x02\x03\x02\x01\x04\x04\0\x13cosmos-chain-config\x03\0\x02\x01\
-k\x01\x01@\x01\x0achain-names\0\x04\x04\0\x14get-eth-chain-config\x01\x05\x01k\x03\
-\x01@\x01\x0achain-names\0\x06\x04\0\x17get-cosmos-chain-config\x01\x07\x03\0\x04\
-host\x05\x05\x01p}\x01j\x01\x06\x01s\x01@\x01\x0etrigger-action\x02\0\x07\x04\0\x03\
-run\x01\x08\x04\0#lay3r:avs/layer-trigger-world@0.3.0\x04\0\x0b\x19\x01\0\x13lay\
-er-trigger-world\x03\0\0\0G\x09producers\x01\x0cprocessed-by\x02\x0dwit-componen\
-t\x070.220.0\x10wit-bindgen-rust\x060.35.0";
+rigger-action\x03\0\x1f\x03\x01\x1blay3r:avs/layer-types@0.3.0\x05\0\x02\x03\0\0\
+\x10eth-chain-config\x02\x03\0\0\x13cosmos-chain-config\x01B\x0a\x02\x03\x02\x01\
+\x01\x04\0\x10eth-chain-config\x03\0\0\x02\x03\x02\x01\x02\x04\0\x13cosmos-chain\
+-config\x03\0\x02\x01k\x01\x01@\x01\x0achain-names\0\x04\x04\0\x14get-eth-chain-\
+config\x01\x05\x01k\x03\x01@\x01\x0achain-names\0\x06\x04\0\x17get-cosmos-chain-\
+config\x01\x07\x03\0\x04host\x05\x03\x02\x03\0\0\x0etrigger-action\x03\0\x0etrig\
+ger-action\x03\0\x04\x01p}\x01j\x01\x06\x01s\x01@\x01\x0etrigger-action\x05\0\x07\
+\x04\0\x03run\x01\x08\x04\x01#lay3r:avs/layer-trigger-world@0.3.0\x04\0\x0b\x19\x01\
+\0\x13layer-trigger-world\x03\0\0\0G\x09producers\x01\x0cprocessed-by\x02\x0dwit\
+-component\x070.216.0\x10wit-bindgen-rust\x060.31.0";
 #[inline(never)]
 #[doc(hidden)]
 pub fn __link_custom_section_describing_imports() {
