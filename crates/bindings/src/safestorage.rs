@@ -22,22 +22,22 @@ pub mod SafeStorage {
     /// The creation / init bytecode of the contract.
     ///
     /// ```text
-    ///0x6080604052348015600e575f5ffd5b50603e80601a5f395ff3fe60806040525f5ffdfea2646970667358221220138d8389aad7cd67e70f2de0bb876698840e95049ef25ec36234c8b43c005c5f64736f6c634300081c0033
+    ///0x6080604052348015600e575f5ffd5b50603e80601a5f395ff3fe60806040525f5ffdfea26469706673582212206f577023493f28b791755cb7c47e341efdf098197f971d32a697a69f1acd086364736f6c634300081c0033
     /// ```
     #[rustfmt::skip]
     #[allow(clippy::all)]
     pub static BYTECODE: alloy_sol_types::private::Bytes = alloy_sol_types::private::Bytes::from_static(
-        b"`\x80`@R4\x80\x15`\x0EW__\xFD[P`>\x80`\x1A_9_\xF3\xFE`\x80`@R__\xFD\xFE\xA2dipfsX\"\x12 \x13\x8D\x83\x89\xAA\xD7\xCDg\xE7\x0F-\xE0\xBB\x87f\x98\x84\x0E\x95\x04\x9E\xF2^\xC3b4\xC8\xB4<\0\\_dsolcC\0\x08\x1C\x003",
+        b"`\x80`@R4\x80\x15`\x0EW__\xFD[P`>\x80`\x1A_9_\xF3\xFE`\x80`@R__\xFD\xFE\xA2dipfsX\"\x12 oWp#I?(\xB7\x91u\\\xB7\xC4~4\x1E\xFD\xF0\x98\x19\x7F\x97\x1D2\xA6\x97\xA6\x9F\x1A\xCD\x08cdsolcC\0\x08\x1C\x003",
     );
     /// The runtime bytecode of the contract, as deployed on the network.
     ///
     /// ```text
-    ///0x60806040525f5ffdfea2646970667358221220138d8389aad7cd67e70f2de0bb876698840e95049ef25ec36234c8b43c005c5f64736f6c634300081c0033
+    ///0x60806040525f5ffdfea26469706673582212206f577023493f28b791755cb7c47e341efdf098197f971d32a697a69f1acd086364736f6c634300081c0033
     /// ```
     #[rustfmt::skip]
     #[allow(clippy::all)]
     pub static DEPLOYED_BYTECODE: alloy_sol_types::private::Bytes = alloy_sol_types::private::Bytes::from_static(
-        b"`\x80`@R__\xFD\xFE\xA2dipfsX\"\x12 \x13\x8D\x83\x89\xAA\xD7\xCDg\xE7\x0F-\xE0\xBB\x87f\x98\x84\x0E\x95\x04\x9E\xF2^\xC3b4\xC8\xB4<\0\\_dsolcC\0\x08\x1C\x003",
+        b"`\x80`@R__\xFD\xFE\xA2dipfsX\"\x12 oWp#I?(\xB7\x91u\\\xB7\xC4~4\x1E\xFD\xF0\x98\x19\x7F\x97\x1D2\xA6\x97\xA6\x9F\x1A\xCD\x08cdsolcC\0\x08\x1C\x003",
     );
     use alloy::contract as alloy_contract;
     /**Creates a new wrapper around an on-chain [`SafeStorage`](self) contract instance.
