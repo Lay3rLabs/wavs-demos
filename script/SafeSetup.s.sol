@@ -9,28 +9,31 @@ import "@gnosis.pm/safe-contracts/contracts/proxies/SafeProxyFactory.sol";
 import "@gnosis.pm/safe-contracts/contracts/base/ModuleManager.sol";
 
 contract SafeSetupScript is Script {
-    // Known contract addresses - replace with actual addresses for different networks
-    address constant SAFE_SINGLETON_MAINNET =
-        0x41675C099F32341bf84BFc5382aF534df5C7461a;
-    address constant SAFE_FACTORY_MAINNET =
-        0x4e1DCf7AD4e460CfD30791CCC4F9c8a4f820ec67;
+    Safe public safeSingleton;
+    SafeProxyFactory public factory;
 
     function setUp() public {}
 
     function run() public {
+        // Get deployment private key and start broadcasting
         uint256 deployerPrivateKey = vm.envUint("PRIVATE_KEY");
         vm.startBroadcast(deployerPrivateKey);
 
-        // Get the required addresses from environment
-        address serviceManager = vm.envAddress("SERVICE_MANAGER");
-        address stakeRegistry = vm.envAddress("STAKE_REGISTRY");
+        // Deploy Safe singleton and factory first if needed
+        safeSingleton = new Safe();
+        factory = new SafeProxyFactory();
+        console.log("Deployed Safe singleton at:", address(safeSingleton));
+        console.log("Deployed Safe factory at:", address(factory));
+
+        // Get the service provider address from environment
+        address serviceProvider = vm.envAddress("SERVICE_PROVIDER");
 
         // Get Safe setup parameters from environment
         address[] memory owners = _getOwners();
         uint256 threshold = vm.envUint("SAFE_THRESHOLD");
         address fallbackHandler = vm.envAddress("SAFE_FALLBACK_HANDLER");
 
-        // Deploy or get existing Safe
+        // Deploy new Safe if DEPLOY_NEW_SAFE is true
         address safeAddress;
         if (vm.envBool("DEPLOY_NEW_SAFE")) {
             safeAddress = _deploySafe(owners, threshold, fallbackHandler);
@@ -41,15 +44,29 @@ contract SafeSetupScript is Script {
         }
         Safe safe = Safe(payable(safeAddress));
 
-        // Deploy SafeModule
-        SafeModule module = new SafeModule(safeAddress, serviceManager);
+        // Deploy SafeModule with just the Safe address
+        SafeModule module = new SafeModule(safeAddress);
         console.log("Deployed SafeModule at:", address(module));
 
-        // Deploy SafeGuard
-        SafeGuard guard = new SafeGuard(safeAddress, stakeRegistry);
+        // Initialize the module with service provider
+        module.initialize(serviceProvider);
+        console.log(
+            "Initialized SafeModule with service provider:",
+            serviceProvider
+        );
+
+        // Deploy SafeGuard with just the Safe address
+        SafeGuard guard = new SafeGuard(safeAddress);
         console.log("Deployed SafeGuard at:", address(guard));
 
-        // If we're working with a new Safe, set up both module and guard
+        // Initialize the guard with service provider
+        guard.initialize(serviceProvider);
+        console.log(
+            "Initialized SafeGuard with service provider:",
+            serviceProvider
+        );
+
+        // If we're working with a new Safe, enable module and set guard automatically
         if (vm.envBool("DEPLOY_NEW_SAFE")) {
             _enableModule(safe, address(module));
             console.log("Enabled module on Safe");
@@ -81,19 +98,16 @@ contract SafeSetupScript is Script {
         uint256 threshold,
         address fallbackHandler
     ) internal returns (address) {
-        Safe safeSingleton = Safe(payable(SAFE_SINGLETON_MAINNET));
-        SafeProxyFactory factory = SafeProxyFactory(SAFE_FACTORY_MAINNET);
-
         bytes memory initializer = abi.encodeWithSelector(
             Safe.setup.selector,
             owners,
             threshold,
-            address(0), // to
-            "", // data
+            address(0),
+            "",
             fallbackHandler,
-            address(0), // payment token
-            0, // payment
-            payable(address(0)) // payment receiver
+            address(0),
+            0,
+            payable(address(0))
         );
 
         address safeAddress = address(
@@ -125,7 +139,7 @@ contract SafeSetupScript is Script {
 
     function _setGuard(Safe safe, address guard) internal {
         bytes memory data = abi.encodeWithSelector(
-            bytes4(keccak256("setGuard(address)")),
+            GuardManager.setGuard.selector,
             guard
         );
 

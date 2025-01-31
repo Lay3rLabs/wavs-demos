@@ -26,34 +26,27 @@ pub mod Enum {
             #[inline]
             fn stv_to_tokens(
                 &self,
-            ) -> <alloy::sol_types::sol_data::Uint<
-                8,
-            > as alloy_sol_types::SolType>::Token<'_> {
+            ) -> <alloy::sol_types::sol_data::Uint<8> as alloy_sol_types::SolType>::Token<'_>
+            {
                 alloy_sol_types::private::SolTypeValue::<
                     alloy::sol_types::sol_data::Uint<8>,
                 >::stv_to_tokens(self)
             }
             #[inline]
             fn stv_eip712_data_word(&self) -> alloy_sol_types::Word {
-                <alloy::sol_types::sol_data::Uint<
-                    8,
-                > as alloy_sol_types::SolType>::tokenize(self)
-                    .0
+                <alloy::sol_types::sol_data::Uint<8> as alloy_sol_types::SolType>::tokenize(self).0
             }
             #[inline]
-            fn stv_abi_encode_packed_to(
-                &self,
-                out: &mut alloy_sol_types::private::Vec<u8>,
-            ) {
+            fn stv_abi_encode_packed_to(&self, out: &mut alloy_sol_types::private::Vec<u8>) {
                 <alloy::sol_types::sol_data::Uint<
                     8,
                 > as alloy_sol_types::SolType>::abi_encode_packed_to(self, out)
             }
             #[inline]
             fn stv_abi_packed_encoded_size(&self) -> usize {
-                <alloy::sol_types::sol_data::Uint<
-                    8,
-                > as alloy_sol_types::SolType>::abi_encoded_size(self)
+                <alloy::sol_types::sol_data::Uint<8> as alloy_sol_types::SolType>::abi_encoded_size(
+                    self,
+                )
             }
         }
         #[automatically_derived]
@@ -86,13 +79,11 @@ pub mod Enum {
         #[automatically_derived]
         impl alloy_sol_types::SolType for Operation {
             type RustType = u8;
-            type Token<'a> = <alloy::sol_types::sol_data::Uint<
-                8,
-            > as alloy_sol_types::SolType>::Token<'a>;
+            type Token<'a> =
+                <alloy::sol_types::sol_data::Uint<8> as alloy_sol_types::SolType>::Token<'a>;
             const SOL_NAME: &'static str = Self::NAME;
-            const ENCODED_SIZE: Option<usize> = <alloy::sol_types::sol_data::Uint<
-                8,
-            > as alloy_sol_types::SolType>::ENCODED_SIZE;
+            const ENCODED_SIZE: Option<usize> =
+                <alloy::sol_types::sol_data::Uint<8> as alloy_sol_types::SolType>::ENCODED_SIZE;
             const PACKED_ENCODED_SIZE: Option<usize> = <alloy::sol_types::sol_data::Uint<
                 8,
             > as alloy_sol_types::SolType>::PACKED_ENCODED_SIZE;
@@ -102,15 +93,11 @@ pub mod Enum {
             }
             #[inline]
             fn type_check(token: &Self::Token<'_>) -> alloy_sol_types::Result<()> {
-                <alloy::sol_types::sol_data::Uint<
-                    8,
-                > as alloy_sol_types::SolType>::type_check(token)
+                <alloy::sol_types::sol_data::Uint<8> as alloy_sol_types::SolType>::type_check(token)
             }
             #[inline]
             fn detokenize(token: Self::Token<'_>) -> Self::RustType {
-                <alloy::sol_types::sol_data::Uint<
-                    8,
-                > as alloy_sol_types::SolType>::detokenize(token)
+                <alloy::sol_types::sol_data::Uint<8> as alloy_sol_types::SolType>::detokenize(token)
             }
         }
         #[automatically_derived]
@@ -131,38 +118,39 @@ pub mod Enum {
                 > as alloy_sol_types::EventTopic>::encode_topic_preimage(rust, out)
             }
             #[inline]
-            fn encode_topic(
-                rust: &Self::RustType,
-            ) -> alloy_sol_types::abi::token::WordToken {
-                <alloy::sol_types::sol_data::Uint<
-                    8,
-                > as alloy_sol_types::EventTopic>::encode_topic(rust)
+            fn encode_topic(rust: &Self::RustType) -> alloy_sol_types::abi::token::WordToken {
+                <alloy::sol_types::sol_data::Uint<8> as alloy_sol_types::EventTopic>::encode_topic(
+                    rust,
+                )
             }
         }
     };
     use alloy::contract as alloy_contract;
     /**Creates a new wrapper around an on-chain [`Enum`](self) contract instance.
 
-See the [wrapper's documentation](`EnumInstance`) for more details.*/
+    See the [wrapper's documentation](`EnumInstance`) for more details.*/
     #[inline]
     pub const fn new<
         T: alloy_contract::private::Transport + ::core::clone::Clone,
         P: alloy_contract::private::Provider<T, N>,
         N: alloy_contract::private::Network,
-    >(address: alloy_sol_types::private::Address, provider: P) -> EnumInstance<T, P, N> {
+    >(
+        address: alloy_sol_types::private::Address,
+        provider: P,
+    ) -> EnumInstance<T, P, N> {
         EnumInstance::<T, P, N>::new(address, provider)
     }
     /**A [`Enum`](self) instance.
 
-Contains type-safe methods for interacting with an on-chain instance of the
-[`Enum`](self) contract located at a given `address`, using a given
-provider `P`.
+    Contains type-safe methods for interacting with an on-chain instance of the
+    [`Enum`](self) contract located at a given `address`, using a given
+    provider `P`.
 
-If the contract bytecode is available (see the [`sol!`](alloy_sol_types::sol!)
-documentation on how to provide it), the `deploy` and `deploy_builder` methods can
-be used to deploy a new instance of the contract.
+    If the contract bytecode is available (see the [`sol!`](alloy_sol_types::sol!)
+    documentation on how to provide it), the `deploy` and `deploy_builder` methods can
+    be used to deploy a new instance of the contract.
 
-See the [module-level documentation](self) for all the available methods.*/
+    See the [module-level documentation](self) for all the available methods.*/
     #[derive(Clone)]
     pub struct EnumInstance<T, P, N = alloy_contract::private::Ethereum> {
         address: alloy_sol_types::private::Address,
@@ -179,23 +167,17 @@ See the [module-level documentation](self) for all the available methods.*/
     /// Instantiation and getters/setters.
     #[automatically_derived]
     impl<
-        T: alloy_contract::private::Transport + ::core::clone::Clone,
-        P: alloy_contract::private::Provider<T, N>,
-        N: alloy_contract::private::Network,
-    > EnumInstance<T, P, N> {
+            T: alloy_contract::private::Transport + ::core::clone::Clone,
+            P: alloy_contract::private::Provider<T, N>,
+            N: alloy_contract::private::Network,
+        > EnumInstance<T, P, N>
+    {
         /**Creates a new wrapper around an on-chain [`Enum`](self) contract instance.
 
-See the [wrapper's documentation](`EnumInstance`) for more details.*/
+        See the [wrapper's documentation](`EnumInstance`) for more details.*/
         #[inline]
-        pub const fn new(
-            address: alloy_sol_types::private::Address,
-            provider: P,
-        ) -> Self {
-            Self {
-                address,
-                provider,
-                _network_transport: ::core::marker::PhantomData,
-            }
+        pub const fn new(address: alloy_sol_types::private::Address, provider: P) -> Self {
+            Self { address, provider, _network_transport: ::core::marker::PhantomData }
         }
         /// Returns a reference to the address.
         #[inline]
@@ -232,10 +214,11 @@ See the [wrapper's documentation](`EnumInstance`) for more details.*/
     /// Function calls.
     #[automatically_derived]
     impl<
-        T: alloy_contract::private::Transport + ::core::clone::Clone,
-        P: alloy_contract::private::Provider<T, N>,
-        N: alloy_contract::private::Network,
-    > EnumInstance<T, P, N> {
+            T: alloy_contract::private::Transport + ::core::clone::Clone,
+            P: alloy_contract::private::Provider<T, N>,
+            N: alloy_contract::private::Network,
+        > EnumInstance<T, P, N>
+    {
         /// Creates a new call builder using this contract instance's provider and address.
         ///
         /// Note that the call can be any function call, not just those defined in this
@@ -250,10 +233,11 @@ See the [wrapper's documentation](`EnumInstance`) for more details.*/
     /// Event filters.
     #[automatically_derived]
     impl<
-        T: alloy_contract::private::Transport + ::core::clone::Clone,
-        P: alloy_contract::private::Provider<T, N>,
-        N: alloy_contract::private::Network,
-    > EnumInstance<T, P, N> {
+            T: alloy_contract::private::Transport + ::core::clone::Clone,
+            P: alloy_contract::private::Provider<T, N>,
+            N: alloy_contract::private::Network,
+        > EnumInstance<T, P, N>
+    {
         /// Creates a new event filter using this contract instance's provider and address.
         ///
         /// Note that the type can be any event, not just those defined in this contract.
@@ -528,73 +512,31 @@ pub mod ModuleManager {
         b"",
     );
     /**Event with signature `DisabledModule(address)` and selector `0xaab4fa2b463f581b2b32cb3b7e3b704b9ce37cc209b5fb4d77e593ace4054276`.
-```solidity
-event DisabledModule(address indexed module);
-```*/
-    #[allow(
-        non_camel_case_types,
-        non_snake_case,
-        clippy::pub_underscore_fields,
-        clippy::style
-    )]
+    ```solidity
+    event DisabledModule(address indexed module);
+    ```*/
+    #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields, clippy::style)]
     #[derive(Clone)]
     pub struct DisabledModule {
         #[allow(missing_docs)]
         pub module: alloy::sol_types::private::Address,
     }
-    #[allow(
-        non_camel_case_types,
-        non_snake_case,
-        clippy::pub_underscore_fields,
-        clippy::style
-    )]
+    #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields, clippy::style)]
     const _: () = {
         use alloy::sol_types as alloy_sol_types;
         #[automatically_derived]
         impl alloy_sol_types::SolEvent for DisabledModule {
             type DataTuple<'a> = ();
-            type DataToken<'a> = <Self::DataTuple<
-                'a,
-            > as alloy_sol_types::SolType>::Token<'a>;
-            type TopicList = (
-                alloy_sol_types::sol_data::FixedBytes<32>,
-                alloy::sol_types::sol_data::Address,
-            );
+            type DataToken<'a> = <Self::DataTuple<'a> as alloy_sol_types::SolType>::Token<'a>;
+            type TopicList =
+                (alloy_sol_types::sol_data::FixedBytes<32>, alloy::sol_types::sol_data::Address);
             const SIGNATURE: &'static str = "DisabledModule(address)";
-            const SIGNATURE_HASH: alloy_sol_types::private::B256 = alloy_sol_types::private::B256::new([
-                170u8,
-                180u8,
-                250u8,
-                43u8,
-                70u8,
-                63u8,
-                88u8,
-                27u8,
-                43u8,
-                50u8,
-                203u8,
-                59u8,
-                126u8,
-                59u8,
-                112u8,
-                75u8,
-                156u8,
-                227u8,
-                124u8,
-                194u8,
-                9u8,
-                181u8,
-                251u8,
-                77u8,
-                119u8,
-                229u8,
-                147u8,
-                172u8,
-                228u8,
-                5u8,
-                66u8,
-                118u8,
-            ]);
+            const SIGNATURE_HASH: alloy_sol_types::private::B256 =
+                alloy_sol_types::private::B256::new([
+                    170u8, 180u8, 250u8, 43u8, 70u8, 63u8, 88u8, 27u8, 43u8, 50u8, 203u8, 59u8,
+                    126u8, 59u8, 112u8, 75u8, 156u8, 227u8, 124u8, 194u8, 9u8, 181u8, 251u8, 77u8,
+                    119u8, 229u8, 147u8, 172u8, 228u8, 5u8, 66u8, 118u8,
+                ]);
             const ANONYMOUS: bool = false;
             #[allow(unused_variables)]
             #[inline]
@@ -609,13 +551,11 @@ event DisabledModule(address indexed module);
                 topics: &<Self::TopicList as alloy_sol_types::SolType>::RustType,
             ) -> alloy_sol_types::Result<()> {
                 if topics.0 != Self::SIGNATURE_HASH {
-                    return Err(
-                        alloy_sol_types::Error::invalid_event_signature_hash(
-                            Self::SIGNATURE,
-                            topics.0,
-                            Self::SIGNATURE_HASH,
-                        ),
-                    );
+                    return Err(alloy_sol_types::Error::invalid_event_signature_hash(
+                        Self::SIGNATURE,
+                        topics.0,
+                        Self::SIGNATURE_HASH,
+                    ));
                 }
                 Ok(())
             }
@@ -635,9 +575,7 @@ event DisabledModule(address indexed module);
                 if out.len() < <Self::TopicList as alloy_sol_types::TopicList>::COUNT {
                     return Err(alloy_sol_types::Error::Overrun);
                 }
-                out[0usize] = alloy_sol_types::abi::token::WordToken(
-                    Self::SIGNATURE_HASH,
-                );
+                out[0usize] = alloy_sol_types::abi::token::WordToken(Self::SIGNATURE_HASH);
                 out[1usize] = <alloy::sol_types::sol_data::Address as alloy_sol_types::EventTopic>::encode_topic(
                     &self.module,
                 );
@@ -662,73 +600,31 @@ event DisabledModule(address indexed module);
         }
     };
     /**Event with signature `EnabledModule(address)` and selector `0xecdf3a3effea5783a3c4c2140e677577666428d44ed9d474a0b3a4c9943f8440`.
-```solidity
-event EnabledModule(address indexed module);
-```*/
-    #[allow(
-        non_camel_case_types,
-        non_snake_case,
-        clippy::pub_underscore_fields,
-        clippy::style
-    )]
+    ```solidity
+    event EnabledModule(address indexed module);
+    ```*/
+    #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields, clippy::style)]
     #[derive(Clone)]
     pub struct EnabledModule {
         #[allow(missing_docs)]
         pub module: alloy::sol_types::private::Address,
     }
-    #[allow(
-        non_camel_case_types,
-        non_snake_case,
-        clippy::pub_underscore_fields,
-        clippy::style
-    )]
+    #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields, clippy::style)]
     const _: () = {
         use alloy::sol_types as alloy_sol_types;
         #[automatically_derived]
         impl alloy_sol_types::SolEvent for EnabledModule {
             type DataTuple<'a> = ();
-            type DataToken<'a> = <Self::DataTuple<
-                'a,
-            > as alloy_sol_types::SolType>::Token<'a>;
-            type TopicList = (
-                alloy_sol_types::sol_data::FixedBytes<32>,
-                alloy::sol_types::sol_data::Address,
-            );
+            type DataToken<'a> = <Self::DataTuple<'a> as alloy_sol_types::SolType>::Token<'a>;
+            type TopicList =
+                (alloy_sol_types::sol_data::FixedBytes<32>, alloy::sol_types::sol_data::Address);
             const SIGNATURE: &'static str = "EnabledModule(address)";
-            const SIGNATURE_HASH: alloy_sol_types::private::B256 = alloy_sol_types::private::B256::new([
-                236u8,
-                223u8,
-                58u8,
-                62u8,
-                255u8,
-                234u8,
-                87u8,
-                131u8,
-                163u8,
-                196u8,
-                194u8,
-                20u8,
-                14u8,
-                103u8,
-                117u8,
-                119u8,
-                102u8,
-                100u8,
-                40u8,
-                212u8,
-                78u8,
-                217u8,
-                212u8,
-                116u8,
-                160u8,
-                179u8,
-                164u8,
-                201u8,
-                148u8,
-                63u8,
-                132u8,
-                64u8,
-            ]);
+            const SIGNATURE_HASH: alloy_sol_types::private::B256 =
+                alloy_sol_types::private::B256::new([
+                    236u8, 223u8, 58u8, 62u8, 255u8, 234u8, 87u8, 131u8, 163u8, 196u8, 194u8, 20u8,
+                    14u8, 103u8, 117u8, 119u8, 102u8, 100u8, 40u8, 212u8, 78u8, 217u8, 212u8,
+                    116u8, 160u8, 179u8, 164u8, 201u8, 148u8, 63u8, 132u8, 64u8,
+                ]);
             const ANONYMOUS: bool = false;
             #[allow(unused_variables)]
             #[inline]
@@ -743,13 +639,11 @@ event EnabledModule(address indexed module);
                 topics: &<Self::TopicList as alloy_sol_types::SolType>::RustType,
             ) -> alloy_sol_types::Result<()> {
                 if topics.0 != Self::SIGNATURE_HASH {
-                    return Err(
-                        alloy_sol_types::Error::invalid_event_signature_hash(
-                            Self::SIGNATURE,
-                            topics.0,
-                            Self::SIGNATURE_HASH,
-                        ),
-                    );
+                    return Err(alloy_sol_types::Error::invalid_event_signature_hash(
+                        Self::SIGNATURE,
+                        topics.0,
+                        Self::SIGNATURE_HASH,
+                    ));
                 }
                 Ok(())
             }
@@ -769,9 +663,7 @@ event EnabledModule(address indexed module);
                 if out.len() < <Self::TopicList as alloy_sol_types::TopicList>::COUNT {
                     return Err(alloy_sol_types::Error::Overrun);
                 }
-                out[0usize] = alloy_sol_types::abi::token::WordToken(
-                    Self::SIGNATURE_HASH,
-                );
+                out[0usize] = alloy_sol_types::abi::token::WordToken(Self::SIGNATURE_HASH);
                 out[1usize] = <alloy::sol_types::sol_data::Address as alloy_sol_types::EventTopic>::encode_topic(
                     &self.module,
                 );
@@ -796,73 +688,31 @@ event EnabledModule(address indexed module);
         }
     };
     /**Event with signature `ExecutionFromModuleFailure(address)` and selector `0xacd2c8702804128fdb0db2bb49f6d127dd0181c13fd45dbfe16de0930e2bd375`.
-```solidity
-event ExecutionFromModuleFailure(address indexed module);
-```*/
-    #[allow(
-        non_camel_case_types,
-        non_snake_case,
-        clippy::pub_underscore_fields,
-        clippy::style
-    )]
+    ```solidity
+    event ExecutionFromModuleFailure(address indexed module);
+    ```*/
+    #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields, clippy::style)]
     #[derive(Clone)]
     pub struct ExecutionFromModuleFailure {
         #[allow(missing_docs)]
         pub module: alloy::sol_types::private::Address,
     }
-    #[allow(
-        non_camel_case_types,
-        non_snake_case,
-        clippy::pub_underscore_fields,
-        clippy::style
-    )]
+    #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields, clippy::style)]
     const _: () = {
         use alloy::sol_types as alloy_sol_types;
         #[automatically_derived]
         impl alloy_sol_types::SolEvent for ExecutionFromModuleFailure {
             type DataTuple<'a> = ();
-            type DataToken<'a> = <Self::DataTuple<
-                'a,
-            > as alloy_sol_types::SolType>::Token<'a>;
-            type TopicList = (
-                alloy_sol_types::sol_data::FixedBytes<32>,
-                alloy::sol_types::sol_data::Address,
-            );
+            type DataToken<'a> = <Self::DataTuple<'a> as alloy_sol_types::SolType>::Token<'a>;
+            type TopicList =
+                (alloy_sol_types::sol_data::FixedBytes<32>, alloy::sol_types::sol_data::Address);
             const SIGNATURE: &'static str = "ExecutionFromModuleFailure(address)";
-            const SIGNATURE_HASH: alloy_sol_types::private::B256 = alloy_sol_types::private::B256::new([
-                172u8,
-                210u8,
-                200u8,
-                112u8,
-                40u8,
-                4u8,
-                18u8,
-                143u8,
-                219u8,
-                13u8,
-                178u8,
-                187u8,
-                73u8,
-                246u8,
-                209u8,
-                39u8,
-                221u8,
-                1u8,
-                129u8,
-                193u8,
-                63u8,
-                212u8,
-                93u8,
-                191u8,
-                225u8,
-                109u8,
-                224u8,
-                147u8,
-                14u8,
-                43u8,
-                211u8,
-                117u8,
-            ]);
+            const SIGNATURE_HASH: alloy_sol_types::private::B256 =
+                alloy_sol_types::private::B256::new([
+                    172u8, 210u8, 200u8, 112u8, 40u8, 4u8, 18u8, 143u8, 219u8, 13u8, 178u8, 187u8,
+                    73u8, 246u8, 209u8, 39u8, 221u8, 1u8, 129u8, 193u8, 63u8, 212u8, 93u8, 191u8,
+                    225u8, 109u8, 224u8, 147u8, 14u8, 43u8, 211u8, 117u8,
+                ]);
             const ANONYMOUS: bool = false;
             #[allow(unused_variables)]
             #[inline]
@@ -877,13 +727,11 @@ event ExecutionFromModuleFailure(address indexed module);
                 topics: &<Self::TopicList as alloy_sol_types::SolType>::RustType,
             ) -> alloy_sol_types::Result<()> {
                 if topics.0 != Self::SIGNATURE_HASH {
-                    return Err(
-                        alloy_sol_types::Error::invalid_event_signature_hash(
-                            Self::SIGNATURE,
-                            topics.0,
-                            Self::SIGNATURE_HASH,
-                        ),
-                    );
+                    return Err(alloy_sol_types::Error::invalid_event_signature_hash(
+                        Self::SIGNATURE,
+                        topics.0,
+                        Self::SIGNATURE_HASH,
+                    ));
                 }
                 Ok(())
             }
@@ -903,9 +751,7 @@ event ExecutionFromModuleFailure(address indexed module);
                 if out.len() < <Self::TopicList as alloy_sol_types::TopicList>::COUNT {
                     return Err(alloy_sol_types::Error::Overrun);
                 }
-                out[0usize] = alloy_sol_types::abi::token::WordToken(
-                    Self::SIGNATURE_HASH,
-                );
+                out[0usize] = alloy_sol_types::abi::token::WordToken(Self::SIGNATURE_HASH);
                 out[1usize] = <alloy::sol_types::sol_data::Address as alloy_sol_types::EventTopic>::encode_topic(
                     &self.module,
                 );
@@ -924,81 +770,37 @@ event ExecutionFromModuleFailure(address indexed module);
         #[automatically_derived]
         impl From<&ExecutionFromModuleFailure> for alloy_sol_types::private::LogData {
             #[inline]
-            fn from(
-                this: &ExecutionFromModuleFailure,
-            ) -> alloy_sol_types::private::LogData {
+            fn from(this: &ExecutionFromModuleFailure) -> alloy_sol_types::private::LogData {
                 alloy_sol_types::SolEvent::encode_log_data(this)
             }
         }
     };
     /**Event with signature `ExecutionFromModuleSuccess(address)` and selector `0x6895c13664aa4f67288b25d7a21d7aaa34916e355fb9b6fae0a139a9085becb8`.
-```solidity
-event ExecutionFromModuleSuccess(address indexed module);
-```*/
-    #[allow(
-        non_camel_case_types,
-        non_snake_case,
-        clippy::pub_underscore_fields,
-        clippy::style
-    )]
+    ```solidity
+    event ExecutionFromModuleSuccess(address indexed module);
+    ```*/
+    #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields, clippy::style)]
     #[derive(Clone)]
     pub struct ExecutionFromModuleSuccess {
         #[allow(missing_docs)]
         pub module: alloy::sol_types::private::Address,
     }
-    #[allow(
-        non_camel_case_types,
-        non_snake_case,
-        clippy::pub_underscore_fields,
-        clippy::style
-    )]
+    #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields, clippy::style)]
     const _: () = {
         use alloy::sol_types as alloy_sol_types;
         #[automatically_derived]
         impl alloy_sol_types::SolEvent for ExecutionFromModuleSuccess {
             type DataTuple<'a> = ();
-            type DataToken<'a> = <Self::DataTuple<
-                'a,
-            > as alloy_sol_types::SolType>::Token<'a>;
-            type TopicList = (
-                alloy_sol_types::sol_data::FixedBytes<32>,
-                alloy::sol_types::sol_data::Address,
-            );
+            type DataToken<'a> = <Self::DataTuple<'a> as alloy_sol_types::SolType>::Token<'a>;
+            type TopicList =
+                (alloy_sol_types::sol_data::FixedBytes<32>, alloy::sol_types::sol_data::Address);
             const SIGNATURE: &'static str = "ExecutionFromModuleSuccess(address)";
-            const SIGNATURE_HASH: alloy_sol_types::private::B256 = alloy_sol_types::private::B256::new([
-                104u8,
-                149u8,
-                193u8,
-                54u8,
-                100u8,
-                170u8,
-                79u8,
-                103u8,
-                40u8,
-                139u8,
-                37u8,
-                215u8,
-                162u8,
-                29u8,
-                122u8,
-                170u8,
-                52u8,
-                145u8,
-                110u8,
-                53u8,
-                95u8,
-                185u8,
-                182u8,
-                250u8,
-                224u8,
-                161u8,
-                57u8,
-                169u8,
-                8u8,
-                91u8,
-                236u8,
-                184u8,
-            ]);
+            const SIGNATURE_HASH: alloy_sol_types::private::B256 =
+                alloy_sol_types::private::B256::new([
+                    104u8, 149u8, 193u8, 54u8, 100u8, 170u8, 79u8, 103u8, 40u8, 139u8, 37u8, 215u8,
+                    162u8, 29u8, 122u8, 170u8, 52u8, 145u8, 110u8, 53u8, 95u8, 185u8, 182u8, 250u8,
+                    224u8, 161u8, 57u8, 169u8, 8u8, 91u8, 236u8, 184u8,
+                ]);
             const ANONYMOUS: bool = false;
             #[allow(unused_variables)]
             #[inline]
@@ -1013,13 +815,11 @@ event ExecutionFromModuleSuccess(address indexed module);
                 topics: &<Self::TopicList as alloy_sol_types::SolType>::RustType,
             ) -> alloy_sol_types::Result<()> {
                 if topics.0 != Self::SIGNATURE_HASH {
-                    return Err(
-                        alloy_sol_types::Error::invalid_event_signature_hash(
-                            Self::SIGNATURE,
-                            topics.0,
-                            Self::SIGNATURE_HASH,
-                        ),
-                    );
+                    return Err(alloy_sol_types::Error::invalid_event_signature_hash(
+                        Self::SIGNATURE,
+                        topics.0,
+                        Self::SIGNATURE_HASH,
+                    ));
                 }
                 Ok(())
             }
@@ -1039,9 +839,7 @@ event ExecutionFromModuleSuccess(address indexed module);
                 if out.len() < <Self::TopicList as alloy_sol_types::TopicList>::COUNT {
                     return Err(alloy_sol_types::Error::Overrun);
                 }
-                out[0usize] = alloy_sol_types::abi::token::WordToken(
-                    Self::SIGNATURE_HASH,
-                );
+                out[0usize] = alloy_sol_types::abi::token::WordToken(Self::SIGNATURE_HASH);
                 out[1usize] = <alloy::sol_types::sol_data::Address as alloy_sol_types::EventTopic>::encode_topic(
                     &self.module,
                 );
@@ -1060,17 +858,15 @@ event ExecutionFromModuleSuccess(address indexed module);
         #[automatically_derived]
         impl From<&ExecutionFromModuleSuccess> for alloy_sol_types::private::LogData {
             #[inline]
-            fn from(
-                this: &ExecutionFromModuleSuccess,
-            ) -> alloy_sol_types::private::LogData {
+            fn from(this: &ExecutionFromModuleSuccess) -> alloy_sol_types::private::LogData {
                 alloy_sol_types::SolEvent::encode_log_data(this)
             }
         }
     };
     /**Function with signature `disableModule(address,address)` and selector `0xe009cfde`.
-```solidity
-function disableModule(address prevModule, address module) external;
-```*/
+    ```solidity
+    function disableModule(address prevModule, address module) external;
+    ```*/
     #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields)]
     #[derive(Clone)]
     pub struct disableModuleCall {
@@ -1081,30 +877,19 @@ function disableModule(address prevModule, address module) external;
     #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields)]
     #[derive(Clone)]
     pub struct disableModuleReturn {}
-    #[allow(
-        non_camel_case_types,
-        non_snake_case,
-        clippy::pub_underscore_fields,
-        clippy::style
-    )]
+    #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields, clippy::style)]
     const _: () = {
         use alloy::sol_types as alloy_sol_types;
         {
             #[doc(hidden)]
-            type UnderlyingSolTuple<'a> = (
-                alloy::sol_types::sol_data::Address,
-                alloy::sol_types::sol_data::Address,
-            );
+            type UnderlyingSolTuple<'a> =
+                (alloy::sol_types::sol_data::Address, alloy::sol_types::sol_data::Address);
             #[doc(hidden)]
-            type UnderlyingRustTuple<'a> = (
-                alloy::sol_types::private::Address,
-                alloy::sol_types::private::Address,
-            );
+            type UnderlyingRustTuple<'a> =
+                (alloy::sol_types::private::Address, alloy::sol_types::private::Address);
             #[cfg(test)]
             #[allow(dead_code, unreachable_patterns)]
-            fn _type_assertion(
-                _t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>,
-            ) {
+            fn _type_assertion(_t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>) {
                 match _t {
                     alloy_sol_types::private::AssertTypeEq::<
                         <UnderlyingSolTuple as alloy_sol_types::SolType>::RustType,
@@ -1122,10 +907,7 @@ function disableModule(address prevModule, address module) external;
             #[doc(hidden)]
             impl ::core::convert::From<UnderlyingRustTuple<'_>> for disableModuleCall {
                 fn from(tuple: UnderlyingRustTuple<'_>) -> Self {
-                    Self {
-                        prevModule: tuple.0,
-                        module: tuple.1,
-                    }
+                    Self { prevModule: tuple.0, module: tuple.1 }
                 }
             }
         }
@@ -1136,9 +918,7 @@ function disableModule(address prevModule, address module) external;
             type UnderlyingRustTuple<'a> = ();
             #[cfg(test)]
             #[allow(dead_code, unreachable_patterns)]
-            fn _type_assertion(
-                _t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>,
-            ) {
+            fn _type_assertion(_t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>) {
                 match _t {
                     alloy_sol_types::private::AssertTypeEq::<
                         <UnderlyingSolTuple as alloy_sol_types::SolType>::RustType,
@@ -1162,18 +942,12 @@ function disableModule(address prevModule, address module) external;
         }
         #[automatically_derived]
         impl alloy_sol_types::SolCall for disableModuleCall {
-            type Parameters<'a> = (
-                alloy::sol_types::sol_data::Address,
-                alloy::sol_types::sol_data::Address,
-            );
-            type Token<'a> = <Self::Parameters<
-                'a,
-            > as alloy_sol_types::SolType>::Token<'a>;
+            type Parameters<'a> =
+                (alloy::sol_types::sol_data::Address, alloy::sol_types::sol_data::Address);
+            type Token<'a> = <Self::Parameters<'a> as alloy_sol_types::SolType>::Token<'a>;
             type Return = disableModuleReturn;
             type ReturnTuple<'a> = ();
-            type ReturnToken<'a> = <Self::ReturnTuple<
-                'a,
-            > as alloy_sol_types::SolType>::Token<'a>;
+            type ReturnToken<'a> = <Self::ReturnTuple<'a> as alloy_sol_types::SolType>::Token<'a>;
             const SIGNATURE: &'static str = "disableModule(address,address)";
             const SELECTOR: [u8; 4] = [224u8, 9u8, 207u8, 222u8];
             #[inline]
@@ -1198,17 +972,17 @@ function disableModule(address prevModule, address module) external;
                 data: &[u8],
                 validate: bool,
             ) -> alloy_sol_types::Result<Self::Return> {
-                <Self::ReturnTuple<
-                    '_,
-                > as alloy_sol_types::SolType>::abi_decode_sequence(data, validate)
-                    .map(Into::into)
+                <Self::ReturnTuple<'_> as alloy_sol_types::SolType>::abi_decode_sequence(
+                    data, validate,
+                )
+                .map(Into::into)
             }
         }
     };
     /**Function with signature `enableModule(address)` and selector `0x610b5925`.
-```solidity
-function enableModule(address module) external;
-```*/
+    ```solidity
+    function enableModule(address module) external;
+    ```*/
     #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields)]
     #[derive(Clone)]
     pub struct enableModuleCall {
@@ -1218,12 +992,7 @@ function enableModule(address module) external;
     #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields)]
     #[derive(Clone)]
     pub struct enableModuleReturn {}
-    #[allow(
-        non_camel_case_types,
-        non_snake_case,
-        clippy::pub_underscore_fields,
-        clippy::style
-    )]
+    #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields, clippy::style)]
     const _: () = {
         use alloy::sol_types as alloy_sol_types;
         {
@@ -1233,9 +1002,7 @@ function enableModule(address module) external;
             type UnderlyingRustTuple<'a> = (alloy::sol_types::private::Address,);
             #[cfg(test)]
             #[allow(dead_code, unreachable_patterns)]
-            fn _type_assertion(
-                _t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>,
-            ) {
+            fn _type_assertion(_t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>) {
                 match _t {
                     alloy_sol_types::private::AssertTypeEq::<
                         <UnderlyingSolTuple as alloy_sol_types::SolType>::RustType,
@@ -1264,9 +1031,7 @@ function enableModule(address module) external;
             type UnderlyingRustTuple<'a> = ();
             #[cfg(test)]
             #[allow(dead_code, unreachable_patterns)]
-            fn _type_assertion(
-                _t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>,
-            ) {
+            fn _type_assertion(_t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>) {
                 match _t {
                     alloy_sol_types::private::AssertTypeEq::<
                         <UnderlyingSolTuple as alloy_sol_types::SolType>::RustType,
@@ -1291,14 +1056,10 @@ function enableModule(address module) external;
         #[automatically_derived]
         impl alloy_sol_types::SolCall for enableModuleCall {
             type Parameters<'a> = (alloy::sol_types::sol_data::Address,);
-            type Token<'a> = <Self::Parameters<
-                'a,
-            > as alloy_sol_types::SolType>::Token<'a>;
+            type Token<'a> = <Self::Parameters<'a> as alloy_sol_types::SolType>::Token<'a>;
             type Return = enableModuleReturn;
             type ReturnTuple<'a> = ();
-            type ReturnToken<'a> = <Self::ReturnTuple<
-                'a,
-            > as alloy_sol_types::SolType>::Token<'a>;
+            type ReturnToken<'a> = <Self::ReturnTuple<'a> as alloy_sol_types::SolType>::Token<'a>;
             const SIGNATURE: &'static str = "enableModule(address)";
             const SELECTOR: [u8; 4] = [97u8, 11u8, 89u8, 37u8];
             #[inline]
@@ -1309,28 +1070,26 @@ function enableModule(address module) external;
             }
             #[inline]
             fn tokenize(&self) -> Self::Token<'_> {
-                (
-                    <alloy::sol_types::sol_data::Address as alloy_sol_types::SolType>::tokenize(
-                        &self.module,
-                    ),
-                )
+                (<alloy::sol_types::sol_data::Address as alloy_sol_types::SolType>::tokenize(
+                    &self.module,
+                ),)
             }
             #[inline]
             fn abi_decode_returns(
                 data: &[u8],
                 validate: bool,
             ) -> alloy_sol_types::Result<Self::Return> {
-                <Self::ReturnTuple<
-                    '_,
-                > as alloy_sol_types::SolType>::abi_decode_sequence(data, validate)
-                    .map(Into::into)
+                <Self::ReturnTuple<'_> as alloy_sol_types::SolType>::abi_decode_sequence(
+                    data, validate,
+                )
+                .map(Into::into)
             }
         }
     };
     /**Function with signature `execTransactionFromModule(address,uint256,bytes,uint8)` and selector `0x468721a7`.
-```solidity
-function execTransactionFromModule(address to, uint256 value, bytes memory data, Enum.Operation operation) external returns (bool success);
-```*/
+    ```solidity
+    function execTransactionFromModule(address to, uint256 value, bytes memory data, Enum.Operation operation) external returns (bool success);
+    ```*/
     #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields)]
     #[derive(Clone)]
     pub struct execTransactionFromModuleCall {
@@ -1345,12 +1104,7 @@ function execTransactionFromModule(address to, uint256 value, bytes memory data,
     pub struct execTransactionFromModuleReturn {
         pub success: bool,
     }
-    #[allow(
-        non_camel_case_types,
-        non_snake_case,
-        clippy::pub_underscore_fields,
-        clippy::style
-    )]
+    #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields, clippy::style)]
     const _: () = {
         use alloy::sol_types as alloy_sol_types;
         {
@@ -1370,9 +1124,7 @@ function execTransactionFromModule(address to, uint256 value, bytes memory data,
             );
             #[cfg(test)]
             #[allow(dead_code, unreachable_patterns)]
-            fn _type_assertion(
-                _t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>,
-            ) {
+            fn _type_assertion(_t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>) {
                 match _t {
                     alloy_sol_types::private::AssertTypeEq::<
                         <UnderlyingSolTuple as alloy_sol_types::SolType>::RustType,
@@ -1381,23 +1133,16 @@ function execTransactionFromModule(address to, uint256 value, bytes memory data,
             }
             #[automatically_derived]
             #[doc(hidden)]
-            impl ::core::convert::From<execTransactionFromModuleCall>
-            for UnderlyingRustTuple<'_> {
+            impl ::core::convert::From<execTransactionFromModuleCall> for UnderlyingRustTuple<'_> {
                 fn from(value: execTransactionFromModuleCall) -> Self {
                     (value.to, value.value, value.data, value.operation)
                 }
             }
             #[automatically_derived]
             #[doc(hidden)]
-            impl ::core::convert::From<UnderlyingRustTuple<'_>>
-            for execTransactionFromModuleCall {
+            impl ::core::convert::From<UnderlyingRustTuple<'_>> for execTransactionFromModuleCall {
                 fn from(tuple: UnderlyingRustTuple<'_>) -> Self {
-                    Self {
-                        to: tuple.0,
-                        value: tuple.1,
-                        data: tuple.2,
-                        operation: tuple.3,
-                    }
+                    Self { to: tuple.0, value: tuple.1, data: tuple.2, operation: tuple.3 }
                 }
             }
         }
@@ -1408,9 +1153,7 @@ function execTransactionFromModule(address to, uint256 value, bytes memory data,
             type UnderlyingRustTuple<'a> = (bool,);
             #[cfg(test)]
             #[allow(dead_code, unreachable_patterns)]
-            fn _type_assertion(
-                _t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>,
-            ) {
+            fn _type_assertion(_t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>) {
                 match _t {
                     alloy_sol_types::private::AssertTypeEq::<
                         <UnderlyingSolTuple as alloy_sol_types::SolType>::RustType,
@@ -1419,16 +1162,14 @@ function execTransactionFromModule(address to, uint256 value, bytes memory data,
             }
             #[automatically_derived]
             #[doc(hidden)]
-            impl ::core::convert::From<execTransactionFromModuleReturn>
-            for UnderlyingRustTuple<'_> {
+            impl ::core::convert::From<execTransactionFromModuleReturn> for UnderlyingRustTuple<'_> {
                 fn from(value: execTransactionFromModuleReturn) -> Self {
                     (value.success,)
                 }
             }
             #[automatically_derived]
             #[doc(hidden)]
-            impl ::core::convert::From<UnderlyingRustTuple<'_>>
-            for execTransactionFromModuleReturn {
+            impl ::core::convert::From<UnderlyingRustTuple<'_>> for execTransactionFromModuleReturn {
                 fn from(tuple: UnderlyingRustTuple<'_>) -> Self {
                     Self { success: tuple.0 }
                 }
@@ -1442,15 +1183,12 @@ function execTransactionFromModule(address to, uint256 value, bytes memory data,
                 alloy::sol_types::sol_data::Bytes,
                 Enum::Operation,
             );
-            type Token<'a> = <Self::Parameters<
-                'a,
-            > as alloy_sol_types::SolType>::Token<'a>;
+            type Token<'a> = <Self::Parameters<'a> as alloy_sol_types::SolType>::Token<'a>;
             type Return = execTransactionFromModuleReturn;
             type ReturnTuple<'a> = (alloy::sol_types::sol_data::Bool,);
-            type ReturnToken<'a> = <Self::ReturnTuple<
-                'a,
-            > as alloy_sol_types::SolType>::Token<'a>;
-            const SIGNATURE: &'static str = "execTransactionFromModule(address,uint256,bytes,uint8)";
+            type ReturnToken<'a> = <Self::ReturnTuple<'a> as alloy_sol_types::SolType>::Token<'a>;
+            const SIGNATURE: &'static str =
+                "execTransactionFromModule(address,uint256,bytes,uint8)";
             const SELECTOR: [u8; 4] = [70u8, 135u8, 33u8, 167u8];
             #[inline]
             fn new<'a>(
@@ -1464,15 +1202,13 @@ function execTransactionFromModule(address to, uint256 value, bytes memory data,
                     <alloy::sol_types::sol_data::Address as alloy_sol_types::SolType>::tokenize(
                         &self.to,
                     ),
-                    <alloy::sol_types::sol_data::Uint<
-                        256,
-                    > as alloy_sol_types::SolType>::tokenize(&self.value),
+                    <alloy::sol_types::sol_data::Uint<256> as alloy_sol_types::SolType>::tokenize(
+                        &self.value,
+                    ),
                     <alloy::sol_types::sol_data::Bytes as alloy_sol_types::SolType>::tokenize(
                         &self.data,
                     ),
-                    <Enum::Operation as alloy_sol_types::SolType>::tokenize(
-                        &self.operation,
-                    ),
+                    <Enum::Operation as alloy_sol_types::SolType>::tokenize(&self.operation),
                 )
             }
             #[inline]
@@ -1480,17 +1216,17 @@ function execTransactionFromModule(address to, uint256 value, bytes memory data,
                 data: &[u8],
                 validate: bool,
             ) -> alloy_sol_types::Result<Self::Return> {
-                <Self::ReturnTuple<
-                    '_,
-                > as alloy_sol_types::SolType>::abi_decode_sequence(data, validate)
-                    .map(Into::into)
+                <Self::ReturnTuple<'_> as alloy_sol_types::SolType>::abi_decode_sequence(
+                    data, validate,
+                )
+                .map(Into::into)
             }
         }
     };
     /**Function with signature `execTransactionFromModuleReturnData(address,uint256,bytes,uint8)` and selector `0x5229073f`.
-```solidity
-function execTransactionFromModuleReturnData(address to, uint256 value, bytes memory data, Enum.Operation operation) external returns (bool success, bytes memory returnData);
-```*/
+    ```solidity
+    function execTransactionFromModuleReturnData(address to, uint256 value, bytes memory data, Enum.Operation operation) external returns (bool success, bytes memory returnData);
+    ```*/
     #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields)]
     #[derive(Clone)]
     pub struct execTransactionFromModuleReturnDataCall {
@@ -1506,12 +1242,7 @@ function execTransactionFromModuleReturnData(address to, uint256 value, bytes me
         pub success: bool,
         pub returnData: alloy::sol_types::private::Bytes,
     }
-    #[allow(
-        non_camel_case_types,
-        non_snake_case,
-        clippy::pub_underscore_fields,
-        clippy::style
-    )]
+    #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields, clippy::style)]
     const _: () = {
         use alloy::sol_types as alloy_sol_types;
         {
@@ -1531,9 +1262,7 @@ function execTransactionFromModuleReturnData(address to, uint256 value, bytes me
             );
             #[cfg(test)]
             #[allow(dead_code, unreachable_patterns)]
-            fn _type_assertion(
-                _t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>,
-            ) {
+            fn _type_assertion(_t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>) {
                 match _t {
                     alloy_sol_types::private::AssertTypeEq::<
                         <UnderlyingSolTuple as alloy_sol_types::SolType>::RustType,
@@ -1542,39 +1271,28 @@ function execTransactionFromModuleReturnData(address to, uint256 value, bytes me
             }
             #[automatically_derived]
             #[doc(hidden)]
-            impl ::core::convert::From<execTransactionFromModuleReturnDataCall>
-            for UnderlyingRustTuple<'_> {
+            impl ::core::convert::From<execTransactionFromModuleReturnDataCall> for UnderlyingRustTuple<'_> {
                 fn from(value: execTransactionFromModuleReturnDataCall) -> Self {
                     (value.to, value.value, value.data, value.operation)
                 }
             }
             #[automatically_derived]
             #[doc(hidden)]
-            impl ::core::convert::From<UnderlyingRustTuple<'_>>
-            for execTransactionFromModuleReturnDataCall {
+            impl ::core::convert::From<UnderlyingRustTuple<'_>> for execTransactionFromModuleReturnDataCall {
                 fn from(tuple: UnderlyingRustTuple<'_>) -> Self {
-                    Self {
-                        to: tuple.0,
-                        value: tuple.1,
-                        data: tuple.2,
-                        operation: tuple.3,
-                    }
+                    Self { to: tuple.0, value: tuple.1, data: tuple.2, operation: tuple.3 }
                 }
             }
         }
         {
             #[doc(hidden)]
-            type UnderlyingSolTuple<'a> = (
-                alloy::sol_types::sol_data::Bool,
-                alloy::sol_types::sol_data::Bytes,
-            );
+            type UnderlyingSolTuple<'a> =
+                (alloy::sol_types::sol_data::Bool, alloy::sol_types::sol_data::Bytes);
             #[doc(hidden)]
             type UnderlyingRustTuple<'a> = (bool, alloy::sol_types::private::Bytes);
             #[cfg(test)]
             #[allow(dead_code, unreachable_patterns)]
-            fn _type_assertion(
-                _t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>,
-            ) {
+            fn _type_assertion(_t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>) {
                 match _t {
                     alloy_sol_types::private::AssertTypeEq::<
                         <UnderlyingSolTuple as alloy_sol_types::SolType>::RustType,
@@ -1583,21 +1301,16 @@ function execTransactionFromModuleReturnData(address to, uint256 value, bytes me
             }
             #[automatically_derived]
             #[doc(hidden)]
-            impl ::core::convert::From<execTransactionFromModuleReturnDataReturn>
-            for UnderlyingRustTuple<'_> {
+            impl ::core::convert::From<execTransactionFromModuleReturnDataReturn> for UnderlyingRustTuple<'_> {
                 fn from(value: execTransactionFromModuleReturnDataReturn) -> Self {
                     (value.success, value.returnData)
                 }
             }
             #[automatically_derived]
             #[doc(hidden)]
-            impl ::core::convert::From<UnderlyingRustTuple<'_>>
-            for execTransactionFromModuleReturnDataReturn {
+            impl ::core::convert::From<UnderlyingRustTuple<'_>> for execTransactionFromModuleReturnDataReturn {
                 fn from(tuple: UnderlyingRustTuple<'_>) -> Self {
-                    Self {
-                        success: tuple.0,
-                        returnData: tuple.1,
-                    }
+                    Self { success: tuple.0, returnData: tuple.1 }
                 }
             }
         }
@@ -1609,18 +1322,13 @@ function execTransactionFromModuleReturnData(address to, uint256 value, bytes me
                 alloy::sol_types::sol_data::Bytes,
                 Enum::Operation,
             );
-            type Token<'a> = <Self::Parameters<
-                'a,
-            > as alloy_sol_types::SolType>::Token<'a>;
+            type Token<'a> = <Self::Parameters<'a> as alloy_sol_types::SolType>::Token<'a>;
             type Return = execTransactionFromModuleReturnDataReturn;
-            type ReturnTuple<'a> = (
-                alloy::sol_types::sol_data::Bool,
-                alloy::sol_types::sol_data::Bytes,
-            );
-            type ReturnToken<'a> = <Self::ReturnTuple<
-                'a,
-            > as alloy_sol_types::SolType>::Token<'a>;
-            const SIGNATURE: &'static str = "execTransactionFromModuleReturnData(address,uint256,bytes,uint8)";
+            type ReturnTuple<'a> =
+                (alloy::sol_types::sol_data::Bool, alloy::sol_types::sol_data::Bytes);
+            type ReturnToken<'a> = <Self::ReturnTuple<'a> as alloy_sol_types::SolType>::Token<'a>;
+            const SIGNATURE: &'static str =
+                "execTransactionFromModuleReturnData(address,uint256,bytes,uint8)";
             const SELECTOR: [u8; 4] = [82u8, 41u8, 7u8, 63u8];
             #[inline]
             fn new<'a>(
@@ -1634,15 +1342,13 @@ function execTransactionFromModuleReturnData(address to, uint256 value, bytes me
                     <alloy::sol_types::sol_data::Address as alloy_sol_types::SolType>::tokenize(
                         &self.to,
                     ),
-                    <alloy::sol_types::sol_data::Uint<
-                        256,
-                    > as alloy_sol_types::SolType>::tokenize(&self.value),
+                    <alloy::sol_types::sol_data::Uint<256> as alloy_sol_types::SolType>::tokenize(
+                        &self.value,
+                    ),
                     <alloy::sol_types::sol_data::Bytes as alloy_sol_types::SolType>::tokenize(
                         &self.data,
                     ),
-                    <Enum::Operation as alloy_sol_types::SolType>::tokenize(
-                        &self.operation,
-                    ),
+                    <Enum::Operation as alloy_sol_types::SolType>::tokenize(&self.operation),
                 )
             }
             #[inline]
@@ -1650,17 +1356,17 @@ function execTransactionFromModuleReturnData(address to, uint256 value, bytes me
                 data: &[u8],
                 validate: bool,
             ) -> alloy_sol_types::Result<Self::Return> {
-                <Self::ReturnTuple<
-                    '_,
-                > as alloy_sol_types::SolType>::abi_decode_sequence(data, validate)
-                    .map(Into::into)
+                <Self::ReturnTuple<'_> as alloy_sol_types::SolType>::abi_decode_sequence(
+                    data, validate,
+                )
+                .map(Into::into)
             }
         }
     };
     /**Function with signature `getModulesPaginated(address,uint256)` and selector `0xcc2f8452`.
-```solidity
-function getModulesPaginated(address start, uint256 pageSize) external view returns (address[] memory array, address next);
-```*/
+    ```solidity
+    function getModulesPaginated(address start, uint256 pageSize) external view returns (address[] memory array, address next);
+    ```*/
     #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields)]
     #[derive(Clone)]
     pub struct getModulesPaginatedCall {
@@ -1674,20 +1380,13 @@ function getModulesPaginated(address start, uint256 pageSize) external view retu
         pub array: alloy::sol_types::private::Vec<alloy::sol_types::private::Address>,
         pub next: alloy::sol_types::private::Address,
     }
-    #[allow(
-        non_camel_case_types,
-        non_snake_case,
-        clippy::pub_underscore_fields,
-        clippy::style
-    )]
+    #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields, clippy::style)]
     const _: () = {
         use alloy::sol_types as alloy_sol_types;
         {
             #[doc(hidden)]
-            type UnderlyingSolTuple<'a> = (
-                alloy::sol_types::sol_data::Address,
-                alloy::sol_types::sol_data::Uint<256>,
-            );
+            type UnderlyingSolTuple<'a> =
+                (alloy::sol_types::sol_data::Address, alloy::sol_types::sol_data::Uint<256>);
             #[doc(hidden)]
             type UnderlyingRustTuple<'a> = (
                 alloy::sol_types::private::Address,
@@ -1695,9 +1394,7 @@ function getModulesPaginated(address start, uint256 pageSize) external view retu
             );
             #[cfg(test)]
             #[allow(dead_code, unreachable_patterns)]
-            fn _type_assertion(
-                _t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>,
-            ) {
+            fn _type_assertion(_t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>) {
                 match _t {
                     alloy_sol_types::private::AssertTypeEq::<
                         <UnderlyingSolTuple as alloy_sol_types::SolType>::RustType,
@@ -1706,21 +1403,16 @@ function getModulesPaginated(address start, uint256 pageSize) external view retu
             }
             #[automatically_derived]
             #[doc(hidden)]
-            impl ::core::convert::From<getModulesPaginatedCall>
-            for UnderlyingRustTuple<'_> {
+            impl ::core::convert::From<getModulesPaginatedCall> for UnderlyingRustTuple<'_> {
                 fn from(value: getModulesPaginatedCall) -> Self {
                     (value.start, value.pageSize)
                 }
             }
             #[automatically_derived]
             #[doc(hidden)]
-            impl ::core::convert::From<UnderlyingRustTuple<'_>>
-            for getModulesPaginatedCall {
+            impl ::core::convert::From<UnderlyingRustTuple<'_>> for getModulesPaginatedCall {
                 fn from(tuple: UnderlyingRustTuple<'_>) -> Self {
-                    Self {
-                        start: tuple.0,
-                        pageSize: tuple.1,
-                    }
+                    Self { start: tuple.0, pageSize: tuple.1 }
                 }
             }
         }
@@ -1737,9 +1429,7 @@ function getModulesPaginated(address start, uint256 pageSize) external view retu
             );
             #[cfg(test)]
             #[allow(dead_code, unreachable_patterns)]
-            fn _type_assertion(
-                _t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>,
-            ) {
+            fn _type_assertion(_t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>) {
                 match _t {
                     alloy_sol_types::private::AssertTypeEq::<
                         <UnderlyingSolTuple as alloy_sol_types::SolType>::RustType,
@@ -1748,41 +1438,30 @@ function getModulesPaginated(address start, uint256 pageSize) external view retu
             }
             #[automatically_derived]
             #[doc(hidden)]
-            impl ::core::convert::From<getModulesPaginatedReturn>
-            for UnderlyingRustTuple<'_> {
+            impl ::core::convert::From<getModulesPaginatedReturn> for UnderlyingRustTuple<'_> {
                 fn from(value: getModulesPaginatedReturn) -> Self {
                     (value.array, value.next)
                 }
             }
             #[automatically_derived]
             #[doc(hidden)]
-            impl ::core::convert::From<UnderlyingRustTuple<'_>>
-            for getModulesPaginatedReturn {
+            impl ::core::convert::From<UnderlyingRustTuple<'_>> for getModulesPaginatedReturn {
                 fn from(tuple: UnderlyingRustTuple<'_>) -> Self {
-                    Self {
-                        array: tuple.0,
-                        next: tuple.1,
-                    }
+                    Self { array: tuple.0, next: tuple.1 }
                 }
             }
         }
         #[automatically_derived]
         impl alloy_sol_types::SolCall for getModulesPaginatedCall {
-            type Parameters<'a> = (
-                alloy::sol_types::sol_data::Address,
-                alloy::sol_types::sol_data::Uint<256>,
-            );
-            type Token<'a> = <Self::Parameters<
-                'a,
-            > as alloy_sol_types::SolType>::Token<'a>;
+            type Parameters<'a> =
+                (alloy::sol_types::sol_data::Address, alloy::sol_types::sol_data::Uint<256>);
+            type Token<'a> = <Self::Parameters<'a> as alloy_sol_types::SolType>::Token<'a>;
             type Return = getModulesPaginatedReturn;
             type ReturnTuple<'a> = (
                 alloy::sol_types::sol_data::Array<alloy::sol_types::sol_data::Address>,
                 alloy::sol_types::sol_data::Address,
             );
-            type ReturnToken<'a> = <Self::ReturnTuple<
-                'a,
-            > as alloy_sol_types::SolType>::Token<'a>;
+            type ReturnToken<'a> = <Self::ReturnTuple<'a> as alloy_sol_types::SolType>::Token<'a>;
             const SIGNATURE: &'static str = "getModulesPaginated(address,uint256)";
             const SELECTOR: [u8; 4] = [204u8, 47u8, 132u8, 82u8];
             #[inline]
@@ -1797,9 +1476,9 @@ function getModulesPaginated(address start, uint256 pageSize) external view retu
                     <alloy::sol_types::sol_data::Address as alloy_sol_types::SolType>::tokenize(
                         &self.start,
                     ),
-                    <alloy::sol_types::sol_data::Uint<
-                        256,
-                    > as alloy_sol_types::SolType>::tokenize(&self.pageSize),
+                    <alloy::sol_types::sol_data::Uint<256> as alloy_sol_types::SolType>::tokenize(
+                        &self.pageSize,
+                    ),
                 )
             }
             #[inline]
@@ -1807,17 +1486,17 @@ function getModulesPaginated(address start, uint256 pageSize) external view retu
                 data: &[u8],
                 validate: bool,
             ) -> alloy_sol_types::Result<Self::Return> {
-                <Self::ReturnTuple<
-                    '_,
-                > as alloy_sol_types::SolType>::abi_decode_sequence(data, validate)
-                    .map(Into::into)
+                <Self::ReturnTuple<'_> as alloy_sol_types::SolType>::abi_decode_sequence(
+                    data, validate,
+                )
+                .map(Into::into)
             }
         }
     };
     /**Function with signature `isModuleEnabled(address)` and selector `0x2d9ad53d`.
-```solidity
-function isModuleEnabled(address module) external view returns (bool);
-```*/
+    ```solidity
+    function isModuleEnabled(address module) external view returns (bool);
+    ```*/
     #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields)]
     #[derive(Clone)]
     pub struct isModuleEnabledCall {
@@ -1829,12 +1508,7 @@ function isModuleEnabled(address module) external view returns (bool);
     pub struct isModuleEnabledReturn {
         pub _0: bool,
     }
-    #[allow(
-        non_camel_case_types,
-        non_snake_case,
-        clippy::pub_underscore_fields,
-        clippy::style
-    )]
+    #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields, clippy::style)]
     const _: () = {
         use alloy::sol_types as alloy_sol_types;
         {
@@ -1844,9 +1518,7 @@ function isModuleEnabled(address module) external view returns (bool);
             type UnderlyingRustTuple<'a> = (alloy::sol_types::private::Address,);
             #[cfg(test)]
             #[allow(dead_code, unreachable_patterns)]
-            fn _type_assertion(
-                _t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>,
-            ) {
+            fn _type_assertion(_t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>) {
                 match _t {
                     alloy_sol_types::private::AssertTypeEq::<
                         <UnderlyingSolTuple as alloy_sol_types::SolType>::RustType,
@@ -1875,9 +1547,7 @@ function isModuleEnabled(address module) external view returns (bool);
             type UnderlyingRustTuple<'a> = (bool,);
             #[cfg(test)]
             #[allow(dead_code, unreachable_patterns)]
-            fn _type_assertion(
-                _t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>,
-            ) {
+            fn _type_assertion(_t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>) {
                 match _t {
                     alloy_sol_types::private::AssertTypeEq::<
                         <UnderlyingSolTuple as alloy_sol_types::SolType>::RustType,
@@ -1886,16 +1556,14 @@ function isModuleEnabled(address module) external view returns (bool);
             }
             #[automatically_derived]
             #[doc(hidden)]
-            impl ::core::convert::From<isModuleEnabledReturn>
-            for UnderlyingRustTuple<'_> {
+            impl ::core::convert::From<isModuleEnabledReturn> for UnderlyingRustTuple<'_> {
                 fn from(value: isModuleEnabledReturn) -> Self {
                     (value._0,)
                 }
             }
             #[automatically_derived]
             #[doc(hidden)]
-            impl ::core::convert::From<UnderlyingRustTuple<'_>>
-            for isModuleEnabledReturn {
+            impl ::core::convert::From<UnderlyingRustTuple<'_>> for isModuleEnabledReturn {
                 fn from(tuple: UnderlyingRustTuple<'_>) -> Self {
                     Self { _0: tuple.0 }
                 }
@@ -1904,14 +1572,10 @@ function isModuleEnabled(address module) external view returns (bool);
         #[automatically_derived]
         impl alloy_sol_types::SolCall for isModuleEnabledCall {
             type Parameters<'a> = (alloy::sol_types::sol_data::Address,);
-            type Token<'a> = <Self::Parameters<
-                'a,
-            > as alloy_sol_types::SolType>::Token<'a>;
+            type Token<'a> = <Self::Parameters<'a> as alloy_sol_types::SolType>::Token<'a>;
             type Return = isModuleEnabledReturn;
             type ReturnTuple<'a> = (alloy::sol_types::sol_data::Bool,);
-            type ReturnToken<'a> = <Self::ReturnTuple<
-                'a,
-            > as alloy_sol_types::SolType>::Token<'a>;
+            type ReturnToken<'a> = <Self::ReturnTuple<'a> as alloy_sol_types::SolType>::Token<'a>;
             const SIGNATURE: &'static str = "isModuleEnabled(address)";
             const SELECTOR: [u8; 4] = [45u8, 154u8, 213u8, 61u8];
             #[inline]
@@ -1922,21 +1586,19 @@ function isModuleEnabled(address module) external view returns (bool);
             }
             #[inline]
             fn tokenize(&self) -> Self::Token<'_> {
-                (
-                    <alloy::sol_types::sol_data::Address as alloy_sol_types::SolType>::tokenize(
-                        &self.module,
-                    ),
-                )
+                (<alloy::sol_types::sol_data::Address as alloy_sol_types::SolType>::tokenize(
+                    &self.module,
+                ),)
             }
             #[inline]
             fn abi_decode_returns(
                 data: &[u8],
                 validate: bool,
             ) -> alloy_sol_types::Result<Self::Return> {
-                <Self::ReturnTuple<
-                    '_,
-                > as alloy_sol_types::SolType>::abi_decode_sequence(data, validate)
-                    .map(Into::into)
+                <Self::ReturnTuple<'_> as alloy_sol_types::SolType>::abi_decode_sequence(
+                    data, validate,
+                )
+                .map(Into::into)
             }
         }
     };
@@ -1974,12 +1636,8 @@ function isModuleEnabled(address module) external view returns (bool);
         #[inline]
         fn selector(&self) -> [u8; 4] {
             match self {
-                Self::disableModule(_) => {
-                    <disableModuleCall as alloy_sol_types::SolCall>::SELECTOR
-                }
-                Self::enableModule(_) => {
-                    <enableModuleCall as alloy_sol_types::SolCall>::SELECTOR
-                }
+                Self::disableModule(_) => <disableModuleCall as alloy_sol_types::SolCall>::SELECTOR,
+                Self::enableModule(_) => <enableModuleCall as alloy_sol_types::SolCall>::SELECTOR,
                 Self::execTransactionFromModule(_) => {
                     <execTransactionFromModuleCall as alloy_sol_types::SolCall>::SELECTOR
                 }
@@ -2012,17 +1670,17 @@ function isModuleEnabled(address module) external view returns (bool);
             static DECODE_SHIMS: &[fn(
                 &[u8],
                 bool,
-            ) -> alloy_sol_types::Result<ModuleManagerCalls>] = &[
+            )
+                -> alloy_sol_types::Result<ModuleManagerCalls>] = &[
                 {
                     fn isModuleEnabled(
                         data: &[u8],
                         validate: bool,
                     ) -> alloy_sol_types::Result<ModuleManagerCalls> {
                         <isModuleEnabledCall as alloy_sol_types::SolCall>::abi_decode_raw(
-                                data,
-                                validate,
-                            )
-                            .map(ModuleManagerCalls::isModuleEnabled)
+                            data, validate,
+                        )
+                        .map(ModuleManagerCalls::isModuleEnabled)
                     }
                     isModuleEnabled
                 },
@@ -2032,10 +1690,9 @@ function isModuleEnabled(address module) external view returns (bool);
                         validate: bool,
                     ) -> alloy_sol_types::Result<ModuleManagerCalls> {
                         <execTransactionFromModuleCall as alloy_sol_types::SolCall>::abi_decode_raw(
-                                data,
-                                validate,
-                            )
-                            .map(ModuleManagerCalls::execTransactionFromModule)
+                            data, validate,
+                        )
+                        .map(ModuleManagerCalls::execTransactionFromModule)
                     }
                     execTransactionFromModule
                 },
@@ -2058,10 +1715,9 @@ function isModuleEnabled(address module) external view returns (bool);
                         validate: bool,
                     ) -> alloy_sol_types::Result<ModuleManagerCalls> {
                         <enableModuleCall as alloy_sol_types::SolCall>::abi_decode_raw(
-                                data,
-                                validate,
-                            )
-                            .map(ModuleManagerCalls::enableModule)
+                            data, validate,
+                        )
+                        .map(ModuleManagerCalls::enableModule)
                     }
                     enableModule
                 },
@@ -2071,10 +1727,9 @@ function isModuleEnabled(address module) external view returns (bool);
                         validate: bool,
                     ) -> alloy_sol_types::Result<ModuleManagerCalls> {
                         <getModulesPaginatedCall as alloy_sol_types::SolCall>::abi_decode_raw(
-                                data,
-                                validate,
-                            )
-                            .map(ModuleManagerCalls::getModulesPaginated)
+                            data, validate,
+                        )
+                        .map(ModuleManagerCalls::getModulesPaginated)
                     }
                     getModulesPaginated
                 },
@@ -2084,21 +1739,18 @@ function isModuleEnabled(address module) external view returns (bool);
                         validate: bool,
                     ) -> alloy_sol_types::Result<ModuleManagerCalls> {
                         <disableModuleCall as alloy_sol_types::SolCall>::abi_decode_raw(
-                                data,
-                                validate,
-                            )
-                            .map(ModuleManagerCalls::disableModule)
+                            data, validate,
+                        )
+                        .map(ModuleManagerCalls::disableModule)
                     }
                     disableModule
                 },
             ];
             let Ok(idx) = Self::SELECTORS.binary_search(&selector) else {
-                return Err(
-                    alloy_sol_types::Error::unknown_selector(
-                        <Self as alloy_sol_types::SolInterface>::NAME,
-                        selector,
-                    ),
-                );
+                return Err(alloy_sol_types::Error::unknown_selector(
+                    <Self as alloy_sol_types::SolInterface>::NAME,
+                    selector,
+                ));
             };
             DECODE_SHIMS[idx](data, validate)
         }
@@ -2196,140 +1848,24 @@ function isModuleEnabled(address module) external view returns (bool);
         /// Prefer using `SolInterface` methods instead.
         pub const SELECTORS: &'static [[u8; 32usize]] = &[
             [
-                104u8,
-                149u8,
-                193u8,
-                54u8,
-                100u8,
-                170u8,
-                79u8,
-                103u8,
-                40u8,
-                139u8,
-                37u8,
-                215u8,
-                162u8,
-                29u8,
-                122u8,
-                170u8,
-                52u8,
-                145u8,
-                110u8,
-                53u8,
-                95u8,
-                185u8,
-                182u8,
-                250u8,
-                224u8,
-                161u8,
-                57u8,
-                169u8,
-                8u8,
-                91u8,
-                236u8,
-                184u8,
+                104u8, 149u8, 193u8, 54u8, 100u8, 170u8, 79u8, 103u8, 40u8, 139u8, 37u8, 215u8,
+                162u8, 29u8, 122u8, 170u8, 52u8, 145u8, 110u8, 53u8, 95u8, 185u8, 182u8, 250u8,
+                224u8, 161u8, 57u8, 169u8, 8u8, 91u8, 236u8, 184u8,
             ],
             [
-                170u8,
-                180u8,
-                250u8,
-                43u8,
-                70u8,
-                63u8,
-                88u8,
-                27u8,
-                43u8,
-                50u8,
-                203u8,
-                59u8,
-                126u8,
-                59u8,
-                112u8,
-                75u8,
-                156u8,
-                227u8,
-                124u8,
-                194u8,
-                9u8,
-                181u8,
-                251u8,
-                77u8,
-                119u8,
-                229u8,
-                147u8,
-                172u8,
-                228u8,
-                5u8,
-                66u8,
-                118u8,
+                170u8, 180u8, 250u8, 43u8, 70u8, 63u8, 88u8, 27u8, 43u8, 50u8, 203u8, 59u8, 126u8,
+                59u8, 112u8, 75u8, 156u8, 227u8, 124u8, 194u8, 9u8, 181u8, 251u8, 77u8, 119u8,
+                229u8, 147u8, 172u8, 228u8, 5u8, 66u8, 118u8,
             ],
             [
-                172u8,
-                210u8,
-                200u8,
-                112u8,
-                40u8,
-                4u8,
-                18u8,
-                143u8,
-                219u8,
-                13u8,
-                178u8,
-                187u8,
-                73u8,
-                246u8,
-                209u8,
-                39u8,
-                221u8,
-                1u8,
-                129u8,
-                193u8,
-                63u8,
-                212u8,
-                93u8,
-                191u8,
-                225u8,
-                109u8,
-                224u8,
-                147u8,
-                14u8,
-                43u8,
-                211u8,
-                117u8,
+                172u8, 210u8, 200u8, 112u8, 40u8, 4u8, 18u8, 143u8, 219u8, 13u8, 178u8, 187u8,
+                73u8, 246u8, 209u8, 39u8, 221u8, 1u8, 129u8, 193u8, 63u8, 212u8, 93u8, 191u8,
+                225u8, 109u8, 224u8, 147u8, 14u8, 43u8, 211u8, 117u8,
             ],
             [
-                236u8,
-                223u8,
-                58u8,
-                62u8,
-                255u8,
-                234u8,
-                87u8,
-                131u8,
-                163u8,
-                196u8,
-                194u8,
-                20u8,
-                14u8,
-                103u8,
-                117u8,
-                119u8,
-                102u8,
-                100u8,
-                40u8,
-                212u8,
-                78u8,
-                217u8,
-                212u8,
-                116u8,
-                160u8,
-                179u8,
-                164u8,
-                201u8,
-                148u8,
-                63u8,
-                132u8,
-                64u8,
+                236u8, 223u8, 58u8, 62u8, 255u8, 234u8, 87u8, 131u8, 163u8, 196u8, 194u8, 20u8,
+                14u8, 103u8, 117u8, 119u8, 102u8, 100u8, 40u8, 212u8, 78u8, 217u8, 212u8, 116u8,
+                160u8, 179u8, 164u8, 201u8, 148u8, 63u8, 132u8, 64u8,
             ],
         ];
     }
@@ -2345,51 +1881,37 @@ function isModuleEnabled(address module) external view returns (bool);
             match topics.first().copied() {
                 Some(<DisabledModule as alloy_sol_types::SolEvent>::SIGNATURE_HASH) => {
                     <DisabledModule as alloy_sol_types::SolEvent>::decode_raw_log(
-                            topics,
-                            data,
-                            validate,
-                        )
-                        .map(Self::DisabledModule)
+                        topics, data, validate,
+                    )
+                    .map(Self::DisabledModule)
                 }
                 Some(<EnabledModule as alloy_sol_types::SolEvent>::SIGNATURE_HASH) => {
                     <EnabledModule as alloy_sol_types::SolEvent>::decode_raw_log(
-                            topics,
-                            data,
-                            validate,
-                        )
-                        .map(Self::EnabledModule)
+                        topics, data, validate,
+                    )
+                    .map(Self::EnabledModule)
                 }
-                Some(
-                    <ExecutionFromModuleFailure as alloy_sol_types::SolEvent>::SIGNATURE_HASH,
-                ) => {
+                Some(<ExecutionFromModuleFailure as alloy_sol_types::SolEvent>::SIGNATURE_HASH) => {
                     <ExecutionFromModuleFailure as alloy_sol_types::SolEvent>::decode_raw_log(
-                            topics,
-                            data,
-                            validate,
-                        )
-                        .map(Self::ExecutionFromModuleFailure)
+                        topics, data, validate,
+                    )
+                    .map(Self::ExecutionFromModuleFailure)
                 }
-                Some(
-                    <ExecutionFromModuleSuccess as alloy_sol_types::SolEvent>::SIGNATURE_HASH,
-                ) => {
+                Some(<ExecutionFromModuleSuccess as alloy_sol_types::SolEvent>::SIGNATURE_HASH) => {
                     <ExecutionFromModuleSuccess as alloy_sol_types::SolEvent>::decode_raw_log(
-                            topics,
-                            data,
-                            validate,
-                        )
-                        .map(Self::ExecutionFromModuleSuccess)
+                        topics, data, validate,
+                    )
+                    .map(Self::ExecutionFromModuleSuccess)
                 }
-                _ => {
-                    alloy_sol_types::private::Err(alloy_sol_types::Error::InvalidLog {
-                        name: <Self as alloy_sol_types::SolEventInterface>::NAME,
-                        log: alloy_sol_types::private::Box::new(
-                            alloy_sol_types::private::LogData::new_unchecked(
-                                topics.to_vec(),
-                                data.to_vec().into(),
-                            ),
+                _ => alloy_sol_types::private::Err(alloy_sol_types::Error::InvalidLog {
+                    name: <Self as alloy_sol_types::SolEventInterface>::NAME,
+                    log: alloy_sol_types::private::Box::new(
+                        alloy_sol_types::private::LogData::new_unchecked(
+                            topics.to_vec(),
+                            data.to_vec().into(),
                         ),
-                    })
-                }
+                    ),
+                }),
             }
         }
     }
@@ -2431,7 +1953,7 @@ function isModuleEnabled(address module) external view returns (bool);
     use alloy::contract as alloy_contract;
     /**Creates a new wrapper around an on-chain [`ModuleManager`](self) contract instance.
 
-See the [wrapper's documentation](`ModuleManagerInstance`) for more details.*/
+    See the [wrapper's documentation](`ModuleManagerInstance`) for more details.*/
     #[inline]
     pub const fn new<
         T: alloy_contract::private::Transport + ::core::clone::Clone,
@@ -2445,9 +1967,9 @@ See the [wrapper's documentation](`ModuleManagerInstance`) for more details.*/
     }
     /**Deploys this contract using the given `provider` and constructor arguments, if any.
 
-Returns a new instance of the contract, if the deployment was successful.
+    Returns a new instance of the contract, if the deployment was successful.
 
-For more fine-grained control over the deployment process, use [`deploy_builder`] instead.*/
+    For more fine-grained control over the deployment process, use [`deploy_builder`] instead.*/
     #[inline]
     pub fn deploy<
         T: alloy_contract::private::Transport + ::core::clone::Clone,
@@ -2455,35 +1977,36 @@ For more fine-grained control over the deployment process, use [`deploy_builder`
         N: alloy_contract::private::Network,
     >(
         provider: P,
-    ) -> impl ::core::future::Future<
-        Output = alloy_contract::Result<ModuleManagerInstance<T, P, N>>,
-    > {
+    ) -> impl ::core::future::Future<Output = alloy_contract::Result<ModuleManagerInstance<T, P, N>>>
+    {
         ModuleManagerInstance::<T, P, N>::deploy(provider)
     }
     /**Creates a `RawCallBuilder` for deploying this contract using the given `provider`
-and constructor arguments, if any.
+    and constructor arguments, if any.
 
-This is a simple wrapper around creating a `RawCallBuilder` with the data set to
-the bytecode concatenated with the constructor's ABI-encoded arguments.*/
+    This is a simple wrapper around creating a `RawCallBuilder` with the data set to
+    the bytecode concatenated with the constructor's ABI-encoded arguments.*/
     #[inline]
     pub fn deploy_builder<
         T: alloy_contract::private::Transport + ::core::clone::Clone,
         P: alloy_contract::private::Provider<T, N>,
         N: alloy_contract::private::Network,
-    >(provider: P) -> alloy_contract::RawCallBuilder<T, P, N> {
+    >(
+        provider: P,
+    ) -> alloy_contract::RawCallBuilder<T, P, N> {
         ModuleManagerInstance::<T, P, N>::deploy_builder(provider)
     }
     /**A [`ModuleManager`](self) instance.
 
-Contains type-safe methods for interacting with an on-chain instance of the
-[`ModuleManager`](self) contract located at a given `address`, using a given
-provider `P`.
+    Contains type-safe methods for interacting with an on-chain instance of the
+    [`ModuleManager`](self) contract located at a given `address`, using a given
+    provider `P`.
 
-If the contract bytecode is available (see the [`sol!`](alloy_sol_types::sol!)
-documentation on how to provide it), the `deploy` and `deploy_builder` methods can
-be used to deploy a new instance of the contract.
+    If the contract bytecode is available (see the [`sol!`](alloy_sol_types::sol!)
+    documentation on how to provide it), the `deploy` and `deploy_builder` methods can
+    be used to deploy a new instance of the contract.
 
-See the [module-level documentation](self) for all the available methods.*/
+    See the [module-level documentation](self) for all the available methods.*/
     #[derive(Clone)]
     pub struct ModuleManagerInstance<T, P, N = alloy_contract::private::Ethereum> {
         address: alloy_sol_types::private::Address,
@@ -2500,42 +2023,34 @@ See the [module-level documentation](self) for all the available methods.*/
     /// Instantiation and getters/setters.
     #[automatically_derived]
     impl<
-        T: alloy_contract::private::Transport + ::core::clone::Clone,
-        P: alloy_contract::private::Provider<T, N>,
-        N: alloy_contract::private::Network,
-    > ModuleManagerInstance<T, P, N> {
+            T: alloy_contract::private::Transport + ::core::clone::Clone,
+            P: alloy_contract::private::Provider<T, N>,
+            N: alloy_contract::private::Network,
+        > ModuleManagerInstance<T, P, N>
+    {
         /**Creates a new wrapper around an on-chain [`ModuleManager`](self) contract instance.
 
-See the [wrapper's documentation](`ModuleManagerInstance`) for more details.*/
+        See the [wrapper's documentation](`ModuleManagerInstance`) for more details.*/
         #[inline]
-        pub const fn new(
-            address: alloy_sol_types::private::Address,
-            provider: P,
-        ) -> Self {
-            Self {
-                address,
-                provider,
-                _network_transport: ::core::marker::PhantomData,
-            }
+        pub const fn new(address: alloy_sol_types::private::Address, provider: P) -> Self {
+            Self { address, provider, _network_transport: ::core::marker::PhantomData }
         }
         /**Deploys this contract using the given `provider` and constructor arguments, if any.
 
-Returns a new instance of the contract, if the deployment was successful.
+        Returns a new instance of the contract, if the deployment was successful.
 
-For more fine-grained control over the deployment process, use [`deploy_builder`] instead.*/
+        For more fine-grained control over the deployment process, use [`deploy_builder`] instead.*/
         #[inline]
-        pub async fn deploy(
-            provider: P,
-        ) -> alloy_contract::Result<ModuleManagerInstance<T, P, N>> {
+        pub async fn deploy(provider: P) -> alloy_contract::Result<ModuleManagerInstance<T, P, N>> {
             let call_builder = Self::deploy_builder(provider);
             let contract_address = call_builder.deploy().await?;
             Ok(Self::new(contract_address, call_builder.provider))
         }
         /**Creates a `RawCallBuilder` for deploying this contract using the given `provider`
-and constructor arguments, if any.
+        and constructor arguments, if any.
 
-This is a simple wrapper around creating a `RawCallBuilder` with the data set to
-the bytecode concatenated with the constructor's ABI-encoded arguments.*/
+        This is a simple wrapper around creating a `RawCallBuilder` with the data set to
+        the bytecode concatenated with the constructor's ABI-encoded arguments.*/
         #[inline]
         pub fn deploy_builder(provider: P) -> alloy_contract::RawCallBuilder<T, P, N> {
             alloy_contract::RawCallBuilder::new_raw_deploy(
@@ -2578,10 +2093,11 @@ the bytecode concatenated with the constructor's ABI-encoded arguments.*/
     /// Function calls.
     #[automatically_derived]
     impl<
-        T: alloy_contract::private::Transport + ::core::clone::Clone,
-        P: alloy_contract::private::Provider<T, N>,
-        N: alloy_contract::private::Network,
-    > ModuleManagerInstance<T, P, N> {
+            T: alloy_contract::private::Transport + ::core::clone::Clone,
+            P: alloy_contract::private::Provider<T, N>,
+            N: alloy_contract::private::Network,
+        > ModuleManagerInstance<T, P, N>
+    {
         /// Creates a new call builder using this contract instance's provider and address.
         ///
         /// Note that the call can be any function call, not just those defined in this
@@ -2598,12 +2114,7 @@ the bytecode concatenated with the constructor's ABI-encoded arguments.*/
             prevModule: alloy::sol_types::private::Address,
             module: alloy::sol_types::private::Address,
         ) -> alloy_contract::SolCallBuilder<T, &P, disableModuleCall, N> {
-            self.call_builder(
-                &disableModuleCall {
-                    prevModule,
-                    module,
-                },
-            )
+            self.call_builder(&disableModuleCall { prevModule, module })
         }
         ///Creates a new call builder for the [`enableModule`] function.
         pub fn enableModule(
@@ -2620,14 +2131,7 @@ the bytecode concatenated with the constructor's ABI-encoded arguments.*/
             data: alloy::sol_types::private::Bytes,
             operation: <Enum::Operation as alloy::sol_types::SolType>::RustType,
         ) -> alloy_contract::SolCallBuilder<T, &P, execTransactionFromModuleCall, N> {
-            self.call_builder(
-                &execTransactionFromModuleCall {
-                    to,
-                    value,
-                    data,
-                    operation,
-                },
-            )
+            self.call_builder(&execTransactionFromModuleCall { to, value, data, operation })
         }
         ///Creates a new call builder for the [`execTransactionFromModuleReturnData`] function.
         pub fn execTransactionFromModuleReturnData(
@@ -2636,20 +2140,14 @@ the bytecode concatenated with the constructor's ABI-encoded arguments.*/
             value: alloy::sol_types::private::primitives::aliases::U256,
             data: alloy::sol_types::private::Bytes,
             operation: <Enum::Operation as alloy::sol_types::SolType>::RustType,
-        ) -> alloy_contract::SolCallBuilder<
-            T,
-            &P,
-            execTransactionFromModuleReturnDataCall,
-            N,
-        > {
-            self.call_builder(
-                &execTransactionFromModuleReturnDataCall {
-                    to,
-                    value,
-                    data,
-                    operation,
-                },
-            )
+        ) -> alloy_contract::SolCallBuilder<T, &P, execTransactionFromModuleReturnDataCall, N>
+        {
+            self.call_builder(&execTransactionFromModuleReturnDataCall {
+                to,
+                value,
+                data,
+                operation,
+            })
         }
         ///Creates a new call builder for the [`getModulesPaginated`] function.
         pub fn getModulesPaginated(
@@ -2657,12 +2155,7 @@ the bytecode concatenated with the constructor's ABI-encoded arguments.*/
             start: alloy::sol_types::private::Address,
             pageSize: alloy::sol_types::private::primitives::aliases::U256,
         ) -> alloy_contract::SolCallBuilder<T, &P, getModulesPaginatedCall, N> {
-            self.call_builder(
-                &getModulesPaginatedCall {
-                    start,
-                    pageSize,
-                },
-            )
+            self.call_builder(&getModulesPaginatedCall { start, pageSize })
         }
         ///Creates a new call builder for the [`isModuleEnabled`] function.
         pub fn isModuleEnabled(
@@ -2675,10 +2168,11 @@ the bytecode concatenated with the constructor's ABI-encoded arguments.*/
     /// Event filters.
     #[automatically_derived]
     impl<
-        T: alloy_contract::private::Transport + ::core::clone::Clone,
-        P: alloy_contract::private::Provider<T, N>,
-        N: alloy_contract::private::Network,
-    > ModuleManagerInstance<T, P, N> {
+            T: alloy_contract::private::Transport + ::core::clone::Clone,
+            P: alloy_contract::private::Provider<T, N>,
+            N: alloy_contract::private::Network,
+        > ModuleManagerInstance<T, P, N>
+    {
         /// Creates a new event filter using this contract instance's provider and address.
         ///
         /// Note that the type can be any event, not just those defined in this contract.
@@ -2689,15 +2183,11 @@ the bytecode concatenated with the constructor's ABI-encoded arguments.*/
             alloy_contract::Event::new_sol(&self.provider, &self.address)
         }
         ///Creates a new event filter for the [`DisabledModule`] event.
-        pub fn DisabledModule_filter(
-            &self,
-        ) -> alloy_contract::Event<T, &P, DisabledModule, N> {
+        pub fn DisabledModule_filter(&self) -> alloy_contract::Event<T, &P, DisabledModule, N> {
             self.event_filter::<DisabledModule>()
         }
         ///Creates a new event filter for the [`EnabledModule`] event.
-        pub fn EnabledModule_filter(
-            &self,
-        ) -> alloy_contract::Event<T, &P, EnabledModule, N> {
+        pub fn EnabledModule_filter(&self) -> alloy_contract::Event<T, &P, EnabledModule, N> {
             self.event_filter::<EnabledModule>()
         }
         ///Creates a new event filter for the [`ExecutionFromModuleFailure`] event.

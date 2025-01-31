@@ -18,13 +18,13 @@ remappings = [
     '@oz/=lib/openzeppelin-contracts/contracts',
     'openzeppelin-contracts/=lib/openzeppelin-contracts/contracts',
     '@openzeppelin/contracts/=lib/openzeppelin-contracts/contracts/',
-    '@eigenlayer/contracts/=lib/eigenlayer-middleware/lib/eigenlayer-contracts/src/contracts/',
-    '@eigenlayer/middleware/=lib/eigenlayer-middleware/',
-    '@eigenlayer/test/=lib/eigenlayer-middleware/lib/eigenlayer-contracts/src/test/',
-    'eigenlayer-contracts/=lib/eigenlayer-middleware/lib/eigenlayer-contracts/',
-    'eigenlayer-middleware/=lib/eigenlayer-middleware/',
+    '@eigenlayer/contracts/=lib/WAVS/lib/eigenlayer-middleware/lib/eigenlayer-contracts/src/contracts/',
+    '@eigenlayer/middleware/=lib/WAVS/lib/eigenlayer-middleware/',
+    '@eigenlayer/test/=lib/WAVS/lib/eigenlayer-middleware/lib/eigenlayer-contracts/src/test/',
+    'eigenlayer-contracts/=lib/WAVS/lib/eigenlayer-middleware/lib/eigenlayer-contracts/',
+    'eigenlayer-middleware/=lib/WAVS/lib/eigenlayer-middleware/',
     '@gnosis.pm/zodiac/=lib/zodiac/',
-    '@layer-contracts=lib/WAVS/sdk/solidity/contracts/'
+    '@wavs=lib/WAVS/sdk/contracts/solidity/'
 ]
 
 [profile.bind]

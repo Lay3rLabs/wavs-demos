@@ -76,33 +76,28 @@ pub mod stdStorageSafe {
     /// The creation / init bytecode of the contract.
     ///
     /// ```text
-    ///0x60556032600b8282823980515f1a607314602657634e487b7160e01b5f525f60045260245ffd5b305f52607381538281f3fe730000000000000000000000000000000000000000301460806040525f5ffdfea26469706673582212209c2f4b2f26ea410696c0635120527ac469d9cab47091d20ed370ea7266d49f9e64736f6c634300081c0033
+    ///0x60556032600b8282823980515f1a607314602657634e487b7160e01b5f525f60045260245ffd5b305f52607381538281f3fe730000000000000000000000000000000000000000301460806040525f5ffdfea26469706673582212203ab3213dc2b4736b89fed811373321497bead891bc06af5c01daa6a819fb504d64736f6c634300081c0033
     /// ```
     #[rustfmt::skip]
     #[allow(clippy::all)]
     pub static BYTECODE: alloy_sol_types::private::Bytes = alloy_sol_types::private::Bytes::from_static(
-        b"`U`2`\x0B\x82\x82\x829\x80Q_\x1A`s\x14`&WcNH{q`\xE0\x1B_R_`\x04R`$_\xFD[0_R`s\x81S\x82\x81\xF3\xFEs\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x000\x14`\x80`@R__\xFD\xFE\xA2dipfsX\"\x12 \x9C/K/&\xEAA\x06\x96\xC0cQ Rz\xC4i\xD9\xCA\xB4p\x91\xD2\x0E\xD3p\xEArf\xD4\x9F\x9EdsolcC\0\x08\x1C\x003",
+        b"`U`2`\x0B\x82\x82\x829\x80Q_\x1A`s\x14`&WcNH{q`\xE0\x1B_R_`\x04R`$_\xFD[0_R`s\x81S\x82\x81\xF3\xFEs\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x000\x14`\x80`@R__\xFD\xFE\xA2dipfsX\"\x12 :\xB3!=\xC2\xB4sk\x89\xFE\xD8\x1173!I{\xEA\xD8\x91\xBC\x06\xAF\\\x01\xDA\xA6\xA8\x19\xFBPMdsolcC\0\x08\x1C\x003",
     );
     /// The runtime bytecode of the contract, as deployed on the network.
     ///
     /// ```text
-    ///0x730000000000000000000000000000000000000000301460806040525f5ffdfea26469706673582212209c2f4b2f26ea410696c0635120527ac469d9cab47091d20ed370ea7266d49f9e64736f6c634300081c0033
+    ///0x730000000000000000000000000000000000000000301460806040525f5ffdfea26469706673582212203ab3213dc2b4736b89fed811373321497bead891bc06af5c01daa6a819fb504d64736f6c634300081c0033
     /// ```
     #[rustfmt::skip]
     #[allow(clippy::all)]
     pub static DEPLOYED_BYTECODE: alloy_sol_types::private::Bytes = alloy_sol_types::private::Bytes::from_static(
-        b"s\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x000\x14`\x80`@R__\xFD\xFE\xA2dipfsX\"\x12 \x9C/K/&\xEAA\x06\x96\xC0cQ Rz\xC4i\xD9\xCA\xB4p\x91\xD2\x0E\xD3p\xEArf\xD4\x9F\x9EdsolcC\0\x08\x1C\x003",
+        b"s\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x000\x14`\x80`@R__\xFD\xFE\xA2dipfsX\"\x12 :\xB3!=\xC2\xB4sk\x89\xFE\xD8\x1173!I{\xEA\xD8\x91\xBC\x06\xAF\\\x01\xDA\xA6\xA8\x19\xFBPMdsolcC\0\x08\x1C\x003",
     );
     /**Event with signature `SlotFound(address,bytes4,bytes32,uint256)` and selector `0x9c9555b1e3102e3cf48f427d79cb678f5d9bd1ed0ad574389461e255f95170ed`.
-```solidity
-event SlotFound(address who, bytes4 fsig, bytes32 keysHash, uint256 slot);
-```*/
-    #[allow(
-        non_camel_case_types,
-        non_snake_case,
-        clippy::pub_underscore_fields,
-        clippy::style
-    )]
+    ```solidity
+    event SlotFound(address who, bytes4 fsig, bytes32 keysHash, uint256 slot);
+    ```*/
+    #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields, clippy::style)]
     #[derive(Clone)]
     pub struct SlotFound {
         #[allow(missing_docs)]
@@ -114,12 +109,7 @@ event SlotFound(address who, bytes4 fsig, bytes32 keysHash, uint256 slot);
         #[allow(missing_docs)]
         pub slot: alloy::sol_types::private::primitives::aliases::U256,
     }
-    #[allow(
-        non_camel_case_types,
-        non_snake_case,
-        clippy::pub_underscore_fields,
-        clippy::style
-    )]
+    #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields, clippy::style)]
     const _: () = {
         use alloy::sol_types as alloy_sol_types;
         #[automatically_derived]
@@ -130,45 +120,15 @@ event SlotFound(address who, bytes4 fsig, bytes32 keysHash, uint256 slot);
                 alloy::sol_types::sol_data::FixedBytes<32>,
                 alloy::sol_types::sol_data::Uint<256>,
             );
-            type DataToken<'a> = <Self::DataTuple<
-                'a,
-            > as alloy_sol_types::SolType>::Token<'a>;
+            type DataToken<'a> = <Self::DataTuple<'a> as alloy_sol_types::SolType>::Token<'a>;
             type TopicList = (alloy_sol_types::sol_data::FixedBytes<32>,);
             const SIGNATURE: &'static str = "SlotFound(address,bytes4,bytes32,uint256)";
-            const SIGNATURE_HASH: alloy_sol_types::private::B256 = alloy_sol_types::private::B256::new([
-                156u8,
-                149u8,
-                85u8,
-                177u8,
-                227u8,
-                16u8,
-                46u8,
-                60u8,
-                244u8,
-                143u8,
-                66u8,
-                125u8,
-                121u8,
-                203u8,
-                103u8,
-                143u8,
-                93u8,
-                155u8,
-                209u8,
-                237u8,
-                10u8,
-                213u8,
-                116u8,
-                56u8,
-                148u8,
-                97u8,
-                226u8,
-                85u8,
-                249u8,
-                81u8,
-                112u8,
-                237u8,
-            ]);
+            const SIGNATURE_HASH: alloy_sol_types::private::B256 =
+                alloy_sol_types::private::B256::new([
+                    156u8, 149u8, 85u8, 177u8, 227u8, 16u8, 46u8, 60u8, 244u8, 143u8, 66u8, 125u8,
+                    121u8, 203u8, 103u8, 143u8, 93u8, 155u8, 209u8, 237u8, 10u8, 213u8, 116u8,
+                    56u8, 148u8, 97u8, 226u8, 85u8, 249u8, 81u8, 112u8, 237u8,
+                ]);
             const ANONYMOUS: bool = false;
             #[allow(unused_variables)]
             #[inline]
@@ -176,25 +136,18 @@ event SlotFound(address who, bytes4 fsig, bytes32 keysHash, uint256 slot);
                 topics: <Self::TopicList as alloy_sol_types::SolType>::RustType,
                 data: <Self::DataTuple<'_> as alloy_sol_types::SolType>::RustType,
             ) -> Self {
-                Self {
-                    who: data.0,
-                    fsig: data.1,
-                    keysHash: data.2,
-                    slot: data.3,
-                }
+                Self { who: data.0, fsig: data.1, keysHash: data.2, slot: data.3 }
             }
             #[inline]
             fn check_signature(
                 topics: &<Self::TopicList as alloy_sol_types::SolType>::RustType,
             ) -> alloy_sol_types::Result<()> {
                 if topics.0 != Self::SIGNATURE_HASH {
-                    return Err(
-                        alloy_sol_types::Error::invalid_event_signature_hash(
-                            Self::SIGNATURE,
-                            topics.0,
-                            Self::SIGNATURE_HASH,
-                        ),
-                    );
+                    return Err(alloy_sol_types::Error::invalid_event_signature_hash(
+                        Self::SIGNATURE,
+                        topics.0,
+                        Self::SIGNATURE_HASH,
+                    ));
                 }
                 Ok(())
             }
@@ -227,9 +180,7 @@ event SlotFound(address who, bytes4 fsig, bytes32 keysHash, uint256 slot);
                 if out.len() < <Self::TopicList as alloy_sol_types::TopicList>::COUNT {
                     return Err(alloy_sol_types::Error::Overrun);
                 }
-                out[0usize] = alloy_sol_types::abi::token::WordToken(
-                    Self::SIGNATURE_HASH,
-                );
+                out[0usize] = alloy_sol_types::abi::token::WordToken(Self::SIGNATURE_HASH);
                 Ok(())
             }
         }
@@ -251,15 +202,10 @@ event SlotFound(address who, bytes4 fsig, bytes32 keysHash, uint256 slot);
         }
     };
     /**Event with signature `WARNING_UninitedSlot(address,uint256)` and selector `0x080fc4a96620c4462e705b23f346413fe3796bb63c6f8d8591baec0e231577a5`.
-```solidity
-event WARNING_UninitedSlot(address who, uint256 slot);
-```*/
-    #[allow(
-        non_camel_case_types,
-        non_snake_case,
-        clippy::pub_underscore_fields,
-        clippy::style
-    )]
+    ```solidity
+    event WARNING_UninitedSlot(address who, uint256 slot);
+    ```*/
+    #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields, clippy::style)]
     #[derive(Clone)]
     pub struct WARNING_UninitedSlot {
         #[allow(missing_docs)]
@@ -267,59 +213,22 @@ event WARNING_UninitedSlot(address who, uint256 slot);
         #[allow(missing_docs)]
         pub slot: alloy::sol_types::private::primitives::aliases::U256,
     }
-    #[allow(
-        non_camel_case_types,
-        non_snake_case,
-        clippy::pub_underscore_fields,
-        clippy::style
-    )]
+    #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields, clippy::style)]
     const _: () = {
         use alloy::sol_types as alloy_sol_types;
         #[automatically_derived]
         impl alloy_sol_types::SolEvent for WARNING_UninitedSlot {
-            type DataTuple<'a> = (
-                alloy::sol_types::sol_data::Address,
-                alloy::sol_types::sol_data::Uint<256>,
-            );
-            type DataToken<'a> = <Self::DataTuple<
-                'a,
-            > as alloy_sol_types::SolType>::Token<'a>;
+            type DataTuple<'a> =
+                (alloy::sol_types::sol_data::Address, alloy::sol_types::sol_data::Uint<256>);
+            type DataToken<'a> = <Self::DataTuple<'a> as alloy_sol_types::SolType>::Token<'a>;
             type TopicList = (alloy_sol_types::sol_data::FixedBytes<32>,);
             const SIGNATURE: &'static str = "WARNING_UninitedSlot(address,uint256)";
-            const SIGNATURE_HASH: alloy_sol_types::private::B256 = alloy_sol_types::private::B256::new([
-                8u8,
-                15u8,
-                196u8,
-                169u8,
-                102u8,
-                32u8,
-                196u8,
-                70u8,
-                46u8,
-                112u8,
-                91u8,
-                35u8,
-                243u8,
-                70u8,
-                65u8,
-                63u8,
-                227u8,
-                121u8,
-                107u8,
-                182u8,
-                60u8,
-                111u8,
-                141u8,
-                133u8,
-                145u8,
-                186u8,
-                236u8,
-                14u8,
-                35u8,
-                21u8,
-                119u8,
-                165u8,
-            ]);
+            const SIGNATURE_HASH: alloy_sol_types::private::B256 =
+                alloy_sol_types::private::B256::new([
+                    8u8, 15u8, 196u8, 169u8, 102u8, 32u8, 196u8, 70u8, 46u8, 112u8, 91u8, 35u8,
+                    243u8, 70u8, 65u8, 63u8, 227u8, 121u8, 107u8, 182u8, 60u8, 111u8, 141u8, 133u8,
+                    145u8, 186u8, 236u8, 14u8, 35u8, 21u8, 119u8, 165u8,
+                ]);
             const ANONYMOUS: bool = false;
             #[allow(unused_variables)]
             #[inline]
@@ -334,13 +243,11 @@ event WARNING_UninitedSlot(address who, uint256 slot);
                 topics: &<Self::TopicList as alloy_sol_types::SolType>::RustType,
             ) -> alloy_sol_types::Result<()> {
                 if topics.0 != Self::SIGNATURE_HASH {
-                    return Err(
-                        alloy_sol_types::Error::invalid_event_signature_hash(
-                            Self::SIGNATURE,
-                            topics.0,
-                            Self::SIGNATURE_HASH,
-                        ),
-                    );
+                    return Err(alloy_sol_types::Error::invalid_event_signature_hash(
+                        Self::SIGNATURE,
+                        topics.0,
+                        Self::SIGNATURE_HASH,
+                    ));
                 }
                 Ok(())
             }
@@ -350,9 +257,9 @@ event WARNING_UninitedSlot(address who, uint256 slot);
                     <alloy::sol_types::sol_data::Address as alloy_sol_types::SolType>::tokenize(
                         &self.who,
                     ),
-                    <alloy::sol_types::sol_data::Uint<
-                        256,
-                    > as alloy_sol_types::SolType>::tokenize(&self.slot),
+                    <alloy::sol_types::sol_data::Uint<256> as alloy_sol_types::SolType>::tokenize(
+                        &self.slot,
+                    ),
                 )
             }
             #[inline]
@@ -367,9 +274,7 @@ event WARNING_UninitedSlot(address who, uint256 slot);
                 if out.len() < <Self::TopicList as alloy_sol_types::TopicList>::COUNT {
                     return Err(alloy_sol_types::Error::Overrun);
                 }
-                out[0usize] = alloy_sol_types::abi::token::WordToken(
-                    Self::SIGNATURE_HASH,
-                );
+                out[0usize] = alloy_sol_types::abi::token::WordToken(Self::SIGNATURE_HASH);
                 Ok(())
             }
         }
@@ -405,72 +310,14 @@ event WARNING_UninitedSlot(address who, uint256 slot);
         /// Prefer using `SolInterface` methods instead.
         pub const SELECTORS: &'static [[u8; 32usize]] = &[
             [
-                8u8,
-                15u8,
-                196u8,
-                169u8,
-                102u8,
-                32u8,
-                196u8,
-                70u8,
-                46u8,
-                112u8,
-                91u8,
-                35u8,
-                243u8,
-                70u8,
-                65u8,
-                63u8,
-                227u8,
-                121u8,
-                107u8,
-                182u8,
-                60u8,
-                111u8,
-                141u8,
-                133u8,
-                145u8,
-                186u8,
-                236u8,
-                14u8,
-                35u8,
-                21u8,
-                119u8,
-                165u8,
+                8u8, 15u8, 196u8, 169u8, 102u8, 32u8, 196u8, 70u8, 46u8, 112u8, 91u8, 35u8, 243u8,
+                70u8, 65u8, 63u8, 227u8, 121u8, 107u8, 182u8, 60u8, 111u8, 141u8, 133u8, 145u8,
+                186u8, 236u8, 14u8, 35u8, 21u8, 119u8, 165u8,
             ],
             [
-                156u8,
-                149u8,
-                85u8,
-                177u8,
-                227u8,
-                16u8,
-                46u8,
-                60u8,
-                244u8,
-                143u8,
-                66u8,
-                125u8,
-                121u8,
-                203u8,
-                103u8,
-                143u8,
-                93u8,
-                155u8,
-                209u8,
-                237u8,
-                10u8,
-                213u8,
-                116u8,
-                56u8,
-                148u8,
-                97u8,
-                226u8,
-                85u8,
-                249u8,
-                81u8,
-                112u8,
-                237u8,
+                156u8, 149u8, 85u8, 177u8, 227u8, 16u8, 46u8, 60u8, 244u8, 143u8, 66u8, 125u8,
+                121u8, 203u8, 103u8, 143u8, 93u8, 155u8, 209u8, 237u8, 10u8, 213u8, 116u8, 56u8,
+                148u8, 97u8, 226u8, 85u8, 249u8, 81u8, 112u8, 237u8,
             ],
         ];
     }
@@ -485,34 +332,24 @@ event WARNING_UninitedSlot(address who, uint256 slot);
         ) -> alloy_sol_types::Result<Self> {
             match topics.first().copied() {
                 Some(<SlotFound as alloy_sol_types::SolEvent>::SIGNATURE_HASH) => {
-                    <SlotFound as alloy_sol_types::SolEvent>::decode_raw_log(
-                            topics,
-                            data,
-                            validate,
-                        )
+                    <SlotFound as alloy_sol_types::SolEvent>::decode_raw_log(topics, data, validate)
                         .map(Self::SlotFound)
                 }
-                Some(
-                    <WARNING_UninitedSlot as alloy_sol_types::SolEvent>::SIGNATURE_HASH,
-                ) => {
+                Some(<WARNING_UninitedSlot as alloy_sol_types::SolEvent>::SIGNATURE_HASH) => {
                     <WARNING_UninitedSlot as alloy_sol_types::SolEvent>::decode_raw_log(
-                            topics,
-                            data,
-                            validate,
-                        )
-                        .map(Self::WARNING_UninitedSlot)
+                        topics, data, validate,
+                    )
+                    .map(Self::WARNING_UninitedSlot)
                 }
-                _ => {
-                    alloy_sol_types::private::Err(alloy_sol_types::Error::InvalidLog {
-                        name: <Self as alloy_sol_types::SolEventInterface>::NAME,
-                        log: alloy_sol_types::private::Box::new(
-                            alloy_sol_types::private::LogData::new_unchecked(
-                                topics.to_vec(),
-                                data.to_vec().into(),
-                            ),
+                _ => alloy_sol_types::private::Err(alloy_sol_types::Error::InvalidLog {
+                    name: <Self as alloy_sol_types::SolEventInterface>::NAME,
+                    log: alloy_sol_types::private::Box::new(
+                        alloy_sol_types::private::LogData::new_unchecked(
+                            topics.to_vec(),
+                            data.to_vec().into(),
                         ),
-                    })
-                }
+                    ),
+                }),
             }
         }
     }
@@ -520,9 +357,7 @@ event WARNING_UninitedSlot(address who, uint256 slot);
     impl alloy_sol_types::private::IntoLogData for stdStorageSafeEvents {
         fn to_log_data(&self) -> alloy_sol_types::private::LogData {
             match self {
-                Self::SlotFound(inner) => {
-                    alloy_sol_types::private::IntoLogData::to_log_data(inner)
-                }
+                Self::SlotFound(inner) => alloy_sol_types::private::IntoLogData::to_log_data(inner),
                 Self::WARNING_UninitedSlot(inner) => {
                     alloy_sol_types::private::IntoLogData::to_log_data(inner)
                 }
@@ -542,7 +377,7 @@ event WARNING_UninitedSlot(address who, uint256 slot);
     use alloy::contract as alloy_contract;
     /**Creates a new wrapper around an on-chain [`stdStorageSafe`](self) contract instance.
 
-See the [wrapper's documentation](`stdStorageSafeInstance`) for more details.*/
+    See the [wrapper's documentation](`stdStorageSafeInstance`) for more details.*/
     #[inline]
     pub const fn new<
         T: alloy_contract::private::Transport + ::core::clone::Clone,
@@ -556,9 +391,9 @@ See the [wrapper's documentation](`stdStorageSafeInstance`) for more details.*/
     }
     /**Deploys this contract using the given `provider` and constructor arguments, if any.
 
-Returns a new instance of the contract, if the deployment was successful.
+    Returns a new instance of the contract, if the deployment was successful.
 
-For more fine-grained control over the deployment process, use [`deploy_builder`] instead.*/
+    For more fine-grained control over the deployment process, use [`deploy_builder`] instead.*/
     #[inline]
     pub fn deploy<
         T: alloy_contract::private::Transport + ::core::clone::Clone,
@@ -566,35 +401,36 @@ For more fine-grained control over the deployment process, use [`deploy_builder`
         N: alloy_contract::private::Network,
     >(
         provider: P,
-    ) -> impl ::core::future::Future<
-        Output = alloy_contract::Result<stdStorageSafeInstance<T, P, N>>,
-    > {
+    ) -> impl ::core::future::Future<Output = alloy_contract::Result<stdStorageSafeInstance<T, P, N>>>
+    {
         stdStorageSafeInstance::<T, P, N>::deploy(provider)
     }
     /**Creates a `RawCallBuilder` for deploying this contract using the given `provider`
-and constructor arguments, if any.
+    and constructor arguments, if any.
 
-This is a simple wrapper around creating a `RawCallBuilder` with the data set to
-the bytecode concatenated with the constructor's ABI-encoded arguments.*/
+    This is a simple wrapper around creating a `RawCallBuilder` with the data set to
+    the bytecode concatenated with the constructor's ABI-encoded arguments.*/
     #[inline]
     pub fn deploy_builder<
         T: alloy_contract::private::Transport + ::core::clone::Clone,
         P: alloy_contract::private::Provider<T, N>,
         N: alloy_contract::private::Network,
-    >(provider: P) -> alloy_contract::RawCallBuilder<T, P, N> {
+    >(
+        provider: P,
+    ) -> alloy_contract::RawCallBuilder<T, P, N> {
         stdStorageSafeInstance::<T, P, N>::deploy_builder(provider)
     }
     /**A [`stdStorageSafe`](self) instance.
 
-Contains type-safe methods for interacting with an on-chain instance of the
-[`stdStorageSafe`](self) contract located at a given `address`, using a given
-provider `P`.
+    Contains type-safe methods for interacting with an on-chain instance of the
+    [`stdStorageSafe`](self) contract located at a given `address`, using a given
+    provider `P`.
 
-If the contract bytecode is available (see the [`sol!`](alloy_sol_types::sol!)
-documentation on how to provide it), the `deploy` and `deploy_builder` methods can
-be used to deploy a new instance of the contract.
+    If the contract bytecode is available (see the [`sol!`](alloy_sol_types::sol!)
+    documentation on how to provide it), the `deploy` and `deploy_builder` methods can
+    be used to deploy a new instance of the contract.
 
-See the [module-level documentation](self) for all the available methods.*/
+    See the [module-level documentation](self) for all the available methods.*/
     #[derive(Clone)]
     pub struct stdStorageSafeInstance<T, P, N = alloy_contract::private::Ethereum> {
         address: alloy_sol_types::private::Address,
@@ -611,29 +447,23 @@ See the [module-level documentation](self) for all the available methods.*/
     /// Instantiation and getters/setters.
     #[automatically_derived]
     impl<
-        T: alloy_contract::private::Transport + ::core::clone::Clone,
-        P: alloy_contract::private::Provider<T, N>,
-        N: alloy_contract::private::Network,
-    > stdStorageSafeInstance<T, P, N> {
+            T: alloy_contract::private::Transport + ::core::clone::Clone,
+            P: alloy_contract::private::Provider<T, N>,
+            N: alloy_contract::private::Network,
+        > stdStorageSafeInstance<T, P, N>
+    {
         /**Creates a new wrapper around an on-chain [`stdStorageSafe`](self) contract instance.
 
-See the [wrapper's documentation](`stdStorageSafeInstance`) for more details.*/
+        See the [wrapper's documentation](`stdStorageSafeInstance`) for more details.*/
         #[inline]
-        pub const fn new(
-            address: alloy_sol_types::private::Address,
-            provider: P,
-        ) -> Self {
-            Self {
-                address,
-                provider,
-                _network_transport: ::core::marker::PhantomData,
-            }
+        pub const fn new(address: alloy_sol_types::private::Address, provider: P) -> Self {
+            Self { address, provider, _network_transport: ::core::marker::PhantomData }
         }
         /**Deploys this contract using the given `provider` and constructor arguments, if any.
 
-Returns a new instance of the contract, if the deployment was successful.
+        Returns a new instance of the contract, if the deployment was successful.
 
-For more fine-grained control over the deployment process, use [`deploy_builder`] instead.*/
+        For more fine-grained control over the deployment process, use [`deploy_builder`] instead.*/
         #[inline]
         pub async fn deploy(
             provider: P,
@@ -643,10 +473,10 @@ For more fine-grained control over the deployment process, use [`deploy_builder`
             Ok(Self::new(contract_address, call_builder.provider))
         }
         /**Creates a `RawCallBuilder` for deploying this contract using the given `provider`
-and constructor arguments, if any.
+        and constructor arguments, if any.
 
-This is a simple wrapper around creating a `RawCallBuilder` with the data set to
-the bytecode concatenated with the constructor's ABI-encoded arguments.*/
+        This is a simple wrapper around creating a `RawCallBuilder` with the data set to
+        the bytecode concatenated with the constructor's ABI-encoded arguments.*/
         #[inline]
         pub fn deploy_builder(provider: P) -> alloy_contract::RawCallBuilder<T, P, N> {
             alloy_contract::RawCallBuilder::new_raw_deploy(
@@ -689,10 +519,11 @@ the bytecode concatenated with the constructor's ABI-encoded arguments.*/
     /// Function calls.
     #[automatically_derived]
     impl<
-        T: alloy_contract::private::Transport + ::core::clone::Clone,
-        P: alloy_contract::private::Provider<T, N>,
-        N: alloy_contract::private::Network,
-    > stdStorageSafeInstance<T, P, N> {
+            T: alloy_contract::private::Transport + ::core::clone::Clone,
+            P: alloy_contract::private::Provider<T, N>,
+            N: alloy_contract::private::Network,
+        > stdStorageSafeInstance<T, P, N>
+    {
         /// Creates a new call builder using this contract instance's provider and address.
         ///
         /// Note that the call can be any function call, not just those defined in this
@@ -707,10 +538,11 @@ the bytecode concatenated with the constructor's ABI-encoded arguments.*/
     /// Event filters.
     #[automatically_derived]
     impl<
-        T: alloy_contract::private::Transport + ::core::clone::Clone,
-        P: alloy_contract::private::Provider<T, N>,
-        N: alloy_contract::private::Network,
-    > stdStorageSafeInstance<T, P, N> {
+            T: alloy_contract::private::Transport + ::core::clone::Clone,
+            P: alloy_contract::private::Provider<T, N>,
+            N: alloy_contract::private::Network,
+        > stdStorageSafeInstance<T, P, N>
+    {
         /// Creates a new event filter using this contract instance's provider and address.
         ///
         /// Note that the type can be any event, not just those defined in this contract.

@@ -214,73 +214,31 @@ pub mod OwnerManager {
         b"",
     );
     /**Event with signature `AddedOwner(address)` and selector `0x9465fa0c962cc76958e6373a993326400c1c94f8be2fe3a952adfa7f60b2ea26`.
-```solidity
-event AddedOwner(address indexed owner);
-```*/
-    #[allow(
-        non_camel_case_types,
-        non_snake_case,
-        clippy::pub_underscore_fields,
-        clippy::style
-    )]
+    ```solidity
+    event AddedOwner(address indexed owner);
+    ```*/
+    #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields, clippy::style)]
     #[derive(Clone)]
     pub struct AddedOwner {
         #[allow(missing_docs)]
         pub owner: alloy::sol_types::private::Address,
     }
-    #[allow(
-        non_camel_case_types,
-        non_snake_case,
-        clippy::pub_underscore_fields,
-        clippy::style
-    )]
+    #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields, clippy::style)]
     const _: () = {
         use alloy::sol_types as alloy_sol_types;
         #[automatically_derived]
         impl alloy_sol_types::SolEvent for AddedOwner {
             type DataTuple<'a> = ();
-            type DataToken<'a> = <Self::DataTuple<
-                'a,
-            > as alloy_sol_types::SolType>::Token<'a>;
-            type TopicList = (
-                alloy_sol_types::sol_data::FixedBytes<32>,
-                alloy::sol_types::sol_data::Address,
-            );
+            type DataToken<'a> = <Self::DataTuple<'a> as alloy_sol_types::SolType>::Token<'a>;
+            type TopicList =
+                (alloy_sol_types::sol_data::FixedBytes<32>, alloy::sol_types::sol_data::Address);
             const SIGNATURE: &'static str = "AddedOwner(address)";
-            const SIGNATURE_HASH: alloy_sol_types::private::B256 = alloy_sol_types::private::B256::new([
-                148u8,
-                101u8,
-                250u8,
-                12u8,
-                150u8,
-                44u8,
-                199u8,
-                105u8,
-                88u8,
-                230u8,
-                55u8,
-                58u8,
-                153u8,
-                51u8,
-                38u8,
-                64u8,
-                12u8,
-                28u8,
-                148u8,
-                248u8,
-                190u8,
-                47u8,
-                227u8,
-                169u8,
-                82u8,
-                173u8,
-                250u8,
-                127u8,
-                96u8,
-                178u8,
-                234u8,
-                38u8,
-            ]);
+            const SIGNATURE_HASH: alloy_sol_types::private::B256 =
+                alloy_sol_types::private::B256::new([
+                    148u8, 101u8, 250u8, 12u8, 150u8, 44u8, 199u8, 105u8, 88u8, 230u8, 55u8, 58u8,
+                    153u8, 51u8, 38u8, 64u8, 12u8, 28u8, 148u8, 248u8, 190u8, 47u8, 227u8, 169u8,
+                    82u8, 173u8, 250u8, 127u8, 96u8, 178u8, 234u8, 38u8,
+                ]);
             const ANONYMOUS: bool = false;
             #[allow(unused_variables)]
             #[inline]
@@ -295,13 +253,11 @@ event AddedOwner(address indexed owner);
                 topics: &<Self::TopicList as alloy_sol_types::SolType>::RustType,
             ) -> alloy_sol_types::Result<()> {
                 if topics.0 != Self::SIGNATURE_HASH {
-                    return Err(
-                        alloy_sol_types::Error::invalid_event_signature_hash(
-                            Self::SIGNATURE,
-                            topics.0,
-                            Self::SIGNATURE_HASH,
-                        ),
-                    );
+                    return Err(alloy_sol_types::Error::invalid_event_signature_hash(
+                        Self::SIGNATURE,
+                        topics.0,
+                        Self::SIGNATURE_HASH,
+                    ));
                 }
                 Ok(())
             }
@@ -321,9 +277,7 @@ event AddedOwner(address indexed owner);
                 if out.len() < <Self::TopicList as alloy_sol_types::TopicList>::COUNT {
                     return Err(alloy_sol_types::Error::Overrun);
                 }
-                out[0usize] = alloy_sol_types::abi::token::WordToken(
-                    Self::SIGNATURE_HASH,
-                );
+                out[0usize] = alloy_sol_types::abi::token::WordToken(Self::SIGNATURE_HASH);
                 out[1usize] = <alloy::sol_types::sol_data::Address as alloy_sol_types::EventTopic>::encode_topic(
                     &self.owner,
                 );
@@ -348,70 +302,30 @@ event AddedOwner(address indexed owner);
         }
     };
     /**Event with signature `ChangedThreshold(uint256)` and selector `0x610f7ff2b304ae8903c3de74c60c6ab1f7d6226b3f52c5161905bb5ad4039c93`.
-```solidity
-event ChangedThreshold(uint256 threshold);
-```*/
-    #[allow(
-        non_camel_case_types,
-        non_snake_case,
-        clippy::pub_underscore_fields,
-        clippy::style
-    )]
+    ```solidity
+    event ChangedThreshold(uint256 threshold);
+    ```*/
+    #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields, clippy::style)]
     #[derive(Clone)]
     pub struct ChangedThreshold {
         #[allow(missing_docs)]
         pub threshold: alloy::sol_types::private::primitives::aliases::U256,
     }
-    #[allow(
-        non_camel_case_types,
-        non_snake_case,
-        clippy::pub_underscore_fields,
-        clippy::style
-    )]
+    #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields, clippy::style)]
     const _: () = {
         use alloy::sol_types as alloy_sol_types;
         #[automatically_derived]
         impl alloy_sol_types::SolEvent for ChangedThreshold {
             type DataTuple<'a> = (alloy::sol_types::sol_data::Uint<256>,);
-            type DataToken<'a> = <Self::DataTuple<
-                'a,
-            > as alloy_sol_types::SolType>::Token<'a>;
+            type DataToken<'a> = <Self::DataTuple<'a> as alloy_sol_types::SolType>::Token<'a>;
             type TopicList = (alloy_sol_types::sol_data::FixedBytes<32>,);
             const SIGNATURE: &'static str = "ChangedThreshold(uint256)";
-            const SIGNATURE_HASH: alloy_sol_types::private::B256 = alloy_sol_types::private::B256::new([
-                97u8,
-                15u8,
-                127u8,
-                242u8,
-                179u8,
-                4u8,
-                174u8,
-                137u8,
-                3u8,
-                195u8,
-                222u8,
-                116u8,
-                198u8,
-                12u8,
-                106u8,
-                177u8,
-                247u8,
-                214u8,
-                34u8,
-                107u8,
-                63u8,
-                82u8,
-                197u8,
-                22u8,
-                25u8,
-                5u8,
-                187u8,
-                90u8,
-                212u8,
-                3u8,
-                156u8,
-                147u8,
-            ]);
+            const SIGNATURE_HASH: alloy_sol_types::private::B256 =
+                alloy_sol_types::private::B256::new([
+                    97u8, 15u8, 127u8, 242u8, 179u8, 4u8, 174u8, 137u8, 3u8, 195u8, 222u8, 116u8,
+                    198u8, 12u8, 106u8, 177u8, 247u8, 214u8, 34u8, 107u8, 63u8, 82u8, 197u8, 22u8,
+                    25u8, 5u8, 187u8, 90u8, 212u8, 3u8, 156u8, 147u8,
+                ]);
             const ANONYMOUS: bool = false;
             #[allow(unused_variables)]
             #[inline]
@@ -426,23 +340,19 @@ event ChangedThreshold(uint256 threshold);
                 topics: &<Self::TopicList as alloy_sol_types::SolType>::RustType,
             ) -> alloy_sol_types::Result<()> {
                 if topics.0 != Self::SIGNATURE_HASH {
-                    return Err(
-                        alloy_sol_types::Error::invalid_event_signature_hash(
-                            Self::SIGNATURE,
-                            topics.0,
-                            Self::SIGNATURE_HASH,
-                        ),
-                    );
+                    return Err(alloy_sol_types::Error::invalid_event_signature_hash(
+                        Self::SIGNATURE,
+                        topics.0,
+                        Self::SIGNATURE_HASH,
+                    ));
                 }
                 Ok(())
             }
             #[inline]
             fn tokenize_body(&self) -> Self::DataToken<'_> {
-                (
-                    <alloy::sol_types::sol_data::Uint<
-                        256,
-                    > as alloy_sol_types::SolType>::tokenize(&self.threshold),
-                )
+                (<alloy::sol_types::sol_data::Uint<256> as alloy_sol_types::SolType>::tokenize(
+                    &self.threshold,
+                ),)
             }
             #[inline]
             fn topics(&self) -> <Self::TopicList as alloy_sol_types::SolType>::RustType {
@@ -456,9 +366,7 @@ event ChangedThreshold(uint256 threshold);
                 if out.len() < <Self::TopicList as alloy_sol_types::TopicList>::COUNT {
                     return Err(alloy_sol_types::Error::Overrun);
                 }
-                out[0usize] = alloy_sol_types::abi::token::WordToken(
-                    Self::SIGNATURE_HASH,
-                );
+                out[0usize] = alloy_sol_types::abi::token::WordToken(Self::SIGNATURE_HASH);
                 Ok(())
             }
         }
@@ -480,73 +388,31 @@ event ChangedThreshold(uint256 threshold);
         }
     };
     /**Event with signature `RemovedOwner(address)` and selector `0xf8d49fc529812e9a7c5c50e69c20f0dccc0db8fa95c98bc58cc9a4f1c1299eaf`.
-```solidity
-event RemovedOwner(address indexed owner);
-```*/
-    #[allow(
-        non_camel_case_types,
-        non_snake_case,
-        clippy::pub_underscore_fields,
-        clippy::style
-    )]
+    ```solidity
+    event RemovedOwner(address indexed owner);
+    ```*/
+    #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields, clippy::style)]
     #[derive(Clone)]
     pub struct RemovedOwner {
         #[allow(missing_docs)]
         pub owner: alloy::sol_types::private::Address,
     }
-    #[allow(
-        non_camel_case_types,
-        non_snake_case,
-        clippy::pub_underscore_fields,
-        clippy::style
-    )]
+    #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields, clippy::style)]
     const _: () = {
         use alloy::sol_types as alloy_sol_types;
         #[automatically_derived]
         impl alloy_sol_types::SolEvent for RemovedOwner {
             type DataTuple<'a> = ();
-            type DataToken<'a> = <Self::DataTuple<
-                'a,
-            > as alloy_sol_types::SolType>::Token<'a>;
-            type TopicList = (
-                alloy_sol_types::sol_data::FixedBytes<32>,
-                alloy::sol_types::sol_data::Address,
-            );
+            type DataToken<'a> = <Self::DataTuple<'a> as alloy_sol_types::SolType>::Token<'a>;
+            type TopicList =
+                (alloy_sol_types::sol_data::FixedBytes<32>, alloy::sol_types::sol_data::Address);
             const SIGNATURE: &'static str = "RemovedOwner(address)";
-            const SIGNATURE_HASH: alloy_sol_types::private::B256 = alloy_sol_types::private::B256::new([
-                248u8,
-                212u8,
-                159u8,
-                197u8,
-                41u8,
-                129u8,
-                46u8,
-                154u8,
-                124u8,
-                92u8,
-                80u8,
-                230u8,
-                156u8,
-                32u8,
-                240u8,
-                220u8,
-                204u8,
-                13u8,
-                184u8,
-                250u8,
-                149u8,
-                201u8,
-                139u8,
-                197u8,
-                140u8,
-                201u8,
-                164u8,
-                241u8,
-                193u8,
-                41u8,
-                158u8,
-                175u8,
-            ]);
+            const SIGNATURE_HASH: alloy_sol_types::private::B256 =
+                alloy_sol_types::private::B256::new([
+                    248u8, 212u8, 159u8, 197u8, 41u8, 129u8, 46u8, 154u8, 124u8, 92u8, 80u8, 230u8,
+                    156u8, 32u8, 240u8, 220u8, 204u8, 13u8, 184u8, 250u8, 149u8, 201u8, 139u8,
+                    197u8, 140u8, 201u8, 164u8, 241u8, 193u8, 41u8, 158u8, 175u8,
+                ]);
             const ANONYMOUS: bool = false;
             #[allow(unused_variables)]
             #[inline]
@@ -561,13 +427,11 @@ event RemovedOwner(address indexed owner);
                 topics: &<Self::TopicList as alloy_sol_types::SolType>::RustType,
             ) -> alloy_sol_types::Result<()> {
                 if topics.0 != Self::SIGNATURE_HASH {
-                    return Err(
-                        alloy_sol_types::Error::invalid_event_signature_hash(
-                            Self::SIGNATURE,
-                            topics.0,
-                            Self::SIGNATURE_HASH,
-                        ),
-                    );
+                    return Err(alloy_sol_types::Error::invalid_event_signature_hash(
+                        Self::SIGNATURE,
+                        topics.0,
+                        Self::SIGNATURE_HASH,
+                    ));
                 }
                 Ok(())
             }
@@ -587,9 +451,7 @@ event RemovedOwner(address indexed owner);
                 if out.len() < <Self::TopicList as alloy_sol_types::TopicList>::COUNT {
                     return Err(alloy_sol_types::Error::Overrun);
                 }
-                out[0usize] = alloy_sol_types::abi::token::WordToken(
-                    Self::SIGNATURE_HASH,
-                );
+                out[0usize] = alloy_sol_types::abi::token::WordToken(Self::SIGNATURE_HASH);
                 out[1usize] = <alloy::sol_types::sol_data::Address as alloy_sol_types::EventTopic>::encode_topic(
                     &self.owner,
                 );
@@ -614,9 +476,9 @@ event RemovedOwner(address indexed owner);
         }
     };
     /**Function with signature `addOwnerWithThreshold(address,uint256)` and selector `0x0d582f13`.
-```solidity
-function addOwnerWithThreshold(address owner, uint256 _threshold) external;
-```*/
+    ```solidity
+    function addOwnerWithThreshold(address owner, uint256 _threshold) external;
+    ```*/
     #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields)]
     #[derive(Clone)]
     pub struct addOwnerWithThresholdCall {
@@ -627,20 +489,13 @@ function addOwnerWithThreshold(address owner, uint256 _threshold) external;
     #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields)]
     #[derive(Clone)]
     pub struct addOwnerWithThresholdReturn {}
-    #[allow(
-        non_camel_case_types,
-        non_snake_case,
-        clippy::pub_underscore_fields,
-        clippy::style
-    )]
+    #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields, clippy::style)]
     const _: () = {
         use alloy::sol_types as alloy_sol_types;
         {
             #[doc(hidden)]
-            type UnderlyingSolTuple<'a> = (
-                alloy::sol_types::sol_data::Address,
-                alloy::sol_types::sol_data::Uint<256>,
-            );
+            type UnderlyingSolTuple<'a> =
+                (alloy::sol_types::sol_data::Address, alloy::sol_types::sol_data::Uint<256>);
             #[doc(hidden)]
             type UnderlyingRustTuple<'a> = (
                 alloy::sol_types::private::Address,
@@ -648,9 +503,7 @@ function addOwnerWithThreshold(address owner, uint256 _threshold) external;
             );
             #[cfg(test)]
             #[allow(dead_code, unreachable_patterns)]
-            fn _type_assertion(
-                _t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>,
-            ) {
+            fn _type_assertion(_t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>) {
                 match _t {
                     alloy_sol_types::private::AssertTypeEq::<
                         <UnderlyingSolTuple as alloy_sol_types::SolType>::RustType,
@@ -659,21 +512,16 @@ function addOwnerWithThreshold(address owner, uint256 _threshold) external;
             }
             #[automatically_derived]
             #[doc(hidden)]
-            impl ::core::convert::From<addOwnerWithThresholdCall>
-            for UnderlyingRustTuple<'_> {
+            impl ::core::convert::From<addOwnerWithThresholdCall> for UnderlyingRustTuple<'_> {
                 fn from(value: addOwnerWithThresholdCall) -> Self {
                     (value.owner, value._threshold)
                 }
             }
             #[automatically_derived]
             #[doc(hidden)]
-            impl ::core::convert::From<UnderlyingRustTuple<'_>>
-            for addOwnerWithThresholdCall {
+            impl ::core::convert::From<UnderlyingRustTuple<'_>> for addOwnerWithThresholdCall {
                 fn from(tuple: UnderlyingRustTuple<'_>) -> Self {
-                    Self {
-                        owner: tuple.0,
-                        _threshold: tuple.1,
-                    }
+                    Self { owner: tuple.0, _threshold: tuple.1 }
                 }
             }
         }
@@ -684,9 +532,7 @@ function addOwnerWithThreshold(address owner, uint256 _threshold) external;
             type UnderlyingRustTuple<'a> = ();
             #[cfg(test)]
             #[allow(dead_code, unreachable_patterns)]
-            fn _type_assertion(
-                _t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>,
-            ) {
+            fn _type_assertion(_t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>) {
                 match _t {
                     alloy_sol_types::private::AssertTypeEq::<
                         <UnderlyingSolTuple as alloy_sol_types::SolType>::RustType,
@@ -695,16 +541,14 @@ function addOwnerWithThreshold(address owner, uint256 _threshold) external;
             }
             #[automatically_derived]
             #[doc(hidden)]
-            impl ::core::convert::From<addOwnerWithThresholdReturn>
-            for UnderlyingRustTuple<'_> {
+            impl ::core::convert::From<addOwnerWithThresholdReturn> for UnderlyingRustTuple<'_> {
                 fn from(value: addOwnerWithThresholdReturn) -> Self {
                     ()
                 }
             }
             #[automatically_derived]
             #[doc(hidden)]
-            impl ::core::convert::From<UnderlyingRustTuple<'_>>
-            for addOwnerWithThresholdReturn {
+            impl ::core::convert::From<UnderlyingRustTuple<'_>> for addOwnerWithThresholdReturn {
                 fn from(tuple: UnderlyingRustTuple<'_>) -> Self {
                     Self {}
                 }
@@ -712,18 +556,12 @@ function addOwnerWithThreshold(address owner, uint256 _threshold) external;
         }
         #[automatically_derived]
         impl alloy_sol_types::SolCall for addOwnerWithThresholdCall {
-            type Parameters<'a> = (
-                alloy::sol_types::sol_data::Address,
-                alloy::sol_types::sol_data::Uint<256>,
-            );
-            type Token<'a> = <Self::Parameters<
-                'a,
-            > as alloy_sol_types::SolType>::Token<'a>;
+            type Parameters<'a> =
+                (alloy::sol_types::sol_data::Address, alloy::sol_types::sol_data::Uint<256>);
+            type Token<'a> = <Self::Parameters<'a> as alloy_sol_types::SolType>::Token<'a>;
             type Return = addOwnerWithThresholdReturn;
             type ReturnTuple<'a> = ();
-            type ReturnToken<'a> = <Self::ReturnTuple<
-                'a,
-            > as alloy_sol_types::SolType>::Token<'a>;
+            type ReturnToken<'a> = <Self::ReturnTuple<'a> as alloy_sol_types::SolType>::Token<'a>;
             const SIGNATURE: &'static str = "addOwnerWithThreshold(address,uint256)";
             const SELECTOR: [u8; 4] = [13u8, 88u8, 47u8, 19u8];
             #[inline]
@@ -738,9 +576,9 @@ function addOwnerWithThreshold(address owner, uint256 _threshold) external;
                     <alloy::sol_types::sol_data::Address as alloy_sol_types::SolType>::tokenize(
                         &self.owner,
                     ),
-                    <alloy::sol_types::sol_data::Uint<
-                        256,
-                    > as alloy_sol_types::SolType>::tokenize(&self._threshold),
+                    <alloy::sol_types::sol_data::Uint<256> as alloy_sol_types::SolType>::tokenize(
+                        &self._threshold,
+                    ),
                 )
             }
             #[inline]
@@ -748,17 +586,17 @@ function addOwnerWithThreshold(address owner, uint256 _threshold) external;
                 data: &[u8],
                 validate: bool,
             ) -> alloy_sol_types::Result<Self::Return> {
-                <Self::ReturnTuple<
-                    '_,
-                > as alloy_sol_types::SolType>::abi_decode_sequence(data, validate)
-                    .map(Into::into)
+                <Self::ReturnTuple<'_> as alloy_sol_types::SolType>::abi_decode_sequence(
+                    data, validate,
+                )
+                .map(Into::into)
             }
         }
     };
     /**Function with signature `changeThreshold(uint256)` and selector `0x694e80c3`.
-```solidity
-function changeThreshold(uint256 _threshold) external;
-```*/
+    ```solidity
+    function changeThreshold(uint256 _threshold) external;
+    ```*/
     #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields)]
     #[derive(Clone)]
     pub struct changeThresholdCall {
@@ -768,26 +606,17 @@ function changeThreshold(uint256 _threshold) external;
     #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields)]
     #[derive(Clone)]
     pub struct changeThresholdReturn {}
-    #[allow(
-        non_camel_case_types,
-        non_snake_case,
-        clippy::pub_underscore_fields,
-        clippy::style
-    )]
+    #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields, clippy::style)]
     const _: () = {
         use alloy::sol_types as alloy_sol_types;
         {
             #[doc(hidden)]
             type UnderlyingSolTuple<'a> = (alloy::sol_types::sol_data::Uint<256>,);
             #[doc(hidden)]
-            type UnderlyingRustTuple<'a> = (
-                alloy::sol_types::private::primitives::aliases::U256,
-            );
+            type UnderlyingRustTuple<'a> = (alloy::sol_types::private::primitives::aliases::U256,);
             #[cfg(test)]
             #[allow(dead_code, unreachable_patterns)]
-            fn _type_assertion(
-                _t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>,
-            ) {
+            fn _type_assertion(_t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>) {
                 match _t {
                     alloy_sol_types::private::AssertTypeEq::<
                         <UnderlyingSolTuple as alloy_sol_types::SolType>::RustType,
@@ -816,9 +645,7 @@ function changeThreshold(uint256 _threshold) external;
             type UnderlyingRustTuple<'a> = ();
             #[cfg(test)]
             #[allow(dead_code, unreachable_patterns)]
-            fn _type_assertion(
-                _t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>,
-            ) {
+            fn _type_assertion(_t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>) {
                 match _t {
                     alloy_sol_types::private::AssertTypeEq::<
                         <UnderlyingSolTuple as alloy_sol_types::SolType>::RustType,
@@ -827,16 +654,14 @@ function changeThreshold(uint256 _threshold) external;
             }
             #[automatically_derived]
             #[doc(hidden)]
-            impl ::core::convert::From<changeThresholdReturn>
-            for UnderlyingRustTuple<'_> {
+            impl ::core::convert::From<changeThresholdReturn> for UnderlyingRustTuple<'_> {
                 fn from(value: changeThresholdReturn) -> Self {
                     ()
                 }
             }
             #[automatically_derived]
             #[doc(hidden)]
-            impl ::core::convert::From<UnderlyingRustTuple<'_>>
-            for changeThresholdReturn {
+            impl ::core::convert::From<UnderlyingRustTuple<'_>> for changeThresholdReturn {
                 fn from(tuple: UnderlyingRustTuple<'_>) -> Self {
                     Self {}
                 }
@@ -845,14 +670,10 @@ function changeThreshold(uint256 _threshold) external;
         #[automatically_derived]
         impl alloy_sol_types::SolCall for changeThresholdCall {
             type Parameters<'a> = (alloy::sol_types::sol_data::Uint<256>,);
-            type Token<'a> = <Self::Parameters<
-                'a,
-            > as alloy_sol_types::SolType>::Token<'a>;
+            type Token<'a> = <Self::Parameters<'a> as alloy_sol_types::SolType>::Token<'a>;
             type Return = changeThresholdReturn;
             type ReturnTuple<'a> = ();
-            type ReturnToken<'a> = <Self::ReturnTuple<
-                'a,
-            > as alloy_sol_types::SolType>::Token<'a>;
+            type ReturnToken<'a> = <Self::ReturnTuple<'a> as alloy_sol_types::SolType>::Token<'a>;
             const SIGNATURE: &'static str = "changeThreshold(uint256)";
             const SELECTOR: [u8; 4] = [105u8, 78u8, 128u8, 195u8];
             #[inline]
@@ -863,28 +684,26 @@ function changeThreshold(uint256 _threshold) external;
             }
             #[inline]
             fn tokenize(&self) -> Self::Token<'_> {
-                (
-                    <alloy::sol_types::sol_data::Uint<
-                        256,
-                    > as alloy_sol_types::SolType>::tokenize(&self._threshold),
-                )
+                (<alloy::sol_types::sol_data::Uint<256> as alloy_sol_types::SolType>::tokenize(
+                    &self._threshold,
+                ),)
             }
             #[inline]
             fn abi_decode_returns(
                 data: &[u8],
                 validate: bool,
             ) -> alloy_sol_types::Result<Self::Return> {
-                <Self::ReturnTuple<
-                    '_,
-                > as alloy_sol_types::SolType>::abi_decode_sequence(data, validate)
-                    .map(Into::into)
+                <Self::ReturnTuple<'_> as alloy_sol_types::SolType>::abi_decode_sequence(
+                    data, validate,
+                )
+                .map(Into::into)
             }
         }
     };
     /**Function with signature `getOwners()` and selector `0xa0e67e2b`.
-```solidity
-function getOwners() external view returns (address[] memory);
-```*/
+    ```solidity
+    function getOwners() external view returns (address[] memory);
+    ```*/
     #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields)]
     #[derive(Clone)]
     pub struct getOwnersCall {}
@@ -894,12 +713,7 @@ function getOwners() external view returns (address[] memory);
     pub struct getOwnersReturn {
         pub _0: alloy::sol_types::private::Vec<alloy::sol_types::private::Address>,
     }
-    #[allow(
-        non_camel_case_types,
-        non_snake_case,
-        clippy::pub_underscore_fields,
-        clippy::style
-    )]
+    #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields, clippy::style)]
     const _: () = {
         use alloy::sol_types as alloy_sol_types;
         {
@@ -909,9 +723,7 @@ function getOwners() external view returns (address[] memory);
             type UnderlyingRustTuple<'a> = ();
             #[cfg(test)]
             #[allow(dead_code, unreachable_patterns)]
-            fn _type_assertion(
-                _t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>,
-            ) {
+            fn _type_assertion(_t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>) {
                 match _t {
                     alloy_sol_types::private::AssertTypeEq::<
                         <UnderlyingSolTuple as alloy_sol_types::SolType>::RustType,
@@ -935,18 +747,14 @@ function getOwners() external view returns (address[] memory);
         }
         {
             #[doc(hidden)]
-            type UnderlyingSolTuple<'a> = (
-                alloy::sol_types::sol_data::Array<alloy::sol_types::sol_data::Address>,
-            );
+            type UnderlyingSolTuple<'a> =
+                (alloy::sol_types::sol_data::Array<alloy::sol_types::sol_data::Address>,);
             #[doc(hidden)]
-            type UnderlyingRustTuple<'a> = (
-                alloy::sol_types::private::Vec<alloy::sol_types::private::Address>,
-            );
+            type UnderlyingRustTuple<'a> =
+                (alloy::sol_types::private::Vec<alloy::sol_types::private::Address>,);
             #[cfg(test)]
             #[allow(dead_code, unreachable_patterns)]
-            fn _type_assertion(
-                _t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>,
-            ) {
+            fn _type_assertion(_t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>) {
                 match _t {
                     alloy_sol_types::private::AssertTypeEq::<
                         <UnderlyingSolTuple as alloy_sol_types::SolType>::RustType,
@@ -971,16 +779,11 @@ function getOwners() external view returns (address[] memory);
         #[automatically_derived]
         impl alloy_sol_types::SolCall for getOwnersCall {
             type Parameters<'a> = ();
-            type Token<'a> = <Self::Parameters<
-                'a,
-            > as alloy_sol_types::SolType>::Token<'a>;
+            type Token<'a> = <Self::Parameters<'a> as alloy_sol_types::SolType>::Token<'a>;
             type Return = getOwnersReturn;
-            type ReturnTuple<'a> = (
-                alloy::sol_types::sol_data::Array<alloy::sol_types::sol_data::Address>,
-            );
-            type ReturnToken<'a> = <Self::ReturnTuple<
-                'a,
-            > as alloy_sol_types::SolType>::Token<'a>;
+            type ReturnTuple<'a> =
+                (alloy::sol_types::sol_data::Array<alloy::sol_types::sol_data::Address>,);
+            type ReturnToken<'a> = <Self::ReturnTuple<'a> as alloy_sol_types::SolType>::Token<'a>;
             const SIGNATURE: &'static str = "getOwners()";
             const SELECTOR: [u8; 4] = [160u8, 230u8, 126u8, 43u8];
             #[inline]
@@ -998,17 +801,17 @@ function getOwners() external view returns (address[] memory);
                 data: &[u8],
                 validate: bool,
             ) -> alloy_sol_types::Result<Self::Return> {
-                <Self::ReturnTuple<
-                    '_,
-                > as alloy_sol_types::SolType>::abi_decode_sequence(data, validate)
-                    .map(Into::into)
+                <Self::ReturnTuple<'_> as alloy_sol_types::SolType>::abi_decode_sequence(
+                    data, validate,
+                )
+                .map(Into::into)
             }
         }
     };
     /**Function with signature `getThreshold()` and selector `0xe75235b8`.
-```solidity
-function getThreshold() external view returns (uint256);
-```*/
+    ```solidity
+    function getThreshold() external view returns (uint256);
+    ```*/
     #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields)]
     #[derive(Clone)]
     pub struct getThresholdCall {}
@@ -1018,12 +821,7 @@ function getThreshold() external view returns (uint256);
     pub struct getThresholdReturn {
         pub _0: alloy::sol_types::private::primitives::aliases::U256,
     }
-    #[allow(
-        non_camel_case_types,
-        non_snake_case,
-        clippy::pub_underscore_fields,
-        clippy::style
-    )]
+    #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields, clippy::style)]
     const _: () = {
         use alloy::sol_types as alloy_sol_types;
         {
@@ -1033,9 +831,7 @@ function getThreshold() external view returns (uint256);
             type UnderlyingRustTuple<'a> = ();
             #[cfg(test)]
             #[allow(dead_code, unreachable_patterns)]
-            fn _type_assertion(
-                _t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>,
-            ) {
+            fn _type_assertion(_t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>) {
                 match _t {
                     alloy_sol_types::private::AssertTypeEq::<
                         <UnderlyingSolTuple as alloy_sol_types::SolType>::RustType,
@@ -1061,14 +857,10 @@ function getThreshold() external view returns (uint256);
             #[doc(hidden)]
             type UnderlyingSolTuple<'a> = (alloy::sol_types::sol_data::Uint<256>,);
             #[doc(hidden)]
-            type UnderlyingRustTuple<'a> = (
-                alloy::sol_types::private::primitives::aliases::U256,
-            );
+            type UnderlyingRustTuple<'a> = (alloy::sol_types::private::primitives::aliases::U256,);
             #[cfg(test)]
             #[allow(dead_code, unreachable_patterns)]
-            fn _type_assertion(
-                _t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>,
-            ) {
+            fn _type_assertion(_t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>) {
                 match _t {
                     alloy_sol_types::private::AssertTypeEq::<
                         <UnderlyingSolTuple as alloy_sol_types::SolType>::RustType,
@@ -1093,14 +885,10 @@ function getThreshold() external view returns (uint256);
         #[automatically_derived]
         impl alloy_sol_types::SolCall for getThresholdCall {
             type Parameters<'a> = ();
-            type Token<'a> = <Self::Parameters<
-                'a,
-            > as alloy_sol_types::SolType>::Token<'a>;
+            type Token<'a> = <Self::Parameters<'a> as alloy_sol_types::SolType>::Token<'a>;
             type Return = getThresholdReturn;
             type ReturnTuple<'a> = (alloy::sol_types::sol_data::Uint<256>,);
-            type ReturnToken<'a> = <Self::ReturnTuple<
-                'a,
-            > as alloy_sol_types::SolType>::Token<'a>;
+            type ReturnToken<'a> = <Self::ReturnTuple<'a> as alloy_sol_types::SolType>::Token<'a>;
             const SIGNATURE: &'static str = "getThreshold()";
             const SELECTOR: [u8; 4] = [231u8, 82u8, 53u8, 184u8];
             #[inline]
@@ -1118,17 +906,17 @@ function getThreshold() external view returns (uint256);
                 data: &[u8],
                 validate: bool,
             ) -> alloy_sol_types::Result<Self::Return> {
-                <Self::ReturnTuple<
-                    '_,
-                > as alloy_sol_types::SolType>::abi_decode_sequence(data, validate)
-                    .map(Into::into)
+                <Self::ReturnTuple<'_> as alloy_sol_types::SolType>::abi_decode_sequence(
+                    data, validate,
+                )
+                .map(Into::into)
             }
         }
     };
     /**Function with signature `isOwner(address)` and selector `0x2f54bf6e`.
-```solidity
-function isOwner(address owner) external view returns (bool);
-```*/
+    ```solidity
+    function isOwner(address owner) external view returns (bool);
+    ```*/
     #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields)]
     #[derive(Clone)]
     pub struct isOwnerCall {
@@ -1140,12 +928,7 @@ function isOwner(address owner) external view returns (bool);
     pub struct isOwnerReturn {
         pub _0: bool,
     }
-    #[allow(
-        non_camel_case_types,
-        non_snake_case,
-        clippy::pub_underscore_fields,
-        clippy::style
-    )]
+    #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields, clippy::style)]
     const _: () = {
         use alloy::sol_types as alloy_sol_types;
         {
@@ -1155,9 +938,7 @@ function isOwner(address owner) external view returns (bool);
             type UnderlyingRustTuple<'a> = (alloy::sol_types::private::Address,);
             #[cfg(test)]
             #[allow(dead_code, unreachable_patterns)]
-            fn _type_assertion(
-                _t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>,
-            ) {
+            fn _type_assertion(_t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>) {
                 match _t {
                     alloy_sol_types::private::AssertTypeEq::<
                         <UnderlyingSolTuple as alloy_sol_types::SolType>::RustType,
@@ -1186,9 +967,7 @@ function isOwner(address owner) external view returns (bool);
             type UnderlyingRustTuple<'a> = (bool,);
             #[cfg(test)]
             #[allow(dead_code, unreachable_patterns)]
-            fn _type_assertion(
-                _t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>,
-            ) {
+            fn _type_assertion(_t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>) {
                 match _t {
                     alloy_sol_types::private::AssertTypeEq::<
                         <UnderlyingSolTuple as alloy_sol_types::SolType>::RustType,
@@ -1213,14 +992,10 @@ function isOwner(address owner) external view returns (bool);
         #[automatically_derived]
         impl alloy_sol_types::SolCall for isOwnerCall {
             type Parameters<'a> = (alloy::sol_types::sol_data::Address,);
-            type Token<'a> = <Self::Parameters<
-                'a,
-            > as alloy_sol_types::SolType>::Token<'a>;
+            type Token<'a> = <Self::Parameters<'a> as alloy_sol_types::SolType>::Token<'a>;
             type Return = isOwnerReturn;
             type ReturnTuple<'a> = (alloy::sol_types::sol_data::Bool,);
-            type ReturnToken<'a> = <Self::ReturnTuple<
-                'a,
-            > as alloy_sol_types::SolType>::Token<'a>;
+            type ReturnToken<'a> = <Self::ReturnTuple<'a> as alloy_sol_types::SolType>::Token<'a>;
             const SIGNATURE: &'static str = "isOwner(address)";
             const SELECTOR: [u8; 4] = [47u8, 84u8, 191u8, 110u8];
             #[inline]
@@ -1231,28 +1006,26 @@ function isOwner(address owner) external view returns (bool);
             }
             #[inline]
             fn tokenize(&self) -> Self::Token<'_> {
-                (
-                    <alloy::sol_types::sol_data::Address as alloy_sol_types::SolType>::tokenize(
-                        &self.owner,
-                    ),
-                )
+                (<alloy::sol_types::sol_data::Address as alloy_sol_types::SolType>::tokenize(
+                    &self.owner,
+                ),)
             }
             #[inline]
             fn abi_decode_returns(
                 data: &[u8],
                 validate: bool,
             ) -> alloy_sol_types::Result<Self::Return> {
-                <Self::ReturnTuple<
-                    '_,
-                > as alloy_sol_types::SolType>::abi_decode_sequence(data, validate)
-                    .map(Into::into)
+                <Self::ReturnTuple<'_> as alloy_sol_types::SolType>::abi_decode_sequence(
+                    data, validate,
+                )
+                .map(Into::into)
             }
         }
     };
     /**Function with signature `removeOwner(address,address,uint256)` and selector `0xf8dc5dd9`.
-```solidity
-function removeOwner(address prevOwner, address owner, uint256 _threshold) external;
-```*/
+    ```solidity
+    function removeOwner(address prevOwner, address owner, uint256 _threshold) external;
+    ```*/
     #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields)]
     #[derive(Clone)]
     pub struct removeOwnerCall {
@@ -1264,12 +1037,7 @@ function removeOwner(address prevOwner, address owner, uint256 _threshold) exter
     #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields)]
     #[derive(Clone)]
     pub struct removeOwnerReturn {}
-    #[allow(
-        non_camel_case_types,
-        non_snake_case,
-        clippy::pub_underscore_fields,
-        clippy::style
-    )]
+    #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields, clippy::style)]
     const _: () = {
         use alloy::sol_types as alloy_sol_types;
         {
@@ -1287,9 +1055,7 @@ function removeOwner(address prevOwner, address owner, uint256 _threshold) exter
             );
             #[cfg(test)]
             #[allow(dead_code, unreachable_patterns)]
-            fn _type_assertion(
-                _t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>,
-            ) {
+            fn _type_assertion(_t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>) {
                 match _t {
                     alloy_sol_types::private::AssertTypeEq::<
                         <UnderlyingSolTuple as alloy_sol_types::SolType>::RustType,
@@ -1307,11 +1073,7 @@ function removeOwner(address prevOwner, address owner, uint256 _threshold) exter
             #[doc(hidden)]
             impl ::core::convert::From<UnderlyingRustTuple<'_>> for removeOwnerCall {
                 fn from(tuple: UnderlyingRustTuple<'_>) -> Self {
-                    Self {
-                        prevOwner: tuple.0,
-                        owner: tuple.1,
-                        _threshold: tuple.2,
-                    }
+                    Self { prevOwner: tuple.0, owner: tuple.1, _threshold: tuple.2 }
                 }
             }
         }
@@ -1322,9 +1084,7 @@ function removeOwner(address prevOwner, address owner, uint256 _threshold) exter
             type UnderlyingRustTuple<'a> = ();
             #[cfg(test)]
             #[allow(dead_code, unreachable_patterns)]
-            fn _type_assertion(
-                _t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>,
-            ) {
+            fn _type_assertion(_t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>) {
                 match _t {
                     alloy_sol_types::private::AssertTypeEq::<
                         <UnderlyingSolTuple as alloy_sol_types::SolType>::RustType,
@@ -1353,14 +1113,10 @@ function removeOwner(address prevOwner, address owner, uint256 _threshold) exter
                 alloy::sol_types::sol_data::Address,
                 alloy::sol_types::sol_data::Uint<256>,
             );
-            type Token<'a> = <Self::Parameters<
-                'a,
-            > as alloy_sol_types::SolType>::Token<'a>;
+            type Token<'a> = <Self::Parameters<'a> as alloy_sol_types::SolType>::Token<'a>;
             type Return = removeOwnerReturn;
             type ReturnTuple<'a> = ();
-            type ReturnToken<'a> = <Self::ReturnTuple<
-                'a,
-            > as alloy_sol_types::SolType>::Token<'a>;
+            type ReturnToken<'a> = <Self::ReturnTuple<'a> as alloy_sol_types::SolType>::Token<'a>;
             const SIGNATURE: &'static str = "removeOwner(address,address,uint256)";
             const SELECTOR: [u8; 4] = [248u8, 220u8, 93u8, 217u8];
             #[inline]
@@ -1378,9 +1134,9 @@ function removeOwner(address prevOwner, address owner, uint256 _threshold) exter
                     <alloy::sol_types::sol_data::Address as alloy_sol_types::SolType>::tokenize(
                         &self.owner,
                     ),
-                    <alloy::sol_types::sol_data::Uint<
-                        256,
-                    > as alloy_sol_types::SolType>::tokenize(&self._threshold),
+                    <alloy::sol_types::sol_data::Uint<256> as alloy_sol_types::SolType>::tokenize(
+                        &self._threshold,
+                    ),
                 )
             }
             #[inline]
@@ -1388,17 +1144,17 @@ function removeOwner(address prevOwner, address owner, uint256 _threshold) exter
                 data: &[u8],
                 validate: bool,
             ) -> alloy_sol_types::Result<Self::Return> {
-                <Self::ReturnTuple<
-                    '_,
-                > as alloy_sol_types::SolType>::abi_decode_sequence(data, validate)
-                    .map(Into::into)
+                <Self::ReturnTuple<'_> as alloy_sol_types::SolType>::abi_decode_sequence(
+                    data, validate,
+                )
+                .map(Into::into)
             }
         }
     };
     /**Function with signature `swapOwner(address,address,address)` and selector `0xe318b52b`.
-```solidity
-function swapOwner(address prevOwner, address oldOwner, address newOwner) external;
-```*/
+    ```solidity
+    function swapOwner(address prevOwner, address oldOwner, address newOwner) external;
+    ```*/
     #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields)]
     #[derive(Clone)]
     pub struct swapOwnerCall {
@@ -1410,12 +1166,7 @@ function swapOwner(address prevOwner, address oldOwner, address newOwner) extern
     #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields)]
     #[derive(Clone)]
     pub struct swapOwnerReturn {}
-    #[allow(
-        non_camel_case_types,
-        non_snake_case,
-        clippy::pub_underscore_fields,
-        clippy::style
-    )]
+    #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields, clippy::style)]
     const _: () = {
         use alloy::sol_types as alloy_sol_types;
         {
@@ -1433,9 +1184,7 @@ function swapOwner(address prevOwner, address oldOwner, address newOwner) extern
             );
             #[cfg(test)]
             #[allow(dead_code, unreachable_patterns)]
-            fn _type_assertion(
-                _t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>,
-            ) {
+            fn _type_assertion(_t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>) {
                 match _t {
                     alloy_sol_types::private::AssertTypeEq::<
                         <UnderlyingSolTuple as alloy_sol_types::SolType>::RustType,
@@ -1453,11 +1202,7 @@ function swapOwner(address prevOwner, address oldOwner, address newOwner) extern
             #[doc(hidden)]
             impl ::core::convert::From<UnderlyingRustTuple<'_>> for swapOwnerCall {
                 fn from(tuple: UnderlyingRustTuple<'_>) -> Self {
-                    Self {
-                        prevOwner: tuple.0,
-                        oldOwner: tuple.1,
-                        newOwner: tuple.2,
-                    }
+                    Self { prevOwner: tuple.0, oldOwner: tuple.1, newOwner: tuple.2 }
                 }
             }
         }
@@ -1468,9 +1213,7 @@ function swapOwner(address prevOwner, address oldOwner, address newOwner) extern
             type UnderlyingRustTuple<'a> = ();
             #[cfg(test)]
             #[allow(dead_code, unreachable_patterns)]
-            fn _type_assertion(
-                _t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>,
-            ) {
+            fn _type_assertion(_t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>) {
                 match _t {
                     alloy_sol_types::private::AssertTypeEq::<
                         <UnderlyingSolTuple as alloy_sol_types::SolType>::RustType,
@@ -1499,14 +1242,10 @@ function swapOwner(address prevOwner, address oldOwner, address newOwner) extern
                 alloy::sol_types::sol_data::Address,
                 alloy::sol_types::sol_data::Address,
             );
-            type Token<'a> = <Self::Parameters<
-                'a,
-            > as alloy_sol_types::SolType>::Token<'a>;
+            type Token<'a> = <Self::Parameters<'a> as alloy_sol_types::SolType>::Token<'a>;
             type Return = swapOwnerReturn;
             type ReturnTuple<'a> = ();
-            type ReturnToken<'a> = <Self::ReturnTuple<
-                'a,
-            > as alloy_sol_types::SolType>::Token<'a>;
+            type ReturnToken<'a> = <Self::ReturnTuple<'a> as alloy_sol_types::SolType>::Token<'a>;
             const SIGNATURE: &'static str = "swapOwner(address,address,address)";
             const SELECTOR: [u8; 4] = [227u8, 24u8, 181u8, 43u8];
             #[inline]
@@ -1534,10 +1273,10 @@ function swapOwner(address prevOwner, address oldOwner, address newOwner) extern
                 data: &[u8],
                 validate: bool,
             ) -> alloy_sol_types::Result<Self::Return> {
-                <Self::ReturnTuple<
-                    '_,
-                > as alloy_sol_types::SolType>::abi_decode_sequence(data, validate)
-                    .map(Into::into)
+                <Self::ReturnTuple<'_> as alloy_sol_types::SolType>::abi_decode_sequence(
+                    data, validate,
+                )
+                .map(Into::into)
             }
         }
     };
@@ -1583,19 +1322,11 @@ function swapOwner(address prevOwner, address oldOwner, address newOwner) extern
                 Self::changeThreshold(_) => {
                     <changeThresholdCall as alloy_sol_types::SolCall>::SELECTOR
                 }
-                Self::getOwners(_) => {
-                    <getOwnersCall as alloy_sol_types::SolCall>::SELECTOR
-                }
-                Self::getThreshold(_) => {
-                    <getThresholdCall as alloy_sol_types::SolCall>::SELECTOR
-                }
+                Self::getOwners(_) => <getOwnersCall as alloy_sol_types::SolCall>::SELECTOR,
+                Self::getThreshold(_) => <getThresholdCall as alloy_sol_types::SolCall>::SELECTOR,
                 Self::isOwner(_) => <isOwnerCall as alloy_sol_types::SolCall>::SELECTOR,
-                Self::removeOwner(_) => {
-                    <removeOwnerCall as alloy_sol_types::SolCall>::SELECTOR
-                }
-                Self::swapOwner(_) => {
-                    <swapOwnerCall as alloy_sol_types::SolCall>::SELECTOR
-                }
+                Self::removeOwner(_) => <removeOwnerCall as alloy_sol_types::SolCall>::SELECTOR,
+                Self::swapOwner(_) => <swapOwnerCall as alloy_sol_types::SolCall>::SELECTOR,
             }
         }
         #[inline]
@@ -1616,17 +1347,17 @@ function swapOwner(address prevOwner, address oldOwner, address newOwner) extern
             static DECODE_SHIMS: &[fn(
                 &[u8],
                 bool,
-            ) -> alloy_sol_types::Result<OwnerManagerCalls>] = &[
+            )
+                -> alloy_sol_types::Result<OwnerManagerCalls>] = &[
                 {
                     fn addOwnerWithThreshold(
                         data: &[u8],
                         validate: bool,
                     ) -> alloy_sol_types::Result<OwnerManagerCalls> {
                         <addOwnerWithThresholdCall as alloy_sol_types::SolCall>::abi_decode_raw(
-                                data,
-                                validate,
-                            )
-                            .map(OwnerManagerCalls::addOwnerWithThreshold)
+                            data, validate,
+                        )
+                        .map(OwnerManagerCalls::addOwnerWithThreshold)
                     }
                     addOwnerWithThreshold
                 },
@@ -1635,10 +1366,7 @@ function swapOwner(address prevOwner, address oldOwner, address newOwner) extern
                         data: &[u8],
                         validate: bool,
                     ) -> alloy_sol_types::Result<OwnerManagerCalls> {
-                        <isOwnerCall as alloy_sol_types::SolCall>::abi_decode_raw(
-                                data,
-                                validate,
-                            )
+                        <isOwnerCall as alloy_sol_types::SolCall>::abi_decode_raw(data, validate)
                             .map(OwnerManagerCalls::isOwner)
                     }
                     isOwner
@@ -1649,10 +1377,9 @@ function swapOwner(address prevOwner, address oldOwner, address newOwner) extern
                         validate: bool,
                     ) -> alloy_sol_types::Result<OwnerManagerCalls> {
                         <changeThresholdCall as alloy_sol_types::SolCall>::abi_decode_raw(
-                                data,
-                                validate,
-                            )
-                            .map(OwnerManagerCalls::changeThreshold)
+                            data, validate,
+                        )
+                        .map(OwnerManagerCalls::changeThreshold)
                     }
                     changeThreshold
                 },
@@ -1661,10 +1388,7 @@ function swapOwner(address prevOwner, address oldOwner, address newOwner) extern
                         data: &[u8],
                         validate: bool,
                     ) -> alloy_sol_types::Result<OwnerManagerCalls> {
-                        <getOwnersCall as alloy_sol_types::SolCall>::abi_decode_raw(
-                                data,
-                                validate,
-                            )
+                        <getOwnersCall as alloy_sol_types::SolCall>::abi_decode_raw(data, validate)
                             .map(OwnerManagerCalls::getOwners)
                     }
                     getOwners
@@ -1674,10 +1398,7 @@ function swapOwner(address prevOwner, address oldOwner, address newOwner) extern
                         data: &[u8],
                         validate: bool,
                     ) -> alloy_sol_types::Result<OwnerManagerCalls> {
-                        <swapOwnerCall as alloy_sol_types::SolCall>::abi_decode_raw(
-                                data,
-                                validate,
-                            )
+                        <swapOwnerCall as alloy_sol_types::SolCall>::abi_decode_raw(data, validate)
                             .map(OwnerManagerCalls::swapOwner)
                     }
                     swapOwner
@@ -1688,10 +1409,9 @@ function swapOwner(address prevOwner, address oldOwner, address newOwner) extern
                         validate: bool,
                     ) -> alloy_sol_types::Result<OwnerManagerCalls> {
                         <getThresholdCall as alloy_sol_types::SolCall>::abi_decode_raw(
-                                data,
-                                validate,
-                            )
-                            .map(OwnerManagerCalls::getThreshold)
+                            data, validate,
+                        )
+                        .map(OwnerManagerCalls::getThreshold)
                     }
                     getThreshold
                 },
@@ -1701,21 +1421,18 @@ function swapOwner(address prevOwner, address oldOwner, address newOwner) extern
                         validate: bool,
                     ) -> alloy_sol_types::Result<OwnerManagerCalls> {
                         <removeOwnerCall as alloy_sol_types::SolCall>::abi_decode_raw(
-                                data,
-                                validate,
-                            )
-                            .map(OwnerManagerCalls::removeOwner)
+                            data, validate,
+                        )
+                        .map(OwnerManagerCalls::removeOwner)
                     }
                     removeOwner
                 },
             ];
             let Ok(idx) = Self::SELECTORS.binary_search(&selector) else {
-                return Err(
-                    alloy_sol_types::Error::unknown_selector(
-                        <Self as alloy_sol_types::SolInterface>::NAME,
-                        selector,
-                    ),
-                );
+                return Err(alloy_sol_types::Error::unknown_selector(
+                    <Self as alloy_sol_types::SolInterface>::NAME,
+                    selector,
+                ));
             };
             DECODE_SHIMS[idx](data, validate)
         }
@@ -1723,30 +1440,22 @@ function swapOwner(address prevOwner, address oldOwner, address newOwner) extern
         fn abi_encoded_size(&self) -> usize {
             match self {
                 Self::addOwnerWithThreshold(inner) => {
-                    <addOwnerWithThresholdCall as alloy_sol_types::SolCall>::abi_encoded_size(
-                        inner,
-                    )
+                    <addOwnerWithThresholdCall as alloy_sol_types::SolCall>::abi_encoded_size(inner)
                 }
                 Self::changeThreshold(inner) => {
-                    <changeThresholdCall as alloy_sol_types::SolCall>::abi_encoded_size(
-                        inner,
-                    )
+                    <changeThresholdCall as alloy_sol_types::SolCall>::abi_encoded_size(inner)
                 }
                 Self::getOwners(inner) => {
                     <getOwnersCall as alloy_sol_types::SolCall>::abi_encoded_size(inner)
                 }
                 Self::getThreshold(inner) => {
-                    <getThresholdCall as alloy_sol_types::SolCall>::abi_encoded_size(
-                        inner,
-                    )
+                    <getThresholdCall as alloy_sol_types::SolCall>::abi_encoded_size(inner)
                 }
                 Self::isOwner(inner) => {
                     <isOwnerCall as alloy_sol_types::SolCall>::abi_encoded_size(inner)
                 }
                 Self::removeOwner(inner) => {
-                    <removeOwnerCall as alloy_sol_types::SolCall>::abi_encoded_size(
-                        inner,
-                    )
+                    <removeOwnerCall as alloy_sol_types::SolCall>::abi_encoded_size(inner)
                 }
                 Self::swapOwner(inner) => {
                     <swapOwnerCall as alloy_sol_types::SolCall>::abi_encoded_size(inner)
@@ -1758,42 +1467,26 @@ function swapOwner(address prevOwner, address oldOwner, address newOwner) extern
             match self {
                 Self::addOwnerWithThreshold(inner) => {
                     <addOwnerWithThresholdCall as alloy_sol_types::SolCall>::abi_encode_raw(
-                        inner,
-                        out,
+                        inner, out,
                     )
                 }
                 Self::changeThreshold(inner) => {
-                    <changeThresholdCall as alloy_sol_types::SolCall>::abi_encode_raw(
-                        inner,
-                        out,
-                    )
+                    <changeThresholdCall as alloy_sol_types::SolCall>::abi_encode_raw(inner, out)
                 }
                 Self::getOwners(inner) => {
-                    <getOwnersCall as alloy_sol_types::SolCall>::abi_encode_raw(
-                        inner,
-                        out,
-                    )
+                    <getOwnersCall as alloy_sol_types::SolCall>::abi_encode_raw(inner, out)
                 }
                 Self::getThreshold(inner) => {
-                    <getThresholdCall as alloy_sol_types::SolCall>::abi_encode_raw(
-                        inner,
-                        out,
-                    )
+                    <getThresholdCall as alloy_sol_types::SolCall>::abi_encode_raw(inner, out)
                 }
                 Self::isOwner(inner) => {
                     <isOwnerCall as alloy_sol_types::SolCall>::abi_encode_raw(inner, out)
                 }
                 Self::removeOwner(inner) => {
-                    <removeOwnerCall as alloy_sol_types::SolCall>::abi_encode_raw(
-                        inner,
-                        out,
-                    )
+                    <removeOwnerCall as alloy_sol_types::SolCall>::abi_encode_raw(inner, out)
                 }
                 Self::swapOwner(inner) => {
-                    <swapOwnerCall as alloy_sol_types::SolCall>::abi_encode_raw(
-                        inner,
-                        out,
-                    )
+                    <swapOwnerCall as alloy_sol_types::SolCall>::abi_encode_raw(inner, out)
                 }
             }
         }
@@ -1814,106 +1507,19 @@ function swapOwner(address prevOwner, address oldOwner, address newOwner) extern
         /// Prefer using `SolInterface` methods instead.
         pub const SELECTORS: &'static [[u8; 32usize]] = &[
             [
-                97u8,
-                15u8,
-                127u8,
-                242u8,
-                179u8,
-                4u8,
-                174u8,
-                137u8,
-                3u8,
-                195u8,
-                222u8,
-                116u8,
-                198u8,
-                12u8,
-                106u8,
-                177u8,
-                247u8,
-                214u8,
-                34u8,
-                107u8,
-                63u8,
-                82u8,
-                197u8,
-                22u8,
-                25u8,
-                5u8,
-                187u8,
-                90u8,
-                212u8,
-                3u8,
-                156u8,
-                147u8,
+                97u8, 15u8, 127u8, 242u8, 179u8, 4u8, 174u8, 137u8, 3u8, 195u8, 222u8, 116u8,
+                198u8, 12u8, 106u8, 177u8, 247u8, 214u8, 34u8, 107u8, 63u8, 82u8, 197u8, 22u8,
+                25u8, 5u8, 187u8, 90u8, 212u8, 3u8, 156u8, 147u8,
             ],
             [
-                148u8,
-                101u8,
-                250u8,
-                12u8,
-                150u8,
-                44u8,
-                199u8,
-                105u8,
-                88u8,
-                230u8,
-                55u8,
-                58u8,
-                153u8,
-                51u8,
-                38u8,
-                64u8,
-                12u8,
-                28u8,
-                148u8,
-                248u8,
-                190u8,
-                47u8,
-                227u8,
-                169u8,
-                82u8,
-                173u8,
-                250u8,
-                127u8,
-                96u8,
-                178u8,
-                234u8,
-                38u8,
+                148u8, 101u8, 250u8, 12u8, 150u8, 44u8, 199u8, 105u8, 88u8, 230u8, 55u8, 58u8,
+                153u8, 51u8, 38u8, 64u8, 12u8, 28u8, 148u8, 248u8, 190u8, 47u8, 227u8, 169u8, 82u8,
+                173u8, 250u8, 127u8, 96u8, 178u8, 234u8, 38u8,
             ],
             [
-                248u8,
-                212u8,
-                159u8,
-                197u8,
-                41u8,
-                129u8,
-                46u8,
-                154u8,
-                124u8,
-                92u8,
-                80u8,
-                230u8,
-                156u8,
-                32u8,
-                240u8,
-                220u8,
-                204u8,
-                13u8,
-                184u8,
-                250u8,
-                149u8,
-                201u8,
-                139u8,
-                197u8,
-                140u8,
-                201u8,
-                164u8,
-                241u8,
-                193u8,
-                41u8,
-                158u8,
-                175u8,
+                248u8, 212u8, 159u8, 197u8, 41u8, 129u8, 46u8, 154u8, 124u8, 92u8, 80u8, 230u8,
+                156u8, 32u8, 240u8, 220u8, 204u8, 13u8, 184u8, 250u8, 149u8, 201u8, 139u8, 197u8,
+                140u8, 201u8, 164u8, 241u8, 193u8, 41u8, 158u8, 175u8,
             ],
         ];
     }
@@ -1929,39 +1535,31 @@ function swapOwner(address prevOwner, address oldOwner, address newOwner) extern
             match topics.first().copied() {
                 Some(<AddedOwner as alloy_sol_types::SolEvent>::SIGNATURE_HASH) => {
                     <AddedOwner as alloy_sol_types::SolEvent>::decode_raw_log(
-                            topics,
-                            data,
-                            validate,
-                        )
-                        .map(Self::AddedOwner)
+                        topics, data, validate,
+                    )
+                    .map(Self::AddedOwner)
                 }
                 Some(<ChangedThreshold as alloy_sol_types::SolEvent>::SIGNATURE_HASH) => {
                     <ChangedThreshold as alloy_sol_types::SolEvent>::decode_raw_log(
-                            topics,
-                            data,
-                            validate,
-                        )
-                        .map(Self::ChangedThreshold)
+                        topics, data, validate,
+                    )
+                    .map(Self::ChangedThreshold)
                 }
                 Some(<RemovedOwner as alloy_sol_types::SolEvent>::SIGNATURE_HASH) => {
                     <RemovedOwner as alloy_sol_types::SolEvent>::decode_raw_log(
-                            topics,
-                            data,
-                            validate,
-                        )
-                        .map(Self::RemovedOwner)
+                        topics, data, validate,
+                    )
+                    .map(Self::RemovedOwner)
                 }
-                _ => {
-                    alloy_sol_types::private::Err(alloy_sol_types::Error::InvalidLog {
-                        name: <Self as alloy_sol_types::SolEventInterface>::NAME,
-                        log: alloy_sol_types::private::Box::new(
-                            alloy_sol_types::private::LogData::new_unchecked(
-                                topics.to_vec(),
-                                data.to_vec().into(),
-                            ),
+                _ => alloy_sol_types::private::Err(alloy_sol_types::Error::InvalidLog {
+                    name: <Self as alloy_sol_types::SolEventInterface>::NAME,
+                    log: alloy_sol_types::private::Box::new(
+                        alloy_sol_types::private::LogData::new_unchecked(
+                            topics.to_vec(),
+                            data.to_vec().into(),
                         ),
-                    })
-                }
+                    ),
+                }),
             }
         }
     }
@@ -1997,7 +1595,7 @@ function swapOwner(address prevOwner, address oldOwner, address newOwner) extern
     use alloy::contract as alloy_contract;
     /**Creates a new wrapper around an on-chain [`OwnerManager`](self) contract instance.
 
-See the [wrapper's documentation](`OwnerManagerInstance`) for more details.*/
+    See the [wrapper's documentation](`OwnerManagerInstance`) for more details.*/
     #[inline]
     pub const fn new<
         T: alloy_contract::private::Transport + ::core::clone::Clone,
@@ -2011,9 +1609,9 @@ See the [wrapper's documentation](`OwnerManagerInstance`) for more details.*/
     }
     /**Deploys this contract using the given `provider` and constructor arguments, if any.
 
-Returns a new instance of the contract, if the deployment was successful.
+    Returns a new instance of the contract, if the deployment was successful.
 
-For more fine-grained control over the deployment process, use [`deploy_builder`] instead.*/
+    For more fine-grained control over the deployment process, use [`deploy_builder`] instead.*/
     #[inline]
     pub fn deploy<
         T: alloy_contract::private::Transport + ::core::clone::Clone,
@@ -2021,35 +1619,36 @@ For more fine-grained control over the deployment process, use [`deploy_builder`
         N: alloy_contract::private::Network,
     >(
         provider: P,
-    ) -> impl ::core::future::Future<
-        Output = alloy_contract::Result<OwnerManagerInstance<T, P, N>>,
-    > {
+    ) -> impl ::core::future::Future<Output = alloy_contract::Result<OwnerManagerInstance<T, P, N>>>
+    {
         OwnerManagerInstance::<T, P, N>::deploy(provider)
     }
     /**Creates a `RawCallBuilder` for deploying this contract using the given `provider`
-and constructor arguments, if any.
+    and constructor arguments, if any.
 
-This is a simple wrapper around creating a `RawCallBuilder` with the data set to
-the bytecode concatenated with the constructor's ABI-encoded arguments.*/
+    This is a simple wrapper around creating a `RawCallBuilder` with the data set to
+    the bytecode concatenated with the constructor's ABI-encoded arguments.*/
     #[inline]
     pub fn deploy_builder<
         T: alloy_contract::private::Transport + ::core::clone::Clone,
         P: alloy_contract::private::Provider<T, N>,
         N: alloy_contract::private::Network,
-    >(provider: P) -> alloy_contract::RawCallBuilder<T, P, N> {
+    >(
+        provider: P,
+    ) -> alloy_contract::RawCallBuilder<T, P, N> {
         OwnerManagerInstance::<T, P, N>::deploy_builder(provider)
     }
     /**A [`OwnerManager`](self) instance.
 
-Contains type-safe methods for interacting with an on-chain instance of the
-[`OwnerManager`](self) contract located at a given `address`, using a given
-provider `P`.
+    Contains type-safe methods for interacting with an on-chain instance of the
+    [`OwnerManager`](self) contract located at a given `address`, using a given
+    provider `P`.
 
-If the contract bytecode is available (see the [`sol!`](alloy_sol_types::sol!)
-documentation on how to provide it), the `deploy` and `deploy_builder` methods can
-be used to deploy a new instance of the contract.
+    If the contract bytecode is available (see the [`sol!`](alloy_sol_types::sol!)
+    documentation on how to provide it), the `deploy` and `deploy_builder` methods can
+    be used to deploy a new instance of the contract.
 
-See the [module-level documentation](self) for all the available methods.*/
+    See the [module-level documentation](self) for all the available methods.*/
     #[derive(Clone)]
     pub struct OwnerManagerInstance<T, P, N = alloy_contract::private::Ethereum> {
         address: alloy_sol_types::private::Address,
@@ -2066,42 +1665,34 @@ See the [module-level documentation](self) for all the available methods.*/
     /// Instantiation and getters/setters.
     #[automatically_derived]
     impl<
-        T: alloy_contract::private::Transport + ::core::clone::Clone,
-        P: alloy_contract::private::Provider<T, N>,
-        N: alloy_contract::private::Network,
-    > OwnerManagerInstance<T, P, N> {
+            T: alloy_contract::private::Transport + ::core::clone::Clone,
+            P: alloy_contract::private::Provider<T, N>,
+            N: alloy_contract::private::Network,
+        > OwnerManagerInstance<T, P, N>
+    {
         /**Creates a new wrapper around an on-chain [`OwnerManager`](self) contract instance.
 
-See the [wrapper's documentation](`OwnerManagerInstance`) for more details.*/
+        See the [wrapper's documentation](`OwnerManagerInstance`) for more details.*/
         #[inline]
-        pub const fn new(
-            address: alloy_sol_types::private::Address,
-            provider: P,
-        ) -> Self {
-            Self {
-                address,
-                provider,
-                _network_transport: ::core::marker::PhantomData,
-            }
+        pub const fn new(address: alloy_sol_types::private::Address, provider: P) -> Self {
+            Self { address, provider, _network_transport: ::core::marker::PhantomData }
         }
         /**Deploys this contract using the given `provider` and constructor arguments, if any.
 
-Returns a new instance of the contract, if the deployment was successful.
+        Returns a new instance of the contract, if the deployment was successful.
 
-For more fine-grained control over the deployment process, use [`deploy_builder`] instead.*/
+        For more fine-grained control over the deployment process, use [`deploy_builder`] instead.*/
         #[inline]
-        pub async fn deploy(
-            provider: P,
-        ) -> alloy_contract::Result<OwnerManagerInstance<T, P, N>> {
+        pub async fn deploy(provider: P) -> alloy_contract::Result<OwnerManagerInstance<T, P, N>> {
             let call_builder = Self::deploy_builder(provider);
             let contract_address = call_builder.deploy().await?;
             Ok(Self::new(contract_address, call_builder.provider))
         }
         /**Creates a `RawCallBuilder` for deploying this contract using the given `provider`
-and constructor arguments, if any.
+        and constructor arguments, if any.
 
-This is a simple wrapper around creating a `RawCallBuilder` with the data set to
-the bytecode concatenated with the constructor's ABI-encoded arguments.*/
+        This is a simple wrapper around creating a `RawCallBuilder` with the data set to
+        the bytecode concatenated with the constructor's ABI-encoded arguments.*/
         #[inline]
         pub fn deploy_builder(provider: P) -> alloy_contract::RawCallBuilder<T, P, N> {
             alloy_contract::RawCallBuilder::new_raw_deploy(
@@ -2144,10 +1735,11 @@ the bytecode concatenated with the constructor's ABI-encoded arguments.*/
     /// Function calls.
     #[automatically_derived]
     impl<
-        T: alloy_contract::private::Transport + ::core::clone::Clone,
-        P: alloy_contract::private::Provider<T, N>,
-        N: alloy_contract::private::Network,
-    > OwnerManagerInstance<T, P, N> {
+            T: alloy_contract::private::Transport + ::core::clone::Clone,
+            P: alloy_contract::private::Provider<T, N>,
+            N: alloy_contract::private::Network,
+        > OwnerManagerInstance<T, P, N>
+    {
         /// Creates a new call builder using this contract instance's provider and address.
         ///
         /// Note that the call can be any function call, not just those defined in this
@@ -2164,12 +1756,7 @@ the bytecode concatenated with the constructor's ABI-encoded arguments.*/
             owner: alloy::sol_types::private::Address,
             _threshold: alloy::sol_types::private::primitives::aliases::U256,
         ) -> alloy_contract::SolCallBuilder<T, &P, addOwnerWithThresholdCall, N> {
-            self.call_builder(
-                &addOwnerWithThresholdCall {
-                    owner,
-                    _threshold,
-                },
-            )
+            self.call_builder(&addOwnerWithThresholdCall { owner, _threshold })
         }
         ///Creates a new call builder for the [`changeThreshold`] function.
         pub fn changeThreshold(
@@ -2179,15 +1766,11 @@ the bytecode concatenated with the constructor's ABI-encoded arguments.*/
             self.call_builder(&changeThresholdCall { _threshold })
         }
         ///Creates a new call builder for the [`getOwners`] function.
-        pub fn getOwners(
-            &self,
-        ) -> alloy_contract::SolCallBuilder<T, &P, getOwnersCall, N> {
+        pub fn getOwners(&self) -> alloy_contract::SolCallBuilder<T, &P, getOwnersCall, N> {
             self.call_builder(&getOwnersCall {})
         }
         ///Creates a new call builder for the [`getThreshold`] function.
-        pub fn getThreshold(
-            &self,
-        ) -> alloy_contract::SolCallBuilder<T, &P, getThresholdCall, N> {
+        pub fn getThreshold(&self) -> alloy_contract::SolCallBuilder<T, &P, getThresholdCall, N> {
             self.call_builder(&getThresholdCall {})
         }
         ///Creates a new call builder for the [`isOwner`] function.
@@ -2204,13 +1787,7 @@ the bytecode concatenated with the constructor's ABI-encoded arguments.*/
             owner: alloy::sol_types::private::Address,
             _threshold: alloy::sol_types::private::primitives::aliases::U256,
         ) -> alloy_contract::SolCallBuilder<T, &P, removeOwnerCall, N> {
-            self.call_builder(
-                &removeOwnerCall {
-                    prevOwner,
-                    owner,
-                    _threshold,
-                },
-            )
+            self.call_builder(&removeOwnerCall { prevOwner, owner, _threshold })
         }
         ///Creates a new call builder for the [`swapOwner`] function.
         pub fn swapOwner(
@@ -2219,22 +1796,17 @@ the bytecode concatenated with the constructor's ABI-encoded arguments.*/
             oldOwner: alloy::sol_types::private::Address,
             newOwner: alloy::sol_types::private::Address,
         ) -> alloy_contract::SolCallBuilder<T, &P, swapOwnerCall, N> {
-            self.call_builder(
-                &swapOwnerCall {
-                    prevOwner,
-                    oldOwner,
-                    newOwner,
-                },
-            )
+            self.call_builder(&swapOwnerCall { prevOwner, oldOwner, newOwner })
         }
     }
     /// Event filters.
     #[automatically_derived]
     impl<
-        T: alloy_contract::private::Transport + ::core::clone::Clone,
-        P: alloy_contract::private::Provider<T, N>,
-        N: alloy_contract::private::Network,
-    > OwnerManagerInstance<T, P, N> {
+            T: alloy_contract::private::Transport + ::core::clone::Clone,
+            P: alloy_contract::private::Provider<T, N>,
+            N: alloy_contract::private::Network,
+        > OwnerManagerInstance<T, P, N>
+    {
         /// Creates a new event filter using this contract instance's provider and address.
         ///
         /// Note that the type can be any event, not just those defined in this contract.
@@ -2249,15 +1821,11 @@ the bytecode concatenated with the constructor's ABI-encoded arguments.*/
             self.event_filter::<AddedOwner>()
         }
         ///Creates a new event filter for the [`ChangedThreshold`] event.
-        pub fn ChangedThreshold_filter(
-            &self,
-        ) -> alloy_contract::Event<T, &P, ChangedThreshold, N> {
+        pub fn ChangedThreshold_filter(&self) -> alloy_contract::Event<T, &P, ChangedThreshold, N> {
             self.event_filter::<ChangedThreshold>()
         }
         ///Creates a new event filter for the [`RemovedOwner`] event.
-        pub fn RemovedOwner_filter(
-            &self,
-        ) -> alloy_contract::Event<T, &P, RemovedOwner, N> {
+        pub fn RemovedOwner_filter(&self) -> alloy_contract::Event<T, &P, RemovedOwner, N> {
             self.event_filter::<RemovedOwner>()
         }
     }

@@ -443,70 +443,30 @@ pub mod StdAssertions {
         b"",
     );
     /**Event with signature `log(string)` and selector `0x41304facd9323d75b11bcdd609cb38effffdb05710f7caf0e9b16c6d9d709f50`.
-```solidity
-event log(string);
-```*/
-    #[allow(
-        non_camel_case_types,
-        non_snake_case,
-        clippy::pub_underscore_fields,
-        clippy::style
-    )]
+    ```solidity
+    event log(string);
+    ```*/
+    #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields, clippy::style)]
     #[derive(Clone)]
     pub struct log {
         #[allow(missing_docs)]
         pub _0: alloy::sol_types::private::String,
     }
-    #[allow(
-        non_camel_case_types,
-        non_snake_case,
-        clippy::pub_underscore_fields,
-        clippy::style
-    )]
+    #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields, clippy::style)]
     const _: () = {
         use alloy::sol_types as alloy_sol_types;
         #[automatically_derived]
         impl alloy_sol_types::SolEvent for log {
             type DataTuple<'a> = (alloy::sol_types::sol_data::String,);
-            type DataToken<'a> = <Self::DataTuple<
-                'a,
-            > as alloy_sol_types::SolType>::Token<'a>;
+            type DataToken<'a> = <Self::DataTuple<'a> as alloy_sol_types::SolType>::Token<'a>;
             type TopicList = (alloy_sol_types::sol_data::FixedBytes<32>,);
             const SIGNATURE: &'static str = "log(string)";
-            const SIGNATURE_HASH: alloy_sol_types::private::B256 = alloy_sol_types::private::B256::new([
-                65u8,
-                48u8,
-                79u8,
-                172u8,
-                217u8,
-                50u8,
-                61u8,
-                117u8,
-                177u8,
-                27u8,
-                205u8,
-                214u8,
-                9u8,
-                203u8,
-                56u8,
-                239u8,
-                255u8,
-                253u8,
-                176u8,
-                87u8,
-                16u8,
-                247u8,
-                202u8,
-                240u8,
-                233u8,
-                177u8,
-                108u8,
-                109u8,
-                157u8,
-                112u8,
-                159u8,
-                80u8,
-            ]);
+            const SIGNATURE_HASH: alloy_sol_types::private::B256 =
+                alloy_sol_types::private::B256::new([
+                    65u8, 48u8, 79u8, 172u8, 217u8, 50u8, 61u8, 117u8, 177u8, 27u8, 205u8, 214u8,
+                    9u8, 203u8, 56u8, 239u8, 255u8, 253u8, 176u8, 87u8, 16u8, 247u8, 202u8, 240u8,
+                    233u8, 177u8, 108u8, 109u8, 157u8, 112u8, 159u8, 80u8,
+                ]);
             const ANONYMOUS: bool = false;
             #[allow(unused_variables)]
             #[inline]
@@ -521,23 +481,19 @@ event log(string);
                 topics: &<Self::TopicList as alloy_sol_types::SolType>::RustType,
             ) -> alloy_sol_types::Result<()> {
                 if topics.0 != Self::SIGNATURE_HASH {
-                    return Err(
-                        alloy_sol_types::Error::invalid_event_signature_hash(
-                            Self::SIGNATURE,
-                            topics.0,
-                            Self::SIGNATURE_HASH,
-                        ),
-                    );
+                    return Err(alloy_sol_types::Error::invalid_event_signature_hash(
+                        Self::SIGNATURE,
+                        topics.0,
+                        Self::SIGNATURE_HASH,
+                    ));
                 }
                 Ok(())
             }
             #[inline]
             fn tokenize_body(&self) -> Self::DataToken<'_> {
-                (
-                    <alloy::sol_types::sol_data::String as alloy_sol_types::SolType>::tokenize(
-                        &self._0,
-                    ),
-                )
+                (<alloy::sol_types::sol_data::String as alloy_sol_types::SolType>::tokenize(
+                    &self._0,
+                ),)
             }
             #[inline]
             fn topics(&self) -> <Self::TopicList as alloy_sol_types::SolType>::RustType {
@@ -551,9 +507,7 @@ event log(string);
                 if out.len() < <Self::TopicList as alloy_sol_types::TopicList>::COUNT {
                     return Err(alloy_sol_types::Error::Overrun);
                 }
-                out[0usize] = alloy_sol_types::abi::token::WordToken(
-                    Self::SIGNATURE_HASH,
-                );
+                out[0usize] = alloy_sol_types::abi::token::WordToken(Self::SIGNATURE_HASH);
                 Ok(())
             }
         }
@@ -575,70 +529,30 @@ event log(string);
         }
     };
     /**Event with signature `log_address(address)` and selector `0x7ae74c527414ae135fd97047b12921a5ec3911b804197855d67e25c7b75ee6f3`.
-```solidity
-event log_address(address);
-```*/
-    #[allow(
-        non_camel_case_types,
-        non_snake_case,
-        clippy::pub_underscore_fields,
-        clippy::style
-    )]
+    ```solidity
+    event log_address(address);
+    ```*/
+    #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields, clippy::style)]
     #[derive(Clone)]
     pub struct log_address {
         #[allow(missing_docs)]
         pub _0: alloy::sol_types::private::Address,
     }
-    #[allow(
-        non_camel_case_types,
-        non_snake_case,
-        clippy::pub_underscore_fields,
-        clippy::style
-    )]
+    #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields, clippy::style)]
     const _: () = {
         use alloy::sol_types as alloy_sol_types;
         #[automatically_derived]
         impl alloy_sol_types::SolEvent for log_address {
             type DataTuple<'a> = (alloy::sol_types::sol_data::Address,);
-            type DataToken<'a> = <Self::DataTuple<
-                'a,
-            > as alloy_sol_types::SolType>::Token<'a>;
+            type DataToken<'a> = <Self::DataTuple<'a> as alloy_sol_types::SolType>::Token<'a>;
             type TopicList = (alloy_sol_types::sol_data::FixedBytes<32>,);
             const SIGNATURE: &'static str = "log_address(address)";
-            const SIGNATURE_HASH: alloy_sol_types::private::B256 = alloy_sol_types::private::B256::new([
-                122u8,
-                231u8,
-                76u8,
-                82u8,
-                116u8,
-                20u8,
-                174u8,
-                19u8,
-                95u8,
-                217u8,
-                112u8,
-                71u8,
-                177u8,
-                41u8,
-                33u8,
-                165u8,
-                236u8,
-                57u8,
-                17u8,
-                184u8,
-                4u8,
-                25u8,
-                120u8,
-                85u8,
-                214u8,
-                126u8,
-                37u8,
-                199u8,
-                183u8,
-                94u8,
-                230u8,
-                243u8,
-            ]);
+            const SIGNATURE_HASH: alloy_sol_types::private::B256 =
+                alloy_sol_types::private::B256::new([
+                    122u8, 231u8, 76u8, 82u8, 116u8, 20u8, 174u8, 19u8, 95u8, 217u8, 112u8, 71u8,
+                    177u8, 41u8, 33u8, 165u8, 236u8, 57u8, 17u8, 184u8, 4u8, 25u8, 120u8, 85u8,
+                    214u8, 126u8, 37u8, 199u8, 183u8, 94u8, 230u8, 243u8,
+                ]);
             const ANONYMOUS: bool = false;
             #[allow(unused_variables)]
             #[inline]
@@ -653,23 +567,19 @@ event log_address(address);
                 topics: &<Self::TopicList as alloy_sol_types::SolType>::RustType,
             ) -> alloy_sol_types::Result<()> {
                 if topics.0 != Self::SIGNATURE_HASH {
-                    return Err(
-                        alloy_sol_types::Error::invalid_event_signature_hash(
-                            Self::SIGNATURE,
-                            topics.0,
-                            Self::SIGNATURE_HASH,
-                        ),
-                    );
+                    return Err(alloy_sol_types::Error::invalid_event_signature_hash(
+                        Self::SIGNATURE,
+                        topics.0,
+                        Self::SIGNATURE_HASH,
+                    ));
                 }
                 Ok(())
             }
             #[inline]
             fn tokenize_body(&self) -> Self::DataToken<'_> {
-                (
-                    <alloy::sol_types::sol_data::Address as alloy_sol_types::SolType>::tokenize(
-                        &self._0,
-                    ),
-                )
+                (<alloy::sol_types::sol_data::Address as alloy_sol_types::SolType>::tokenize(
+                    &self._0,
+                ),)
             }
             #[inline]
             fn topics(&self) -> <Self::TopicList as alloy_sol_types::SolType>::RustType {
@@ -683,9 +593,7 @@ event log_address(address);
                 if out.len() < <Self::TopicList as alloy_sol_types::TopicList>::COUNT {
                     return Err(alloy_sol_types::Error::Overrun);
                 }
-                out[0usize] = alloy_sol_types::abi::token::WordToken(
-                    Self::SIGNATURE_HASH,
-                );
+                out[0usize] = alloy_sol_types::abi::token::WordToken(Self::SIGNATURE_HASH);
                 Ok(())
             }
         }
@@ -707,74 +615,32 @@ event log_address(address);
         }
     };
     /**Event with signature `log_array(uint256[])` and selector `0xfb102865d50addddf69da9b5aa1bced66c80cf869a5c8d0471a467e18ce9cab1`.
-```solidity
-event log_array(uint256[] val);
-```*/
-    #[allow(
-        non_camel_case_types,
-        non_snake_case,
-        clippy::pub_underscore_fields,
-        clippy::style
-    )]
+    ```solidity
+    event log_array(uint256[] val);
+    ```*/
+    #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields, clippy::style)]
     #[derive(Clone)]
     pub struct log_array_0 {
         #[allow(missing_docs)]
-        pub val: alloy::sol_types::private::Vec<
-            alloy::sol_types::private::primitives::aliases::U256,
-        >,
+        pub val:
+            alloy::sol_types::private::Vec<alloy::sol_types::private::primitives::aliases::U256>,
     }
-    #[allow(
-        non_camel_case_types,
-        non_snake_case,
-        clippy::pub_underscore_fields,
-        clippy::style
-    )]
+    #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields, clippy::style)]
     const _: () = {
         use alloy::sol_types as alloy_sol_types;
         #[automatically_derived]
         impl alloy_sol_types::SolEvent for log_array_0 {
-            type DataTuple<'a> = (
-                alloy::sol_types::sol_data::Array<alloy::sol_types::sol_data::Uint<256>>,
-            );
-            type DataToken<'a> = <Self::DataTuple<
-                'a,
-            > as alloy_sol_types::SolType>::Token<'a>;
+            type DataTuple<'a> =
+                (alloy::sol_types::sol_data::Array<alloy::sol_types::sol_data::Uint<256>>,);
+            type DataToken<'a> = <Self::DataTuple<'a> as alloy_sol_types::SolType>::Token<'a>;
             type TopicList = (alloy_sol_types::sol_data::FixedBytes<32>,);
             const SIGNATURE: &'static str = "log_array(uint256[])";
-            const SIGNATURE_HASH: alloy_sol_types::private::B256 = alloy_sol_types::private::B256::new([
-                251u8,
-                16u8,
-                40u8,
-                101u8,
-                213u8,
-                10u8,
-                221u8,
-                221u8,
-                246u8,
-                157u8,
-                169u8,
-                181u8,
-                170u8,
-                27u8,
-                206u8,
-                214u8,
-                108u8,
-                128u8,
-                207u8,
-                134u8,
-                154u8,
-                92u8,
-                141u8,
-                4u8,
-                113u8,
-                164u8,
-                103u8,
-                225u8,
-                140u8,
-                233u8,
-                202u8,
-                177u8,
-            ]);
+            const SIGNATURE_HASH: alloy_sol_types::private::B256 =
+                alloy_sol_types::private::B256::new([
+                    251u8, 16u8, 40u8, 101u8, 213u8, 10u8, 221u8, 221u8, 246u8, 157u8, 169u8,
+                    181u8, 170u8, 27u8, 206u8, 214u8, 108u8, 128u8, 207u8, 134u8, 154u8, 92u8,
+                    141u8, 4u8, 113u8, 164u8, 103u8, 225u8, 140u8, 233u8, 202u8, 177u8,
+                ]);
             const ANONYMOUS: bool = false;
             #[allow(unused_variables)]
             #[inline]
@@ -789,13 +655,11 @@ event log_array(uint256[] val);
                 topics: &<Self::TopicList as alloy_sol_types::SolType>::RustType,
             ) -> alloy_sol_types::Result<()> {
                 if topics.0 != Self::SIGNATURE_HASH {
-                    return Err(
-                        alloy_sol_types::Error::invalid_event_signature_hash(
-                            Self::SIGNATURE,
-                            topics.0,
-                            Self::SIGNATURE_HASH,
-                        ),
-                    );
+                    return Err(alloy_sol_types::Error::invalid_event_signature_hash(
+                        Self::SIGNATURE,
+                        topics.0,
+                        Self::SIGNATURE_HASH,
+                    ));
                 }
                 Ok(())
             }
@@ -819,9 +683,7 @@ event log_array(uint256[] val);
                 if out.len() < <Self::TopicList as alloy_sol_types::TopicList>::COUNT {
                     return Err(alloy_sol_types::Error::Overrun);
                 }
-                out[0usize] = alloy_sol_types::abi::token::WordToken(
-                    Self::SIGNATURE_HASH,
-                );
+                out[0usize] = alloy_sol_types::abi::token::WordToken(Self::SIGNATURE_HASH);
                 Ok(())
             }
         }
@@ -843,74 +705,32 @@ event log_array(uint256[] val);
         }
     };
     /**Event with signature `log_array(int256[])` and selector `0x890a82679b470f2bd82816ed9b161f97d8b967f37fa3647c21d5bf39749e2dd5`.
-```solidity
-event log_array(int256[] val);
-```*/
-    #[allow(
-        non_camel_case_types,
-        non_snake_case,
-        clippy::pub_underscore_fields,
-        clippy::style
-    )]
+    ```solidity
+    event log_array(int256[] val);
+    ```*/
+    #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields, clippy::style)]
     #[derive(Clone)]
     pub struct log_array_1 {
         #[allow(missing_docs)]
-        pub val: alloy::sol_types::private::Vec<
-            alloy::sol_types::private::primitives::aliases::I256,
-        >,
+        pub val:
+            alloy::sol_types::private::Vec<alloy::sol_types::private::primitives::aliases::I256>,
     }
-    #[allow(
-        non_camel_case_types,
-        non_snake_case,
-        clippy::pub_underscore_fields,
-        clippy::style
-    )]
+    #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields, clippy::style)]
     const _: () = {
         use alloy::sol_types as alloy_sol_types;
         #[automatically_derived]
         impl alloy_sol_types::SolEvent for log_array_1 {
-            type DataTuple<'a> = (
-                alloy::sol_types::sol_data::Array<alloy::sol_types::sol_data::Int<256>>,
-            );
-            type DataToken<'a> = <Self::DataTuple<
-                'a,
-            > as alloy_sol_types::SolType>::Token<'a>;
+            type DataTuple<'a> =
+                (alloy::sol_types::sol_data::Array<alloy::sol_types::sol_data::Int<256>>,);
+            type DataToken<'a> = <Self::DataTuple<'a> as alloy_sol_types::SolType>::Token<'a>;
             type TopicList = (alloy_sol_types::sol_data::FixedBytes<32>,);
             const SIGNATURE: &'static str = "log_array(int256[])";
-            const SIGNATURE_HASH: alloy_sol_types::private::B256 = alloy_sol_types::private::B256::new([
-                137u8,
-                10u8,
-                130u8,
-                103u8,
-                155u8,
-                71u8,
-                15u8,
-                43u8,
-                216u8,
-                40u8,
-                22u8,
-                237u8,
-                155u8,
-                22u8,
-                31u8,
-                151u8,
-                216u8,
-                185u8,
-                103u8,
-                243u8,
-                127u8,
-                163u8,
-                100u8,
-                124u8,
-                33u8,
-                213u8,
-                191u8,
-                57u8,
-                116u8,
-                158u8,
-                45u8,
-                213u8,
-            ]);
+            const SIGNATURE_HASH: alloy_sol_types::private::B256 =
+                alloy_sol_types::private::B256::new([
+                    137u8, 10u8, 130u8, 103u8, 155u8, 71u8, 15u8, 43u8, 216u8, 40u8, 22u8, 237u8,
+                    155u8, 22u8, 31u8, 151u8, 216u8, 185u8, 103u8, 243u8, 127u8, 163u8, 100u8,
+                    124u8, 33u8, 213u8, 191u8, 57u8, 116u8, 158u8, 45u8, 213u8,
+                ]);
             const ANONYMOUS: bool = false;
             #[allow(unused_variables)]
             #[inline]
@@ -925,13 +745,11 @@ event log_array(int256[] val);
                 topics: &<Self::TopicList as alloy_sol_types::SolType>::RustType,
             ) -> alloy_sol_types::Result<()> {
                 if topics.0 != Self::SIGNATURE_HASH {
-                    return Err(
-                        alloy_sol_types::Error::invalid_event_signature_hash(
-                            Self::SIGNATURE,
-                            topics.0,
-                            Self::SIGNATURE_HASH,
-                        ),
-                    );
+                    return Err(alloy_sol_types::Error::invalid_event_signature_hash(
+                        Self::SIGNATURE,
+                        topics.0,
+                        Self::SIGNATURE_HASH,
+                    ));
                 }
                 Ok(())
             }
@@ -955,9 +773,7 @@ event log_array(int256[] val);
                 if out.len() < <Self::TopicList as alloy_sol_types::TopicList>::COUNT {
                     return Err(alloy_sol_types::Error::Overrun);
                 }
-                out[0usize] = alloy_sol_types::abi::token::WordToken(
-                    Self::SIGNATURE_HASH,
-                );
+                out[0usize] = alloy_sol_types::abi::token::WordToken(Self::SIGNATURE_HASH);
                 Ok(())
             }
         }
@@ -979,72 +795,31 @@ event log_array(int256[] val);
         }
     };
     /**Event with signature `log_array(address[])` and selector `0x40e1840f5769073d61bd01372d9b75baa9842d5629a0c99ff103be1178a8e9e2`.
-```solidity
-event log_array(address[] val);
-```*/
-    #[allow(
-        non_camel_case_types,
-        non_snake_case,
-        clippy::pub_underscore_fields,
-        clippy::style
-    )]
+    ```solidity
+    event log_array(address[] val);
+    ```*/
+    #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields, clippy::style)]
     #[derive(Clone)]
     pub struct log_array_2 {
         #[allow(missing_docs)]
         pub val: alloy::sol_types::private::Vec<alloy::sol_types::private::Address>,
     }
-    #[allow(
-        non_camel_case_types,
-        non_snake_case,
-        clippy::pub_underscore_fields,
-        clippy::style
-    )]
+    #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields, clippy::style)]
     const _: () = {
         use alloy::sol_types as alloy_sol_types;
         #[automatically_derived]
         impl alloy_sol_types::SolEvent for log_array_2 {
-            type DataTuple<'a> = (
-                alloy::sol_types::sol_data::Array<alloy::sol_types::sol_data::Address>,
-            );
-            type DataToken<'a> = <Self::DataTuple<
-                'a,
-            > as alloy_sol_types::SolType>::Token<'a>;
+            type DataTuple<'a> =
+                (alloy::sol_types::sol_data::Array<alloy::sol_types::sol_data::Address>,);
+            type DataToken<'a> = <Self::DataTuple<'a> as alloy_sol_types::SolType>::Token<'a>;
             type TopicList = (alloy_sol_types::sol_data::FixedBytes<32>,);
             const SIGNATURE: &'static str = "log_array(address[])";
-            const SIGNATURE_HASH: alloy_sol_types::private::B256 = alloy_sol_types::private::B256::new([
-                64u8,
-                225u8,
-                132u8,
-                15u8,
-                87u8,
-                105u8,
-                7u8,
-                61u8,
-                97u8,
-                189u8,
-                1u8,
-                55u8,
-                45u8,
-                155u8,
-                117u8,
-                186u8,
-                169u8,
-                132u8,
-                45u8,
-                86u8,
-                41u8,
-                160u8,
-                201u8,
-                159u8,
-                241u8,
-                3u8,
-                190u8,
-                17u8,
-                120u8,
-                168u8,
-                233u8,
-                226u8,
-            ]);
+            const SIGNATURE_HASH: alloy_sol_types::private::B256 =
+                alloy_sol_types::private::B256::new([
+                    64u8, 225u8, 132u8, 15u8, 87u8, 105u8, 7u8, 61u8, 97u8, 189u8, 1u8, 55u8, 45u8,
+                    155u8, 117u8, 186u8, 169u8, 132u8, 45u8, 86u8, 41u8, 160u8, 201u8, 159u8,
+                    241u8, 3u8, 190u8, 17u8, 120u8, 168u8, 233u8, 226u8,
+                ]);
             const ANONYMOUS: bool = false;
             #[allow(unused_variables)]
             #[inline]
@@ -1059,13 +834,11 @@ event log_array(address[] val);
                 topics: &<Self::TopicList as alloy_sol_types::SolType>::RustType,
             ) -> alloy_sol_types::Result<()> {
                 if topics.0 != Self::SIGNATURE_HASH {
-                    return Err(
-                        alloy_sol_types::Error::invalid_event_signature_hash(
-                            Self::SIGNATURE,
-                            topics.0,
-                            Self::SIGNATURE_HASH,
-                        ),
-                    );
+                    return Err(alloy_sol_types::Error::invalid_event_signature_hash(
+                        Self::SIGNATURE,
+                        topics.0,
+                        Self::SIGNATURE_HASH,
+                    ));
                 }
                 Ok(())
             }
@@ -1089,9 +862,7 @@ event log_array(address[] val);
                 if out.len() < <Self::TopicList as alloy_sol_types::TopicList>::COUNT {
                     return Err(alloy_sol_types::Error::Overrun);
                 }
-                out[0usize] = alloy_sol_types::abi::token::WordToken(
-                    Self::SIGNATURE_HASH,
-                );
+                out[0usize] = alloy_sol_types::abi::token::WordToken(Self::SIGNATURE_HASH);
                 Ok(())
             }
         }
@@ -1113,70 +884,30 @@ event log_array(address[] val);
         }
     };
     /**Event with signature `log_bytes(bytes)` and selector `0x23b62ad0584d24a75f0bf3560391ef5659ec6db1269c56e11aa241d637f19b20`.
-```solidity
-event log_bytes(bytes);
-```*/
-    #[allow(
-        non_camel_case_types,
-        non_snake_case,
-        clippy::pub_underscore_fields,
-        clippy::style
-    )]
+    ```solidity
+    event log_bytes(bytes);
+    ```*/
+    #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields, clippy::style)]
     #[derive(Clone)]
     pub struct log_bytes {
         #[allow(missing_docs)]
         pub _0: alloy::sol_types::private::Bytes,
     }
-    #[allow(
-        non_camel_case_types,
-        non_snake_case,
-        clippy::pub_underscore_fields,
-        clippy::style
-    )]
+    #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields, clippy::style)]
     const _: () = {
         use alloy::sol_types as alloy_sol_types;
         #[automatically_derived]
         impl alloy_sol_types::SolEvent for log_bytes {
             type DataTuple<'a> = (alloy::sol_types::sol_data::Bytes,);
-            type DataToken<'a> = <Self::DataTuple<
-                'a,
-            > as alloy_sol_types::SolType>::Token<'a>;
+            type DataToken<'a> = <Self::DataTuple<'a> as alloy_sol_types::SolType>::Token<'a>;
             type TopicList = (alloy_sol_types::sol_data::FixedBytes<32>,);
             const SIGNATURE: &'static str = "log_bytes(bytes)";
-            const SIGNATURE_HASH: alloy_sol_types::private::B256 = alloy_sol_types::private::B256::new([
-                35u8,
-                182u8,
-                42u8,
-                208u8,
-                88u8,
-                77u8,
-                36u8,
-                167u8,
-                95u8,
-                11u8,
-                243u8,
-                86u8,
-                3u8,
-                145u8,
-                239u8,
-                86u8,
-                89u8,
-                236u8,
-                109u8,
-                177u8,
-                38u8,
-                156u8,
-                86u8,
-                225u8,
-                26u8,
-                162u8,
-                65u8,
-                214u8,
-                55u8,
-                241u8,
-                155u8,
-                32u8,
-            ]);
+            const SIGNATURE_HASH: alloy_sol_types::private::B256 =
+                alloy_sol_types::private::B256::new([
+                    35u8, 182u8, 42u8, 208u8, 88u8, 77u8, 36u8, 167u8, 95u8, 11u8, 243u8, 86u8,
+                    3u8, 145u8, 239u8, 86u8, 89u8, 236u8, 109u8, 177u8, 38u8, 156u8, 86u8, 225u8,
+                    26u8, 162u8, 65u8, 214u8, 55u8, 241u8, 155u8, 32u8,
+                ]);
             const ANONYMOUS: bool = false;
             #[allow(unused_variables)]
             #[inline]
@@ -1191,23 +922,19 @@ event log_bytes(bytes);
                 topics: &<Self::TopicList as alloy_sol_types::SolType>::RustType,
             ) -> alloy_sol_types::Result<()> {
                 if topics.0 != Self::SIGNATURE_HASH {
-                    return Err(
-                        alloy_sol_types::Error::invalid_event_signature_hash(
-                            Self::SIGNATURE,
-                            topics.0,
-                            Self::SIGNATURE_HASH,
-                        ),
-                    );
+                    return Err(alloy_sol_types::Error::invalid_event_signature_hash(
+                        Self::SIGNATURE,
+                        topics.0,
+                        Self::SIGNATURE_HASH,
+                    ));
                 }
                 Ok(())
             }
             #[inline]
             fn tokenize_body(&self) -> Self::DataToken<'_> {
-                (
-                    <alloy::sol_types::sol_data::Bytes as alloy_sol_types::SolType>::tokenize(
-                        &self._0,
-                    ),
-                )
+                (<alloy::sol_types::sol_data::Bytes as alloy_sol_types::SolType>::tokenize(
+                    &self._0,
+                ),)
             }
             #[inline]
             fn topics(&self) -> <Self::TopicList as alloy_sol_types::SolType>::RustType {
@@ -1221,9 +948,7 @@ event log_bytes(bytes);
                 if out.len() < <Self::TopicList as alloy_sol_types::TopicList>::COUNT {
                     return Err(alloy_sol_types::Error::Overrun);
                 }
-                out[0usize] = alloy_sol_types::abi::token::WordToken(
-                    Self::SIGNATURE_HASH,
-                );
+                out[0usize] = alloy_sol_types::abi::token::WordToken(Self::SIGNATURE_HASH);
                 Ok(())
             }
         }
@@ -1245,70 +970,30 @@ event log_bytes(bytes);
         }
     };
     /**Event with signature `log_bytes32(bytes32)` and selector `0xe81699b85113eea1c73e10588b2b035e55893369632173afd43feb192fac64e3`.
-```solidity
-event log_bytes32(bytes32);
-```*/
-    #[allow(
-        non_camel_case_types,
-        non_snake_case,
-        clippy::pub_underscore_fields,
-        clippy::style
-    )]
+    ```solidity
+    event log_bytes32(bytes32);
+    ```*/
+    #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields, clippy::style)]
     #[derive(Clone)]
     pub struct log_bytes32 {
         #[allow(missing_docs)]
         pub _0: alloy::sol_types::private::FixedBytes<32>,
     }
-    #[allow(
-        non_camel_case_types,
-        non_snake_case,
-        clippy::pub_underscore_fields,
-        clippy::style
-    )]
+    #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields, clippy::style)]
     const _: () = {
         use alloy::sol_types as alloy_sol_types;
         #[automatically_derived]
         impl alloy_sol_types::SolEvent for log_bytes32 {
             type DataTuple<'a> = (alloy::sol_types::sol_data::FixedBytes<32>,);
-            type DataToken<'a> = <Self::DataTuple<
-                'a,
-            > as alloy_sol_types::SolType>::Token<'a>;
+            type DataToken<'a> = <Self::DataTuple<'a> as alloy_sol_types::SolType>::Token<'a>;
             type TopicList = (alloy_sol_types::sol_data::FixedBytes<32>,);
             const SIGNATURE: &'static str = "log_bytes32(bytes32)";
-            const SIGNATURE_HASH: alloy_sol_types::private::B256 = alloy_sol_types::private::B256::new([
-                232u8,
-                22u8,
-                153u8,
-                184u8,
-                81u8,
-                19u8,
-                238u8,
-                161u8,
-                199u8,
-                62u8,
-                16u8,
-                88u8,
-                139u8,
-                43u8,
-                3u8,
-                94u8,
-                85u8,
-                137u8,
-                51u8,
-                105u8,
-                99u8,
-                33u8,
-                115u8,
-                175u8,
-                212u8,
-                63u8,
-                235u8,
-                25u8,
-                47u8,
-                172u8,
-                100u8,
-                227u8,
-            ]);
+            const SIGNATURE_HASH: alloy_sol_types::private::B256 =
+                alloy_sol_types::private::B256::new([
+                    232u8, 22u8, 153u8, 184u8, 81u8, 19u8, 238u8, 161u8, 199u8, 62u8, 16u8, 88u8,
+                    139u8, 43u8, 3u8, 94u8, 85u8, 137u8, 51u8, 105u8, 99u8, 33u8, 115u8, 175u8,
+                    212u8, 63u8, 235u8, 25u8, 47u8, 172u8, 100u8, 227u8,
+                ]);
             const ANONYMOUS: bool = false;
             #[allow(unused_variables)]
             #[inline]
@@ -1323,13 +1008,11 @@ event log_bytes32(bytes32);
                 topics: &<Self::TopicList as alloy_sol_types::SolType>::RustType,
             ) -> alloy_sol_types::Result<()> {
                 if topics.0 != Self::SIGNATURE_HASH {
-                    return Err(
-                        alloy_sol_types::Error::invalid_event_signature_hash(
-                            Self::SIGNATURE,
-                            topics.0,
-                            Self::SIGNATURE_HASH,
-                        ),
-                    );
+                    return Err(alloy_sol_types::Error::invalid_event_signature_hash(
+                        Self::SIGNATURE,
+                        topics.0,
+                        Self::SIGNATURE_HASH,
+                    ));
                 }
                 Ok(())
             }
@@ -1353,9 +1036,7 @@ event log_bytes32(bytes32);
                 if out.len() < <Self::TopicList as alloy_sol_types::TopicList>::COUNT {
                     return Err(alloy_sol_types::Error::Overrun);
                 }
-                out[0usize] = alloy_sol_types::abi::token::WordToken(
-                    Self::SIGNATURE_HASH,
-                );
+                out[0usize] = alloy_sol_types::abi::token::WordToken(Self::SIGNATURE_HASH);
                 Ok(())
             }
         }
@@ -1377,70 +1058,30 @@ event log_bytes32(bytes32);
         }
     };
     /**Event with signature `log_int(int256)` and selector `0x0eb5d52624c8d28ada9fc55a8c502ed5aa3fbe2fb6e91b71b5f376882b1d2fb8`.
-```solidity
-event log_int(int256);
-```*/
-    #[allow(
-        non_camel_case_types,
-        non_snake_case,
-        clippy::pub_underscore_fields,
-        clippy::style
-    )]
+    ```solidity
+    event log_int(int256);
+    ```*/
+    #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields, clippy::style)]
     #[derive(Clone)]
     pub struct log_int {
         #[allow(missing_docs)]
         pub _0: alloy::sol_types::private::primitives::aliases::I256,
     }
-    #[allow(
-        non_camel_case_types,
-        non_snake_case,
-        clippy::pub_underscore_fields,
-        clippy::style
-    )]
+    #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields, clippy::style)]
     const _: () = {
         use alloy::sol_types as alloy_sol_types;
         #[automatically_derived]
         impl alloy_sol_types::SolEvent for log_int {
             type DataTuple<'a> = (alloy::sol_types::sol_data::Int<256>,);
-            type DataToken<'a> = <Self::DataTuple<
-                'a,
-            > as alloy_sol_types::SolType>::Token<'a>;
+            type DataToken<'a> = <Self::DataTuple<'a> as alloy_sol_types::SolType>::Token<'a>;
             type TopicList = (alloy_sol_types::sol_data::FixedBytes<32>,);
             const SIGNATURE: &'static str = "log_int(int256)";
-            const SIGNATURE_HASH: alloy_sol_types::private::B256 = alloy_sol_types::private::B256::new([
-                14u8,
-                181u8,
-                213u8,
-                38u8,
-                36u8,
-                200u8,
-                210u8,
-                138u8,
-                218u8,
-                159u8,
-                197u8,
-                90u8,
-                140u8,
-                80u8,
-                46u8,
-                213u8,
-                170u8,
-                63u8,
-                190u8,
-                47u8,
-                182u8,
-                233u8,
-                27u8,
-                113u8,
-                181u8,
-                243u8,
-                118u8,
-                136u8,
-                43u8,
-                29u8,
-                47u8,
-                184u8,
-            ]);
+            const SIGNATURE_HASH: alloy_sol_types::private::B256 =
+                alloy_sol_types::private::B256::new([
+                    14u8, 181u8, 213u8, 38u8, 36u8, 200u8, 210u8, 138u8, 218u8, 159u8, 197u8, 90u8,
+                    140u8, 80u8, 46u8, 213u8, 170u8, 63u8, 190u8, 47u8, 182u8, 233u8, 27u8, 113u8,
+                    181u8, 243u8, 118u8, 136u8, 43u8, 29u8, 47u8, 184u8,
+                ]);
             const ANONYMOUS: bool = false;
             #[allow(unused_variables)]
             #[inline]
@@ -1455,23 +1096,19 @@ event log_int(int256);
                 topics: &<Self::TopicList as alloy_sol_types::SolType>::RustType,
             ) -> alloy_sol_types::Result<()> {
                 if topics.0 != Self::SIGNATURE_HASH {
-                    return Err(
-                        alloy_sol_types::Error::invalid_event_signature_hash(
-                            Self::SIGNATURE,
-                            topics.0,
-                            Self::SIGNATURE_HASH,
-                        ),
-                    );
+                    return Err(alloy_sol_types::Error::invalid_event_signature_hash(
+                        Self::SIGNATURE,
+                        topics.0,
+                        Self::SIGNATURE_HASH,
+                    ));
                 }
                 Ok(())
             }
             #[inline]
             fn tokenize_body(&self) -> Self::DataToken<'_> {
-                (
-                    <alloy::sol_types::sol_data::Int<
-                        256,
-                    > as alloy_sol_types::SolType>::tokenize(&self._0),
-                )
+                (<alloy::sol_types::sol_data::Int<256> as alloy_sol_types::SolType>::tokenize(
+                    &self._0,
+                ),)
             }
             #[inline]
             fn topics(&self) -> <Self::TopicList as alloy_sol_types::SolType>::RustType {
@@ -1485,9 +1122,7 @@ event log_int(int256);
                 if out.len() < <Self::TopicList as alloy_sol_types::TopicList>::COUNT {
                     return Err(alloy_sol_types::Error::Overrun);
                 }
-                out[0usize] = alloy_sol_types::abi::token::WordToken(
-                    Self::SIGNATURE_HASH,
-                );
+                out[0usize] = alloy_sol_types::abi::token::WordToken(Self::SIGNATURE_HASH);
                 Ok(())
             }
         }
@@ -1509,15 +1144,10 @@ event log_int(int256);
         }
     };
     /**Event with signature `log_named_address(string,address)` and selector `0x9c4e8541ca8f0dc1c413f9108f66d82d3cecb1bddbce437a61caa3175c4cc96f`.
-```solidity
-event log_named_address(string key, address val);
-```*/
-    #[allow(
-        non_camel_case_types,
-        non_snake_case,
-        clippy::pub_underscore_fields,
-        clippy::style
-    )]
+    ```solidity
+    event log_named_address(string key, address val);
+    ```*/
+    #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields, clippy::style)]
     #[derive(Clone)]
     pub struct log_named_address {
         #[allow(missing_docs)]
@@ -1525,59 +1155,22 @@ event log_named_address(string key, address val);
         #[allow(missing_docs)]
         pub val: alloy::sol_types::private::Address,
     }
-    #[allow(
-        non_camel_case_types,
-        non_snake_case,
-        clippy::pub_underscore_fields,
-        clippy::style
-    )]
+    #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields, clippy::style)]
     const _: () = {
         use alloy::sol_types as alloy_sol_types;
         #[automatically_derived]
         impl alloy_sol_types::SolEvent for log_named_address {
-            type DataTuple<'a> = (
-                alloy::sol_types::sol_data::String,
-                alloy::sol_types::sol_data::Address,
-            );
-            type DataToken<'a> = <Self::DataTuple<
-                'a,
-            > as alloy_sol_types::SolType>::Token<'a>;
+            type DataTuple<'a> =
+                (alloy::sol_types::sol_data::String, alloy::sol_types::sol_data::Address);
+            type DataToken<'a> = <Self::DataTuple<'a> as alloy_sol_types::SolType>::Token<'a>;
             type TopicList = (alloy_sol_types::sol_data::FixedBytes<32>,);
             const SIGNATURE: &'static str = "log_named_address(string,address)";
-            const SIGNATURE_HASH: alloy_sol_types::private::B256 = alloy_sol_types::private::B256::new([
-                156u8,
-                78u8,
-                133u8,
-                65u8,
-                202u8,
-                143u8,
-                13u8,
-                193u8,
-                196u8,
-                19u8,
-                249u8,
-                16u8,
-                143u8,
-                102u8,
-                216u8,
-                45u8,
-                60u8,
-                236u8,
-                177u8,
-                189u8,
-                219u8,
-                206u8,
-                67u8,
-                122u8,
-                97u8,
-                202u8,
-                163u8,
-                23u8,
-                92u8,
-                76u8,
-                201u8,
-                111u8,
-            ]);
+            const SIGNATURE_HASH: alloy_sol_types::private::B256 =
+                alloy_sol_types::private::B256::new([
+                    156u8, 78u8, 133u8, 65u8, 202u8, 143u8, 13u8, 193u8, 196u8, 19u8, 249u8, 16u8,
+                    143u8, 102u8, 216u8, 45u8, 60u8, 236u8, 177u8, 189u8, 219u8, 206u8, 67u8,
+                    122u8, 97u8, 202u8, 163u8, 23u8, 92u8, 76u8, 201u8, 111u8,
+                ]);
             const ANONYMOUS: bool = false;
             #[allow(unused_variables)]
             #[inline]
@@ -1592,13 +1185,11 @@ event log_named_address(string key, address val);
                 topics: &<Self::TopicList as alloy_sol_types::SolType>::RustType,
             ) -> alloy_sol_types::Result<()> {
                 if topics.0 != Self::SIGNATURE_HASH {
-                    return Err(
-                        alloy_sol_types::Error::invalid_event_signature_hash(
-                            Self::SIGNATURE,
-                            topics.0,
-                            Self::SIGNATURE_HASH,
-                        ),
-                    );
+                    return Err(alloy_sol_types::Error::invalid_event_signature_hash(
+                        Self::SIGNATURE,
+                        topics.0,
+                        Self::SIGNATURE_HASH,
+                    ));
                 }
                 Ok(())
             }
@@ -1625,9 +1216,7 @@ event log_named_address(string key, address val);
                 if out.len() < <Self::TopicList as alloy_sol_types::TopicList>::COUNT {
                     return Err(alloy_sol_types::Error::Overrun);
                 }
-                out[0usize] = alloy_sol_types::abi::token::WordToken(
-                    Self::SIGNATURE_HASH,
-                );
+                out[0usize] = alloy_sol_types::abi::token::WordToken(Self::SIGNATURE_HASH);
                 Ok(())
             }
         }
@@ -1649,30 +1238,19 @@ event log_named_address(string key, address val);
         }
     };
     /**Event with signature `log_named_array(string,uint256[])` and selector `0x00aaa39c9ffb5f567a4534380c737075702e1f7f14107fc95328e3b56c0325fb`.
-```solidity
-event log_named_array(string key, uint256[] val);
-```*/
-    #[allow(
-        non_camel_case_types,
-        non_snake_case,
-        clippy::pub_underscore_fields,
-        clippy::style
-    )]
+    ```solidity
+    event log_named_array(string key, uint256[] val);
+    ```*/
+    #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields, clippy::style)]
     #[derive(Clone)]
     pub struct log_named_array_0 {
         #[allow(missing_docs)]
         pub key: alloy::sol_types::private::String,
         #[allow(missing_docs)]
-        pub val: alloy::sol_types::private::Vec<
-            alloy::sol_types::private::primitives::aliases::U256,
-        >,
+        pub val:
+            alloy::sol_types::private::Vec<alloy::sol_types::private::primitives::aliases::U256>,
     }
-    #[allow(
-        non_camel_case_types,
-        non_snake_case,
-        clippy::pub_underscore_fields,
-        clippy::style
-    )]
+    #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields, clippy::style)]
     const _: () = {
         use alloy::sol_types as alloy_sol_types;
         #[automatically_derived]
@@ -1681,45 +1259,15 @@ event log_named_array(string key, uint256[] val);
                 alloy::sol_types::sol_data::String,
                 alloy::sol_types::sol_data::Array<alloy::sol_types::sol_data::Uint<256>>,
             );
-            type DataToken<'a> = <Self::DataTuple<
-                'a,
-            > as alloy_sol_types::SolType>::Token<'a>;
+            type DataToken<'a> = <Self::DataTuple<'a> as alloy_sol_types::SolType>::Token<'a>;
             type TopicList = (alloy_sol_types::sol_data::FixedBytes<32>,);
             const SIGNATURE: &'static str = "log_named_array(string,uint256[])";
-            const SIGNATURE_HASH: alloy_sol_types::private::B256 = alloy_sol_types::private::B256::new([
-                0u8,
-                170u8,
-                163u8,
-                156u8,
-                159u8,
-                251u8,
-                95u8,
-                86u8,
-                122u8,
-                69u8,
-                52u8,
-                56u8,
-                12u8,
-                115u8,
-                112u8,
-                117u8,
-                112u8,
-                46u8,
-                31u8,
-                127u8,
-                20u8,
-                16u8,
-                127u8,
-                201u8,
-                83u8,
-                40u8,
-                227u8,
-                181u8,
-                108u8,
-                3u8,
-                37u8,
-                251u8,
-            ]);
+            const SIGNATURE_HASH: alloy_sol_types::private::B256 =
+                alloy_sol_types::private::B256::new([
+                    0u8, 170u8, 163u8, 156u8, 159u8, 251u8, 95u8, 86u8, 122u8, 69u8, 52u8, 56u8,
+                    12u8, 115u8, 112u8, 117u8, 112u8, 46u8, 31u8, 127u8, 20u8, 16u8, 127u8, 201u8,
+                    83u8, 40u8, 227u8, 181u8, 108u8, 3u8, 37u8, 251u8,
+                ]);
             const ANONYMOUS: bool = false;
             #[allow(unused_variables)]
             #[inline]
@@ -1734,13 +1282,11 @@ event log_named_array(string key, uint256[] val);
                 topics: &<Self::TopicList as alloy_sol_types::SolType>::RustType,
             ) -> alloy_sol_types::Result<()> {
                 if topics.0 != Self::SIGNATURE_HASH {
-                    return Err(
-                        alloy_sol_types::Error::invalid_event_signature_hash(
-                            Self::SIGNATURE,
-                            topics.0,
-                            Self::SIGNATURE_HASH,
-                        ),
-                    );
+                    return Err(alloy_sol_types::Error::invalid_event_signature_hash(
+                        Self::SIGNATURE,
+                        topics.0,
+                        Self::SIGNATURE_HASH,
+                    ));
                 }
                 Ok(())
             }
@@ -1767,9 +1313,7 @@ event log_named_array(string key, uint256[] val);
                 if out.len() < <Self::TopicList as alloy_sol_types::TopicList>::COUNT {
                     return Err(alloy_sol_types::Error::Overrun);
                 }
-                out[0usize] = alloy_sol_types::abi::token::WordToken(
-                    Self::SIGNATURE_HASH,
-                );
+                out[0usize] = alloy_sol_types::abi::token::WordToken(Self::SIGNATURE_HASH);
                 Ok(())
             }
         }
@@ -1791,30 +1335,19 @@ event log_named_array(string key, uint256[] val);
         }
     };
     /**Event with signature `log_named_array(string,int256[])` and selector `0xa73eda09662f46dde729be4611385ff34fe6c44fbbc6f7e17b042b59a3445b57`.
-```solidity
-event log_named_array(string key, int256[] val);
-```*/
-    #[allow(
-        non_camel_case_types,
-        non_snake_case,
-        clippy::pub_underscore_fields,
-        clippy::style
-    )]
+    ```solidity
+    event log_named_array(string key, int256[] val);
+    ```*/
+    #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields, clippy::style)]
     #[derive(Clone)]
     pub struct log_named_array_1 {
         #[allow(missing_docs)]
         pub key: alloy::sol_types::private::String,
         #[allow(missing_docs)]
-        pub val: alloy::sol_types::private::Vec<
-            alloy::sol_types::private::primitives::aliases::I256,
-        >,
+        pub val:
+            alloy::sol_types::private::Vec<alloy::sol_types::private::primitives::aliases::I256>,
     }
-    #[allow(
-        non_camel_case_types,
-        non_snake_case,
-        clippy::pub_underscore_fields,
-        clippy::style
-    )]
+    #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields, clippy::style)]
     const _: () = {
         use alloy::sol_types as alloy_sol_types;
         #[automatically_derived]
@@ -1823,45 +1356,15 @@ event log_named_array(string key, int256[] val);
                 alloy::sol_types::sol_data::String,
                 alloy::sol_types::sol_data::Array<alloy::sol_types::sol_data::Int<256>>,
             );
-            type DataToken<'a> = <Self::DataTuple<
-                'a,
-            > as alloy_sol_types::SolType>::Token<'a>;
+            type DataToken<'a> = <Self::DataTuple<'a> as alloy_sol_types::SolType>::Token<'a>;
             type TopicList = (alloy_sol_types::sol_data::FixedBytes<32>,);
             const SIGNATURE: &'static str = "log_named_array(string,int256[])";
-            const SIGNATURE_HASH: alloy_sol_types::private::B256 = alloy_sol_types::private::B256::new([
-                167u8,
-                62u8,
-                218u8,
-                9u8,
-                102u8,
-                47u8,
-                70u8,
-                221u8,
-                231u8,
-                41u8,
-                190u8,
-                70u8,
-                17u8,
-                56u8,
-                95u8,
-                243u8,
-                79u8,
-                230u8,
-                196u8,
-                79u8,
-                187u8,
-                198u8,
-                247u8,
-                225u8,
-                123u8,
-                4u8,
-                43u8,
-                89u8,
-                163u8,
-                68u8,
-                91u8,
-                87u8,
-            ]);
+            const SIGNATURE_HASH: alloy_sol_types::private::B256 =
+                alloy_sol_types::private::B256::new([
+                    167u8, 62u8, 218u8, 9u8, 102u8, 47u8, 70u8, 221u8, 231u8, 41u8, 190u8, 70u8,
+                    17u8, 56u8, 95u8, 243u8, 79u8, 230u8, 196u8, 79u8, 187u8, 198u8, 247u8, 225u8,
+                    123u8, 4u8, 43u8, 89u8, 163u8, 68u8, 91u8, 87u8,
+                ]);
             const ANONYMOUS: bool = false;
             #[allow(unused_variables)]
             #[inline]
@@ -1876,13 +1379,11 @@ event log_named_array(string key, int256[] val);
                 topics: &<Self::TopicList as alloy_sol_types::SolType>::RustType,
             ) -> alloy_sol_types::Result<()> {
                 if topics.0 != Self::SIGNATURE_HASH {
-                    return Err(
-                        alloy_sol_types::Error::invalid_event_signature_hash(
-                            Self::SIGNATURE,
-                            topics.0,
-                            Self::SIGNATURE_HASH,
-                        ),
-                    );
+                    return Err(alloy_sol_types::Error::invalid_event_signature_hash(
+                        Self::SIGNATURE,
+                        topics.0,
+                        Self::SIGNATURE_HASH,
+                    ));
                 }
                 Ok(())
             }
@@ -1909,9 +1410,7 @@ event log_named_array(string key, int256[] val);
                 if out.len() < <Self::TopicList as alloy_sol_types::TopicList>::COUNT {
                     return Err(alloy_sol_types::Error::Overrun);
                 }
-                out[0usize] = alloy_sol_types::abi::token::WordToken(
-                    Self::SIGNATURE_HASH,
-                );
+                out[0usize] = alloy_sol_types::abi::token::WordToken(Self::SIGNATURE_HASH);
                 Ok(())
             }
         }
@@ -1933,15 +1432,10 @@ event log_named_array(string key, int256[] val);
         }
     };
     /**Event with signature `log_named_array(string,address[])` and selector `0x3bcfb2ae2e8d132dd1fce7cf278a9a19756a9fceabe470df3bdabb4bc577d1bd`.
-```solidity
-event log_named_array(string key, address[] val);
-```*/
-    #[allow(
-        non_camel_case_types,
-        non_snake_case,
-        clippy::pub_underscore_fields,
-        clippy::style
-    )]
+    ```solidity
+    event log_named_array(string key, address[] val);
+    ```*/
+    #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields, clippy::style)]
     #[derive(Clone)]
     pub struct log_named_array_2 {
         #[allow(missing_docs)]
@@ -1949,12 +1443,7 @@ event log_named_array(string key, address[] val);
         #[allow(missing_docs)]
         pub val: alloy::sol_types::private::Vec<alloy::sol_types::private::Address>,
     }
-    #[allow(
-        non_camel_case_types,
-        non_snake_case,
-        clippy::pub_underscore_fields,
-        clippy::style
-    )]
+    #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields, clippy::style)]
     const _: () = {
         use alloy::sol_types as alloy_sol_types;
         #[automatically_derived]
@@ -1963,45 +1452,15 @@ event log_named_array(string key, address[] val);
                 alloy::sol_types::sol_data::String,
                 alloy::sol_types::sol_data::Array<alloy::sol_types::sol_data::Address>,
             );
-            type DataToken<'a> = <Self::DataTuple<
-                'a,
-            > as alloy_sol_types::SolType>::Token<'a>;
+            type DataToken<'a> = <Self::DataTuple<'a> as alloy_sol_types::SolType>::Token<'a>;
             type TopicList = (alloy_sol_types::sol_data::FixedBytes<32>,);
             const SIGNATURE: &'static str = "log_named_array(string,address[])";
-            const SIGNATURE_HASH: alloy_sol_types::private::B256 = alloy_sol_types::private::B256::new([
-                59u8,
-                207u8,
-                178u8,
-                174u8,
-                46u8,
-                141u8,
-                19u8,
-                45u8,
-                209u8,
-                252u8,
-                231u8,
-                207u8,
-                39u8,
-                138u8,
-                154u8,
-                25u8,
-                117u8,
-                106u8,
-                159u8,
-                206u8,
-                171u8,
-                228u8,
-                112u8,
-                223u8,
-                59u8,
-                218u8,
-                187u8,
-                75u8,
-                197u8,
-                119u8,
-                209u8,
-                189u8,
-            ]);
+            const SIGNATURE_HASH: alloy_sol_types::private::B256 =
+                alloy_sol_types::private::B256::new([
+                    59u8, 207u8, 178u8, 174u8, 46u8, 141u8, 19u8, 45u8, 209u8, 252u8, 231u8, 207u8,
+                    39u8, 138u8, 154u8, 25u8, 117u8, 106u8, 159u8, 206u8, 171u8, 228u8, 112u8,
+                    223u8, 59u8, 218u8, 187u8, 75u8, 197u8, 119u8, 209u8, 189u8,
+                ]);
             const ANONYMOUS: bool = false;
             #[allow(unused_variables)]
             #[inline]
@@ -2016,13 +1475,11 @@ event log_named_array(string key, address[] val);
                 topics: &<Self::TopicList as alloy_sol_types::SolType>::RustType,
             ) -> alloy_sol_types::Result<()> {
                 if topics.0 != Self::SIGNATURE_HASH {
-                    return Err(
-                        alloy_sol_types::Error::invalid_event_signature_hash(
-                            Self::SIGNATURE,
-                            topics.0,
-                            Self::SIGNATURE_HASH,
-                        ),
-                    );
+                    return Err(alloy_sol_types::Error::invalid_event_signature_hash(
+                        Self::SIGNATURE,
+                        topics.0,
+                        Self::SIGNATURE_HASH,
+                    ));
                 }
                 Ok(())
             }
@@ -2049,9 +1506,7 @@ event log_named_array(string key, address[] val);
                 if out.len() < <Self::TopicList as alloy_sol_types::TopicList>::COUNT {
                     return Err(alloy_sol_types::Error::Overrun);
                 }
-                out[0usize] = alloy_sol_types::abi::token::WordToken(
-                    Self::SIGNATURE_HASH,
-                );
+                out[0usize] = alloy_sol_types::abi::token::WordToken(Self::SIGNATURE_HASH);
                 Ok(())
             }
         }
@@ -2073,15 +1528,10 @@ event log_named_array(string key, address[] val);
         }
     };
     /**Event with signature `log_named_bytes(string,bytes)` and selector `0xd26e16cad4548705e4c9e2d94f98ee91c289085ee425594fd5635fa2964ccf18`.
-```solidity
-event log_named_bytes(string key, bytes val);
-```*/
-    #[allow(
-        non_camel_case_types,
-        non_snake_case,
-        clippy::pub_underscore_fields,
-        clippy::style
-    )]
+    ```solidity
+    event log_named_bytes(string key, bytes val);
+    ```*/
+    #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields, clippy::style)]
     #[derive(Clone)]
     pub struct log_named_bytes {
         #[allow(missing_docs)]
@@ -2089,59 +1539,22 @@ event log_named_bytes(string key, bytes val);
         #[allow(missing_docs)]
         pub val: alloy::sol_types::private::Bytes,
     }
-    #[allow(
-        non_camel_case_types,
-        non_snake_case,
-        clippy::pub_underscore_fields,
-        clippy::style
-    )]
+    #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields, clippy::style)]
     const _: () = {
         use alloy::sol_types as alloy_sol_types;
         #[automatically_derived]
         impl alloy_sol_types::SolEvent for log_named_bytes {
-            type DataTuple<'a> = (
-                alloy::sol_types::sol_data::String,
-                alloy::sol_types::sol_data::Bytes,
-            );
-            type DataToken<'a> = <Self::DataTuple<
-                'a,
-            > as alloy_sol_types::SolType>::Token<'a>;
+            type DataTuple<'a> =
+                (alloy::sol_types::sol_data::String, alloy::sol_types::sol_data::Bytes);
+            type DataToken<'a> = <Self::DataTuple<'a> as alloy_sol_types::SolType>::Token<'a>;
             type TopicList = (alloy_sol_types::sol_data::FixedBytes<32>,);
             const SIGNATURE: &'static str = "log_named_bytes(string,bytes)";
-            const SIGNATURE_HASH: alloy_sol_types::private::B256 = alloy_sol_types::private::B256::new([
-                210u8,
-                110u8,
-                22u8,
-                202u8,
-                212u8,
-                84u8,
-                135u8,
-                5u8,
-                228u8,
-                201u8,
-                226u8,
-                217u8,
-                79u8,
-                152u8,
-                238u8,
-                145u8,
-                194u8,
-                137u8,
-                8u8,
-                94u8,
-                228u8,
-                37u8,
-                89u8,
-                79u8,
-                213u8,
-                99u8,
-                95u8,
-                162u8,
-                150u8,
-                76u8,
-                207u8,
-                24u8,
-            ]);
+            const SIGNATURE_HASH: alloy_sol_types::private::B256 =
+                alloy_sol_types::private::B256::new([
+                    210u8, 110u8, 22u8, 202u8, 212u8, 84u8, 135u8, 5u8, 228u8, 201u8, 226u8, 217u8,
+                    79u8, 152u8, 238u8, 145u8, 194u8, 137u8, 8u8, 94u8, 228u8, 37u8, 89u8, 79u8,
+                    213u8, 99u8, 95u8, 162u8, 150u8, 76u8, 207u8, 24u8,
+                ]);
             const ANONYMOUS: bool = false;
             #[allow(unused_variables)]
             #[inline]
@@ -2156,13 +1569,11 @@ event log_named_bytes(string key, bytes val);
                 topics: &<Self::TopicList as alloy_sol_types::SolType>::RustType,
             ) -> alloy_sol_types::Result<()> {
                 if topics.0 != Self::SIGNATURE_HASH {
-                    return Err(
-                        alloy_sol_types::Error::invalid_event_signature_hash(
-                            Self::SIGNATURE,
-                            topics.0,
-                            Self::SIGNATURE_HASH,
-                        ),
-                    );
+                    return Err(alloy_sol_types::Error::invalid_event_signature_hash(
+                        Self::SIGNATURE,
+                        topics.0,
+                        Self::SIGNATURE_HASH,
+                    ));
                 }
                 Ok(())
             }
@@ -2189,9 +1600,7 @@ event log_named_bytes(string key, bytes val);
                 if out.len() < <Self::TopicList as alloy_sol_types::TopicList>::COUNT {
                     return Err(alloy_sol_types::Error::Overrun);
                 }
-                out[0usize] = alloy_sol_types::abi::token::WordToken(
-                    Self::SIGNATURE_HASH,
-                );
+                out[0usize] = alloy_sol_types::abi::token::WordToken(Self::SIGNATURE_HASH);
                 Ok(())
             }
         }
@@ -2213,15 +1622,10 @@ event log_named_bytes(string key, bytes val);
         }
     };
     /**Event with signature `log_named_bytes32(string,bytes32)` and selector `0xafb795c9c61e4fe7468c386f925d7a5429ecad9c0495ddb8d38d690614d32f99`.
-```solidity
-event log_named_bytes32(string key, bytes32 val);
-```*/
-    #[allow(
-        non_camel_case_types,
-        non_snake_case,
-        clippy::pub_underscore_fields,
-        clippy::style
-    )]
+    ```solidity
+    event log_named_bytes32(string key, bytes32 val);
+    ```*/
+    #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields, clippy::style)]
     #[derive(Clone)]
     pub struct log_named_bytes32 {
         #[allow(missing_docs)]
@@ -2229,59 +1633,22 @@ event log_named_bytes32(string key, bytes32 val);
         #[allow(missing_docs)]
         pub val: alloy::sol_types::private::FixedBytes<32>,
     }
-    #[allow(
-        non_camel_case_types,
-        non_snake_case,
-        clippy::pub_underscore_fields,
-        clippy::style
-    )]
+    #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields, clippy::style)]
     const _: () = {
         use alloy::sol_types as alloy_sol_types;
         #[automatically_derived]
         impl alloy_sol_types::SolEvent for log_named_bytes32 {
-            type DataTuple<'a> = (
-                alloy::sol_types::sol_data::String,
-                alloy::sol_types::sol_data::FixedBytes<32>,
-            );
-            type DataToken<'a> = <Self::DataTuple<
-                'a,
-            > as alloy_sol_types::SolType>::Token<'a>;
+            type DataTuple<'a> =
+                (alloy::sol_types::sol_data::String, alloy::sol_types::sol_data::FixedBytes<32>);
+            type DataToken<'a> = <Self::DataTuple<'a> as alloy_sol_types::SolType>::Token<'a>;
             type TopicList = (alloy_sol_types::sol_data::FixedBytes<32>,);
             const SIGNATURE: &'static str = "log_named_bytes32(string,bytes32)";
-            const SIGNATURE_HASH: alloy_sol_types::private::B256 = alloy_sol_types::private::B256::new([
-                175u8,
-                183u8,
-                149u8,
-                201u8,
-                198u8,
-                30u8,
-                79u8,
-                231u8,
-                70u8,
-                140u8,
-                56u8,
-                111u8,
-                146u8,
-                93u8,
-                122u8,
-                84u8,
-                41u8,
-                236u8,
-                173u8,
-                156u8,
-                4u8,
-                149u8,
-                221u8,
-                184u8,
-                211u8,
-                141u8,
-                105u8,
-                6u8,
-                20u8,
-                211u8,
-                47u8,
-                153u8,
-            ]);
+            const SIGNATURE_HASH: alloy_sol_types::private::B256 =
+                alloy_sol_types::private::B256::new([
+                    175u8, 183u8, 149u8, 201u8, 198u8, 30u8, 79u8, 231u8, 70u8, 140u8, 56u8, 111u8,
+                    146u8, 93u8, 122u8, 84u8, 41u8, 236u8, 173u8, 156u8, 4u8, 149u8, 221u8, 184u8,
+                    211u8, 141u8, 105u8, 6u8, 20u8, 211u8, 47u8, 153u8,
+                ]);
             const ANONYMOUS: bool = false;
             #[allow(unused_variables)]
             #[inline]
@@ -2296,13 +1663,11 @@ event log_named_bytes32(string key, bytes32 val);
                 topics: &<Self::TopicList as alloy_sol_types::SolType>::RustType,
             ) -> alloy_sol_types::Result<()> {
                 if topics.0 != Self::SIGNATURE_HASH {
-                    return Err(
-                        alloy_sol_types::Error::invalid_event_signature_hash(
-                            Self::SIGNATURE,
-                            topics.0,
-                            Self::SIGNATURE_HASH,
-                        ),
-                    );
+                    return Err(alloy_sol_types::Error::invalid_event_signature_hash(
+                        Self::SIGNATURE,
+                        topics.0,
+                        Self::SIGNATURE_HASH,
+                    ));
                 }
                 Ok(())
             }
@@ -2329,9 +1694,7 @@ event log_named_bytes32(string key, bytes32 val);
                 if out.len() < <Self::TopicList as alloy_sol_types::TopicList>::COUNT {
                     return Err(alloy_sol_types::Error::Overrun);
                 }
-                out[0usize] = alloy_sol_types::abi::token::WordToken(
-                    Self::SIGNATURE_HASH,
-                );
+                out[0usize] = alloy_sol_types::abi::token::WordToken(Self::SIGNATURE_HASH);
                 Ok(())
             }
         }
@@ -2353,15 +1716,10 @@ event log_named_bytes32(string key, bytes32 val);
         }
     };
     /**Event with signature `log_named_decimal_int(string,int256,uint256)` and selector `0x5da6ce9d51151ba10c09a559ef24d520b9dac5c5b8810ae8434e4d0d86411a95`.
-```solidity
-event log_named_decimal_int(string key, int256 val, uint256 decimals);
-```*/
-    #[allow(
-        non_camel_case_types,
-        non_snake_case,
-        clippy::pub_underscore_fields,
-        clippy::style
-    )]
+    ```solidity
+    event log_named_decimal_int(string key, int256 val, uint256 decimals);
+    ```*/
+    #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields, clippy::style)]
     #[derive(Clone)]
     pub struct log_named_decimal_int {
         #[allow(missing_docs)]
@@ -2371,12 +1729,7 @@ event log_named_decimal_int(string key, int256 val, uint256 decimals);
         #[allow(missing_docs)]
         pub decimals: alloy::sol_types::private::primitives::aliases::U256,
     }
-    #[allow(
-        non_camel_case_types,
-        non_snake_case,
-        clippy::pub_underscore_fields,
-        clippy::style
-    )]
+    #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields, clippy::style)]
     const _: () = {
         use alloy::sol_types as alloy_sol_types;
         #[automatically_derived]
@@ -2386,45 +1739,15 @@ event log_named_decimal_int(string key, int256 val, uint256 decimals);
                 alloy::sol_types::sol_data::Int<256>,
                 alloy::sol_types::sol_data::Uint<256>,
             );
-            type DataToken<'a> = <Self::DataTuple<
-                'a,
-            > as alloy_sol_types::SolType>::Token<'a>;
+            type DataToken<'a> = <Self::DataTuple<'a> as alloy_sol_types::SolType>::Token<'a>;
             type TopicList = (alloy_sol_types::sol_data::FixedBytes<32>,);
             const SIGNATURE: &'static str = "log_named_decimal_int(string,int256,uint256)";
-            const SIGNATURE_HASH: alloy_sol_types::private::B256 = alloy_sol_types::private::B256::new([
-                93u8,
-                166u8,
-                206u8,
-                157u8,
-                81u8,
-                21u8,
-                27u8,
-                161u8,
-                12u8,
-                9u8,
-                165u8,
-                89u8,
-                239u8,
-                36u8,
-                213u8,
-                32u8,
-                185u8,
-                218u8,
-                197u8,
-                197u8,
-                184u8,
-                129u8,
-                10u8,
-                232u8,
-                67u8,
-                78u8,
-                77u8,
-                13u8,
-                134u8,
-                65u8,
-                26u8,
-                149u8,
-            ]);
+            const SIGNATURE_HASH: alloy_sol_types::private::B256 =
+                alloy_sol_types::private::B256::new([
+                    93u8, 166u8, 206u8, 157u8, 81u8, 21u8, 27u8, 161u8, 12u8, 9u8, 165u8, 89u8,
+                    239u8, 36u8, 213u8, 32u8, 185u8, 218u8, 197u8, 197u8, 184u8, 129u8, 10u8,
+                    232u8, 67u8, 78u8, 77u8, 13u8, 134u8, 65u8, 26u8, 149u8,
+                ]);
             const ANONYMOUS: bool = false;
             #[allow(unused_variables)]
             #[inline]
@@ -2432,24 +1755,18 @@ event log_named_decimal_int(string key, int256 val, uint256 decimals);
                 topics: <Self::TopicList as alloy_sol_types::SolType>::RustType,
                 data: <Self::DataTuple<'_> as alloy_sol_types::SolType>::RustType,
             ) -> Self {
-                Self {
-                    key: data.0,
-                    val: data.1,
-                    decimals: data.2,
-                }
+                Self { key: data.0, val: data.1, decimals: data.2 }
             }
             #[inline]
             fn check_signature(
                 topics: &<Self::TopicList as alloy_sol_types::SolType>::RustType,
             ) -> alloy_sol_types::Result<()> {
                 if topics.0 != Self::SIGNATURE_HASH {
-                    return Err(
-                        alloy_sol_types::Error::invalid_event_signature_hash(
-                            Self::SIGNATURE,
-                            topics.0,
-                            Self::SIGNATURE_HASH,
-                        ),
-                    );
+                    return Err(alloy_sol_types::Error::invalid_event_signature_hash(
+                        Self::SIGNATURE,
+                        topics.0,
+                        Self::SIGNATURE_HASH,
+                    ));
                 }
                 Ok(())
             }
@@ -2459,12 +1776,12 @@ event log_named_decimal_int(string key, int256 val, uint256 decimals);
                     <alloy::sol_types::sol_data::String as alloy_sol_types::SolType>::tokenize(
                         &self.key,
                     ),
-                    <alloy::sol_types::sol_data::Int<
-                        256,
-                    > as alloy_sol_types::SolType>::tokenize(&self.val),
-                    <alloy::sol_types::sol_data::Uint<
-                        256,
-                    > as alloy_sol_types::SolType>::tokenize(&self.decimals),
+                    <alloy::sol_types::sol_data::Int<256> as alloy_sol_types::SolType>::tokenize(
+                        &self.val,
+                    ),
+                    <alloy::sol_types::sol_data::Uint<256> as alloy_sol_types::SolType>::tokenize(
+                        &self.decimals,
+                    ),
                 )
             }
             #[inline]
@@ -2479,9 +1796,7 @@ event log_named_decimal_int(string key, int256 val, uint256 decimals);
                 if out.len() < <Self::TopicList as alloy_sol_types::TopicList>::COUNT {
                     return Err(alloy_sol_types::Error::Overrun);
                 }
-                out[0usize] = alloy_sol_types::abi::token::WordToken(
-                    Self::SIGNATURE_HASH,
-                );
+                out[0usize] = alloy_sol_types::abi::token::WordToken(Self::SIGNATURE_HASH);
                 Ok(())
             }
         }
@@ -2503,15 +1818,10 @@ event log_named_decimal_int(string key, int256 val, uint256 decimals);
         }
     };
     /**Event with signature `log_named_decimal_uint(string,uint256,uint256)` and selector `0xeb8ba43ced7537421946bd43e828b8b2b8428927aa8f801c13d934bf11aca57b`.
-```solidity
-event log_named_decimal_uint(string key, uint256 val, uint256 decimals);
-```*/
-    #[allow(
-        non_camel_case_types,
-        non_snake_case,
-        clippy::pub_underscore_fields,
-        clippy::style
-    )]
+    ```solidity
+    event log_named_decimal_uint(string key, uint256 val, uint256 decimals);
+    ```*/
+    #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields, clippy::style)]
     #[derive(Clone)]
     pub struct log_named_decimal_uint {
         #[allow(missing_docs)]
@@ -2521,12 +1831,7 @@ event log_named_decimal_uint(string key, uint256 val, uint256 decimals);
         #[allow(missing_docs)]
         pub decimals: alloy::sol_types::private::primitives::aliases::U256,
     }
-    #[allow(
-        non_camel_case_types,
-        non_snake_case,
-        clippy::pub_underscore_fields,
-        clippy::style
-    )]
+    #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields, clippy::style)]
     const _: () = {
         use alloy::sol_types as alloy_sol_types;
         #[automatically_derived]
@@ -2536,45 +1841,15 @@ event log_named_decimal_uint(string key, uint256 val, uint256 decimals);
                 alloy::sol_types::sol_data::Uint<256>,
                 alloy::sol_types::sol_data::Uint<256>,
             );
-            type DataToken<'a> = <Self::DataTuple<
-                'a,
-            > as alloy_sol_types::SolType>::Token<'a>;
+            type DataToken<'a> = <Self::DataTuple<'a> as alloy_sol_types::SolType>::Token<'a>;
             type TopicList = (alloy_sol_types::sol_data::FixedBytes<32>,);
             const SIGNATURE: &'static str = "log_named_decimal_uint(string,uint256,uint256)";
-            const SIGNATURE_HASH: alloy_sol_types::private::B256 = alloy_sol_types::private::B256::new([
-                235u8,
-                139u8,
-                164u8,
-                60u8,
-                237u8,
-                117u8,
-                55u8,
-                66u8,
-                25u8,
-                70u8,
-                189u8,
-                67u8,
-                232u8,
-                40u8,
-                184u8,
-                178u8,
-                184u8,
-                66u8,
-                137u8,
-                39u8,
-                170u8,
-                143u8,
-                128u8,
-                28u8,
-                19u8,
-                217u8,
-                52u8,
-                191u8,
-                17u8,
-                172u8,
-                165u8,
-                123u8,
-            ]);
+            const SIGNATURE_HASH: alloy_sol_types::private::B256 =
+                alloy_sol_types::private::B256::new([
+                    235u8, 139u8, 164u8, 60u8, 237u8, 117u8, 55u8, 66u8, 25u8, 70u8, 189u8, 67u8,
+                    232u8, 40u8, 184u8, 178u8, 184u8, 66u8, 137u8, 39u8, 170u8, 143u8, 128u8, 28u8,
+                    19u8, 217u8, 52u8, 191u8, 17u8, 172u8, 165u8, 123u8,
+                ]);
             const ANONYMOUS: bool = false;
             #[allow(unused_variables)]
             #[inline]
@@ -2582,24 +1857,18 @@ event log_named_decimal_uint(string key, uint256 val, uint256 decimals);
                 topics: <Self::TopicList as alloy_sol_types::SolType>::RustType,
                 data: <Self::DataTuple<'_> as alloy_sol_types::SolType>::RustType,
             ) -> Self {
-                Self {
-                    key: data.0,
-                    val: data.1,
-                    decimals: data.2,
-                }
+                Self { key: data.0, val: data.1, decimals: data.2 }
             }
             #[inline]
             fn check_signature(
                 topics: &<Self::TopicList as alloy_sol_types::SolType>::RustType,
             ) -> alloy_sol_types::Result<()> {
                 if topics.0 != Self::SIGNATURE_HASH {
-                    return Err(
-                        alloy_sol_types::Error::invalid_event_signature_hash(
-                            Self::SIGNATURE,
-                            topics.0,
-                            Self::SIGNATURE_HASH,
-                        ),
-                    );
+                    return Err(alloy_sol_types::Error::invalid_event_signature_hash(
+                        Self::SIGNATURE,
+                        topics.0,
+                        Self::SIGNATURE_HASH,
+                    ));
                 }
                 Ok(())
             }
@@ -2609,12 +1878,12 @@ event log_named_decimal_uint(string key, uint256 val, uint256 decimals);
                     <alloy::sol_types::sol_data::String as alloy_sol_types::SolType>::tokenize(
                         &self.key,
                     ),
-                    <alloy::sol_types::sol_data::Uint<
-                        256,
-                    > as alloy_sol_types::SolType>::tokenize(&self.val),
-                    <alloy::sol_types::sol_data::Uint<
-                        256,
-                    > as alloy_sol_types::SolType>::tokenize(&self.decimals),
+                    <alloy::sol_types::sol_data::Uint<256> as alloy_sol_types::SolType>::tokenize(
+                        &self.val,
+                    ),
+                    <alloy::sol_types::sol_data::Uint<256> as alloy_sol_types::SolType>::tokenize(
+                        &self.decimals,
+                    ),
                 )
             }
             #[inline]
@@ -2629,9 +1898,7 @@ event log_named_decimal_uint(string key, uint256 val, uint256 decimals);
                 if out.len() < <Self::TopicList as alloy_sol_types::TopicList>::COUNT {
                     return Err(alloy_sol_types::Error::Overrun);
                 }
-                out[0usize] = alloy_sol_types::abi::token::WordToken(
-                    Self::SIGNATURE_HASH,
-                );
+                out[0usize] = alloy_sol_types::abi::token::WordToken(Self::SIGNATURE_HASH);
                 Ok(())
             }
         }
@@ -2653,15 +1920,10 @@ event log_named_decimal_uint(string key, uint256 val, uint256 decimals);
         }
     };
     /**Event with signature `log_named_int(string,int256)` and selector `0x2fe632779174374378442a8e978bccfbdcc1d6b2b0d81f7e8eb776ab2286f168`.
-```solidity
-event log_named_int(string key, int256 val);
-```*/
-    #[allow(
-        non_camel_case_types,
-        non_snake_case,
-        clippy::pub_underscore_fields,
-        clippy::style
-    )]
+    ```solidity
+    event log_named_int(string key, int256 val);
+    ```*/
+    #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields, clippy::style)]
     #[derive(Clone)]
     pub struct log_named_int {
         #[allow(missing_docs)]
@@ -2669,59 +1931,22 @@ event log_named_int(string key, int256 val);
         #[allow(missing_docs)]
         pub val: alloy::sol_types::private::primitives::aliases::I256,
     }
-    #[allow(
-        non_camel_case_types,
-        non_snake_case,
-        clippy::pub_underscore_fields,
-        clippy::style
-    )]
+    #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields, clippy::style)]
     const _: () = {
         use alloy::sol_types as alloy_sol_types;
         #[automatically_derived]
         impl alloy_sol_types::SolEvent for log_named_int {
-            type DataTuple<'a> = (
-                alloy::sol_types::sol_data::String,
-                alloy::sol_types::sol_data::Int<256>,
-            );
-            type DataToken<'a> = <Self::DataTuple<
-                'a,
-            > as alloy_sol_types::SolType>::Token<'a>;
+            type DataTuple<'a> =
+                (alloy::sol_types::sol_data::String, alloy::sol_types::sol_data::Int<256>);
+            type DataToken<'a> = <Self::DataTuple<'a> as alloy_sol_types::SolType>::Token<'a>;
             type TopicList = (alloy_sol_types::sol_data::FixedBytes<32>,);
             const SIGNATURE: &'static str = "log_named_int(string,int256)";
-            const SIGNATURE_HASH: alloy_sol_types::private::B256 = alloy_sol_types::private::B256::new([
-                47u8,
-                230u8,
-                50u8,
-                119u8,
-                145u8,
-                116u8,
-                55u8,
-                67u8,
-                120u8,
-                68u8,
-                42u8,
-                142u8,
-                151u8,
-                139u8,
-                204u8,
-                251u8,
-                220u8,
-                193u8,
-                214u8,
-                178u8,
-                176u8,
-                216u8,
-                31u8,
-                126u8,
-                142u8,
-                183u8,
-                118u8,
-                171u8,
-                34u8,
-                134u8,
-                241u8,
-                104u8,
-            ]);
+            const SIGNATURE_HASH: alloy_sol_types::private::B256 =
+                alloy_sol_types::private::B256::new([
+                    47u8, 230u8, 50u8, 119u8, 145u8, 116u8, 55u8, 67u8, 120u8, 68u8, 42u8, 142u8,
+                    151u8, 139u8, 204u8, 251u8, 220u8, 193u8, 214u8, 178u8, 176u8, 216u8, 31u8,
+                    126u8, 142u8, 183u8, 118u8, 171u8, 34u8, 134u8, 241u8, 104u8,
+                ]);
             const ANONYMOUS: bool = false;
             #[allow(unused_variables)]
             #[inline]
@@ -2736,13 +1961,11 @@ event log_named_int(string key, int256 val);
                 topics: &<Self::TopicList as alloy_sol_types::SolType>::RustType,
             ) -> alloy_sol_types::Result<()> {
                 if topics.0 != Self::SIGNATURE_HASH {
-                    return Err(
-                        alloy_sol_types::Error::invalid_event_signature_hash(
-                            Self::SIGNATURE,
-                            topics.0,
-                            Self::SIGNATURE_HASH,
-                        ),
-                    );
+                    return Err(alloy_sol_types::Error::invalid_event_signature_hash(
+                        Self::SIGNATURE,
+                        topics.0,
+                        Self::SIGNATURE_HASH,
+                    ));
                 }
                 Ok(())
             }
@@ -2752,9 +1975,9 @@ event log_named_int(string key, int256 val);
                     <alloy::sol_types::sol_data::String as alloy_sol_types::SolType>::tokenize(
                         &self.key,
                     ),
-                    <alloy::sol_types::sol_data::Int<
-                        256,
-                    > as alloy_sol_types::SolType>::tokenize(&self.val),
+                    <alloy::sol_types::sol_data::Int<256> as alloy_sol_types::SolType>::tokenize(
+                        &self.val,
+                    ),
                 )
             }
             #[inline]
@@ -2769,9 +1992,7 @@ event log_named_int(string key, int256 val);
                 if out.len() < <Self::TopicList as alloy_sol_types::TopicList>::COUNT {
                     return Err(alloy_sol_types::Error::Overrun);
                 }
-                out[0usize] = alloy_sol_types::abi::token::WordToken(
-                    Self::SIGNATURE_HASH,
-                );
+                out[0usize] = alloy_sol_types::abi::token::WordToken(Self::SIGNATURE_HASH);
                 Ok(())
             }
         }
@@ -2793,15 +2014,10 @@ event log_named_int(string key, int256 val);
         }
     };
     /**Event with signature `log_named_string(string,string)` and selector `0x280f4446b28a1372417dda658d30b95b2992b12ac9c7f378535f29a97acf3583`.
-```solidity
-event log_named_string(string key, string val);
-```*/
-    #[allow(
-        non_camel_case_types,
-        non_snake_case,
-        clippy::pub_underscore_fields,
-        clippy::style
-    )]
+    ```solidity
+    event log_named_string(string key, string val);
+    ```*/
+    #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields, clippy::style)]
     #[derive(Clone)]
     pub struct log_named_string {
         #[allow(missing_docs)]
@@ -2809,59 +2025,22 @@ event log_named_string(string key, string val);
         #[allow(missing_docs)]
         pub val: alloy::sol_types::private::String,
     }
-    #[allow(
-        non_camel_case_types,
-        non_snake_case,
-        clippy::pub_underscore_fields,
-        clippy::style
-    )]
+    #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields, clippy::style)]
     const _: () = {
         use alloy::sol_types as alloy_sol_types;
         #[automatically_derived]
         impl alloy_sol_types::SolEvent for log_named_string {
-            type DataTuple<'a> = (
-                alloy::sol_types::sol_data::String,
-                alloy::sol_types::sol_data::String,
-            );
-            type DataToken<'a> = <Self::DataTuple<
-                'a,
-            > as alloy_sol_types::SolType>::Token<'a>;
+            type DataTuple<'a> =
+                (alloy::sol_types::sol_data::String, alloy::sol_types::sol_data::String);
+            type DataToken<'a> = <Self::DataTuple<'a> as alloy_sol_types::SolType>::Token<'a>;
             type TopicList = (alloy_sol_types::sol_data::FixedBytes<32>,);
             const SIGNATURE: &'static str = "log_named_string(string,string)";
-            const SIGNATURE_HASH: alloy_sol_types::private::B256 = alloy_sol_types::private::B256::new([
-                40u8,
-                15u8,
-                68u8,
-                70u8,
-                178u8,
-                138u8,
-                19u8,
-                114u8,
-                65u8,
-                125u8,
-                218u8,
-                101u8,
-                141u8,
-                48u8,
-                185u8,
-                91u8,
-                41u8,
-                146u8,
-                177u8,
-                42u8,
-                201u8,
-                199u8,
-                243u8,
-                120u8,
-                83u8,
-                95u8,
-                41u8,
-                169u8,
-                122u8,
-                207u8,
-                53u8,
-                131u8,
-            ]);
+            const SIGNATURE_HASH: alloy_sol_types::private::B256 =
+                alloy_sol_types::private::B256::new([
+                    40u8, 15u8, 68u8, 70u8, 178u8, 138u8, 19u8, 114u8, 65u8, 125u8, 218u8, 101u8,
+                    141u8, 48u8, 185u8, 91u8, 41u8, 146u8, 177u8, 42u8, 201u8, 199u8, 243u8, 120u8,
+                    83u8, 95u8, 41u8, 169u8, 122u8, 207u8, 53u8, 131u8,
+                ]);
             const ANONYMOUS: bool = false;
             #[allow(unused_variables)]
             #[inline]
@@ -2876,13 +2055,11 @@ event log_named_string(string key, string val);
                 topics: &<Self::TopicList as alloy_sol_types::SolType>::RustType,
             ) -> alloy_sol_types::Result<()> {
                 if topics.0 != Self::SIGNATURE_HASH {
-                    return Err(
-                        alloy_sol_types::Error::invalid_event_signature_hash(
-                            Self::SIGNATURE,
-                            topics.0,
-                            Self::SIGNATURE_HASH,
-                        ),
-                    );
+                    return Err(alloy_sol_types::Error::invalid_event_signature_hash(
+                        Self::SIGNATURE,
+                        topics.0,
+                        Self::SIGNATURE_HASH,
+                    ));
                 }
                 Ok(())
             }
@@ -2909,9 +2086,7 @@ event log_named_string(string key, string val);
                 if out.len() < <Self::TopicList as alloy_sol_types::TopicList>::COUNT {
                     return Err(alloy_sol_types::Error::Overrun);
                 }
-                out[0usize] = alloy_sol_types::abi::token::WordToken(
-                    Self::SIGNATURE_HASH,
-                );
+                out[0usize] = alloy_sol_types::abi::token::WordToken(Self::SIGNATURE_HASH);
                 Ok(())
             }
         }
@@ -2933,15 +2108,10 @@ event log_named_string(string key, string val);
         }
     };
     /**Event with signature `log_named_uint(string,uint256)` and selector `0xb2de2fbe801a0df6c0cbddfd448ba3c41d48a040ca35c56c8196ef0fcae721a8`.
-```solidity
-event log_named_uint(string key, uint256 val);
-```*/
-    #[allow(
-        non_camel_case_types,
-        non_snake_case,
-        clippy::pub_underscore_fields,
-        clippy::style
-    )]
+    ```solidity
+    event log_named_uint(string key, uint256 val);
+    ```*/
+    #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields, clippy::style)]
     #[derive(Clone)]
     pub struct log_named_uint {
         #[allow(missing_docs)]
@@ -2949,59 +2119,22 @@ event log_named_uint(string key, uint256 val);
         #[allow(missing_docs)]
         pub val: alloy::sol_types::private::primitives::aliases::U256,
     }
-    #[allow(
-        non_camel_case_types,
-        non_snake_case,
-        clippy::pub_underscore_fields,
-        clippy::style
-    )]
+    #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields, clippy::style)]
     const _: () = {
         use alloy::sol_types as alloy_sol_types;
         #[automatically_derived]
         impl alloy_sol_types::SolEvent for log_named_uint {
-            type DataTuple<'a> = (
-                alloy::sol_types::sol_data::String,
-                alloy::sol_types::sol_data::Uint<256>,
-            );
-            type DataToken<'a> = <Self::DataTuple<
-                'a,
-            > as alloy_sol_types::SolType>::Token<'a>;
+            type DataTuple<'a> =
+                (alloy::sol_types::sol_data::String, alloy::sol_types::sol_data::Uint<256>);
+            type DataToken<'a> = <Self::DataTuple<'a> as alloy_sol_types::SolType>::Token<'a>;
             type TopicList = (alloy_sol_types::sol_data::FixedBytes<32>,);
             const SIGNATURE: &'static str = "log_named_uint(string,uint256)";
-            const SIGNATURE_HASH: alloy_sol_types::private::B256 = alloy_sol_types::private::B256::new([
-                178u8,
-                222u8,
-                47u8,
-                190u8,
-                128u8,
-                26u8,
-                13u8,
-                246u8,
-                192u8,
-                203u8,
-                221u8,
-                253u8,
-                68u8,
-                139u8,
-                163u8,
-                196u8,
-                29u8,
-                72u8,
-                160u8,
-                64u8,
-                202u8,
-                53u8,
-                197u8,
-                108u8,
-                129u8,
-                150u8,
-                239u8,
-                15u8,
-                202u8,
-                231u8,
-                33u8,
-                168u8,
-            ]);
+            const SIGNATURE_HASH: alloy_sol_types::private::B256 =
+                alloy_sol_types::private::B256::new([
+                    178u8, 222u8, 47u8, 190u8, 128u8, 26u8, 13u8, 246u8, 192u8, 203u8, 221u8,
+                    253u8, 68u8, 139u8, 163u8, 196u8, 29u8, 72u8, 160u8, 64u8, 202u8, 53u8, 197u8,
+                    108u8, 129u8, 150u8, 239u8, 15u8, 202u8, 231u8, 33u8, 168u8,
+                ]);
             const ANONYMOUS: bool = false;
             #[allow(unused_variables)]
             #[inline]
@@ -3016,13 +2149,11 @@ event log_named_uint(string key, uint256 val);
                 topics: &<Self::TopicList as alloy_sol_types::SolType>::RustType,
             ) -> alloy_sol_types::Result<()> {
                 if topics.0 != Self::SIGNATURE_HASH {
-                    return Err(
-                        alloy_sol_types::Error::invalid_event_signature_hash(
-                            Self::SIGNATURE,
-                            topics.0,
-                            Self::SIGNATURE_HASH,
-                        ),
-                    );
+                    return Err(alloy_sol_types::Error::invalid_event_signature_hash(
+                        Self::SIGNATURE,
+                        topics.0,
+                        Self::SIGNATURE_HASH,
+                    ));
                 }
                 Ok(())
             }
@@ -3032,9 +2163,9 @@ event log_named_uint(string key, uint256 val);
                     <alloy::sol_types::sol_data::String as alloy_sol_types::SolType>::tokenize(
                         &self.key,
                     ),
-                    <alloy::sol_types::sol_data::Uint<
-                        256,
-                    > as alloy_sol_types::SolType>::tokenize(&self.val),
+                    <alloy::sol_types::sol_data::Uint<256> as alloy_sol_types::SolType>::tokenize(
+                        &self.val,
+                    ),
                 )
             }
             #[inline]
@@ -3049,9 +2180,7 @@ event log_named_uint(string key, uint256 val);
                 if out.len() < <Self::TopicList as alloy_sol_types::TopicList>::COUNT {
                     return Err(alloy_sol_types::Error::Overrun);
                 }
-                out[0usize] = alloy_sol_types::abi::token::WordToken(
-                    Self::SIGNATURE_HASH,
-                );
+                out[0usize] = alloy_sol_types::abi::token::WordToken(Self::SIGNATURE_HASH);
                 Ok(())
             }
         }
@@ -3073,70 +2202,30 @@ event log_named_uint(string key, uint256 val);
         }
     };
     /**Event with signature `log_string(string)` and selector `0x0b2e13ff20ac7b474198655583edf70dedd2c1dc980e329c4fbb2fc0748b796b`.
-```solidity
-event log_string(string);
-```*/
-    #[allow(
-        non_camel_case_types,
-        non_snake_case,
-        clippy::pub_underscore_fields,
-        clippy::style
-    )]
+    ```solidity
+    event log_string(string);
+    ```*/
+    #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields, clippy::style)]
     #[derive(Clone)]
     pub struct log_string {
         #[allow(missing_docs)]
         pub _0: alloy::sol_types::private::String,
     }
-    #[allow(
-        non_camel_case_types,
-        non_snake_case,
-        clippy::pub_underscore_fields,
-        clippy::style
-    )]
+    #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields, clippy::style)]
     const _: () = {
         use alloy::sol_types as alloy_sol_types;
         #[automatically_derived]
         impl alloy_sol_types::SolEvent for log_string {
             type DataTuple<'a> = (alloy::sol_types::sol_data::String,);
-            type DataToken<'a> = <Self::DataTuple<
-                'a,
-            > as alloy_sol_types::SolType>::Token<'a>;
+            type DataToken<'a> = <Self::DataTuple<'a> as alloy_sol_types::SolType>::Token<'a>;
             type TopicList = (alloy_sol_types::sol_data::FixedBytes<32>,);
             const SIGNATURE: &'static str = "log_string(string)";
-            const SIGNATURE_HASH: alloy_sol_types::private::B256 = alloy_sol_types::private::B256::new([
-                11u8,
-                46u8,
-                19u8,
-                255u8,
-                32u8,
-                172u8,
-                123u8,
-                71u8,
-                65u8,
-                152u8,
-                101u8,
-                85u8,
-                131u8,
-                237u8,
-                247u8,
-                13u8,
-                237u8,
-                210u8,
-                193u8,
-                220u8,
-                152u8,
-                14u8,
-                50u8,
-                156u8,
-                79u8,
-                187u8,
-                47u8,
-                192u8,
-                116u8,
-                139u8,
-                121u8,
-                107u8,
-            ]);
+            const SIGNATURE_HASH: alloy_sol_types::private::B256 =
+                alloy_sol_types::private::B256::new([
+                    11u8, 46u8, 19u8, 255u8, 32u8, 172u8, 123u8, 71u8, 65u8, 152u8, 101u8, 85u8,
+                    131u8, 237u8, 247u8, 13u8, 237u8, 210u8, 193u8, 220u8, 152u8, 14u8, 50u8,
+                    156u8, 79u8, 187u8, 47u8, 192u8, 116u8, 139u8, 121u8, 107u8,
+                ]);
             const ANONYMOUS: bool = false;
             #[allow(unused_variables)]
             #[inline]
@@ -3151,23 +2240,19 @@ event log_string(string);
                 topics: &<Self::TopicList as alloy_sol_types::SolType>::RustType,
             ) -> alloy_sol_types::Result<()> {
                 if topics.0 != Self::SIGNATURE_HASH {
-                    return Err(
-                        alloy_sol_types::Error::invalid_event_signature_hash(
-                            Self::SIGNATURE,
-                            topics.0,
-                            Self::SIGNATURE_HASH,
-                        ),
-                    );
+                    return Err(alloy_sol_types::Error::invalid_event_signature_hash(
+                        Self::SIGNATURE,
+                        topics.0,
+                        Self::SIGNATURE_HASH,
+                    ));
                 }
                 Ok(())
             }
             #[inline]
             fn tokenize_body(&self) -> Self::DataToken<'_> {
-                (
-                    <alloy::sol_types::sol_data::String as alloy_sol_types::SolType>::tokenize(
-                        &self._0,
-                    ),
-                )
+                (<alloy::sol_types::sol_data::String as alloy_sol_types::SolType>::tokenize(
+                    &self._0,
+                ),)
             }
             #[inline]
             fn topics(&self) -> <Self::TopicList as alloy_sol_types::SolType>::RustType {
@@ -3181,9 +2266,7 @@ event log_string(string);
                 if out.len() < <Self::TopicList as alloy_sol_types::TopicList>::COUNT {
                     return Err(alloy_sol_types::Error::Overrun);
                 }
-                out[0usize] = alloy_sol_types::abi::token::WordToken(
-                    Self::SIGNATURE_HASH,
-                );
+                out[0usize] = alloy_sol_types::abi::token::WordToken(Self::SIGNATURE_HASH);
                 Ok(())
             }
         }
@@ -3205,70 +2288,30 @@ event log_string(string);
         }
     };
     /**Event with signature `log_uint(uint256)` and selector `0x2cab9790510fd8bdfbd2115288db33fec66691d476efc5427cfd4c0969301755`.
-```solidity
-event log_uint(uint256);
-```*/
-    #[allow(
-        non_camel_case_types,
-        non_snake_case,
-        clippy::pub_underscore_fields,
-        clippy::style
-    )]
+    ```solidity
+    event log_uint(uint256);
+    ```*/
+    #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields, clippy::style)]
     #[derive(Clone)]
     pub struct log_uint {
         #[allow(missing_docs)]
         pub _0: alloy::sol_types::private::primitives::aliases::U256,
     }
-    #[allow(
-        non_camel_case_types,
-        non_snake_case,
-        clippy::pub_underscore_fields,
-        clippy::style
-    )]
+    #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields, clippy::style)]
     const _: () = {
         use alloy::sol_types as alloy_sol_types;
         #[automatically_derived]
         impl alloy_sol_types::SolEvent for log_uint {
             type DataTuple<'a> = (alloy::sol_types::sol_data::Uint<256>,);
-            type DataToken<'a> = <Self::DataTuple<
-                'a,
-            > as alloy_sol_types::SolType>::Token<'a>;
+            type DataToken<'a> = <Self::DataTuple<'a> as alloy_sol_types::SolType>::Token<'a>;
             type TopicList = (alloy_sol_types::sol_data::FixedBytes<32>,);
             const SIGNATURE: &'static str = "log_uint(uint256)";
-            const SIGNATURE_HASH: alloy_sol_types::private::B256 = alloy_sol_types::private::B256::new([
-                44u8,
-                171u8,
-                151u8,
-                144u8,
-                81u8,
-                15u8,
-                216u8,
-                189u8,
-                251u8,
-                210u8,
-                17u8,
-                82u8,
-                136u8,
-                219u8,
-                51u8,
-                254u8,
-                198u8,
-                102u8,
-                145u8,
-                212u8,
-                118u8,
-                239u8,
-                197u8,
-                66u8,
-                124u8,
-                253u8,
-                76u8,
-                9u8,
-                105u8,
-                48u8,
-                23u8,
-                85u8,
-            ]);
+            const SIGNATURE_HASH: alloy_sol_types::private::B256 =
+                alloy_sol_types::private::B256::new([
+                    44u8, 171u8, 151u8, 144u8, 81u8, 15u8, 216u8, 189u8, 251u8, 210u8, 17u8, 82u8,
+                    136u8, 219u8, 51u8, 254u8, 198u8, 102u8, 145u8, 212u8, 118u8, 239u8, 197u8,
+                    66u8, 124u8, 253u8, 76u8, 9u8, 105u8, 48u8, 23u8, 85u8,
+                ]);
             const ANONYMOUS: bool = false;
             #[allow(unused_variables)]
             #[inline]
@@ -3283,23 +2326,19 @@ event log_uint(uint256);
                 topics: &<Self::TopicList as alloy_sol_types::SolType>::RustType,
             ) -> alloy_sol_types::Result<()> {
                 if topics.0 != Self::SIGNATURE_HASH {
-                    return Err(
-                        alloy_sol_types::Error::invalid_event_signature_hash(
-                            Self::SIGNATURE,
-                            topics.0,
-                            Self::SIGNATURE_HASH,
-                        ),
-                    );
+                    return Err(alloy_sol_types::Error::invalid_event_signature_hash(
+                        Self::SIGNATURE,
+                        topics.0,
+                        Self::SIGNATURE_HASH,
+                    ));
                 }
                 Ok(())
             }
             #[inline]
             fn tokenize_body(&self) -> Self::DataToken<'_> {
-                (
-                    <alloy::sol_types::sol_data::Uint<
-                        256,
-                    > as alloy_sol_types::SolType>::tokenize(&self._0),
-                )
+                (<alloy::sol_types::sol_data::Uint<256> as alloy_sol_types::SolType>::tokenize(
+                    &self._0,
+                ),)
             }
             #[inline]
             fn topics(&self) -> <Self::TopicList as alloy_sol_types::SolType>::RustType {
@@ -3313,9 +2352,7 @@ event log_uint(uint256);
                 if out.len() < <Self::TopicList as alloy_sol_types::TopicList>::COUNT {
                     return Err(alloy_sol_types::Error::Overrun);
                 }
-                out[0usize] = alloy_sol_types::abi::token::WordToken(
-                    Self::SIGNATURE_HASH,
-                );
+                out[0usize] = alloy_sol_types::abi::token::WordToken(Self::SIGNATURE_HASH);
                 Ok(())
             }
         }
@@ -3337,70 +2374,30 @@ event log_uint(uint256);
         }
     };
     /**Event with signature `logs(bytes)` and selector `0xe7950ede0394b9f2ce4a5a1bf5a7e1852411f7e6661b4308c913c4bfd11027e4`.
-```solidity
-event logs(bytes);
-```*/
-    #[allow(
-        non_camel_case_types,
-        non_snake_case,
-        clippy::pub_underscore_fields,
-        clippy::style
-    )]
+    ```solidity
+    event logs(bytes);
+    ```*/
+    #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields, clippy::style)]
     #[derive(Clone)]
     pub struct logs {
         #[allow(missing_docs)]
         pub _0: alloy::sol_types::private::Bytes,
     }
-    #[allow(
-        non_camel_case_types,
-        non_snake_case,
-        clippy::pub_underscore_fields,
-        clippy::style
-    )]
+    #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields, clippy::style)]
     const _: () = {
         use alloy::sol_types as alloy_sol_types;
         #[automatically_derived]
         impl alloy_sol_types::SolEvent for logs {
             type DataTuple<'a> = (alloy::sol_types::sol_data::Bytes,);
-            type DataToken<'a> = <Self::DataTuple<
-                'a,
-            > as alloy_sol_types::SolType>::Token<'a>;
+            type DataToken<'a> = <Self::DataTuple<'a> as alloy_sol_types::SolType>::Token<'a>;
             type TopicList = (alloy_sol_types::sol_data::FixedBytes<32>,);
             const SIGNATURE: &'static str = "logs(bytes)";
-            const SIGNATURE_HASH: alloy_sol_types::private::B256 = alloy_sol_types::private::B256::new([
-                231u8,
-                149u8,
-                14u8,
-                222u8,
-                3u8,
-                148u8,
-                185u8,
-                242u8,
-                206u8,
-                74u8,
-                90u8,
-                27u8,
-                245u8,
-                167u8,
-                225u8,
-                133u8,
-                36u8,
-                17u8,
-                247u8,
-                230u8,
-                102u8,
-                27u8,
-                67u8,
-                8u8,
-                201u8,
-                19u8,
-                196u8,
-                191u8,
-                209u8,
-                16u8,
-                39u8,
-                228u8,
-            ]);
+            const SIGNATURE_HASH: alloy_sol_types::private::B256 =
+                alloy_sol_types::private::B256::new([
+                    231u8, 149u8, 14u8, 222u8, 3u8, 148u8, 185u8, 242u8, 206u8, 74u8, 90u8, 27u8,
+                    245u8, 167u8, 225u8, 133u8, 36u8, 17u8, 247u8, 230u8, 102u8, 27u8, 67u8, 8u8,
+                    201u8, 19u8, 196u8, 191u8, 209u8, 16u8, 39u8, 228u8,
+                ]);
             const ANONYMOUS: bool = false;
             #[allow(unused_variables)]
             #[inline]
@@ -3415,23 +2412,19 @@ event logs(bytes);
                 topics: &<Self::TopicList as alloy_sol_types::SolType>::RustType,
             ) -> alloy_sol_types::Result<()> {
                 if topics.0 != Self::SIGNATURE_HASH {
-                    return Err(
-                        alloy_sol_types::Error::invalid_event_signature_hash(
-                            Self::SIGNATURE,
-                            topics.0,
-                            Self::SIGNATURE_HASH,
-                        ),
-                    );
+                    return Err(alloy_sol_types::Error::invalid_event_signature_hash(
+                        Self::SIGNATURE,
+                        topics.0,
+                        Self::SIGNATURE_HASH,
+                    ));
                 }
                 Ok(())
             }
             #[inline]
             fn tokenize_body(&self) -> Self::DataToken<'_> {
-                (
-                    <alloy::sol_types::sol_data::Bytes as alloy_sol_types::SolType>::tokenize(
-                        &self._0,
-                    ),
-                )
+                (<alloy::sol_types::sol_data::Bytes as alloy_sol_types::SolType>::tokenize(
+                    &self._0,
+                ),)
             }
             #[inline]
             fn topics(&self) -> <Self::TopicList as alloy_sol_types::SolType>::RustType {
@@ -3445,9 +2438,7 @@ event logs(bytes);
                 if out.len() < <Self::TopicList as alloy_sol_types::TopicList>::COUNT {
                     return Err(alloy_sol_types::Error::Overrun);
                 }
-                out[0usize] = alloy_sol_types::abi::token::WordToken(
-                    Self::SIGNATURE_HASH,
-                );
+                out[0usize] = alloy_sol_types::abi::token::WordToken(Self::SIGNATURE_HASH);
                 Ok(())
             }
         }
@@ -3469,9 +2460,9 @@ event logs(bytes);
         }
     };
     /**Function with signature `failed()` and selector `0xba414fa6`.
-```solidity
-function failed() external view returns (bool);
-```*/
+    ```solidity
+    function failed() external view returns (bool);
+    ```*/
     #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields)]
     #[derive(Clone)]
     pub struct failedCall {}
@@ -3481,12 +2472,7 @@ function failed() external view returns (bool);
     pub struct failedReturn {
         pub _0: bool,
     }
-    #[allow(
-        non_camel_case_types,
-        non_snake_case,
-        clippy::pub_underscore_fields,
-        clippy::style
-    )]
+    #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields, clippy::style)]
     const _: () = {
         use alloy::sol_types as alloy_sol_types;
         {
@@ -3496,9 +2482,7 @@ function failed() external view returns (bool);
             type UnderlyingRustTuple<'a> = ();
             #[cfg(test)]
             #[allow(dead_code, unreachable_patterns)]
-            fn _type_assertion(
-                _t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>,
-            ) {
+            fn _type_assertion(_t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>) {
                 match _t {
                     alloy_sol_types::private::AssertTypeEq::<
                         <UnderlyingSolTuple as alloy_sol_types::SolType>::RustType,
@@ -3527,9 +2511,7 @@ function failed() external view returns (bool);
             type UnderlyingRustTuple<'a> = (bool,);
             #[cfg(test)]
             #[allow(dead_code, unreachable_patterns)]
-            fn _type_assertion(
-                _t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>,
-            ) {
+            fn _type_assertion(_t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>) {
                 match _t {
                     alloy_sol_types::private::AssertTypeEq::<
                         <UnderlyingSolTuple as alloy_sol_types::SolType>::RustType,
@@ -3554,14 +2536,10 @@ function failed() external view returns (bool);
         #[automatically_derived]
         impl alloy_sol_types::SolCall for failedCall {
             type Parameters<'a> = ();
-            type Token<'a> = <Self::Parameters<
-                'a,
-            > as alloy_sol_types::SolType>::Token<'a>;
+            type Token<'a> = <Self::Parameters<'a> as alloy_sol_types::SolType>::Token<'a>;
             type Return = failedReturn;
             type ReturnTuple<'a> = (alloy::sol_types::sol_data::Bool,);
-            type ReturnToken<'a> = <Self::ReturnTuple<
-                'a,
-            > as alloy_sol_types::SolType>::Token<'a>;
+            type ReturnToken<'a> = <Self::ReturnTuple<'a> as alloy_sol_types::SolType>::Token<'a>;
             const SIGNATURE: &'static str = "failed()";
             const SELECTOR: [u8; 4] = [186u8, 65u8, 79u8, 166u8];
             #[inline]
@@ -3579,10 +2557,10 @@ function failed() external view returns (bool);
                 data: &[u8],
                 validate: bool,
             ) -> alloy_sol_types::Result<Self::Return> {
-                <Self::ReturnTuple<
-                    '_,
-                > as alloy_sol_types::SolType>::abi_decode_sequence(data, validate)
-                    .map(Into::into)
+                <Self::ReturnTuple<'_> as alloy_sol_types::SolType>::abi_decode_sequence(
+                    data, validate,
+                )
+                .map(Into::into)
             }
         }
     };
@@ -3629,28 +2607,22 @@ function failed() external view returns (bool);
             static DECODE_SHIMS: &[fn(
                 &[u8],
                 bool,
-            ) -> alloy_sol_types::Result<StdAssertionsCalls>] = &[
-                {
-                    fn failed(
-                        data: &[u8],
-                        validate: bool,
-                    ) -> alloy_sol_types::Result<StdAssertionsCalls> {
-                        <failedCall as alloy_sol_types::SolCall>::abi_decode_raw(
-                                data,
-                                validate,
-                            )
-                            .map(StdAssertionsCalls::failed)
-                    }
-                    failed
-                },
-            ];
+            )
+                -> alloy_sol_types::Result<StdAssertionsCalls>] = &[{
+                fn failed(
+                    data: &[u8],
+                    validate: bool,
+                ) -> alloy_sol_types::Result<StdAssertionsCalls> {
+                    <failedCall as alloy_sol_types::SolCall>::abi_decode_raw(data, validate)
+                        .map(StdAssertionsCalls::failed)
+                }
+                failed
+            }];
             let Ok(idx) = Self::SELECTORS.binary_search(&selector) else {
-                return Err(
-                    alloy_sol_types::Error::unknown_selector(
-                        <Self as alloy_sol_types::SolInterface>::NAME,
-                        selector,
-                    ),
-                );
+                return Err(alloy_sol_types::Error::unknown_selector(
+                    <Self as alloy_sol_types::SolInterface>::NAME,
+                    selector,
+                ));
             };
             DECODE_SHIMS[idx](data, validate)
         }
@@ -3706,752 +2678,114 @@ function failed() external view returns (bool);
         /// Prefer using `SolInterface` methods instead.
         pub const SELECTORS: &'static [[u8; 32usize]] = &[
             [
-                0u8,
-                170u8,
-                163u8,
-                156u8,
-                159u8,
-                251u8,
-                95u8,
-                86u8,
-                122u8,
-                69u8,
-                52u8,
-                56u8,
-                12u8,
-                115u8,
-                112u8,
-                117u8,
-                112u8,
-                46u8,
-                31u8,
-                127u8,
-                20u8,
-                16u8,
-                127u8,
-                201u8,
-                83u8,
-                40u8,
-                227u8,
-                181u8,
-                108u8,
-                3u8,
-                37u8,
-                251u8,
+                0u8, 170u8, 163u8, 156u8, 159u8, 251u8, 95u8, 86u8, 122u8, 69u8, 52u8, 56u8, 12u8,
+                115u8, 112u8, 117u8, 112u8, 46u8, 31u8, 127u8, 20u8, 16u8, 127u8, 201u8, 83u8,
+                40u8, 227u8, 181u8, 108u8, 3u8, 37u8, 251u8,
             ],
             [
-                11u8,
-                46u8,
-                19u8,
-                255u8,
-                32u8,
-                172u8,
-                123u8,
-                71u8,
-                65u8,
-                152u8,
-                101u8,
-                85u8,
-                131u8,
-                237u8,
-                247u8,
-                13u8,
-                237u8,
-                210u8,
-                193u8,
-                220u8,
-                152u8,
-                14u8,
-                50u8,
-                156u8,
-                79u8,
-                187u8,
-                47u8,
-                192u8,
-                116u8,
-                139u8,
-                121u8,
-                107u8,
+                11u8, 46u8, 19u8, 255u8, 32u8, 172u8, 123u8, 71u8, 65u8, 152u8, 101u8, 85u8, 131u8,
+                237u8, 247u8, 13u8, 237u8, 210u8, 193u8, 220u8, 152u8, 14u8, 50u8, 156u8, 79u8,
+                187u8, 47u8, 192u8, 116u8, 139u8, 121u8, 107u8,
             ],
             [
-                14u8,
-                181u8,
-                213u8,
-                38u8,
-                36u8,
-                200u8,
-                210u8,
-                138u8,
-                218u8,
-                159u8,
-                197u8,
-                90u8,
-                140u8,
-                80u8,
-                46u8,
-                213u8,
-                170u8,
-                63u8,
-                190u8,
-                47u8,
-                182u8,
-                233u8,
-                27u8,
-                113u8,
-                181u8,
-                243u8,
-                118u8,
-                136u8,
-                43u8,
-                29u8,
-                47u8,
-                184u8,
+                14u8, 181u8, 213u8, 38u8, 36u8, 200u8, 210u8, 138u8, 218u8, 159u8, 197u8, 90u8,
+                140u8, 80u8, 46u8, 213u8, 170u8, 63u8, 190u8, 47u8, 182u8, 233u8, 27u8, 113u8,
+                181u8, 243u8, 118u8, 136u8, 43u8, 29u8, 47u8, 184u8,
             ],
             [
-                35u8,
-                182u8,
-                42u8,
-                208u8,
-                88u8,
-                77u8,
-                36u8,
-                167u8,
-                95u8,
-                11u8,
-                243u8,
-                86u8,
-                3u8,
-                145u8,
-                239u8,
-                86u8,
-                89u8,
-                236u8,
-                109u8,
-                177u8,
-                38u8,
-                156u8,
-                86u8,
-                225u8,
-                26u8,
-                162u8,
-                65u8,
-                214u8,
-                55u8,
-                241u8,
-                155u8,
-                32u8,
+                35u8, 182u8, 42u8, 208u8, 88u8, 77u8, 36u8, 167u8, 95u8, 11u8, 243u8, 86u8, 3u8,
+                145u8, 239u8, 86u8, 89u8, 236u8, 109u8, 177u8, 38u8, 156u8, 86u8, 225u8, 26u8,
+                162u8, 65u8, 214u8, 55u8, 241u8, 155u8, 32u8,
             ],
             [
-                40u8,
-                15u8,
-                68u8,
-                70u8,
-                178u8,
-                138u8,
-                19u8,
-                114u8,
-                65u8,
-                125u8,
-                218u8,
-                101u8,
-                141u8,
-                48u8,
-                185u8,
-                91u8,
-                41u8,
-                146u8,
-                177u8,
-                42u8,
-                201u8,
-                199u8,
-                243u8,
-                120u8,
-                83u8,
-                95u8,
-                41u8,
-                169u8,
-                122u8,
-                207u8,
-                53u8,
-                131u8,
+                40u8, 15u8, 68u8, 70u8, 178u8, 138u8, 19u8, 114u8, 65u8, 125u8, 218u8, 101u8,
+                141u8, 48u8, 185u8, 91u8, 41u8, 146u8, 177u8, 42u8, 201u8, 199u8, 243u8, 120u8,
+                83u8, 95u8, 41u8, 169u8, 122u8, 207u8, 53u8, 131u8,
             ],
             [
-                44u8,
-                171u8,
-                151u8,
-                144u8,
-                81u8,
-                15u8,
-                216u8,
-                189u8,
-                251u8,
-                210u8,
-                17u8,
-                82u8,
-                136u8,
-                219u8,
-                51u8,
-                254u8,
-                198u8,
-                102u8,
-                145u8,
-                212u8,
-                118u8,
-                239u8,
-                197u8,
-                66u8,
-                124u8,
-                253u8,
-                76u8,
-                9u8,
-                105u8,
-                48u8,
-                23u8,
-                85u8,
+                44u8, 171u8, 151u8, 144u8, 81u8, 15u8, 216u8, 189u8, 251u8, 210u8, 17u8, 82u8,
+                136u8, 219u8, 51u8, 254u8, 198u8, 102u8, 145u8, 212u8, 118u8, 239u8, 197u8, 66u8,
+                124u8, 253u8, 76u8, 9u8, 105u8, 48u8, 23u8, 85u8,
             ],
             [
-                47u8,
-                230u8,
-                50u8,
-                119u8,
-                145u8,
-                116u8,
-                55u8,
-                67u8,
-                120u8,
-                68u8,
-                42u8,
-                142u8,
-                151u8,
-                139u8,
-                204u8,
-                251u8,
-                220u8,
-                193u8,
-                214u8,
-                178u8,
-                176u8,
-                216u8,
-                31u8,
-                126u8,
-                142u8,
-                183u8,
-                118u8,
-                171u8,
-                34u8,
-                134u8,
-                241u8,
-                104u8,
+                47u8, 230u8, 50u8, 119u8, 145u8, 116u8, 55u8, 67u8, 120u8, 68u8, 42u8, 142u8,
+                151u8, 139u8, 204u8, 251u8, 220u8, 193u8, 214u8, 178u8, 176u8, 216u8, 31u8, 126u8,
+                142u8, 183u8, 118u8, 171u8, 34u8, 134u8, 241u8, 104u8,
             ],
             [
-                59u8,
-                207u8,
-                178u8,
-                174u8,
-                46u8,
-                141u8,
-                19u8,
-                45u8,
-                209u8,
-                252u8,
-                231u8,
-                207u8,
-                39u8,
-                138u8,
-                154u8,
-                25u8,
-                117u8,
-                106u8,
-                159u8,
-                206u8,
-                171u8,
-                228u8,
-                112u8,
-                223u8,
-                59u8,
-                218u8,
-                187u8,
-                75u8,
-                197u8,
-                119u8,
-                209u8,
-                189u8,
+                59u8, 207u8, 178u8, 174u8, 46u8, 141u8, 19u8, 45u8, 209u8, 252u8, 231u8, 207u8,
+                39u8, 138u8, 154u8, 25u8, 117u8, 106u8, 159u8, 206u8, 171u8, 228u8, 112u8, 223u8,
+                59u8, 218u8, 187u8, 75u8, 197u8, 119u8, 209u8, 189u8,
             ],
             [
-                64u8,
-                225u8,
-                132u8,
-                15u8,
-                87u8,
-                105u8,
-                7u8,
-                61u8,
-                97u8,
-                189u8,
-                1u8,
-                55u8,
-                45u8,
-                155u8,
-                117u8,
-                186u8,
-                169u8,
-                132u8,
-                45u8,
-                86u8,
-                41u8,
-                160u8,
-                201u8,
-                159u8,
-                241u8,
-                3u8,
-                190u8,
-                17u8,
-                120u8,
-                168u8,
-                233u8,
-                226u8,
+                64u8, 225u8, 132u8, 15u8, 87u8, 105u8, 7u8, 61u8, 97u8, 189u8, 1u8, 55u8, 45u8,
+                155u8, 117u8, 186u8, 169u8, 132u8, 45u8, 86u8, 41u8, 160u8, 201u8, 159u8, 241u8,
+                3u8, 190u8, 17u8, 120u8, 168u8, 233u8, 226u8,
             ],
             [
-                65u8,
-                48u8,
-                79u8,
-                172u8,
-                217u8,
-                50u8,
-                61u8,
-                117u8,
-                177u8,
-                27u8,
-                205u8,
-                214u8,
-                9u8,
-                203u8,
-                56u8,
-                239u8,
-                255u8,
-                253u8,
-                176u8,
-                87u8,
-                16u8,
-                247u8,
-                202u8,
-                240u8,
-                233u8,
-                177u8,
-                108u8,
-                109u8,
-                157u8,
-                112u8,
-                159u8,
-                80u8,
+                65u8, 48u8, 79u8, 172u8, 217u8, 50u8, 61u8, 117u8, 177u8, 27u8, 205u8, 214u8, 9u8,
+                203u8, 56u8, 239u8, 255u8, 253u8, 176u8, 87u8, 16u8, 247u8, 202u8, 240u8, 233u8,
+                177u8, 108u8, 109u8, 157u8, 112u8, 159u8, 80u8,
             ],
             [
-                93u8,
-                166u8,
-                206u8,
-                157u8,
-                81u8,
-                21u8,
-                27u8,
-                161u8,
-                12u8,
-                9u8,
-                165u8,
-                89u8,
-                239u8,
-                36u8,
-                213u8,
-                32u8,
-                185u8,
-                218u8,
-                197u8,
-                197u8,
-                184u8,
-                129u8,
-                10u8,
-                232u8,
-                67u8,
-                78u8,
-                77u8,
-                13u8,
-                134u8,
-                65u8,
-                26u8,
-                149u8,
+                93u8, 166u8, 206u8, 157u8, 81u8, 21u8, 27u8, 161u8, 12u8, 9u8, 165u8, 89u8, 239u8,
+                36u8, 213u8, 32u8, 185u8, 218u8, 197u8, 197u8, 184u8, 129u8, 10u8, 232u8, 67u8,
+                78u8, 77u8, 13u8, 134u8, 65u8, 26u8, 149u8,
             ],
             [
-                122u8,
-                231u8,
-                76u8,
-                82u8,
-                116u8,
-                20u8,
-                174u8,
-                19u8,
-                95u8,
-                217u8,
-                112u8,
-                71u8,
-                177u8,
-                41u8,
-                33u8,
-                165u8,
-                236u8,
-                57u8,
-                17u8,
-                184u8,
-                4u8,
-                25u8,
-                120u8,
-                85u8,
-                214u8,
-                126u8,
-                37u8,
-                199u8,
-                183u8,
-                94u8,
-                230u8,
-                243u8,
+                122u8, 231u8, 76u8, 82u8, 116u8, 20u8, 174u8, 19u8, 95u8, 217u8, 112u8, 71u8,
+                177u8, 41u8, 33u8, 165u8, 236u8, 57u8, 17u8, 184u8, 4u8, 25u8, 120u8, 85u8, 214u8,
+                126u8, 37u8, 199u8, 183u8, 94u8, 230u8, 243u8,
             ],
             [
-                137u8,
-                10u8,
-                130u8,
-                103u8,
-                155u8,
-                71u8,
-                15u8,
-                43u8,
-                216u8,
-                40u8,
-                22u8,
-                237u8,
-                155u8,
-                22u8,
-                31u8,
-                151u8,
-                216u8,
-                185u8,
-                103u8,
-                243u8,
-                127u8,
-                163u8,
-                100u8,
-                124u8,
-                33u8,
-                213u8,
-                191u8,
-                57u8,
-                116u8,
-                158u8,
-                45u8,
-                213u8,
+                137u8, 10u8, 130u8, 103u8, 155u8, 71u8, 15u8, 43u8, 216u8, 40u8, 22u8, 237u8,
+                155u8, 22u8, 31u8, 151u8, 216u8, 185u8, 103u8, 243u8, 127u8, 163u8, 100u8, 124u8,
+                33u8, 213u8, 191u8, 57u8, 116u8, 158u8, 45u8, 213u8,
             ],
             [
-                156u8,
-                78u8,
-                133u8,
-                65u8,
-                202u8,
-                143u8,
-                13u8,
-                193u8,
-                196u8,
-                19u8,
-                249u8,
-                16u8,
-                143u8,
-                102u8,
-                216u8,
-                45u8,
-                60u8,
-                236u8,
-                177u8,
-                189u8,
-                219u8,
-                206u8,
-                67u8,
-                122u8,
-                97u8,
-                202u8,
-                163u8,
-                23u8,
-                92u8,
-                76u8,
-                201u8,
-                111u8,
+                156u8, 78u8, 133u8, 65u8, 202u8, 143u8, 13u8, 193u8, 196u8, 19u8, 249u8, 16u8,
+                143u8, 102u8, 216u8, 45u8, 60u8, 236u8, 177u8, 189u8, 219u8, 206u8, 67u8, 122u8,
+                97u8, 202u8, 163u8, 23u8, 92u8, 76u8, 201u8, 111u8,
             ],
             [
-                167u8,
-                62u8,
-                218u8,
-                9u8,
-                102u8,
-                47u8,
-                70u8,
-                221u8,
-                231u8,
-                41u8,
-                190u8,
-                70u8,
-                17u8,
-                56u8,
-                95u8,
-                243u8,
-                79u8,
-                230u8,
-                196u8,
-                79u8,
-                187u8,
-                198u8,
-                247u8,
-                225u8,
-                123u8,
-                4u8,
-                43u8,
-                89u8,
-                163u8,
-                68u8,
-                91u8,
-                87u8,
+                167u8, 62u8, 218u8, 9u8, 102u8, 47u8, 70u8, 221u8, 231u8, 41u8, 190u8, 70u8, 17u8,
+                56u8, 95u8, 243u8, 79u8, 230u8, 196u8, 79u8, 187u8, 198u8, 247u8, 225u8, 123u8,
+                4u8, 43u8, 89u8, 163u8, 68u8, 91u8, 87u8,
             ],
             [
-                175u8,
-                183u8,
-                149u8,
-                201u8,
-                198u8,
-                30u8,
-                79u8,
-                231u8,
-                70u8,
-                140u8,
-                56u8,
-                111u8,
-                146u8,
-                93u8,
-                122u8,
-                84u8,
-                41u8,
-                236u8,
-                173u8,
-                156u8,
-                4u8,
-                149u8,
-                221u8,
-                184u8,
-                211u8,
-                141u8,
-                105u8,
-                6u8,
-                20u8,
-                211u8,
-                47u8,
-                153u8,
+                175u8, 183u8, 149u8, 201u8, 198u8, 30u8, 79u8, 231u8, 70u8, 140u8, 56u8, 111u8,
+                146u8, 93u8, 122u8, 84u8, 41u8, 236u8, 173u8, 156u8, 4u8, 149u8, 221u8, 184u8,
+                211u8, 141u8, 105u8, 6u8, 20u8, 211u8, 47u8, 153u8,
             ],
             [
-                178u8,
-                222u8,
-                47u8,
-                190u8,
-                128u8,
-                26u8,
-                13u8,
-                246u8,
-                192u8,
-                203u8,
-                221u8,
-                253u8,
-                68u8,
-                139u8,
-                163u8,
-                196u8,
-                29u8,
-                72u8,
-                160u8,
-                64u8,
-                202u8,
-                53u8,
-                197u8,
-                108u8,
-                129u8,
-                150u8,
-                239u8,
-                15u8,
-                202u8,
-                231u8,
-                33u8,
-                168u8,
+                178u8, 222u8, 47u8, 190u8, 128u8, 26u8, 13u8, 246u8, 192u8, 203u8, 221u8, 253u8,
+                68u8, 139u8, 163u8, 196u8, 29u8, 72u8, 160u8, 64u8, 202u8, 53u8, 197u8, 108u8,
+                129u8, 150u8, 239u8, 15u8, 202u8, 231u8, 33u8, 168u8,
             ],
             [
-                210u8,
-                110u8,
-                22u8,
-                202u8,
-                212u8,
-                84u8,
-                135u8,
-                5u8,
-                228u8,
-                201u8,
-                226u8,
-                217u8,
-                79u8,
-                152u8,
-                238u8,
-                145u8,
-                194u8,
-                137u8,
-                8u8,
-                94u8,
-                228u8,
-                37u8,
-                89u8,
-                79u8,
-                213u8,
-                99u8,
-                95u8,
-                162u8,
-                150u8,
-                76u8,
-                207u8,
-                24u8,
+                210u8, 110u8, 22u8, 202u8, 212u8, 84u8, 135u8, 5u8, 228u8, 201u8, 226u8, 217u8,
+                79u8, 152u8, 238u8, 145u8, 194u8, 137u8, 8u8, 94u8, 228u8, 37u8, 89u8, 79u8, 213u8,
+                99u8, 95u8, 162u8, 150u8, 76u8, 207u8, 24u8,
             ],
             [
-                231u8,
-                149u8,
-                14u8,
-                222u8,
-                3u8,
-                148u8,
-                185u8,
-                242u8,
-                206u8,
-                74u8,
-                90u8,
-                27u8,
-                245u8,
-                167u8,
-                225u8,
-                133u8,
-                36u8,
-                17u8,
-                247u8,
-                230u8,
-                102u8,
-                27u8,
-                67u8,
-                8u8,
-                201u8,
-                19u8,
-                196u8,
-                191u8,
-                209u8,
-                16u8,
-                39u8,
-                228u8,
+                231u8, 149u8, 14u8, 222u8, 3u8, 148u8, 185u8, 242u8, 206u8, 74u8, 90u8, 27u8,
+                245u8, 167u8, 225u8, 133u8, 36u8, 17u8, 247u8, 230u8, 102u8, 27u8, 67u8, 8u8,
+                201u8, 19u8, 196u8, 191u8, 209u8, 16u8, 39u8, 228u8,
             ],
             [
-                232u8,
-                22u8,
-                153u8,
-                184u8,
-                81u8,
-                19u8,
-                238u8,
-                161u8,
-                199u8,
-                62u8,
-                16u8,
-                88u8,
-                139u8,
-                43u8,
-                3u8,
-                94u8,
-                85u8,
-                137u8,
-                51u8,
-                105u8,
-                99u8,
-                33u8,
-                115u8,
-                175u8,
-                212u8,
-                63u8,
-                235u8,
-                25u8,
-                47u8,
-                172u8,
-                100u8,
-                227u8,
+                232u8, 22u8, 153u8, 184u8, 81u8, 19u8, 238u8, 161u8, 199u8, 62u8, 16u8, 88u8,
+                139u8, 43u8, 3u8, 94u8, 85u8, 137u8, 51u8, 105u8, 99u8, 33u8, 115u8, 175u8, 212u8,
+                63u8, 235u8, 25u8, 47u8, 172u8, 100u8, 227u8,
             ],
             [
-                235u8,
-                139u8,
-                164u8,
-                60u8,
-                237u8,
-                117u8,
-                55u8,
-                66u8,
-                25u8,
-                70u8,
-                189u8,
-                67u8,
-                232u8,
-                40u8,
-                184u8,
-                178u8,
-                184u8,
-                66u8,
-                137u8,
-                39u8,
-                170u8,
-                143u8,
-                128u8,
-                28u8,
-                19u8,
-                217u8,
-                52u8,
-                191u8,
-                17u8,
-                172u8,
-                165u8,
-                123u8,
+                235u8, 139u8, 164u8, 60u8, 237u8, 117u8, 55u8, 66u8, 25u8, 70u8, 189u8, 67u8,
+                232u8, 40u8, 184u8, 178u8, 184u8, 66u8, 137u8, 39u8, 170u8, 143u8, 128u8, 28u8,
+                19u8, 217u8, 52u8, 191u8, 17u8, 172u8, 165u8, 123u8,
             ],
             [
-                251u8,
-                16u8,
-                40u8,
-                101u8,
-                213u8,
-                10u8,
-                221u8,
-                221u8,
-                246u8,
-                157u8,
-                169u8,
-                181u8,
-                170u8,
-                27u8,
-                206u8,
-                214u8,
-                108u8,
-                128u8,
-                207u8,
-                134u8,
-                154u8,
-                92u8,
-                141u8,
-                4u8,
-                113u8,
-                164u8,
-                103u8,
-                225u8,
-                140u8,
-                233u8,
-                202u8,
-                177u8,
+                251u8, 16u8, 40u8, 101u8, 213u8, 10u8, 221u8, 221u8, 246u8, 157u8, 169u8, 181u8,
+                170u8, 27u8, 206u8, 214u8, 108u8, 128u8, 207u8, 134u8, 154u8, 92u8, 141u8, 4u8,
+                113u8, 164u8, 103u8, 225u8, 140u8, 233u8, 202u8, 177u8,
             ],
         ];
     }
@@ -4466,206 +2800,136 @@ function failed() external view returns (bool);
         ) -> alloy_sol_types::Result<Self> {
             match topics.first().copied() {
                 Some(<log as alloy_sol_types::SolEvent>::SIGNATURE_HASH) => {
-                    <log as alloy_sol_types::SolEvent>::decode_raw_log(
-                            topics,
-                            data,
-                            validate,
-                        )
+                    <log as alloy_sol_types::SolEvent>::decode_raw_log(topics, data, validate)
                         .map(Self::log)
                 }
                 Some(<log_address as alloy_sol_types::SolEvent>::SIGNATURE_HASH) => {
                     <log_address as alloy_sol_types::SolEvent>::decode_raw_log(
-                            topics,
-                            data,
-                            validate,
-                        )
-                        .map(Self::log_address)
+                        topics, data, validate,
+                    )
+                    .map(Self::log_address)
                 }
                 Some(<log_array_0 as alloy_sol_types::SolEvent>::SIGNATURE_HASH) => {
                     <log_array_0 as alloy_sol_types::SolEvent>::decode_raw_log(
-                            topics,
-                            data,
-                            validate,
-                        )
-                        .map(Self::log_array_0)
+                        topics, data, validate,
+                    )
+                    .map(Self::log_array_0)
                 }
                 Some(<log_array_1 as alloy_sol_types::SolEvent>::SIGNATURE_HASH) => {
                     <log_array_1 as alloy_sol_types::SolEvent>::decode_raw_log(
-                            topics,
-                            data,
-                            validate,
-                        )
-                        .map(Self::log_array_1)
+                        topics, data, validate,
+                    )
+                    .map(Self::log_array_1)
                 }
                 Some(<log_array_2 as alloy_sol_types::SolEvent>::SIGNATURE_HASH) => {
                     <log_array_2 as alloy_sol_types::SolEvent>::decode_raw_log(
-                            topics,
-                            data,
-                            validate,
-                        )
-                        .map(Self::log_array_2)
+                        topics, data, validate,
+                    )
+                    .map(Self::log_array_2)
                 }
                 Some(<log_bytes as alloy_sol_types::SolEvent>::SIGNATURE_HASH) => {
-                    <log_bytes as alloy_sol_types::SolEvent>::decode_raw_log(
-                            topics,
-                            data,
-                            validate,
-                        )
+                    <log_bytes as alloy_sol_types::SolEvent>::decode_raw_log(topics, data, validate)
                         .map(Self::log_bytes)
                 }
                 Some(<log_bytes32 as alloy_sol_types::SolEvent>::SIGNATURE_HASH) => {
                     <log_bytes32 as alloy_sol_types::SolEvent>::decode_raw_log(
-                            topics,
-                            data,
-                            validate,
-                        )
-                        .map(Self::log_bytes32)
+                        topics, data, validate,
+                    )
+                    .map(Self::log_bytes32)
                 }
                 Some(<log_int as alloy_sol_types::SolEvent>::SIGNATURE_HASH) => {
-                    <log_int as alloy_sol_types::SolEvent>::decode_raw_log(
-                            topics,
-                            data,
-                            validate,
-                        )
+                    <log_int as alloy_sol_types::SolEvent>::decode_raw_log(topics, data, validate)
                         .map(Self::log_int)
                 }
-                Some(
-                    <log_named_address as alloy_sol_types::SolEvent>::SIGNATURE_HASH,
-                ) => {
+                Some(<log_named_address as alloy_sol_types::SolEvent>::SIGNATURE_HASH) => {
                     <log_named_address as alloy_sol_types::SolEvent>::decode_raw_log(
-                            topics,
-                            data,
-                            validate,
-                        )
-                        .map(Self::log_named_address)
+                        topics, data, validate,
+                    )
+                    .map(Self::log_named_address)
                 }
-                Some(
-                    <log_named_array_0 as alloy_sol_types::SolEvent>::SIGNATURE_HASH,
-                ) => {
+                Some(<log_named_array_0 as alloy_sol_types::SolEvent>::SIGNATURE_HASH) => {
                     <log_named_array_0 as alloy_sol_types::SolEvent>::decode_raw_log(
-                            topics,
-                            data,
-                            validate,
-                        )
-                        .map(Self::log_named_array_0)
+                        topics, data, validate,
+                    )
+                    .map(Self::log_named_array_0)
                 }
-                Some(
-                    <log_named_array_1 as alloy_sol_types::SolEvent>::SIGNATURE_HASH,
-                ) => {
+                Some(<log_named_array_1 as alloy_sol_types::SolEvent>::SIGNATURE_HASH) => {
                     <log_named_array_1 as alloy_sol_types::SolEvent>::decode_raw_log(
-                            topics,
-                            data,
-                            validate,
-                        )
-                        .map(Self::log_named_array_1)
+                        topics, data, validate,
+                    )
+                    .map(Self::log_named_array_1)
                 }
-                Some(
-                    <log_named_array_2 as alloy_sol_types::SolEvent>::SIGNATURE_HASH,
-                ) => {
+                Some(<log_named_array_2 as alloy_sol_types::SolEvent>::SIGNATURE_HASH) => {
                     <log_named_array_2 as alloy_sol_types::SolEvent>::decode_raw_log(
-                            topics,
-                            data,
-                            validate,
-                        )
-                        .map(Self::log_named_array_2)
+                        topics, data, validate,
+                    )
+                    .map(Self::log_named_array_2)
                 }
                 Some(<log_named_bytes as alloy_sol_types::SolEvent>::SIGNATURE_HASH) => {
                     <log_named_bytes as alloy_sol_types::SolEvent>::decode_raw_log(
-                            topics,
-                            data,
-                            validate,
-                        )
-                        .map(Self::log_named_bytes)
+                        topics, data, validate,
+                    )
+                    .map(Self::log_named_bytes)
                 }
-                Some(
-                    <log_named_bytes32 as alloy_sol_types::SolEvent>::SIGNATURE_HASH,
-                ) => {
+                Some(<log_named_bytes32 as alloy_sol_types::SolEvent>::SIGNATURE_HASH) => {
                     <log_named_bytes32 as alloy_sol_types::SolEvent>::decode_raw_log(
-                            topics,
-                            data,
-                            validate,
-                        )
-                        .map(Self::log_named_bytes32)
+                        topics, data, validate,
+                    )
+                    .map(Self::log_named_bytes32)
                 }
-                Some(
-                    <log_named_decimal_int as alloy_sol_types::SolEvent>::SIGNATURE_HASH,
-                ) => {
+                Some(<log_named_decimal_int as alloy_sol_types::SolEvent>::SIGNATURE_HASH) => {
                     <log_named_decimal_int as alloy_sol_types::SolEvent>::decode_raw_log(
-                            topics,
-                            data,
-                            validate,
-                        )
-                        .map(Self::log_named_decimal_int)
+                        topics, data, validate,
+                    )
+                    .map(Self::log_named_decimal_int)
                 }
-                Some(
-                    <log_named_decimal_uint as alloy_sol_types::SolEvent>::SIGNATURE_HASH,
-                ) => {
+                Some(<log_named_decimal_uint as alloy_sol_types::SolEvent>::SIGNATURE_HASH) => {
                     <log_named_decimal_uint as alloy_sol_types::SolEvent>::decode_raw_log(
-                            topics,
-                            data,
-                            validate,
-                        )
-                        .map(Self::log_named_decimal_uint)
+                        topics, data, validate,
+                    )
+                    .map(Self::log_named_decimal_uint)
                 }
                 Some(<log_named_int as alloy_sol_types::SolEvent>::SIGNATURE_HASH) => {
                     <log_named_int as alloy_sol_types::SolEvent>::decode_raw_log(
-                            topics,
-                            data,
-                            validate,
-                        )
-                        .map(Self::log_named_int)
+                        topics, data, validate,
+                    )
+                    .map(Self::log_named_int)
                 }
                 Some(<log_named_string as alloy_sol_types::SolEvent>::SIGNATURE_HASH) => {
                     <log_named_string as alloy_sol_types::SolEvent>::decode_raw_log(
-                            topics,
-                            data,
-                            validate,
-                        )
-                        .map(Self::log_named_string)
+                        topics, data, validate,
+                    )
+                    .map(Self::log_named_string)
                 }
                 Some(<log_named_uint as alloy_sol_types::SolEvent>::SIGNATURE_HASH) => {
                     <log_named_uint as alloy_sol_types::SolEvent>::decode_raw_log(
-                            topics,
-                            data,
-                            validate,
-                        )
-                        .map(Self::log_named_uint)
+                        topics, data, validate,
+                    )
+                    .map(Self::log_named_uint)
                 }
                 Some(<log_string as alloy_sol_types::SolEvent>::SIGNATURE_HASH) => {
                     <log_string as alloy_sol_types::SolEvent>::decode_raw_log(
-                            topics,
-                            data,
-                            validate,
-                        )
-                        .map(Self::log_string)
+                        topics, data, validate,
+                    )
+                    .map(Self::log_string)
                 }
                 Some(<log_uint as alloy_sol_types::SolEvent>::SIGNATURE_HASH) => {
-                    <log_uint as alloy_sol_types::SolEvent>::decode_raw_log(
-                            topics,
-                            data,
-                            validate,
-                        )
+                    <log_uint as alloy_sol_types::SolEvent>::decode_raw_log(topics, data, validate)
                         .map(Self::log_uint)
                 }
                 Some(<logs as alloy_sol_types::SolEvent>::SIGNATURE_HASH) => {
-                    <logs as alloy_sol_types::SolEvent>::decode_raw_log(
-                            topics,
-                            data,
-                            validate,
-                        )
+                    <logs as alloy_sol_types::SolEvent>::decode_raw_log(topics, data, validate)
                         .map(Self::logs)
                 }
-                _ => {
-                    alloy_sol_types::private::Err(alloy_sol_types::Error::InvalidLog {
-                        name: <Self as alloy_sol_types::SolEventInterface>::NAME,
-                        log: alloy_sol_types::private::Box::new(
-                            alloy_sol_types::private::LogData::new_unchecked(
-                                topics.to_vec(),
-                                data.to_vec().into(),
-                            ),
+                _ => alloy_sol_types::private::Err(alloy_sol_types::Error::InvalidLog {
+                    name: <Self as alloy_sol_types::SolEventInterface>::NAME,
+                    log: alloy_sol_types::private::Box::new(
+                        alloy_sol_types::private::LogData::new_unchecked(
+                            topics.to_vec(),
+                            data.to_vec().into(),
                         ),
-                    })
-                }
+                    ),
+                }),
             }
         }
     }
@@ -4673,9 +2937,7 @@ function failed() external view returns (bool);
     impl alloy_sol_types::private::IntoLogData for StdAssertionsEvents {
         fn to_log_data(&self) -> alloy_sol_types::private::LogData {
             match self {
-                Self::log(inner) => {
-                    alloy_sol_types::private::IntoLogData::to_log_data(inner)
-                }
+                Self::log(inner) => alloy_sol_types::private::IntoLogData::to_log_data(inner),
                 Self::log_address(inner) => {
                     alloy_sol_types::private::IntoLogData::to_log_data(inner)
                 }
@@ -4688,15 +2950,11 @@ function failed() external view returns (bool);
                 Self::log_array_2(inner) => {
                     alloy_sol_types::private::IntoLogData::to_log_data(inner)
                 }
-                Self::log_bytes(inner) => {
-                    alloy_sol_types::private::IntoLogData::to_log_data(inner)
-                }
+                Self::log_bytes(inner) => alloy_sol_types::private::IntoLogData::to_log_data(inner),
                 Self::log_bytes32(inner) => {
                     alloy_sol_types::private::IntoLogData::to_log_data(inner)
                 }
-                Self::log_int(inner) => {
-                    alloy_sol_types::private::IntoLogData::to_log_data(inner)
-                }
+                Self::log_int(inner) => alloy_sol_types::private::IntoLogData::to_log_data(inner),
                 Self::log_named_address(inner) => {
                     alloy_sol_types::private::IntoLogData::to_log_data(inner)
                 }
@@ -4733,19 +2991,13 @@ function failed() external view returns (bool);
                 Self::log_string(inner) => {
                     alloy_sol_types::private::IntoLogData::to_log_data(inner)
                 }
-                Self::log_uint(inner) => {
-                    alloy_sol_types::private::IntoLogData::to_log_data(inner)
-                }
-                Self::logs(inner) => {
-                    alloy_sol_types::private::IntoLogData::to_log_data(inner)
-                }
+                Self::log_uint(inner) => alloy_sol_types::private::IntoLogData::to_log_data(inner),
+                Self::logs(inner) => alloy_sol_types::private::IntoLogData::to_log_data(inner),
             }
         }
         fn into_log_data(self) -> alloy_sol_types::private::LogData {
             match self {
-                Self::log(inner) => {
-                    alloy_sol_types::private::IntoLogData::into_log_data(inner)
-                }
+                Self::log(inner) => alloy_sol_types::private::IntoLogData::into_log_data(inner),
                 Self::log_address(inner) => {
                     alloy_sol_types::private::IntoLogData::into_log_data(inner)
                 }
@@ -4764,9 +3016,7 @@ function failed() external view returns (bool);
                 Self::log_bytes32(inner) => {
                     alloy_sol_types::private::IntoLogData::into_log_data(inner)
                 }
-                Self::log_int(inner) => {
-                    alloy_sol_types::private::IntoLogData::into_log_data(inner)
-                }
+                Self::log_int(inner) => alloy_sol_types::private::IntoLogData::into_log_data(inner),
                 Self::log_named_address(inner) => {
                     alloy_sol_types::private::IntoLogData::into_log_data(inner)
                 }
@@ -4806,16 +3056,14 @@ function failed() external view returns (bool);
                 Self::log_uint(inner) => {
                     alloy_sol_types::private::IntoLogData::into_log_data(inner)
                 }
-                Self::logs(inner) => {
-                    alloy_sol_types::private::IntoLogData::into_log_data(inner)
-                }
+                Self::logs(inner) => alloy_sol_types::private::IntoLogData::into_log_data(inner),
             }
         }
     }
     use alloy::contract as alloy_contract;
     /**Creates a new wrapper around an on-chain [`StdAssertions`](self) contract instance.
 
-See the [wrapper's documentation](`StdAssertionsInstance`) for more details.*/
+    See the [wrapper's documentation](`StdAssertionsInstance`) for more details.*/
     #[inline]
     pub const fn new<
         T: alloy_contract::private::Transport + ::core::clone::Clone,
@@ -4829,9 +3077,9 @@ See the [wrapper's documentation](`StdAssertionsInstance`) for more details.*/
     }
     /**Deploys this contract using the given `provider` and constructor arguments, if any.
 
-Returns a new instance of the contract, if the deployment was successful.
+    Returns a new instance of the contract, if the deployment was successful.
 
-For more fine-grained control over the deployment process, use [`deploy_builder`] instead.*/
+    For more fine-grained control over the deployment process, use [`deploy_builder`] instead.*/
     #[inline]
     pub fn deploy<
         T: alloy_contract::private::Transport + ::core::clone::Clone,
@@ -4839,35 +3087,36 @@ For more fine-grained control over the deployment process, use [`deploy_builder`
         N: alloy_contract::private::Network,
     >(
         provider: P,
-    ) -> impl ::core::future::Future<
-        Output = alloy_contract::Result<StdAssertionsInstance<T, P, N>>,
-    > {
+    ) -> impl ::core::future::Future<Output = alloy_contract::Result<StdAssertionsInstance<T, P, N>>>
+    {
         StdAssertionsInstance::<T, P, N>::deploy(provider)
     }
     /**Creates a `RawCallBuilder` for deploying this contract using the given `provider`
-and constructor arguments, if any.
+    and constructor arguments, if any.
 
-This is a simple wrapper around creating a `RawCallBuilder` with the data set to
-the bytecode concatenated with the constructor's ABI-encoded arguments.*/
+    This is a simple wrapper around creating a `RawCallBuilder` with the data set to
+    the bytecode concatenated with the constructor's ABI-encoded arguments.*/
     #[inline]
     pub fn deploy_builder<
         T: alloy_contract::private::Transport + ::core::clone::Clone,
         P: alloy_contract::private::Provider<T, N>,
         N: alloy_contract::private::Network,
-    >(provider: P) -> alloy_contract::RawCallBuilder<T, P, N> {
+    >(
+        provider: P,
+    ) -> alloy_contract::RawCallBuilder<T, P, N> {
         StdAssertionsInstance::<T, P, N>::deploy_builder(provider)
     }
     /**A [`StdAssertions`](self) instance.
 
-Contains type-safe methods for interacting with an on-chain instance of the
-[`StdAssertions`](self) contract located at a given `address`, using a given
-provider `P`.
+    Contains type-safe methods for interacting with an on-chain instance of the
+    [`StdAssertions`](self) contract located at a given `address`, using a given
+    provider `P`.
 
-If the contract bytecode is available (see the [`sol!`](alloy_sol_types::sol!)
-documentation on how to provide it), the `deploy` and `deploy_builder` methods can
-be used to deploy a new instance of the contract.
+    If the contract bytecode is available (see the [`sol!`](alloy_sol_types::sol!)
+    documentation on how to provide it), the `deploy` and `deploy_builder` methods can
+    be used to deploy a new instance of the contract.
 
-See the [module-level documentation](self) for all the available methods.*/
+    See the [module-level documentation](self) for all the available methods.*/
     #[derive(Clone)]
     pub struct StdAssertionsInstance<T, P, N = alloy_contract::private::Ethereum> {
         address: alloy_sol_types::private::Address,
@@ -4884,42 +3133,34 @@ See the [module-level documentation](self) for all the available methods.*/
     /// Instantiation and getters/setters.
     #[automatically_derived]
     impl<
-        T: alloy_contract::private::Transport + ::core::clone::Clone,
-        P: alloy_contract::private::Provider<T, N>,
-        N: alloy_contract::private::Network,
-    > StdAssertionsInstance<T, P, N> {
+            T: alloy_contract::private::Transport + ::core::clone::Clone,
+            P: alloy_contract::private::Provider<T, N>,
+            N: alloy_contract::private::Network,
+        > StdAssertionsInstance<T, P, N>
+    {
         /**Creates a new wrapper around an on-chain [`StdAssertions`](self) contract instance.
 
-See the [wrapper's documentation](`StdAssertionsInstance`) for more details.*/
+        See the [wrapper's documentation](`StdAssertionsInstance`) for more details.*/
         #[inline]
-        pub const fn new(
-            address: alloy_sol_types::private::Address,
-            provider: P,
-        ) -> Self {
-            Self {
-                address,
-                provider,
-                _network_transport: ::core::marker::PhantomData,
-            }
+        pub const fn new(address: alloy_sol_types::private::Address, provider: P) -> Self {
+            Self { address, provider, _network_transport: ::core::marker::PhantomData }
         }
         /**Deploys this contract using the given `provider` and constructor arguments, if any.
 
-Returns a new instance of the contract, if the deployment was successful.
+        Returns a new instance of the contract, if the deployment was successful.
 
-For more fine-grained control over the deployment process, use [`deploy_builder`] instead.*/
+        For more fine-grained control over the deployment process, use [`deploy_builder`] instead.*/
         #[inline]
-        pub async fn deploy(
-            provider: P,
-        ) -> alloy_contract::Result<StdAssertionsInstance<T, P, N>> {
+        pub async fn deploy(provider: P) -> alloy_contract::Result<StdAssertionsInstance<T, P, N>> {
             let call_builder = Self::deploy_builder(provider);
             let contract_address = call_builder.deploy().await?;
             Ok(Self::new(contract_address, call_builder.provider))
         }
         /**Creates a `RawCallBuilder` for deploying this contract using the given `provider`
-and constructor arguments, if any.
+        and constructor arguments, if any.
 
-This is a simple wrapper around creating a `RawCallBuilder` with the data set to
-the bytecode concatenated with the constructor's ABI-encoded arguments.*/
+        This is a simple wrapper around creating a `RawCallBuilder` with the data set to
+        the bytecode concatenated with the constructor's ABI-encoded arguments.*/
         #[inline]
         pub fn deploy_builder(provider: P) -> alloy_contract::RawCallBuilder<T, P, N> {
             alloy_contract::RawCallBuilder::new_raw_deploy(
@@ -4962,10 +3203,11 @@ the bytecode concatenated with the constructor's ABI-encoded arguments.*/
     /// Function calls.
     #[automatically_derived]
     impl<
-        T: alloy_contract::private::Transport + ::core::clone::Clone,
-        P: alloy_contract::private::Provider<T, N>,
-        N: alloy_contract::private::Network,
-    > StdAssertionsInstance<T, P, N> {
+            T: alloy_contract::private::Transport + ::core::clone::Clone,
+            P: alloy_contract::private::Provider<T, N>,
+            N: alloy_contract::private::Network,
+        > StdAssertionsInstance<T, P, N>
+    {
         /// Creates a new call builder using this contract instance's provider and address.
         ///
         /// Note that the call can be any function call, not just those defined in this
@@ -4984,10 +3226,11 @@ the bytecode concatenated with the constructor's ABI-encoded arguments.*/
     /// Event filters.
     #[automatically_derived]
     impl<
-        T: alloy_contract::private::Transport + ::core::clone::Clone,
-        P: alloy_contract::private::Provider<T, N>,
-        N: alloy_contract::private::Network,
-    > StdAssertionsInstance<T, P, N> {
+            T: alloy_contract::private::Transport + ::core::clone::Clone,
+            P: alloy_contract::private::Provider<T, N>,
+            N: alloy_contract::private::Network,
+        > StdAssertionsInstance<T, P, N>
+    {
         /// Creates a new event filter using this contract instance's provider and address.
         ///
         /// Note that the type can be any event, not just those defined in this contract.
@@ -5002,27 +3245,19 @@ the bytecode concatenated with the constructor's ABI-encoded arguments.*/
             self.event_filter::<log>()
         }
         ///Creates a new event filter for the [`log_address`] event.
-        pub fn log_address_filter(
-            &self,
-        ) -> alloy_contract::Event<T, &P, log_address, N> {
+        pub fn log_address_filter(&self) -> alloy_contract::Event<T, &P, log_address, N> {
             self.event_filter::<log_address>()
         }
         ///Creates a new event filter for the [`log_array_0`] event.
-        pub fn log_array_0_filter(
-            &self,
-        ) -> alloy_contract::Event<T, &P, log_array_0, N> {
+        pub fn log_array_0_filter(&self) -> alloy_contract::Event<T, &P, log_array_0, N> {
             self.event_filter::<log_array_0>()
         }
         ///Creates a new event filter for the [`log_array_1`] event.
-        pub fn log_array_1_filter(
-            &self,
-        ) -> alloy_contract::Event<T, &P, log_array_1, N> {
+        pub fn log_array_1_filter(&self) -> alloy_contract::Event<T, &P, log_array_1, N> {
             self.event_filter::<log_array_1>()
         }
         ///Creates a new event filter for the [`log_array_2`] event.
-        pub fn log_array_2_filter(
-            &self,
-        ) -> alloy_contract::Event<T, &P, log_array_2, N> {
+        pub fn log_array_2_filter(&self) -> alloy_contract::Event<T, &P, log_array_2, N> {
             self.event_filter::<log_array_2>()
         }
         ///Creates a new event filter for the [`log_bytes`] event.
@@ -5030,9 +3265,7 @@ the bytecode concatenated with the constructor's ABI-encoded arguments.*/
             self.event_filter::<log_bytes>()
         }
         ///Creates a new event filter for the [`log_bytes32`] event.
-        pub fn log_bytes32_filter(
-            &self,
-        ) -> alloy_contract::Event<T, &P, log_bytes32, N> {
+        pub fn log_bytes32_filter(&self) -> alloy_contract::Event<T, &P, log_bytes32, N> {
             self.event_filter::<log_bytes32>()
         }
         ///Creates a new event filter for the [`log_int`] event.
@@ -5064,9 +3297,7 @@ the bytecode concatenated with the constructor's ABI-encoded arguments.*/
             self.event_filter::<log_named_array_2>()
         }
         ///Creates a new event filter for the [`log_named_bytes`] event.
-        pub fn log_named_bytes_filter(
-            &self,
-        ) -> alloy_contract::Event<T, &P, log_named_bytes, N> {
+        pub fn log_named_bytes_filter(&self) -> alloy_contract::Event<T, &P, log_named_bytes, N> {
             self.event_filter::<log_named_bytes>()
         }
         ///Creates a new event filter for the [`log_named_bytes32`] event.
@@ -5088,21 +3319,15 @@ the bytecode concatenated with the constructor's ABI-encoded arguments.*/
             self.event_filter::<log_named_decimal_uint>()
         }
         ///Creates a new event filter for the [`log_named_int`] event.
-        pub fn log_named_int_filter(
-            &self,
-        ) -> alloy_contract::Event<T, &P, log_named_int, N> {
+        pub fn log_named_int_filter(&self) -> alloy_contract::Event<T, &P, log_named_int, N> {
             self.event_filter::<log_named_int>()
         }
         ///Creates a new event filter for the [`log_named_string`] event.
-        pub fn log_named_string_filter(
-            &self,
-        ) -> alloy_contract::Event<T, &P, log_named_string, N> {
+        pub fn log_named_string_filter(&self) -> alloy_contract::Event<T, &P, log_named_string, N> {
             self.event_filter::<log_named_string>()
         }
         ///Creates a new event filter for the [`log_named_uint`] event.
-        pub fn log_named_uint_filter(
-            &self,
-        ) -> alloy_contract::Event<T, &P, log_named_uint, N> {
+        pub fn log_named_uint_filter(&self) -> alloy_contract::Event<T, &P, log_named_uint, N> {
             self.event_filter::<log_named_uint>()
         }
         ///Creates a new event filter for the [`log_string`] event.

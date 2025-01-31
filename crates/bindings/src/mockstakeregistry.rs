@@ -69,27 +69,27 @@ pub mod MockStakeRegistry {
     /// The creation / init bytecode of the contract.
     ///
     /// ```text
-    ///0x6080604052348015600e575f5ffd5b506101ca8061001c5f395ff3fe608060405234801561000f575f5ffd5b5060043610610034575f3560e01c80631626ba7e14610038578063ec7fbb3114610072575b5f5ffd5b6100546100463660046100aa565b630b135d3f60e11b92915050565b6040516001600160e01b031990911681526020015b60405180910390f35b610086610080366004610167565b50600190565b6040519015158152602001610069565b634e487b7160e01b5f52604160045260245ffd5b5f5f604083850312156100bb575f5ffd5b82359150602083013567ffffffffffffffff8111156100d8575f5ffd5b8301601f810185136100e8575f5ffd5b803567ffffffffffffffff81111561010257610102610096565b604051601f8201601f19908116603f0116810167ffffffffffffffff8111828210171561013157610131610096565b604052818152828201602001871015610148575f5ffd5b816020840160208301375f602083830101528093505050509250929050565b5f60208284031215610177575f5ffd5b81356001600160a01b038116811461018d575f5ffd5b939250505056fea2646970667358221220d86c7a086c0e1daf3f365857b53093d805fab5085e24224d25bb32a9fc214b4664736f6c634300081c0033
+    ///0x6080604052348015600e575f5ffd5b506101ca8061001c5f395ff3fe608060405234801561000f575f5ffd5b5060043610610034575f3560e01c80631626ba7e14610038578063ec7fbb3114610072575b5f5ffd5b6100546100463660046100aa565b630b135d3f60e11b92915050565b6040516001600160e01b031990911681526020015b60405180910390f35b610086610080366004610167565b50600190565b6040519015158152602001610069565b634e487b7160e01b5f52604160045260245ffd5b5f5f604083850312156100bb575f5ffd5b82359150602083013567ffffffffffffffff8111156100d8575f5ffd5b8301601f810185136100e8575f5ffd5b803567ffffffffffffffff81111561010257610102610096565b604051601f8201601f19908116603f0116810167ffffffffffffffff8111828210171561013157610131610096565b604052818152828201602001871015610148575f5ffd5b816020840160208301375f602083830101528093505050509250929050565b5f60208284031215610177575f5ffd5b81356001600160a01b038116811461018d575f5ffd5b939250505056fea264697066735822122057e187e40e3adb7b6e9d0320c0b3f8f3b80db9fe41c1b304d25f423c74df4cee64736f6c634300081c0033
     /// ```
     #[rustfmt::skip]
     #[allow(clippy::all)]
     pub static BYTECODE: alloy_sol_types::private::Bytes = alloy_sol_types::private::Bytes::from_static(
-        b"`\x80`@R4\x80\x15`\x0EW__\xFD[Pa\x01\xCA\x80a\0\x1C_9_\xF3\xFE`\x80`@R4\x80\x15a\0\x0FW__\xFD[P`\x046\x10a\x004W_5`\xE0\x1C\x80c\x16&\xBA~\x14a\08W\x80c\xEC\x7F\xBB1\x14a\0rW[__\xFD[a\0Ta\0F6`\x04a\0\xAAV[c\x0B\x13]?`\xE1\x1B\x92\x91PPV[`@Q`\x01`\x01`\xE0\x1B\x03\x19\x90\x91\x16\x81R` \x01[`@Q\x80\x91\x03\x90\xF3[a\0\x86a\0\x806`\x04a\x01gV[P`\x01\x90V[`@Q\x90\x15\x15\x81R` \x01a\0iV[cNH{q`\xE0\x1B_R`A`\x04R`$_\xFD[__`@\x83\x85\x03\x12\x15a\0\xBBW__\xFD[\x825\x91P` \x83\x015g\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\x81\x11\x15a\0\xD8W__\xFD[\x83\x01`\x1F\x81\x01\x85\x13a\0\xE8W__\xFD[\x805g\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\x81\x11\x15a\x01\x02Wa\x01\x02a\0\x96V[`@Q`\x1F\x82\x01`\x1F\x19\x90\x81\x16`?\x01\x16\x81\x01g\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\x81\x11\x82\x82\x10\x17\x15a\x011Wa\x011a\0\x96V[`@R\x81\x81R\x82\x82\x01` \x01\x87\x10\x15a\x01HW__\xFD[\x81` \x84\x01` \x83\x017_` \x83\x83\x01\x01R\x80\x93PPPP\x92P\x92\x90PV[_` \x82\x84\x03\x12\x15a\x01wW__\xFD[\x815`\x01`\x01`\xA0\x1B\x03\x81\x16\x81\x14a\x01\x8DW__\xFD[\x93\x92PPPV\xFE\xA2dipfsX\"\x12 \xD8lz\x08l\x0E\x1D\xAF?6XW\xB50\x93\xD8\x05\xFA\xB5\x08^$\"M%\xBB2\xA9\xFC!KFdsolcC\0\x08\x1C\x003",
+        b"`\x80`@R4\x80\x15`\x0EW__\xFD[Pa\x01\xCA\x80a\0\x1C_9_\xF3\xFE`\x80`@R4\x80\x15a\0\x0FW__\xFD[P`\x046\x10a\x004W_5`\xE0\x1C\x80c\x16&\xBA~\x14a\08W\x80c\xEC\x7F\xBB1\x14a\0rW[__\xFD[a\0Ta\0F6`\x04a\0\xAAV[c\x0B\x13]?`\xE1\x1B\x92\x91PPV[`@Q`\x01`\x01`\xE0\x1B\x03\x19\x90\x91\x16\x81R` \x01[`@Q\x80\x91\x03\x90\xF3[a\0\x86a\0\x806`\x04a\x01gV[P`\x01\x90V[`@Q\x90\x15\x15\x81R` \x01a\0iV[cNH{q`\xE0\x1B_R`A`\x04R`$_\xFD[__`@\x83\x85\x03\x12\x15a\0\xBBW__\xFD[\x825\x91P` \x83\x015g\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\x81\x11\x15a\0\xD8W__\xFD[\x83\x01`\x1F\x81\x01\x85\x13a\0\xE8W__\xFD[\x805g\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\x81\x11\x15a\x01\x02Wa\x01\x02a\0\x96V[`@Q`\x1F\x82\x01`\x1F\x19\x90\x81\x16`?\x01\x16\x81\x01g\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\x81\x11\x82\x82\x10\x17\x15a\x011Wa\x011a\0\x96V[`@R\x81\x81R\x82\x82\x01` \x01\x87\x10\x15a\x01HW__\xFD[\x81` \x84\x01` \x83\x017_` \x83\x83\x01\x01R\x80\x93PPPP\x92P\x92\x90PV[_` \x82\x84\x03\x12\x15a\x01wW__\xFD[\x815`\x01`\x01`\xA0\x1B\x03\x81\x16\x81\x14a\x01\x8DW__\xFD[\x93\x92PPPV\xFE\xA2dipfsX\"\x12 W\xE1\x87\xE4\x0E:\xDB{n\x9D\x03 \xC0\xB3\xF8\xF3\xB8\r\xB9\xFEA\xC1\xB3\x04\xD2_B<t\xDFL\xEEdsolcC\0\x08\x1C\x003",
     );
     /// The runtime bytecode of the contract, as deployed on the network.
     ///
     /// ```text
-    ///0x608060405234801561000f575f5ffd5b5060043610610034575f3560e01c80631626ba7e14610038578063ec7fbb3114610072575b5f5ffd5b6100546100463660046100aa565b630b135d3f60e11b92915050565b6040516001600160e01b031990911681526020015b60405180910390f35b610086610080366004610167565b50600190565b6040519015158152602001610069565b634e487b7160e01b5f52604160045260245ffd5b5f5f604083850312156100bb575f5ffd5b82359150602083013567ffffffffffffffff8111156100d8575f5ffd5b8301601f810185136100e8575f5ffd5b803567ffffffffffffffff81111561010257610102610096565b604051601f8201601f19908116603f0116810167ffffffffffffffff8111828210171561013157610131610096565b604052818152828201602001871015610148575f5ffd5b816020840160208301375f602083830101528093505050509250929050565b5f60208284031215610177575f5ffd5b81356001600160a01b038116811461018d575f5ffd5b939250505056fea2646970667358221220d86c7a086c0e1daf3f365857b53093d805fab5085e24224d25bb32a9fc214b4664736f6c634300081c0033
+    ///0x608060405234801561000f575f5ffd5b5060043610610034575f3560e01c80631626ba7e14610038578063ec7fbb3114610072575b5f5ffd5b6100546100463660046100aa565b630b135d3f60e11b92915050565b6040516001600160e01b031990911681526020015b60405180910390f35b610086610080366004610167565b50600190565b6040519015158152602001610069565b634e487b7160e01b5f52604160045260245ffd5b5f5f604083850312156100bb575f5ffd5b82359150602083013567ffffffffffffffff8111156100d8575f5ffd5b8301601f810185136100e8575f5ffd5b803567ffffffffffffffff81111561010257610102610096565b604051601f8201601f19908116603f0116810167ffffffffffffffff8111828210171561013157610131610096565b604052818152828201602001871015610148575f5ffd5b816020840160208301375f602083830101528093505050509250929050565b5f60208284031215610177575f5ffd5b81356001600160a01b038116811461018d575f5ffd5b939250505056fea264697066735822122057e187e40e3adb7b6e9d0320c0b3f8f3b80db9fe41c1b304d25f423c74df4cee64736f6c634300081c0033
     /// ```
     #[rustfmt::skip]
     #[allow(clippy::all)]
     pub static DEPLOYED_BYTECODE: alloy_sol_types::private::Bytes = alloy_sol_types::private::Bytes::from_static(
-        b"`\x80`@R4\x80\x15a\0\x0FW__\xFD[P`\x046\x10a\x004W_5`\xE0\x1C\x80c\x16&\xBA~\x14a\08W\x80c\xEC\x7F\xBB1\x14a\0rW[__\xFD[a\0Ta\0F6`\x04a\0\xAAV[c\x0B\x13]?`\xE1\x1B\x92\x91PPV[`@Q`\x01`\x01`\xE0\x1B\x03\x19\x90\x91\x16\x81R` \x01[`@Q\x80\x91\x03\x90\xF3[a\0\x86a\0\x806`\x04a\x01gV[P`\x01\x90V[`@Q\x90\x15\x15\x81R` \x01a\0iV[cNH{q`\xE0\x1B_R`A`\x04R`$_\xFD[__`@\x83\x85\x03\x12\x15a\0\xBBW__\xFD[\x825\x91P` \x83\x015g\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\x81\x11\x15a\0\xD8W__\xFD[\x83\x01`\x1F\x81\x01\x85\x13a\0\xE8W__\xFD[\x805g\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\x81\x11\x15a\x01\x02Wa\x01\x02a\0\x96V[`@Q`\x1F\x82\x01`\x1F\x19\x90\x81\x16`?\x01\x16\x81\x01g\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\x81\x11\x82\x82\x10\x17\x15a\x011Wa\x011a\0\x96V[`@R\x81\x81R\x82\x82\x01` \x01\x87\x10\x15a\x01HW__\xFD[\x81` \x84\x01` \x83\x017_` \x83\x83\x01\x01R\x80\x93PPPP\x92P\x92\x90PV[_` \x82\x84\x03\x12\x15a\x01wW__\xFD[\x815`\x01`\x01`\xA0\x1B\x03\x81\x16\x81\x14a\x01\x8DW__\xFD[\x93\x92PPPV\xFE\xA2dipfsX\"\x12 \xD8lz\x08l\x0E\x1D\xAF?6XW\xB50\x93\xD8\x05\xFA\xB5\x08^$\"M%\xBB2\xA9\xFC!KFdsolcC\0\x08\x1C\x003",
+        b"`\x80`@R4\x80\x15a\0\x0FW__\xFD[P`\x046\x10a\x004W_5`\xE0\x1C\x80c\x16&\xBA~\x14a\08W\x80c\xEC\x7F\xBB1\x14a\0rW[__\xFD[a\0Ta\0F6`\x04a\0\xAAV[c\x0B\x13]?`\xE1\x1B\x92\x91PPV[`@Q`\x01`\x01`\xE0\x1B\x03\x19\x90\x91\x16\x81R` \x01[`@Q\x80\x91\x03\x90\xF3[a\0\x86a\0\x806`\x04a\x01gV[P`\x01\x90V[`@Q\x90\x15\x15\x81R` \x01a\0iV[cNH{q`\xE0\x1B_R`A`\x04R`$_\xFD[__`@\x83\x85\x03\x12\x15a\0\xBBW__\xFD[\x825\x91P` \x83\x015g\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\x81\x11\x15a\0\xD8W__\xFD[\x83\x01`\x1F\x81\x01\x85\x13a\0\xE8W__\xFD[\x805g\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\x81\x11\x15a\x01\x02Wa\x01\x02a\0\x96V[`@Q`\x1F\x82\x01`\x1F\x19\x90\x81\x16`?\x01\x16\x81\x01g\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\x81\x11\x82\x82\x10\x17\x15a\x011Wa\x011a\0\x96V[`@R\x81\x81R\x82\x82\x01` \x01\x87\x10\x15a\x01HW__\xFD[\x81` \x84\x01` \x83\x017_` \x83\x83\x01\x01R\x80\x93PPPP\x92P\x92\x90PV[_` \x82\x84\x03\x12\x15a\x01wW__\xFD[\x815`\x01`\x01`\xA0\x1B\x03\x81\x16\x81\x14a\x01\x8DW__\xFD[\x93\x92PPPV\xFE\xA2dipfsX\"\x12 W\xE1\x87\xE4\x0E:\xDB{n\x9D\x03 \xC0\xB3\xF8\xF3\xB8\r\xB9\xFEA\xC1\xB3\x04\xD2_B<t\xDFL\xEEdsolcC\0\x08\x1C\x003",
     );
     /**Function with signature `isValidSignature(bytes32,bytes)` and selector `0x1626ba7e`.
-```solidity
-function isValidSignature(bytes32, bytes memory) external pure returns (bytes4);
-```*/
+    ```solidity
+    function isValidSignature(bytes32, bytes memory) external pure returns (bytes4);
+    ```*/
     #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields)]
     #[derive(Clone)]
     pub struct isValidSignatureCall {
@@ -102,30 +102,19 @@ function isValidSignature(bytes32, bytes memory) external pure returns (bytes4);
     pub struct isValidSignatureReturn {
         pub _0: alloy::sol_types::private::FixedBytes<4>,
     }
-    #[allow(
-        non_camel_case_types,
-        non_snake_case,
-        clippy::pub_underscore_fields,
-        clippy::style
-    )]
+    #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields, clippy::style)]
     const _: () = {
         use alloy::sol_types as alloy_sol_types;
         {
             #[doc(hidden)]
-            type UnderlyingSolTuple<'a> = (
-                alloy::sol_types::sol_data::FixedBytes<32>,
-                alloy::sol_types::sol_data::Bytes,
-            );
+            type UnderlyingSolTuple<'a> =
+                (alloy::sol_types::sol_data::FixedBytes<32>, alloy::sol_types::sol_data::Bytes);
             #[doc(hidden)]
-            type UnderlyingRustTuple<'a> = (
-                alloy::sol_types::private::FixedBytes<32>,
-                alloy::sol_types::private::Bytes,
-            );
+            type UnderlyingRustTuple<'a> =
+                (alloy::sol_types::private::FixedBytes<32>, alloy::sol_types::private::Bytes);
             #[cfg(test)]
             #[allow(dead_code, unreachable_patterns)]
-            fn _type_assertion(
-                _t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>,
-            ) {
+            fn _type_assertion(_t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>) {
                 match _t {
                     alloy_sol_types::private::AssertTypeEq::<
                         <UnderlyingSolTuple as alloy_sol_types::SolType>::RustType,
@@ -134,16 +123,14 @@ function isValidSignature(bytes32, bytes memory) external pure returns (bytes4);
             }
             #[automatically_derived]
             #[doc(hidden)]
-            impl ::core::convert::From<isValidSignatureCall>
-            for UnderlyingRustTuple<'_> {
+            impl ::core::convert::From<isValidSignatureCall> for UnderlyingRustTuple<'_> {
                 fn from(value: isValidSignatureCall) -> Self {
                     (value._0, value._1)
                 }
             }
             #[automatically_derived]
             #[doc(hidden)]
-            impl ::core::convert::From<UnderlyingRustTuple<'_>>
-            for isValidSignatureCall {
+            impl ::core::convert::From<UnderlyingRustTuple<'_>> for isValidSignatureCall {
                 fn from(tuple: UnderlyingRustTuple<'_>) -> Self {
                     Self { _0: tuple.0, _1: tuple.1 }
                 }
@@ -156,9 +143,7 @@ function isValidSignature(bytes32, bytes memory) external pure returns (bytes4);
             type UnderlyingRustTuple<'a> = (alloy::sol_types::private::FixedBytes<4>,);
             #[cfg(test)]
             #[allow(dead_code, unreachable_patterns)]
-            fn _type_assertion(
-                _t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>,
-            ) {
+            fn _type_assertion(_t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>) {
                 match _t {
                     alloy_sol_types::private::AssertTypeEq::<
                         <UnderlyingSolTuple as alloy_sol_types::SolType>::RustType,
@@ -167,16 +152,14 @@ function isValidSignature(bytes32, bytes memory) external pure returns (bytes4);
             }
             #[automatically_derived]
             #[doc(hidden)]
-            impl ::core::convert::From<isValidSignatureReturn>
-            for UnderlyingRustTuple<'_> {
+            impl ::core::convert::From<isValidSignatureReturn> for UnderlyingRustTuple<'_> {
                 fn from(value: isValidSignatureReturn) -> Self {
                     (value._0,)
                 }
             }
             #[automatically_derived]
             #[doc(hidden)]
-            impl ::core::convert::From<UnderlyingRustTuple<'_>>
-            for isValidSignatureReturn {
+            impl ::core::convert::From<UnderlyingRustTuple<'_>> for isValidSignatureReturn {
                 fn from(tuple: UnderlyingRustTuple<'_>) -> Self {
                     Self { _0: tuple.0 }
                 }
@@ -184,18 +167,12 @@ function isValidSignature(bytes32, bytes memory) external pure returns (bytes4);
         }
         #[automatically_derived]
         impl alloy_sol_types::SolCall for isValidSignatureCall {
-            type Parameters<'a> = (
-                alloy::sol_types::sol_data::FixedBytes<32>,
-                alloy::sol_types::sol_data::Bytes,
-            );
-            type Token<'a> = <Self::Parameters<
-                'a,
-            > as alloy_sol_types::SolType>::Token<'a>;
+            type Parameters<'a> =
+                (alloy::sol_types::sol_data::FixedBytes<32>, alloy::sol_types::sol_data::Bytes);
+            type Token<'a> = <Self::Parameters<'a> as alloy_sol_types::SolType>::Token<'a>;
             type Return = isValidSignatureReturn;
             type ReturnTuple<'a> = (alloy::sol_types::sol_data::FixedBytes<4>,);
-            type ReturnToken<'a> = <Self::ReturnTuple<
-                'a,
-            > as alloy_sol_types::SolType>::Token<'a>;
+            type ReturnToken<'a> = <Self::ReturnTuple<'a> as alloy_sol_types::SolType>::Token<'a>;
             const SIGNATURE: &'static str = "isValidSignature(bytes32,bytes)";
             const SELECTOR: [u8; 4] = [22u8, 38u8, 186u8, 126u8];
             #[inline]
@@ -220,17 +197,17 @@ function isValidSignature(bytes32, bytes memory) external pure returns (bytes4);
                 data: &[u8],
                 validate: bool,
             ) -> alloy_sol_types::Result<Self::Return> {
-                <Self::ReturnTuple<
-                    '_,
-                > as alloy_sol_types::SolType>::abi_decode_sequence(data, validate)
-                    .map(Into::into)
+                <Self::ReturnTuple<'_> as alloy_sol_types::SolType>::abi_decode_sequence(
+                    data, validate,
+                )
+                .map(Into::into)
             }
         }
     };
     /**Function with signature `operatorRegistered(address)` and selector `0xec7fbb31`.
-```solidity
-function operatorRegistered(address) external pure returns (bool);
-```*/
+    ```solidity
+    function operatorRegistered(address) external pure returns (bool);
+    ```*/
     #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields)]
     #[derive(Clone)]
     pub struct operatorRegisteredCall {
@@ -242,12 +219,7 @@ function operatorRegistered(address) external pure returns (bool);
     pub struct operatorRegisteredReturn {
         pub _0: bool,
     }
-    #[allow(
-        non_camel_case_types,
-        non_snake_case,
-        clippy::pub_underscore_fields,
-        clippy::style
-    )]
+    #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields, clippy::style)]
     const _: () = {
         use alloy::sol_types as alloy_sol_types;
         {
@@ -257,9 +229,7 @@ function operatorRegistered(address) external pure returns (bool);
             type UnderlyingRustTuple<'a> = (alloy::sol_types::private::Address,);
             #[cfg(test)]
             #[allow(dead_code, unreachable_patterns)]
-            fn _type_assertion(
-                _t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>,
-            ) {
+            fn _type_assertion(_t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>) {
                 match _t {
                     alloy_sol_types::private::AssertTypeEq::<
                         <UnderlyingSolTuple as alloy_sol_types::SolType>::RustType,
@@ -268,16 +238,14 @@ function operatorRegistered(address) external pure returns (bool);
             }
             #[automatically_derived]
             #[doc(hidden)]
-            impl ::core::convert::From<operatorRegisteredCall>
-            for UnderlyingRustTuple<'_> {
+            impl ::core::convert::From<operatorRegisteredCall> for UnderlyingRustTuple<'_> {
                 fn from(value: operatorRegisteredCall) -> Self {
                     (value._0,)
                 }
             }
             #[automatically_derived]
             #[doc(hidden)]
-            impl ::core::convert::From<UnderlyingRustTuple<'_>>
-            for operatorRegisteredCall {
+            impl ::core::convert::From<UnderlyingRustTuple<'_>> for operatorRegisteredCall {
                 fn from(tuple: UnderlyingRustTuple<'_>) -> Self {
                     Self { _0: tuple.0 }
                 }
@@ -290,9 +258,7 @@ function operatorRegistered(address) external pure returns (bool);
             type UnderlyingRustTuple<'a> = (bool,);
             #[cfg(test)]
             #[allow(dead_code, unreachable_patterns)]
-            fn _type_assertion(
-                _t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>,
-            ) {
+            fn _type_assertion(_t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>) {
                 match _t {
                     alloy_sol_types::private::AssertTypeEq::<
                         <UnderlyingSolTuple as alloy_sol_types::SolType>::RustType,
@@ -301,16 +267,14 @@ function operatorRegistered(address) external pure returns (bool);
             }
             #[automatically_derived]
             #[doc(hidden)]
-            impl ::core::convert::From<operatorRegisteredReturn>
-            for UnderlyingRustTuple<'_> {
+            impl ::core::convert::From<operatorRegisteredReturn> for UnderlyingRustTuple<'_> {
                 fn from(value: operatorRegisteredReturn) -> Self {
                     (value._0,)
                 }
             }
             #[automatically_derived]
             #[doc(hidden)]
-            impl ::core::convert::From<UnderlyingRustTuple<'_>>
-            for operatorRegisteredReturn {
+            impl ::core::convert::From<UnderlyingRustTuple<'_>> for operatorRegisteredReturn {
                 fn from(tuple: UnderlyingRustTuple<'_>) -> Self {
                     Self { _0: tuple.0 }
                 }
@@ -319,14 +283,10 @@ function operatorRegistered(address) external pure returns (bool);
         #[automatically_derived]
         impl alloy_sol_types::SolCall for operatorRegisteredCall {
             type Parameters<'a> = (alloy::sol_types::sol_data::Address,);
-            type Token<'a> = <Self::Parameters<
-                'a,
-            > as alloy_sol_types::SolType>::Token<'a>;
+            type Token<'a> = <Self::Parameters<'a> as alloy_sol_types::SolType>::Token<'a>;
             type Return = operatorRegisteredReturn;
             type ReturnTuple<'a> = (alloy::sol_types::sol_data::Bool,);
-            type ReturnToken<'a> = <Self::ReturnTuple<
-                'a,
-            > as alloy_sol_types::SolType>::Token<'a>;
+            type ReturnToken<'a> = <Self::ReturnTuple<'a> as alloy_sol_types::SolType>::Token<'a>;
             const SIGNATURE: &'static str = "operatorRegistered(address)";
             const SELECTOR: [u8; 4] = [236u8, 127u8, 187u8, 49u8];
             #[inline]
@@ -337,21 +297,19 @@ function operatorRegistered(address) external pure returns (bool);
             }
             #[inline]
             fn tokenize(&self) -> Self::Token<'_> {
-                (
-                    <alloy::sol_types::sol_data::Address as alloy_sol_types::SolType>::tokenize(
-                        &self._0,
-                    ),
-                )
+                (<alloy::sol_types::sol_data::Address as alloy_sol_types::SolType>::tokenize(
+                    &self._0,
+                ),)
             }
             #[inline]
             fn abi_decode_returns(
                 data: &[u8],
                 validate: bool,
             ) -> alloy_sol_types::Result<Self::Return> {
-                <Self::ReturnTuple<
-                    '_,
-                > as alloy_sol_types::SolType>::abi_decode_sequence(data, validate)
-                    .map(Into::into)
+                <Self::ReturnTuple<'_> as alloy_sol_types::SolType>::abi_decode_sequence(
+                    data, validate,
+                )
+                .map(Into::into)
             }
         }
     };
@@ -368,10 +326,8 @@ function operatorRegistered(address) external pure returns (bool);
         /// No guarantees are made about the order of the selectors.
         ///
         /// Prefer using `SolInterface` methods instead.
-        pub const SELECTORS: &'static [[u8; 4usize]] = &[
-            [22u8, 38u8, 186u8, 126u8],
-            [236u8, 127u8, 187u8, 49u8],
-        ];
+        pub const SELECTORS: &'static [[u8; 4usize]] =
+            &[[22u8, 38u8, 186u8, 126u8], [236u8, 127u8, 187u8, 49u8]];
     }
     #[automatically_derived]
     impl alloy_sol_types::SolInterface for MockStakeRegistryCalls {
@@ -407,17 +363,17 @@ function operatorRegistered(address) external pure returns (bool);
             static DECODE_SHIMS: &[fn(
                 &[u8],
                 bool,
-            ) -> alloy_sol_types::Result<MockStakeRegistryCalls>] = &[
+            )
+                -> alloy_sol_types::Result<MockStakeRegistryCalls>] = &[
                 {
                     fn isValidSignature(
                         data: &[u8],
                         validate: bool,
                     ) -> alloy_sol_types::Result<MockStakeRegistryCalls> {
                         <isValidSignatureCall as alloy_sol_types::SolCall>::abi_decode_raw(
-                                data,
-                                validate,
-                            )
-                            .map(MockStakeRegistryCalls::isValidSignature)
+                            data, validate,
+                        )
+                        .map(MockStakeRegistryCalls::isValidSignature)
                     }
                     isValidSignature
                 },
@@ -427,21 +383,18 @@ function operatorRegistered(address) external pure returns (bool);
                         validate: bool,
                     ) -> alloy_sol_types::Result<MockStakeRegistryCalls> {
                         <operatorRegisteredCall as alloy_sol_types::SolCall>::abi_decode_raw(
-                                data,
-                                validate,
-                            )
-                            .map(MockStakeRegistryCalls::operatorRegistered)
+                            data, validate,
+                        )
+                        .map(MockStakeRegistryCalls::operatorRegistered)
                     }
                     operatorRegistered
                 },
             ];
             let Ok(idx) = Self::SELECTORS.binary_search(&selector) else {
-                return Err(
-                    alloy_sol_types::Error::unknown_selector(
-                        <Self as alloy_sol_types::SolInterface>::NAME,
-                        selector,
-                    ),
-                );
+                return Err(alloy_sol_types::Error::unknown_selector(
+                    <Self as alloy_sol_types::SolInterface>::NAME,
+                    selector,
+                ));
             };
             DECODE_SHIMS[idx](data, validate)
         }
@@ -449,14 +402,10 @@ function operatorRegistered(address) external pure returns (bool);
         fn abi_encoded_size(&self) -> usize {
             match self {
                 Self::isValidSignature(inner) => {
-                    <isValidSignatureCall as alloy_sol_types::SolCall>::abi_encoded_size(
-                        inner,
-                    )
+                    <isValidSignatureCall as alloy_sol_types::SolCall>::abi_encoded_size(inner)
                 }
                 Self::operatorRegistered(inner) => {
-                    <operatorRegisteredCall as alloy_sol_types::SolCall>::abi_encoded_size(
-                        inner,
-                    )
+                    <operatorRegisteredCall as alloy_sol_types::SolCall>::abi_encoded_size(inner)
                 }
             }
         }
@@ -464,16 +413,10 @@ function operatorRegistered(address) external pure returns (bool);
         fn abi_encode_raw(&self, out: &mut alloy_sol_types::private::Vec<u8>) {
             match self {
                 Self::isValidSignature(inner) => {
-                    <isValidSignatureCall as alloy_sol_types::SolCall>::abi_encode_raw(
-                        inner,
-                        out,
-                    )
+                    <isValidSignatureCall as alloy_sol_types::SolCall>::abi_encode_raw(inner, out)
                 }
                 Self::operatorRegistered(inner) => {
-                    <operatorRegisteredCall as alloy_sol_types::SolCall>::abi_encode_raw(
-                        inner,
-                        out,
-                    )
+                    <operatorRegisteredCall as alloy_sol_types::SolCall>::abi_encode_raw(inner, out)
                 }
             }
         }
@@ -481,7 +424,7 @@ function operatorRegistered(address) external pure returns (bool);
     use alloy::contract as alloy_contract;
     /**Creates a new wrapper around an on-chain [`MockStakeRegistry`](self) contract instance.
 
-See the [wrapper's documentation](`MockStakeRegistryInstance`) for more details.*/
+    See the [wrapper's documentation](`MockStakeRegistryInstance`) for more details.*/
     #[inline]
     pub const fn new<
         T: alloy_contract::private::Transport + ::core::clone::Clone,
@@ -495,9 +438,9 @@ See the [wrapper's documentation](`MockStakeRegistryInstance`) for more details.
     }
     /**Deploys this contract using the given `provider` and constructor arguments, if any.
 
-Returns a new instance of the contract, if the deployment was successful.
+    Returns a new instance of the contract, if the deployment was successful.
 
-For more fine-grained control over the deployment process, use [`deploy_builder`] instead.*/
+    For more fine-grained control over the deployment process, use [`deploy_builder`] instead.*/
     #[inline]
     pub fn deploy<
         T: alloy_contract::private::Transport + ::core::clone::Clone,
@@ -505,35 +448,36 @@ For more fine-grained control over the deployment process, use [`deploy_builder`
         N: alloy_contract::private::Network,
     >(
         provider: P,
-    ) -> impl ::core::future::Future<
-        Output = alloy_contract::Result<MockStakeRegistryInstance<T, P, N>>,
-    > {
+    ) -> impl ::core::future::Future<Output = alloy_contract::Result<MockStakeRegistryInstance<T, P, N>>>
+    {
         MockStakeRegistryInstance::<T, P, N>::deploy(provider)
     }
     /**Creates a `RawCallBuilder` for deploying this contract using the given `provider`
-and constructor arguments, if any.
+    and constructor arguments, if any.
 
-This is a simple wrapper around creating a `RawCallBuilder` with the data set to
-the bytecode concatenated with the constructor's ABI-encoded arguments.*/
+    This is a simple wrapper around creating a `RawCallBuilder` with the data set to
+    the bytecode concatenated with the constructor's ABI-encoded arguments.*/
     #[inline]
     pub fn deploy_builder<
         T: alloy_contract::private::Transport + ::core::clone::Clone,
         P: alloy_contract::private::Provider<T, N>,
         N: alloy_contract::private::Network,
-    >(provider: P) -> alloy_contract::RawCallBuilder<T, P, N> {
+    >(
+        provider: P,
+    ) -> alloy_contract::RawCallBuilder<T, P, N> {
         MockStakeRegistryInstance::<T, P, N>::deploy_builder(provider)
     }
     /**A [`MockStakeRegistry`](self) instance.
 
-Contains type-safe methods for interacting with an on-chain instance of the
-[`MockStakeRegistry`](self) contract located at a given `address`, using a given
-provider `P`.
+    Contains type-safe methods for interacting with an on-chain instance of the
+    [`MockStakeRegistry`](self) contract located at a given `address`, using a given
+    provider `P`.
 
-If the contract bytecode is available (see the [`sol!`](alloy_sol_types::sol!)
-documentation on how to provide it), the `deploy` and `deploy_builder` methods can
-be used to deploy a new instance of the contract.
+    If the contract bytecode is available (see the [`sol!`](alloy_sol_types::sol!)
+    documentation on how to provide it), the `deploy` and `deploy_builder` methods can
+    be used to deploy a new instance of the contract.
 
-See the [module-level documentation](self) for all the available methods.*/
+    See the [module-level documentation](self) for all the available methods.*/
     #[derive(Clone)]
     pub struct MockStakeRegistryInstance<T, P, N = alloy_contract::private::Ethereum> {
         address: alloy_sol_types::private::Address,
@@ -550,29 +494,23 @@ See the [module-level documentation](self) for all the available methods.*/
     /// Instantiation and getters/setters.
     #[automatically_derived]
     impl<
-        T: alloy_contract::private::Transport + ::core::clone::Clone,
-        P: alloy_contract::private::Provider<T, N>,
-        N: alloy_contract::private::Network,
-    > MockStakeRegistryInstance<T, P, N> {
+            T: alloy_contract::private::Transport + ::core::clone::Clone,
+            P: alloy_contract::private::Provider<T, N>,
+            N: alloy_contract::private::Network,
+        > MockStakeRegistryInstance<T, P, N>
+    {
         /**Creates a new wrapper around an on-chain [`MockStakeRegistry`](self) contract instance.
 
-See the [wrapper's documentation](`MockStakeRegistryInstance`) for more details.*/
+        See the [wrapper's documentation](`MockStakeRegistryInstance`) for more details.*/
         #[inline]
-        pub const fn new(
-            address: alloy_sol_types::private::Address,
-            provider: P,
-        ) -> Self {
-            Self {
-                address,
-                provider,
-                _network_transport: ::core::marker::PhantomData,
-            }
+        pub const fn new(address: alloy_sol_types::private::Address, provider: P) -> Self {
+            Self { address, provider, _network_transport: ::core::marker::PhantomData }
         }
         /**Deploys this contract using the given `provider` and constructor arguments, if any.
 
-Returns a new instance of the contract, if the deployment was successful.
+        Returns a new instance of the contract, if the deployment was successful.
 
-For more fine-grained control over the deployment process, use [`deploy_builder`] instead.*/
+        For more fine-grained control over the deployment process, use [`deploy_builder`] instead.*/
         #[inline]
         pub async fn deploy(
             provider: P,
@@ -582,10 +520,10 @@ For more fine-grained control over the deployment process, use [`deploy_builder`
             Ok(Self::new(contract_address, call_builder.provider))
         }
         /**Creates a `RawCallBuilder` for deploying this contract using the given `provider`
-and constructor arguments, if any.
+        and constructor arguments, if any.
 
-This is a simple wrapper around creating a `RawCallBuilder` with the data set to
-the bytecode concatenated with the constructor's ABI-encoded arguments.*/
+        This is a simple wrapper around creating a `RawCallBuilder` with the data set to
+        the bytecode concatenated with the constructor's ABI-encoded arguments.*/
         #[inline]
         pub fn deploy_builder(provider: P) -> alloy_contract::RawCallBuilder<T, P, N> {
             alloy_contract::RawCallBuilder::new_raw_deploy(
@@ -628,10 +566,11 @@ the bytecode concatenated with the constructor's ABI-encoded arguments.*/
     /// Function calls.
     #[automatically_derived]
     impl<
-        T: alloy_contract::private::Transport + ::core::clone::Clone,
-        P: alloy_contract::private::Provider<T, N>,
-        N: alloy_contract::private::Network,
-    > MockStakeRegistryInstance<T, P, N> {
+            T: alloy_contract::private::Transport + ::core::clone::Clone,
+            P: alloy_contract::private::Provider<T, N>,
+            N: alloy_contract::private::Network,
+        > MockStakeRegistryInstance<T, P, N>
+    {
         /// Creates a new call builder using this contract instance's provider and address.
         ///
         /// Note that the call can be any function call, not just those defined in this
@@ -661,10 +600,11 @@ the bytecode concatenated with the constructor's ABI-encoded arguments.*/
     /// Event filters.
     #[automatically_derived]
     impl<
-        T: alloy_contract::private::Transport + ::core::clone::Clone,
-        P: alloy_contract::private::Provider<T, N>,
-        N: alloy_contract::private::Network,
-    > MockStakeRegistryInstance<T, P, N> {
+            T: alloy_contract::private::Transport + ::core::clone::Clone,
+            P: alloy_contract::private::Provider<T, N>,
+            N: alloy_contract::private::Network,
+        > MockStakeRegistryInstance<T, P, N>
+    {
         /// Creates a new event filter using this contract instance's provider and address.
         ///
         /// Note that the type can be any event, not just those defined in this contract.

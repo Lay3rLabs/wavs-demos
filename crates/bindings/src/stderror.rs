@@ -150,27 +150,27 @@ pub mod stdError {
     /// The creation / init bytecode of the contract.
     ///
     /// ```text
-    ///0x610249610034600b8282823980515f1a607314602857634e487b7160e01b5f525f60045260245ffd5b305f52607381538281f3fe730000000000000000000000000000000000000000301460806040526004361061009b575f3560e01c8063986c5f681161006e578063986c5f68146100d5578063b22dc54d146100dd578063b67689da146100e5578063d160e4de146100ed578063fa784a44146100f5575f5ffd5b806305ee86121461009f57806310332977146100bd5780631de45560146100c55780638995290f146100cd575b5f5ffd5b6100a76100fd565b6040516100b491906101c8565b60405180910390f35b6100a7610138565b6100a761014a565b6100a761015c565b6100a761016e565b6100a7610180565b6100a7610192565b6100a76101a4565b6100a76101b6565b604051603260248201526044015b60408051601f198184030181529190526020810180516001600160e01b0316634e487b7160e01b17905281565b6040516001602482015260440161010b565b6040516021602482015260440161010b565b6040516011602482015260440161010b565b6040516041602482015260440161010b565b6040516031602482015260440161010b565b6040516051602482015260440161010b565b6040516022602482015260440161010b565b6040516012602482015260440161010b565b602081525f82518060208401525f5b818110156101f457602081860181015160408684010152016101d7565b505f604082850101526040601f19601f8301168401019150509291505056fea26469706673582212207170e4823680b56ad20dae6a85713a73a2cb1a8f0f6d4ed064a3b29c88be97ae64736f6c634300081c0033
+    ///0x610249610034600b8282823980515f1a607314602857634e487b7160e01b5f525f60045260245ffd5b305f52607381538281f3fe730000000000000000000000000000000000000000301460806040526004361061009b575f3560e01c8063986c5f681161006e578063986c5f68146100d5578063b22dc54d146100dd578063b67689da146100e5578063d160e4de146100ed578063fa784a44146100f5575f5ffd5b806305ee86121461009f57806310332977146100bd5780631de45560146100c55780638995290f146100cd575b5f5ffd5b6100a76100fd565b6040516100b491906101c8565b60405180910390f35b6100a7610138565b6100a761014a565b6100a761015c565b6100a761016e565b6100a7610180565b6100a7610192565b6100a76101a4565b6100a76101b6565b604051603260248201526044015b60408051601f198184030181529190526020810180516001600160e01b0316634e487b7160e01b17905281565b6040516001602482015260440161010b565b6040516021602482015260440161010b565b6040516011602482015260440161010b565b6040516041602482015260440161010b565b6040516031602482015260440161010b565b6040516051602482015260440161010b565b6040516022602482015260440161010b565b6040516012602482015260440161010b565b602081525f82518060208401525f5b818110156101f457602081860181015160408684010152016101d7565b505f604082850101526040601f19601f8301168401019150509291505056fea26469706673582212203b2c2d9345f2bfefc61fefba4583266f4ae3b93e6e60c611cba7d87fdea237b364736f6c634300081c0033
     /// ```
     #[rustfmt::skip]
     #[allow(clippy::all)]
     pub static BYTECODE: alloy_sol_types::private::Bytes = alloy_sol_types::private::Bytes::from_static(
-        b"a\x02Ia\x004`\x0B\x82\x82\x829\x80Q_\x1A`s\x14`(WcNH{q`\xE0\x1B_R_`\x04R`$_\xFD[0_R`s\x81S\x82\x81\xF3\xFEs\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x000\x14`\x80`@R`\x046\x10a\0\x9BW_5`\xE0\x1C\x80c\x98l_h\x11a\0nW\x80c\x98l_h\x14a\0\xD5W\x80c\xB2-\xC5M\x14a\0\xDDW\x80c\xB6v\x89\xDA\x14a\0\xE5W\x80c\xD1`\xE4\xDE\x14a\0\xEDW\x80c\xFAxJD\x14a\0\xF5W__\xFD[\x80c\x05\xEE\x86\x12\x14a\0\x9FW\x80c\x103)w\x14a\0\xBDW\x80c\x1D\xE4U`\x14a\0\xC5W\x80c\x89\x95)\x0F\x14a\0\xCDW[__\xFD[a\0\xA7a\0\xFDV[`@Qa\0\xB4\x91\x90a\x01\xC8V[`@Q\x80\x91\x03\x90\xF3[a\0\xA7a\x018V[a\0\xA7a\x01JV[a\0\xA7a\x01\\V[a\0\xA7a\x01nV[a\0\xA7a\x01\x80V[a\0\xA7a\x01\x92V[a\0\xA7a\x01\xA4V[a\0\xA7a\x01\xB6V[`@Q`2`$\x82\x01R`D\x01[`@\x80Q`\x1F\x19\x81\x84\x03\x01\x81R\x91\x90R` \x81\x01\x80Q`\x01`\x01`\xE0\x1B\x03\x16cNH{q`\xE0\x1B\x17\x90R\x81V[`@Q`\x01`$\x82\x01R`D\x01a\x01\x0BV[`@Q`!`$\x82\x01R`D\x01a\x01\x0BV[`@Q`\x11`$\x82\x01R`D\x01a\x01\x0BV[`@Q`A`$\x82\x01R`D\x01a\x01\x0BV[`@Q`1`$\x82\x01R`D\x01a\x01\x0BV[`@Q`Q`$\x82\x01R`D\x01a\x01\x0BV[`@Q`\"`$\x82\x01R`D\x01a\x01\x0BV[`@Q`\x12`$\x82\x01R`D\x01a\x01\x0BV[` \x81R_\x82Q\x80` \x84\x01R_[\x81\x81\x10\x15a\x01\xF4W` \x81\x86\x01\x81\x01Q`@\x86\x84\x01\x01R\x01a\x01\xD7V[P_`@\x82\x85\x01\x01R`@`\x1F\x19`\x1F\x83\x01\x16\x84\x01\x01\x91PP\x92\x91PPV\xFE\xA2dipfsX\"\x12 qp\xE4\x826\x80\xB5j\xD2\r\xAEj\x85q:s\xA2\xCB\x1A\x8F\x0FmN\xD0d\xA3\xB2\x9C\x88\xBE\x97\xAEdsolcC\0\x08\x1C\x003",
+        b"a\x02Ia\x004`\x0B\x82\x82\x829\x80Q_\x1A`s\x14`(WcNH{q`\xE0\x1B_R_`\x04R`$_\xFD[0_R`s\x81S\x82\x81\xF3\xFEs\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x000\x14`\x80`@R`\x046\x10a\0\x9BW_5`\xE0\x1C\x80c\x98l_h\x11a\0nW\x80c\x98l_h\x14a\0\xD5W\x80c\xB2-\xC5M\x14a\0\xDDW\x80c\xB6v\x89\xDA\x14a\0\xE5W\x80c\xD1`\xE4\xDE\x14a\0\xEDW\x80c\xFAxJD\x14a\0\xF5W__\xFD[\x80c\x05\xEE\x86\x12\x14a\0\x9FW\x80c\x103)w\x14a\0\xBDW\x80c\x1D\xE4U`\x14a\0\xC5W\x80c\x89\x95)\x0F\x14a\0\xCDW[__\xFD[a\0\xA7a\0\xFDV[`@Qa\0\xB4\x91\x90a\x01\xC8V[`@Q\x80\x91\x03\x90\xF3[a\0\xA7a\x018V[a\0\xA7a\x01JV[a\0\xA7a\x01\\V[a\0\xA7a\x01nV[a\0\xA7a\x01\x80V[a\0\xA7a\x01\x92V[a\0\xA7a\x01\xA4V[a\0\xA7a\x01\xB6V[`@Q`2`$\x82\x01R`D\x01[`@\x80Q`\x1F\x19\x81\x84\x03\x01\x81R\x91\x90R` \x81\x01\x80Q`\x01`\x01`\xE0\x1B\x03\x16cNH{q`\xE0\x1B\x17\x90R\x81V[`@Q`\x01`$\x82\x01R`D\x01a\x01\x0BV[`@Q`!`$\x82\x01R`D\x01a\x01\x0BV[`@Q`\x11`$\x82\x01R`D\x01a\x01\x0BV[`@Q`A`$\x82\x01R`D\x01a\x01\x0BV[`@Q`1`$\x82\x01R`D\x01a\x01\x0BV[`@Q`Q`$\x82\x01R`D\x01a\x01\x0BV[`@Q`\"`$\x82\x01R`D\x01a\x01\x0BV[`@Q`\x12`$\x82\x01R`D\x01a\x01\x0BV[` \x81R_\x82Q\x80` \x84\x01R_[\x81\x81\x10\x15a\x01\xF4W` \x81\x86\x01\x81\x01Q`@\x86\x84\x01\x01R\x01a\x01\xD7V[P_`@\x82\x85\x01\x01R`@`\x1F\x19`\x1F\x83\x01\x16\x84\x01\x01\x91PP\x92\x91PPV\xFE\xA2dipfsX\"\x12 ;,-\x93E\xF2\xBF\xEF\xC6\x1F\xEF\xBAE\x83&oJ\xE3\xB9>n`\xC6\x11\xCB\xA7\xD8\x7F\xDE\xA27\xB3dsolcC\0\x08\x1C\x003",
     );
     /// The runtime bytecode of the contract, as deployed on the network.
     ///
     /// ```text
-    ///0x730000000000000000000000000000000000000000301460806040526004361061009b575f3560e01c8063986c5f681161006e578063986c5f68146100d5578063b22dc54d146100dd578063b67689da146100e5578063d160e4de146100ed578063fa784a44146100f5575f5ffd5b806305ee86121461009f57806310332977146100bd5780631de45560146100c55780638995290f146100cd575b5f5ffd5b6100a76100fd565b6040516100b491906101c8565b60405180910390f35b6100a7610138565b6100a761014a565b6100a761015c565b6100a761016e565b6100a7610180565b6100a7610192565b6100a76101a4565b6100a76101b6565b604051603260248201526044015b60408051601f198184030181529190526020810180516001600160e01b0316634e487b7160e01b17905281565b6040516001602482015260440161010b565b6040516021602482015260440161010b565b6040516011602482015260440161010b565b6040516041602482015260440161010b565b6040516031602482015260440161010b565b6040516051602482015260440161010b565b6040516022602482015260440161010b565b6040516012602482015260440161010b565b602081525f82518060208401525f5b818110156101f457602081860181015160408684010152016101d7565b505f604082850101526040601f19601f8301168401019150509291505056fea26469706673582212207170e4823680b56ad20dae6a85713a73a2cb1a8f0f6d4ed064a3b29c88be97ae64736f6c634300081c0033
+    ///0x730000000000000000000000000000000000000000301460806040526004361061009b575f3560e01c8063986c5f681161006e578063986c5f68146100d5578063b22dc54d146100dd578063b67689da146100e5578063d160e4de146100ed578063fa784a44146100f5575f5ffd5b806305ee86121461009f57806310332977146100bd5780631de45560146100c55780638995290f146100cd575b5f5ffd5b6100a76100fd565b6040516100b491906101c8565b60405180910390f35b6100a7610138565b6100a761014a565b6100a761015c565b6100a761016e565b6100a7610180565b6100a7610192565b6100a76101a4565b6100a76101b6565b604051603260248201526044015b60408051601f198184030181529190526020810180516001600160e01b0316634e487b7160e01b17905281565b6040516001602482015260440161010b565b6040516021602482015260440161010b565b6040516011602482015260440161010b565b6040516041602482015260440161010b565b6040516031602482015260440161010b565b6040516051602482015260440161010b565b6040516022602482015260440161010b565b6040516012602482015260440161010b565b602081525f82518060208401525f5b818110156101f457602081860181015160408684010152016101d7565b505f604082850101526040601f19601f8301168401019150509291505056fea26469706673582212203b2c2d9345f2bfefc61fefba4583266f4ae3b93e6e60c611cba7d87fdea237b364736f6c634300081c0033
     /// ```
     #[rustfmt::skip]
     #[allow(clippy::all)]
     pub static DEPLOYED_BYTECODE: alloy_sol_types::private::Bytes = alloy_sol_types::private::Bytes::from_static(
-        b"s\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x000\x14`\x80`@R`\x046\x10a\0\x9BW_5`\xE0\x1C\x80c\x98l_h\x11a\0nW\x80c\x98l_h\x14a\0\xD5W\x80c\xB2-\xC5M\x14a\0\xDDW\x80c\xB6v\x89\xDA\x14a\0\xE5W\x80c\xD1`\xE4\xDE\x14a\0\xEDW\x80c\xFAxJD\x14a\0\xF5W__\xFD[\x80c\x05\xEE\x86\x12\x14a\0\x9FW\x80c\x103)w\x14a\0\xBDW\x80c\x1D\xE4U`\x14a\0\xC5W\x80c\x89\x95)\x0F\x14a\0\xCDW[__\xFD[a\0\xA7a\0\xFDV[`@Qa\0\xB4\x91\x90a\x01\xC8V[`@Q\x80\x91\x03\x90\xF3[a\0\xA7a\x018V[a\0\xA7a\x01JV[a\0\xA7a\x01\\V[a\0\xA7a\x01nV[a\0\xA7a\x01\x80V[a\0\xA7a\x01\x92V[a\0\xA7a\x01\xA4V[a\0\xA7a\x01\xB6V[`@Q`2`$\x82\x01R`D\x01[`@\x80Q`\x1F\x19\x81\x84\x03\x01\x81R\x91\x90R` \x81\x01\x80Q`\x01`\x01`\xE0\x1B\x03\x16cNH{q`\xE0\x1B\x17\x90R\x81V[`@Q`\x01`$\x82\x01R`D\x01a\x01\x0BV[`@Q`!`$\x82\x01R`D\x01a\x01\x0BV[`@Q`\x11`$\x82\x01R`D\x01a\x01\x0BV[`@Q`A`$\x82\x01R`D\x01a\x01\x0BV[`@Q`1`$\x82\x01R`D\x01a\x01\x0BV[`@Q`Q`$\x82\x01R`D\x01a\x01\x0BV[`@Q`\"`$\x82\x01R`D\x01a\x01\x0BV[`@Q`\x12`$\x82\x01R`D\x01a\x01\x0BV[` \x81R_\x82Q\x80` \x84\x01R_[\x81\x81\x10\x15a\x01\xF4W` \x81\x86\x01\x81\x01Q`@\x86\x84\x01\x01R\x01a\x01\xD7V[P_`@\x82\x85\x01\x01R`@`\x1F\x19`\x1F\x83\x01\x16\x84\x01\x01\x91PP\x92\x91PPV\xFE\xA2dipfsX\"\x12 qp\xE4\x826\x80\xB5j\xD2\r\xAEj\x85q:s\xA2\xCB\x1A\x8F\x0FmN\xD0d\xA3\xB2\x9C\x88\xBE\x97\xAEdsolcC\0\x08\x1C\x003",
+        b"s\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x000\x14`\x80`@R`\x046\x10a\0\x9BW_5`\xE0\x1C\x80c\x98l_h\x11a\0nW\x80c\x98l_h\x14a\0\xD5W\x80c\xB2-\xC5M\x14a\0\xDDW\x80c\xB6v\x89\xDA\x14a\0\xE5W\x80c\xD1`\xE4\xDE\x14a\0\xEDW\x80c\xFAxJD\x14a\0\xF5W__\xFD[\x80c\x05\xEE\x86\x12\x14a\0\x9FW\x80c\x103)w\x14a\0\xBDW\x80c\x1D\xE4U`\x14a\0\xC5W\x80c\x89\x95)\x0F\x14a\0\xCDW[__\xFD[a\0\xA7a\0\xFDV[`@Qa\0\xB4\x91\x90a\x01\xC8V[`@Q\x80\x91\x03\x90\xF3[a\0\xA7a\x018V[a\0\xA7a\x01JV[a\0\xA7a\x01\\V[a\0\xA7a\x01nV[a\0\xA7a\x01\x80V[a\0\xA7a\x01\x92V[a\0\xA7a\x01\xA4V[a\0\xA7a\x01\xB6V[`@Q`2`$\x82\x01R`D\x01[`@\x80Q`\x1F\x19\x81\x84\x03\x01\x81R\x91\x90R` \x81\x01\x80Q`\x01`\x01`\xE0\x1B\x03\x16cNH{q`\xE0\x1B\x17\x90R\x81V[`@Q`\x01`$\x82\x01R`D\x01a\x01\x0BV[`@Q`!`$\x82\x01R`D\x01a\x01\x0BV[`@Q`\x11`$\x82\x01R`D\x01a\x01\x0BV[`@Q`A`$\x82\x01R`D\x01a\x01\x0BV[`@Q`1`$\x82\x01R`D\x01a\x01\x0BV[`@Q`Q`$\x82\x01R`D\x01a\x01\x0BV[`@Q`\"`$\x82\x01R`D\x01a\x01\x0BV[`@Q`\x12`$\x82\x01R`D\x01a\x01\x0BV[` \x81R_\x82Q\x80` \x84\x01R_[\x81\x81\x10\x15a\x01\xF4W` \x81\x86\x01\x81\x01Q`@\x86\x84\x01\x01R\x01a\x01\xD7V[P_`@\x82\x85\x01\x01R`@`\x1F\x19`\x1F\x83\x01\x16\x84\x01\x01\x91PP\x92\x91PPV\xFE\xA2dipfsX\"\x12 ;,-\x93E\xF2\xBF\xEF\xC6\x1F\xEF\xBAE\x83&oJ\xE3\xB9>n`\xC6\x11\xCB\xA7\xD8\x7F\xDE\xA27\xB3dsolcC\0\x08\x1C\x003",
     );
     /**Function with signature `arithmeticError()` and selector `0x8995290f`.
-```solidity
-function arithmeticError() external view returns (bytes memory);
-```*/
+    ```solidity
+    function arithmeticError() external view returns (bytes memory);
+    ```*/
     #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields)]
     #[derive(Clone)]
     pub struct arithmeticErrorCall {}
@@ -180,12 +180,7 @@ function arithmeticError() external view returns (bytes memory);
     pub struct arithmeticErrorReturn {
         pub _0: alloy::sol_types::private::Bytes,
     }
-    #[allow(
-        non_camel_case_types,
-        non_snake_case,
-        clippy::pub_underscore_fields,
-        clippy::style
-    )]
+    #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields, clippy::style)]
     const _: () = {
         use alloy::sol_types as alloy_sol_types;
         {
@@ -195,9 +190,7 @@ function arithmeticError() external view returns (bytes memory);
             type UnderlyingRustTuple<'a> = ();
             #[cfg(test)]
             #[allow(dead_code, unreachable_patterns)]
-            fn _type_assertion(
-                _t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>,
-            ) {
+            fn _type_assertion(_t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>) {
                 match _t {
                     alloy_sol_types::private::AssertTypeEq::<
                         <UnderlyingSolTuple as alloy_sol_types::SolType>::RustType,
@@ -226,9 +219,7 @@ function arithmeticError() external view returns (bytes memory);
             type UnderlyingRustTuple<'a> = (alloy::sol_types::private::Bytes,);
             #[cfg(test)]
             #[allow(dead_code, unreachable_patterns)]
-            fn _type_assertion(
-                _t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>,
-            ) {
+            fn _type_assertion(_t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>) {
                 match _t {
                     alloy_sol_types::private::AssertTypeEq::<
                         <UnderlyingSolTuple as alloy_sol_types::SolType>::RustType,
@@ -237,16 +228,14 @@ function arithmeticError() external view returns (bytes memory);
             }
             #[automatically_derived]
             #[doc(hidden)]
-            impl ::core::convert::From<arithmeticErrorReturn>
-            for UnderlyingRustTuple<'_> {
+            impl ::core::convert::From<arithmeticErrorReturn> for UnderlyingRustTuple<'_> {
                 fn from(value: arithmeticErrorReturn) -> Self {
                     (value._0,)
                 }
             }
             #[automatically_derived]
             #[doc(hidden)]
-            impl ::core::convert::From<UnderlyingRustTuple<'_>>
-            for arithmeticErrorReturn {
+            impl ::core::convert::From<UnderlyingRustTuple<'_>> for arithmeticErrorReturn {
                 fn from(tuple: UnderlyingRustTuple<'_>) -> Self {
                     Self { _0: tuple.0 }
                 }
@@ -255,14 +244,10 @@ function arithmeticError() external view returns (bytes memory);
         #[automatically_derived]
         impl alloy_sol_types::SolCall for arithmeticErrorCall {
             type Parameters<'a> = ();
-            type Token<'a> = <Self::Parameters<
-                'a,
-            > as alloy_sol_types::SolType>::Token<'a>;
+            type Token<'a> = <Self::Parameters<'a> as alloy_sol_types::SolType>::Token<'a>;
             type Return = arithmeticErrorReturn;
             type ReturnTuple<'a> = (alloy::sol_types::sol_data::Bytes,);
-            type ReturnToken<'a> = <Self::ReturnTuple<
-                'a,
-            > as alloy_sol_types::SolType>::Token<'a>;
+            type ReturnToken<'a> = <Self::ReturnTuple<'a> as alloy_sol_types::SolType>::Token<'a>;
             const SIGNATURE: &'static str = "arithmeticError()";
             const SELECTOR: [u8; 4] = [137u8, 149u8, 41u8, 15u8];
             #[inline]
@@ -280,17 +265,17 @@ function arithmeticError() external view returns (bytes memory);
                 data: &[u8],
                 validate: bool,
             ) -> alloy_sol_types::Result<Self::Return> {
-                <Self::ReturnTuple<
-                    '_,
-                > as alloy_sol_types::SolType>::abi_decode_sequence(data, validate)
-                    .map(Into::into)
+                <Self::ReturnTuple<'_> as alloy_sol_types::SolType>::abi_decode_sequence(
+                    data, validate,
+                )
+                .map(Into::into)
             }
         }
     };
     /**Function with signature `assertionError()` and selector `0x10332977`.
-```solidity
-function assertionError() external view returns (bytes memory);
-```*/
+    ```solidity
+    function assertionError() external view returns (bytes memory);
+    ```*/
     #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields)]
     #[derive(Clone)]
     pub struct assertionErrorCall {}
@@ -300,12 +285,7 @@ function assertionError() external view returns (bytes memory);
     pub struct assertionErrorReturn {
         pub _0: alloy::sol_types::private::Bytes,
     }
-    #[allow(
-        non_camel_case_types,
-        non_snake_case,
-        clippy::pub_underscore_fields,
-        clippy::style
-    )]
+    #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields, clippy::style)]
     const _: () = {
         use alloy::sol_types as alloy_sol_types;
         {
@@ -315,9 +295,7 @@ function assertionError() external view returns (bytes memory);
             type UnderlyingRustTuple<'a> = ();
             #[cfg(test)]
             #[allow(dead_code, unreachable_patterns)]
-            fn _type_assertion(
-                _t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>,
-            ) {
+            fn _type_assertion(_t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>) {
                 match _t {
                     alloy_sol_types::private::AssertTypeEq::<
                         <UnderlyingSolTuple as alloy_sol_types::SolType>::RustType,
@@ -346,9 +324,7 @@ function assertionError() external view returns (bytes memory);
             type UnderlyingRustTuple<'a> = (alloy::sol_types::private::Bytes,);
             #[cfg(test)]
             #[allow(dead_code, unreachable_patterns)]
-            fn _type_assertion(
-                _t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>,
-            ) {
+            fn _type_assertion(_t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>) {
                 match _t {
                     alloy_sol_types::private::AssertTypeEq::<
                         <UnderlyingSolTuple as alloy_sol_types::SolType>::RustType,
@@ -357,16 +333,14 @@ function assertionError() external view returns (bytes memory);
             }
             #[automatically_derived]
             #[doc(hidden)]
-            impl ::core::convert::From<assertionErrorReturn>
-            for UnderlyingRustTuple<'_> {
+            impl ::core::convert::From<assertionErrorReturn> for UnderlyingRustTuple<'_> {
                 fn from(value: assertionErrorReturn) -> Self {
                     (value._0,)
                 }
             }
             #[automatically_derived]
             #[doc(hidden)]
-            impl ::core::convert::From<UnderlyingRustTuple<'_>>
-            for assertionErrorReturn {
+            impl ::core::convert::From<UnderlyingRustTuple<'_>> for assertionErrorReturn {
                 fn from(tuple: UnderlyingRustTuple<'_>) -> Self {
                     Self { _0: tuple.0 }
                 }
@@ -375,14 +349,10 @@ function assertionError() external view returns (bytes memory);
         #[automatically_derived]
         impl alloy_sol_types::SolCall for assertionErrorCall {
             type Parameters<'a> = ();
-            type Token<'a> = <Self::Parameters<
-                'a,
-            > as alloy_sol_types::SolType>::Token<'a>;
+            type Token<'a> = <Self::Parameters<'a> as alloy_sol_types::SolType>::Token<'a>;
             type Return = assertionErrorReturn;
             type ReturnTuple<'a> = (alloy::sol_types::sol_data::Bytes,);
-            type ReturnToken<'a> = <Self::ReturnTuple<
-                'a,
-            > as alloy_sol_types::SolType>::Token<'a>;
+            type ReturnToken<'a> = <Self::ReturnTuple<'a> as alloy_sol_types::SolType>::Token<'a>;
             const SIGNATURE: &'static str = "assertionError()";
             const SELECTOR: [u8; 4] = [16u8, 51u8, 41u8, 119u8];
             #[inline]
@@ -400,17 +370,17 @@ function assertionError() external view returns (bytes memory);
                 data: &[u8],
                 validate: bool,
             ) -> alloy_sol_types::Result<Self::Return> {
-                <Self::ReturnTuple<
-                    '_,
-                > as alloy_sol_types::SolType>::abi_decode_sequence(data, validate)
-                    .map(Into::into)
+                <Self::ReturnTuple<'_> as alloy_sol_types::SolType>::abi_decode_sequence(
+                    data, validate,
+                )
+                .map(Into::into)
             }
         }
     };
     /**Function with signature `divisionError()` and selector `0xfa784a44`.
-```solidity
-function divisionError() external view returns (bytes memory);
-```*/
+    ```solidity
+    function divisionError() external view returns (bytes memory);
+    ```*/
     #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields)]
     #[derive(Clone)]
     pub struct divisionErrorCall {}
@@ -420,12 +390,7 @@ function divisionError() external view returns (bytes memory);
     pub struct divisionErrorReturn {
         pub _0: alloy::sol_types::private::Bytes,
     }
-    #[allow(
-        non_camel_case_types,
-        non_snake_case,
-        clippy::pub_underscore_fields,
-        clippy::style
-    )]
+    #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields, clippy::style)]
     const _: () = {
         use alloy::sol_types as alloy_sol_types;
         {
@@ -435,9 +400,7 @@ function divisionError() external view returns (bytes memory);
             type UnderlyingRustTuple<'a> = ();
             #[cfg(test)]
             #[allow(dead_code, unreachable_patterns)]
-            fn _type_assertion(
-                _t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>,
-            ) {
+            fn _type_assertion(_t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>) {
                 match _t {
                     alloy_sol_types::private::AssertTypeEq::<
                         <UnderlyingSolTuple as alloy_sol_types::SolType>::RustType,
@@ -466,9 +429,7 @@ function divisionError() external view returns (bytes memory);
             type UnderlyingRustTuple<'a> = (alloy::sol_types::private::Bytes,);
             #[cfg(test)]
             #[allow(dead_code, unreachable_patterns)]
-            fn _type_assertion(
-                _t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>,
-            ) {
+            fn _type_assertion(_t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>) {
                 match _t {
                     alloy_sol_types::private::AssertTypeEq::<
                         <UnderlyingSolTuple as alloy_sol_types::SolType>::RustType,
@@ -493,14 +454,10 @@ function divisionError() external view returns (bytes memory);
         #[automatically_derived]
         impl alloy_sol_types::SolCall for divisionErrorCall {
             type Parameters<'a> = ();
-            type Token<'a> = <Self::Parameters<
-                'a,
-            > as alloy_sol_types::SolType>::Token<'a>;
+            type Token<'a> = <Self::Parameters<'a> as alloy_sol_types::SolType>::Token<'a>;
             type Return = divisionErrorReturn;
             type ReturnTuple<'a> = (alloy::sol_types::sol_data::Bytes,);
-            type ReturnToken<'a> = <Self::ReturnTuple<
-                'a,
-            > as alloy_sol_types::SolType>::Token<'a>;
+            type ReturnToken<'a> = <Self::ReturnTuple<'a> as alloy_sol_types::SolType>::Token<'a>;
             const SIGNATURE: &'static str = "divisionError()";
             const SELECTOR: [u8; 4] = [250u8, 120u8, 74u8, 68u8];
             #[inline]
@@ -518,17 +475,17 @@ function divisionError() external view returns (bytes memory);
                 data: &[u8],
                 validate: bool,
             ) -> alloy_sol_types::Result<Self::Return> {
-                <Self::ReturnTuple<
-                    '_,
-                > as alloy_sol_types::SolType>::abi_decode_sequence(data, validate)
-                    .map(Into::into)
+                <Self::ReturnTuple<'_> as alloy_sol_types::SolType>::abi_decode_sequence(
+                    data, validate,
+                )
+                .map(Into::into)
             }
         }
     };
     /**Function with signature `encodeStorageError()` and selector `0xd160e4de`.
-```solidity
-function encodeStorageError() external view returns (bytes memory);
-```*/
+    ```solidity
+    function encodeStorageError() external view returns (bytes memory);
+    ```*/
     #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields)]
     #[derive(Clone)]
     pub struct encodeStorageErrorCall {}
@@ -538,12 +495,7 @@ function encodeStorageError() external view returns (bytes memory);
     pub struct encodeStorageErrorReturn {
         pub _0: alloy::sol_types::private::Bytes,
     }
-    #[allow(
-        non_camel_case_types,
-        non_snake_case,
-        clippy::pub_underscore_fields,
-        clippy::style
-    )]
+    #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields, clippy::style)]
     const _: () = {
         use alloy::sol_types as alloy_sol_types;
         {
@@ -553,9 +505,7 @@ function encodeStorageError() external view returns (bytes memory);
             type UnderlyingRustTuple<'a> = ();
             #[cfg(test)]
             #[allow(dead_code, unreachable_patterns)]
-            fn _type_assertion(
-                _t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>,
-            ) {
+            fn _type_assertion(_t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>) {
                 match _t {
                     alloy_sol_types::private::AssertTypeEq::<
                         <UnderlyingSolTuple as alloy_sol_types::SolType>::RustType,
@@ -564,16 +514,14 @@ function encodeStorageError() external view returns (bytes memory);
             }
             #[automatically_derived]
             #[doc(hidden)]
-            impl ::core::convert::From<encodeStorageErrorCall>
-            for UnderlyingRustTuple<'_> {
+            impl ::core::convert::From<encodeStorageErrorCall> for UnderlyingRustTuple<'_> {
                 fn from(value: encodeStorageErrorCall) -> Self {
                     ()
                 }
             }
             #[automatically_derived]
             #[doc(hidden)]
-            impl ::core::convert::From<UnderlyingRustTuple<'_>>
-            for encodeStorageErrorCall {
+            impl ::core::convert::From<UnderlyingRustTuple<'_>> for encodeStorageErrorCall {
                 fn from(tuple: UnderlyingRustTuple<'_>) -> Self {
                     Self {}
                 }
@@ -586,9 +534,7 @@ function encodeStorageError() external view returns (bytes memory);
             type UnderlyingRustTuple<'a> = (alloy::sol_types::private::Bytes,);
             #[cfg(test)]
             #[allow(dead_code, unreachable_patterns)]
-            fn _type_assertion(
-                _t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>,
-            ) {
+            fn _type_assertion(_t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>) {
                 match _t {
                     alloy_sol_types::private::AssertTypeEq::<
                         <UnderlyingSolTuple as alloy_sol_types::SolType>::RustType,
@@ -597,16 +543,14 @@ function encodeStorageError() external view returns (bytes memory);
             }
             #[automatically_derived]
             #[doc(hidden)]
-            impl ::core::convert::From<encodeStorageErrorReturn>
-            for UnderlyingRustTuple<'_> {
+            impl ::core::convert::From<encodeStorageErrorReturn> for UnderlyingRustTuple<'_> {
                 fn from(value: encodeStorageErrorReturn) -> Self {
                     (value._0,)
                 }
             }
             #[automatically_derived]
             #[doc(hidden)]
-            impl ::core::convert::From<UnderlyingRustTuple<'_>>
-            for encodeStorageErrorReturn {
+            impl ::core::convert::From<UnderlyingRustTuple<'_>> for encodeStorageErrorReturn {
                 fn from(tuple: UnderlyingRustTuple<'_>) -> Self {
                     Self { _0: tuple.0 }
                 }
@@ -615,14 +559,10 @@ function encodeStorageError() external view returns (bytes memory);
         #[automatically_derived]
         impl alloy_sol_types::SolCall for encodeStorageErrorCall {
             type Parameters<'a> = ();
-            type Token<'a> = <Self::Parameters<
-                'a,
-            > as alloy_sol_types::SolType>::Token<'a>;
+            type Token<'a> = <Self::Parameters<'a> as alloy_sol_types::SolType>::Token<'a>;
             type Return = encodeStorageErrorReturn;
             type ReturnTuple<'a> = (alloy::sol_types::sol_data::Bytes,);
-            type ReturnToken<'a> = <Self::ReturnTuple<
-                'a,
-            > as alloy_sol_types::SolType>::Token<'a>;
+            type ReturnToken<'a> = <Self::ReturnTuple<'a> as alloy_sol_types::SolType>::Token<'a>;
             const SIGNATURE: &'static str = "encodeStorageError()";
             const SELECTOR: [u8; 4] = [209u8, 96u8, 228u8, 222u8];
             #[inline]
@@ -640,17 +580,17 @@ function encodeStorageError() external view returns (bytes memory);
                 data: &[u8],
                 validate: bool,
             ) -> alloy_sol_types::Result<Self::Return> {
-                <Self::ReturnTuple<
-                    '_,
-                > as alloy_sol_types::SolType>::abi_decode_sequence(data, validate)
-                    .map(Into::into)
+                <Self::ReturnTuple<'_> as alloy_sol_types::SolType>::abi_decode_sequence(
+                    data, validate,
+                )
+                .map(Into::into)
             }
         }
     };
     /**Function with signature `enumConversionError()` and selector `0x1de45560`.
-```solidity
-function enumConversionError() external view returns (bytes memory);
-```*/
+    ```solidity
+    function enumConversionError() external view returns (bytes memory);
+    ```*/
     #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields)]
     #[derive(Clone)]
     pub struct enumConversionErrorCall {}
@@ -660,12 +600,7 @@ function enumConversionError() external view returns (bytes memory);
     pub struct enumConversionErrorReturn {
         pub _0: alloy::sol_types::private::Bytes,
     }
-    #[allow(
-        non_camel_case_types,
-        non_snake_case,
-        clippy::pub_underscore_fields,
-        clippy::style
-    )]
+    #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields, clippy::style)]
     const _: () = {
         use alloy::sol_types as alloy_sol_types;
         {
@@ -675,9 +610,7 @@ function enumConversionError() external view returns (bytes memory);
             type UnderlyingRustTuple<'a> = ();
             #[cfg(test)]
             #[allow(dead_code, unreachable_patterns)]
-            fn _type_assertion(
-                _t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>,
-            ) {
+            fn _type_assertion(_t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>) {
                 match _t {
                     alloy_sol_types::private::AssertTypeEq::<
                         <UnderlyingSolTuple as alloy_sol_types::SolType>::RustType,
@@ -686,16 +619,14 @@ function enumConversionError() external view returns (bytes memory);
             }
             #[automatically_derived]
             #[doc(hidden)]
-            impl ::core::convert::From<enumConversionErrorCall>
-            for UnderlyingRustTuple<'_> {
+            impl ::core::convert::From<enumConversionErrorCall> for UnderlyingRustTuple<'_> {
                 fn from(value: enumConversionErrorCall) -> Self {
                     ()
                 }
             }
             #[automatically_derived]
             #[doc(hidden)]
-            impl ::core::convert::From<UnderlyingRustTuple<'_>>
-            for enumConversionErrorCall {
+            impl ::core::convert::From<UnderlyingRustTuple<'_>> for enumConversionErrorCall {
                 fn from(tuple: UnderlyingRustTuple<'_>) -> Self {
                     Self {}
                 }
@@ -708,9 +639,7 @@ function enumConversionError() external view returns (bytes memory);
             type UnderlyingRustTuple<'a> = (alloy::sol_types::private::Bytes,);
             #[cfg(test)]
             #[allow(dead_code, unreachable_patterns)]
-            fn _type_assertion(
-                _t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>,
-            ) {
+            fn _type_assertion(_t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>) {
                 match _t {
                     alloy_sol_types::private::AssertTypeEq::<
                         <UnderlyingSolTuple as alloy_sol_types::SolType>::RustType,
@@ -719,16 +648,14 @@ function enumConversionError() external view returns (bytes memory);
             }
             #[automatically_derived]
             #[doc(hidden)]
-            impl ::core::convert::From<enumConversionErrorReturn>
-            for UnderlyingRustTuple<'_> {
+            impl ::core::convert::From<enumConversionErrorReturn> for UnderlyingRustTuple<'_> {
                 fn from(value: enumConversionErrorReturn) -> Self {
                     (value._0,)
                 }
             }
             #[automatically_derived]
             #[doc(hidden)]
-            impl ::core::convert::From<UnderlyingRustTuple<'_>>
-            for enumConversionErrorReturn {
+            impl ::core::convert::From<UnderlyingRustTuple<'_>> for enumConversionErrorReturn {
                 fn from(tuple: UnderlyingRustTuple<'_>) -> Self {
                     Self { _0: tuple.0 }
                 }
@@ -737,14 +664,10 @@ function enumConversionError() external view returns (bytes memory);
         #[automatically_derived]
         impl alloy_sol_types::SolCall for enumConversionErrorCall {
             type Parameters<'a> = ();
-            type Token<'a> = <Self::Parameters<
-                'a,
-            > as alloy_sol_types::SolType>::Token<'a>;
+            type Token<'a> = <Self::Parameters<'a> as alloy_sol_types::SolType>::Token<'a>;
             type Return = enumConversionErrorReturn;
             type ReturnTuple<'a> = (alloy::sol_types::sol_data::Bytes,);
-            type ReturnToken<'a> = <Self::ReturnTuple<
-                'a,
-            > as alloy_sol_types::SolType>::Token<'a>;
+            type ReturnToken<'a> = <Self::ReturnTuple<'a> as alloy_sol_types::SolType>::Token<'a>;
             const SIGNATURE: &'static str = "enumConversionError()";
             const SELECTOR: [u8; 4] = [29u8, 228u8, 85u8, 96u8];
             #[inline]
@@ -762,17 +685,17 @@ function enumConversionError() external view returns (bytes memory);
                 data: &[u8],
                 validate: bool,
             ) -> alloy_sol_types::Result<Self::Return> {
-                <Self::ReturnTuple<
-                    '_,
-                > as alloy_sol_types::SolType>::abi_decode_sequence(data, validate)
-                    .map(Into::into)
+                <Self::ReturnTuple<'_> as alloy_sol_types::SolType>::abi_decode_sequence(
+                    data, validate,
+                )
+                .map(Into::into)
             }
         }
     };
     /**Function with signature `indexOOBError()` and selector `0x05ee8612`.
-```solidity
-function indexOOBError() external view returns (bytes memory);
-```*/
+    ```solidity
+    function indexOOBError() external view returns (bytes memory);
+    ```*/
     #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields)]
     #[derive(Clone)]
     pub struct indexOOBErrorCall {}
@@ -782,12 +705,7 @@ function indexOOBError() external view returns (bytes memory);
     pub struct indexOOBErrorReturn {
         pub _0: alloy::sol_types::private::Bytes,
     }
-    #[allow(
-        non_camel_case_types,
-        non_snake_case,
-        clippy::pub_underscore_fields,
-        clippy::style
-    )]
+    #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields, clippy::style)]
     const _: () = {
         use alloy::sol_types as alloy_sol_types;
         {
@@ -797,9 +715,7 @@ function indexOOBError() external view returns (bytes memory);
             type UnderlyingRustTuple<'a> = ();
             #[cfg(test)]
             #[allow(dead_code, unreachable_patterns)]
-            fn _type_assertion(
-                _t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>,
-            ) {
+            fn _type_assertion(_t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>) {
                 match _t {
                     alloy_sol_types::private::AssertTypeEq::<
                         <UnderlyingSolTuple as alloy_sol_types::SolType>::RustType,
@@ -828,9 +744,7 @@ function indexOOBError() external view returns (bytes memory);
             type UnderlyingRustTuple<'a> = (alloy::sol_types::private::Bytes,);
             #[cfg(test)]
             #[allow(dead_code, unreachable_patterns)]
-            fn _type_assertion(
-                _t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>,
-            ) {
+            fn _type_assertion(_t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>) {
                 match _t {
                     alloy_sol_types::private::AssertTypeEq::<
                         <UnderlyingSolTuple as alloy_sol_types::SolType>::RustType,
@@ -855,14 +769,10 @@ function indexOOBError() external view returns (bytes memory);
         #[automatically_derived]
         impl alloy_sol_types::SolCall for indexOOBErrorCall {
             type Parameters<'a> = ();
-            type Token<'a> = <Self::Parameters<
-                'a,
-            > as alloy_sol_types::SolType>::Token<'a>;
+            type Token<'a> = <Self::Parameters<'a> as alloy_sol_types::SolType>::Token<'a>;
             type Return = indexOOBErrorReturn;
             type ReturnTuple<'a> = (alloy::sol_types::sol_data::Bytes,);
-            type ReturnToken<'a> = <Self::ReturnTuple<
-                'a,
-            > as alloy_sol_types::SolType>::Token<'a>;
+            type ReturnToken<'a> = <Self::ReturnTuple<'a> as alloy_sol_types::SolType>::Token<'a>;
             const SIGNATURE: &'static str = "indexOOBError()";
             const SELECTOR: [u8; 4] = [5u8, 238u8, 134u8, 18u8];
             #[inline]
@@ -880,17 +790,17 @@ function indexOOBError() external view returns (bytes memory);
                 data: &[u8],
                 validate: bool,
             ) -> alloy_sol_types::Result<Self::Return> {
-                <Self::ReturnTuple<
-                    '_,
-                > as alloy_sol_types::SolType>::abi_decode_sequence(data, validate)
-                    .map(Into::into)
+                <Self::ReturnTuple<'_> as alloy_sol_types::SolType>::abi_decode_sequence(
+                    data, validate,
+                )
+                .map(Into::into)
             }
         }
     };
     /**Function with signature `memOverflowError()` and selector `0x986c5f68`.
-```solidity
-function memOverflowError() external view returns (bytes memory);
-```*/
+    ```solidity
+    function memOverflowError() external view returns (bytes memory);
+    ```*/
     #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields)]
     #[derive(Clone)]
     pub struct memOverflowErrorCall {}
@@ -900,12 +810,7 @@ function memOverflowError() external view returns (bytes memory);
     pub struct memOverflowErrorReturn {
         pub _0: alloy::sol_types::private::Bytes,
     }
-    #[allow(
-        non_camel_case_types,
-        non_snake_case,
-        clippy::pub_underscore_fields,
-        clippy::style
-    )]
+    #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields, clippy::style)]
     const _: () = {
         use alloy::sol_types as alloy_sol_types;
         {
@@ -915,9 +820,7 @@ function memOverflowError() external view returns (bytes memory);
             type UnderlyingRustTuple<'a> = ();
             #[cfg(test)]
             #[allow(dead_code, unreachable_patterns)]
-            fn _type_assertion(
-                _t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>,
-            ) {
+            fn _type_assertion(_t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>) {
                 match _t {
                     alloy_sol_types::private::AssertTypeEq::<
                         <UnderlyingSolTuple as alloy_sol_types::SolType>::RustType,
@@ -926,16 +829,14 @@ function memOverflowError() external view returns (bytes memory);
             }
             #[automatically_derived]
             #[doc(hidden)]
-            impl ::core::convert::From<memOverflowErrorCall>
-            for UnderlyingRustTuple<'_> {
+            impl ::core::convert::From<memOverflowErrorCall> for UnderlyingRustTuple<'_> {
                 fn from(value: memOverflowErrorCall) -> Self {
                     ()
                 }
             }
             #[automatically_derived]
             #[doc(hidden)]
-            impl ::core::convert::From<UnderlyingRustTuple<'_>>
-            for memOverflowErrorCall {
+            impl ::core::convert::From<UnderlyingRustTuple<'_>> for memOverflowErrorCall {
                 fn from(tuple: UnderlyingRustTuple<'_>) -> Self {
                     Self {}
                 }
@@ -948,9 +849,7 @@ function memOverflowError() external view returns (bytes memory);
             type UnderlyingRustTuple<'a> = (alloy::sol_types::private::Bytes,);
             #[cfg(test)]
             #[allow(dead_code, unreachable_patterns)]
-            fn _type_assertion(
-                _t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>,
-            ) {
+            fn _type_assertion(_t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>) {
                 match _t {
                     alloy_sol_types::private::AssertTypeEq::<
                         <UnderlyingSolTuple as alloy_sol_types::SolType>::RustType,
@@ -959,16 +858,14 @@ function memOverflowError() external view returns (bytes memory);
             }
             #[automatically_derived]
             #[doc(hidden)]
-            impl ::core::convert::From<memOverflowErrorReturn>
-            for UnderlyingRustTuple<'_> {
+            impl ::core::convert::From<memOverflowErrorReturn> for UnderlyingRustTuple<'_> {
                 fn from(value: memOverflowErrorReturn) -> Self {
                     (value._0,)
                 }
             }
             #[automatically_derived]
             #[doc(hidden)]
-            impl ::core::convert::From<UnderlyingRustTuple<'_>>
-            for memOverflowErrorReturn {
+            impl ::core::convert::From<UnderlyingRustTuple<'_>> for memOverflowErrorReturn {
                 fn from(tuple: UnderlyingRustTuple<'_>) -> Self {
                     Self { _0: tuple.0 }
                 }
@@ -977,14 +874,10 @@ function memOverflowError() external view returns (bytes memory);
         #[automatically_derived]
         impl alloy_sol_types::SolCall for memOverflowErrorCall {
             type Parameters<'a> = ();
-            type Token<'a> = <Self::Parameters<
-                'a,
-            > as alloy_sol_types::SolType>::Token<'a>;
+            type Token<'a> = <Self::Parameters<'a> as alloy_sol_types::SolType>::Token<'a>;
             type Return = memOverflowErrorReturn;
             type ReturnTuple<'a> = (alloy::sol_types::sol_data::Bytes,);
-            type ReturnToken<'a> = <Self::ReturnTuple<
-                'a,
-            > as alloy_sol_types::SolType>::Token<'a>;
+            type ReturnToken<'a> = <Self::ReturnTuple<'a> as alloy_sol_types::SolType>::Token<'a>;
             const SIGNATURE: &'static str = "memOverflowError()";
             const SELECTOR: [u8; 4] = [152u8, 108u8, 95u8, 104u8];
             #[inline]
@@ -1002,17 +895,17 @@ function memOverflowError() external view returns (bytes memory);
                 data: &[u8],
                 validate: bool,
             ) -> alloy_sol_types::Result<Self::Return> {
-                <Self::ReturnTuple<
-                    '_,
-                > as alloy_sol_types::SolType>::abi_decode_sequence(data, validate)
-                    .map(Into::into)
+                <Self::ReturnTuple<'_> as alloy_sol_types::SolType>::abi_decode_sequence(
+                    data, validate,
+                )
+                .map(Into::into)
             }
         }
     };
     /**Function with signature `popError()` and selector `0xb22dc54d`.
-```solidity
-function popError() external view returns (bytes memory);
-```*/
+    ```solidity
+    function popError() external view returns (bytes memory);
+    ```*/
     #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields)]
     #[derive(Clone)]
     pub struct popErrorCall {}
@@ -1022,12 +915,7 @@ function popError() external view returns (bytes memory);
     pub struct popErrorReturn {
         pub _0: alloy::sol_types::private::Bytes,
     }
-    #[allow(
-        non_camel_case_types,
-        non_snake_case,
-        clippy::pub_underscore_fields,
-        clippy::style
-    )]
+    #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields, clippy::style)]
     const _: () = {
         use alloy::sol_types as alloy_sol_types;
         {
@@ -1037,9 +925,7 @@ function popError() external view returns (bytes memory);
             type UnderlyingRustTuple<'a> = ();
             #[cfg(test)]
             #[allow(dead_code, unreachable_patterns)]
-            fn _type_assertion(
-                _t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>,
-            ) {
+            fn _type_assertion(_t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>) {
                 match _t {
                     alloy_sol_types::private::AssertTypeEq::<
                         <UnderlyingSolTuple as alloy_sol_types::SolType>::RustType,
@@ -1068,9 +954,7 @@ function popError() external view returns (bytes memory);
             type UnderlyingRustTuple<'a> = (alloy::sol_types::private::Bytes,);
             #[cfg(test)]
             #[allow(dead_code, unreachable_patterns)]
-            fn _type_assertion(
-                _t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>,
-            ) {
+            fn _type_assertion(_t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>) {
                 match _t {
                     alloy_sol_types::private::AssertTypeEq::<
                         <UnderlyingSolTuple as alloy_sol_types::SolType>::RustType,
@@ -1095,14 +979,10 @@ function popError() external view returns (bytes memory);
         #[automatically_derived]
         impl alloy_sol_types::SolCall for popErrorCall {
             type Parameters<'a> = ();
-            type Token<'a> = <Self::Parameters<
-                'a,
-            > as alloy_sol_types::SolType>::Token<'a>;
+            type Token<'a> = <Self::Parameters<'a> as alloy_sol_types::SolType>::Token<'a>;
             type Return = popErrorReturn;
             type ReturnTuple<'a> = (alloy::sol_types::sol_data::Bytes,);
-            type ReturnToken<'a> = <Self::ReturnTuple<
-                'a,
-            > as alloy_sol_types::SolType>::Token<'a>;
+            type ReturnToken<'a> = <Self::ReturnTuple<'a> as alloy_sol_types::SolType>::Token<'a>;
             const SIGNATURE: &'static str = "popError()";
             const SELECTOR: [u8; 4] = [178u8, 45u8, 197u8, 77u8];
             #[inline]
@@ -1120,17 +1000,17 @@ function popError() external view returns (bytes memory);
                 data: &[u8],
                 validate: bool,
             ) -> alloy_sol_types::Result<Self::Return> {
-                <Self::ReturnTuple<
-                    '_,
-                > as alloy_sol_types::SolType>::abi_decode_sequence(data, validate)
-                    .map(Into::into)
+                <Self::ReturnTuple<'_> as alloy_sol_types::SolType>::abi_decode_sequence(
+                    data, validate,
+                )
+                .map(Into::into)
             }
         }
     };
     /**Function with signature `zeroVarError()` and selector `0xb67689da`.
-```solidity
-function zeroVarError() external view returns (bytes memory);
-```*/
+    ```solidity
+    function zeroVarError() external view returns (bytes memory);
+    ```*/
     #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields)]
     #[derive(Clone)]
     pub struct zeroVarErrorCall {}
@@ -1140,12 +1020,7 @@ function zeroVarError() external view returns (bytes memory);
     pub struct zeroVarErrorReturn {
         pub _0: alloy::sol_types::private::Bytes,
     }
-    #[allow(
-        non_camel_case_types,
-        non_snake_case,
-        clippy::pub_underscore_fields,
-        clippy::style
-    )]
+    #[allow(non_camel_case_types, non_snake_case, clippy::pub_underscore_fields, clippy::style)]
     const _: () = {
         use alloy::sol_types as alloy_sol_types;
         {
@@ -1155,9 +1030,7 @@ function zeroVarError() external view returns (bytes memory);
             type UnderlyingRustTuple<'a> = ();
             #[cfg(test)]
             #[allow(dead_code, unreachable_patterns)]
-            fn _type_assertion(
-                _t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>,
-            ) {
+            fn _type_assertion(_t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>) {
                 match _t {
                     alloy_sol_types::private::AssertTypeEq::<
                         <UnderlyingSolTuple as alloy_sol_types::SolType>::RustType,
@@ -1186,9 +1059,7 @@ function zeroVarError() external view returns (bytes memory);
             type UnderlyingRustTuple<'a> = (alloy::sol_types::private::Bytes,);
             #[cfg(test)]
             #[allow(dead_code, unreachable_patterns)]
-            fn _type_assertion(
-                _t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>,
-            ) {
+            fn _type_assertion(_t: alloy_sol_types::private::AssertTypeEq<UnderlyingRustTuple>) {
                 match _t {
                     alloy_sol_types::private::AssertTypeEq::<
                         <UnderlyingSolTuple as alloy_sol_types::SolType>::RustType,
@@ -1213,14 +1084,10 @@ function zeroVarError() external view returns (bytes memory);
         #[automatically_derived]
         impl alloy_sol_types::SolCall for zeroVarErrorCall {
             type Parameters<'a> = ();
-            type Token<'a> = <Self::Parameters<
-                'a,
-            > as alloy_sol_types::SolType>::Token<'a>;
+            type Token<'a> = <Self::Parameters<'a> as alloy_sol_types::SolType>::Token<'a>;
             type Return = zeroVarErrorReturn;
             type ReturnTuple<'a> = (alloy::sol_types::sol_data::Bytes,);
-            type ReturnToken<'a> = <Self::ReturnTuple<
-                'a,
-            > as alloy_sol_types::SolType>::Token<'a>;
+            type ReturnToken<'a> = <Self::ReturnTuple<'a> as alloy_sol_types::SolType>::Token<'a>;
             const SIGNATURE: &'static str = "zeroVarError()";
             const SELECTOR: [u8; 4] = [182u8, 118u8, 137u8, 218u8];
             #[inline]
@@ -1238,10 +1105,10 @@ function zeroVarError() external view returns (bytes memory);
                 data: &[u8],
                 validate: bool,
             ) -> alloy_sol_types::Result<Self::Return> {
-                <Self::ReturnTuple<
-                    '_,
-                > as alloy_sol_types::SolType>::abi_decode_sequence(data, validate)
-                    .map(Into::into)
+                <Self::ReturnTuple<'_> as alloy_sol_types::SolType>::abi_decode_sequence(
+                    data, validate,
+                )
+                .map(Into::into)
             }
         }
     };
@@ -1291,25 +1158,19 @@ function zeroVarError() external view returns (bytes memory);
                 Self::assertionError(_) => {
                     <assertionErrorCall as alloy_sol_types::SolCall>::SELECTOR
                 }
-                Self::divisionError(_) => {
-                    <divisionErrorCall as alloy_sol_types::SolCall>::SELECTOR
-                }
+                Self::divisionError(_) => <divisionErrorCall as alloy_sol_types::SolCall>::SELECTOR,
                 Self::encodeStorageError(_) => {
                     <encodeStorageErrorCall as alloy_sol_types::SolCall>::SELECTOR
                 }
                 Self::enumConversionError(_) => {
                     <enumConversionErrorCall as alloy_sol_types::SolCall>::SELECTOR
                 }
-                Self::indexOOBError(_) => {
-                    <indexOOBErrorCall as alloy_sol_types::SolCall>::SELECTOR
-                }
+                Self::indexOOBError(_) => <indexOOBErrorCall as alloy_sol_types::SolCall>::SELECTOR,
                 Self::memOverflowError(_) => {
                     <memOverflowErrorCall as alloy_sol_types::SolCall>::SELECTOR
                 }
                 Self::popError(_) => <popErrorCall as alloy_sol_types::SolCall>::SELECTOR,
-                Self::zeroVarError(_) => {
-                    <zeroVarErrorCall as alloy_sol_types::SolCall>::SELECTOR
-                }
+                Self::zeroVarError(_) => <zeroVarErrorCall as alloy_sol_types::SolCall>::SELECTOR,
             }
         }
         #[inline]
@@ -1327,20 +1188,16 @@ function zeroVarError() external view returns (bytes memory);
             data: &[u8],
             validate: bool,
         ) -> alloy_sol_types::Result<Self> {
-            static DECODE_SHIMS: &[fn(
-                &[u8],
-                bool,
-            ) -> alloy_sol_types::Result<stdErrorCalls>] = &[
+            static DECODE_SHIMS: &[fn(&[u8], bool) -> alloy_sol_types::Result<stdErrorCalls>] = &[
                 {
                     fn indexOOBError(
                         data: &[u8],
                         validate: bool,
                     ) -> alloy_sol_types::Result<stdErrorCalls> {
                         <indexOOBErrorCall as alloy_sol_types::SolCall>::abi_decode_raw(
-                                data,
-                                validate,
-                            )
-                            .map(stdErrorCalls::indexOOBError)
+                            data, validate,
+                        )
+                        .map(stdErrorCalls::indexOOBError)
                     }
                     indexOOBError
                 },
@@ -1350,10 +1207,9 @@ function zeroVarError() external view returns (bytes memory);
                         validate: bool,
                     ) -> alloy_sol_types::Result<stdErrorCalls> {
                         <assertionErrorCall as alloy_sol_types::SolCall>::abi_decode_raw(
-                                data,
-                                validate,
-                            )
-                            .map(stdErrorCalls::assertionError)
+                            data, validate,
+                        )
+                        .map(stdErrorCalls::assertionError)
                     }
                     assertionError
                 },
@@ -1363,10 +1219,9 @@ function zeroVarError() external view returns (bytes memory);
                         validate: bool,
                     ) -> alloy_sol_types::Result<stdErrorCalls> {
                         <enumConversionErrorCall as alloy_sol_types::SolCall>::abi_decode_raw(
-                                data,
-                                validate,
-                            )
-                            .map(stdErrorCalls::enumConversionError)
+                            data, validate,
+                        )
+                        .map(stdErrorCalls::enumConversionError)
                     }
                     enumConversionError
                 },
@@ -1376,10 +1231,9 @@ function zeroVarError() external view returns (bytes memory);
                         validate: bool,
                     ) -> alloy_sol_types::Result<stdErrorCalls> {
                         <arithmeticErrorCall as alloy_sol_types::SolCall>::abi_decode_raw(
-                                data,
-                                validate,
-                            )
-                            .map(stdErrorCalls::arithmeticError)
+                            data, validate,
+                        )
+                        .map(stdErrorCalls::arithmeticError)
                     }
                     arithmeticError
                 },
@@ -1389,10 +1243,9 @@ function zeroVarError() external view returns (bytes memory);
                         validate: bool,
                     ) -> alloy_sol_types::Result<stdErrorCalls> {
                         <memOverflowErrorCall as alloy_sol_types::SolCall>::abi_decode_raw(
-                                data,
-                                validate,
-                            )
-                            .map(stdErrorCalls::memOverflowError)
+                            data, validate,
+                        )
+                        .map(stdErrorCalls::memOverflowError)
                     }
                     memOverflowError
                 },
@@ -1401,10 +1254,7 @@ function zeroVarError() external view returns (bytes memory);
                         data: &[u8],
                         validate: bool,
                     ) -> alloy_sol_types::Result<stdErrorCalls> {
-                        <popErrorCall as alloy_sol_types::SolCall>::abi_decode_raw(
-                                data,
-                                validate,
-                            )
+                        <popErrorCall as alloy_sol_types::SolCall>::abi_decode_raw(data, validate)
                             .map(stdErrorCalls::popError)
                     }
                     popError
@@ -1415,10 +1265,9 @@ function zeroVarError() external view returns (bytes memory);
                         validate: bool,
                     ) -> alloy_sol_types::Result<stdErrorCalls> {
                         <zeroVarErrorCall as alloy_sol_types::SolCall>::abi_decode_raw(
-                                data,
-                                validate,
-                            )
-                            .map(stdErrorCalls::zeroVarError)
+                            data, validate,
+                        )
+                        .map(stdErrorCalls::zeroVarError)
                     }
                     zeroVarError
                 },
@@ -1428,10 +1277,9 @@ function zeroVarError() external view returns (bytes memory);
                         validate: bool,
                     ) -> alloy_sol_types::Result<stdErrorCalls> {
                         <encodeStorageErrorCall as alloy_sol_types::SolCall>::abi_decode_raw(
-                                data,
-                                validate,
-                            )
-                            .map(stdErrorCalls::encodeStorageError)
+                            data, validate,
+                        )
+                        .map(stdErrorCalls::encodeStorageError)
                     }
                     encodeStorageError
                 },
@@ -1441,21 +1289,18 @@ function zeroVarError() external view returns (bytes memory);
                         validate: bool,
                     ) -> alloy_sol_types::Result<stdErrorCalls> {
                         <divisionErrorCall as alloy_sol_types::SolCall>::abi_decode_raw(
-                                data,
-                                validate,
-                            )
-                            .map(stdErrorCalls::divisionError)
+                            data, validate,
+                        )
+                        .map(stdErrorCalls::divisionError)
                     }
                     divisionError
                 },
             ];
             let Ok(idx) = Self::SELECTORS.binary_search(&selector) else {
-                return Err(
-                    alloy_sol_types::Error::unknown_selector(
-                        <Self as alloy_sol_types::SolInterface>::NAME,
-                        selector,
-                    ),
-                );
+                return Err(alloy_sol_types::Error::unknown_selector(
+                    <Self as alloy_sol_types::SolInterface>::NAME,
+                    selector,
+                ));
             };
             DECODE_SHIMS[idx](data, validate)
         }
@@ -1463,47 +1308,31 @@ function zeroVarError() external view returns (bytes memory);
         fn abi_encoded_size(&self) -> usize {
             match self {
                 Self::arithmeticError(inner) => {
-                    <arithmeticErrorCall as alloy_sol_types::SolCall>::abi_encoded_size(
-                        inner,
-                    )
+                    <arithmeticErrorCall as alloy_sol_types::SolCall>::abi_encoded_size(inner)
                 }
                 Self::assertionError(inner) => {
-                    <assertionErrorCall as alloy_sol_types::SolCall>::abi_encoded_size(
-                        inner,
-                    )
+                    <assertionErrorCall as alloy_sol_types::SolCall>::abi_encoded_size(inner)
                 }
                 Self::divisionError(inner) => {
-                    <divisionErrorCall as alloy_sol_types::SolCall>::abi_encoded_size(
-                        inner,
-                    )
+                    <divisionErrorCall as alloy_sol_types::SolCall>::abi_encoded_size(inner)
                 }
                 Self::encodeStorageError(inner) => {
-                    <encodeStorageErrorCall as alloy_sol_types::SolCall>::abi_encoded_size(
-                        inner,
-                    )
+                    <encodeStorageErrorCall as alloy_sol_types::SolCall>::abi_encoded_size(inner)
                 }
                 Self::enumConversionError(inner) => {
-                    <enumConversionErrorCall as alloy_sol_types::SolCall>::abi_encoded_size(
-                        inner,
-                    )
+                    <enumConversionErrorCall as alloy_sol_types::SolCall>::abi_encoded_size(inner)
                 }
                 Self::indexOOBError(inner) => {
-                    <indexOOBErrorCall as alloy_sol_types::SolCall>::abi_encoded_size(
-                        inner,
-                    )
+                    <indexOOBErrorCall as alloy_sol_types::SolCall>::abi_encoded_size(inner)
                 }
                 Self::memOverflowError(inner) => {
-                    <memOverflowErrorCall as alloy_sol_types::SolCall>::abi_encoded_size(
-                        inner,
-                    )
+                    <memOverflowErrorCall as alloy_sol_types::SolCall>::abi_encoded_size(inner)
                 }
                 Self::popError(inner) => {
                     <popErrorCall as alloy_sol_types::SolCall>::abi_encoded_size(inner)
                 }
                 Self::zeroVarError(inner) => {
-                    <zeroVarErrorCall as alloy_sol_types::SolCall>::abi_encoded_size(
-                        inner,
-                    )
+                    <zeroVarErrorCall as alloy_sol_types::SolCall>::abi_encoded_size(inner)
                 }
             }
         }
@@ -1511,58 +1340,33 @@ function zeroVarError() external view returns (bytes memory);
         fn abi_encode_raw(&self, out: &mut alloy_sol_types::private::Vec<u8>) {
             match self {
                 Self::arithmeticError(inner) => {
-                    <arithmeticErrorCall as alloy_sol_types::SolCall>::abi_encode_raw(
-                        inner,
-                        out,
-                    )
+                    <arithmeticErrorCall as alloy_sol_types::SolCall>::abi_encode_raw(inner, out)
                 }
                 Self::assertionError(inner) => {
-                    <assertionErrorCall as alloy_sol_types::SolCall>::abi_encode_raw(
-                        inner,
-                        out,
-                    )
+                    <assertionErrorCall as alloy_sol_types::SolCall>::abi_encode_raw(inner, out)
                 }
                 Self::divisionError(inner) => {
-                    <divisionErrorCall as alloy_sol_types::SolCall>::abi_encode_raw(
-                        inner,
-                        out,
-                    )
+                    <divisionErrorCall as alloy_sol_types::SolCall>::abi_encode_raw(inner, out)
                 }
                 Self::encodeStorageError(inner) => {
-                    <encodeStorageErrorCall as alloy_sol_types::SolCall>::abi_encode_raw(
-                        inner,
-                        out,
-                    )
+                    <encodeStorageErrorCall as alloy_sol_types::SolCall>::abi_encode_raw(inner, out)
                 }
                 Self::enumConversionError(inner) => {
                     <enumConversionErrorCall as alloy_sol_types::SolCall>::abi_encode_raw(
-                        inner,
-                        out,
+                        inner, out,
                     )
                 }
                 Self::indexOOBError(inner) => {
-                    <indexOOBErrorCall as alloy_sol_types::SolCall>::abi_encode_raw(
-                        inner,
-                        out,
-                    )
+                    <indexOOBErrorCall as alloy_sol_types::SolCall>::abi_encode_raw(inner, out)
                 }
                 Self::memOverflowError(inner) => {
-                    <memOverflowErrorCall as alloy_sol_types::SolCall>::abi_encode_raw(
-                        inner,
-                        out,
-                    )
+                    <memOverflowErrorCall as alloy_sol_types::SolCall>::abi_encode_raw(inner, out)
                 }
                 Self::popError(inner) => {
-                    <popErrorCall as alloy_sol_types::SolCall>::abi_encode_raw(
-                        inner,
-                        out,
-                    )
+                    <popErrorCall as alloy_sol_types::SolCall>::abi_encode_raw(inner, out)
                 }
                 Self::zeroVarError(inner) => {
-                    <zeroVarErrorCall as alloy_sol_types::SolCall>::abi_encode_raw(
-                        inner,
-                        out,
-                    )
+                    <zeroVarErrorCall as alloy_sol_types::SolCall>::abi_encode_raw(inner, out)
                 }
             }
         }
@@ -1570,7 +1374,7 @@ function zeroVarError() external view returns (bytes memory);
     use alloy::contract as alloy_contract;
     /**Creates a new wrapper around an on-chain [`stdError`](self) contract instance.
 
-See the [wrapper's documentation](`stdErrorInstance`) for more details.*/
+    See the [wrapper's documentation](`stdErrorInstance`) for more details.*/
     #[inline]
     pub const fn new<
         T: alloy_contract::private::Transport + ::core::clone::Clone,
@@ -1584,9 +1388,9 @@ See the [wrapper's documentation](`stdErrorInstance`) for more details.*/
     }
     /**Deploys this contract using the given `provider` and constructor arguments, if any.
 
-Returns a new instance of the contract, if the deployment was successful.
+    Returns a new instance of the contract, if the deployment was successful.
 
-For more fine-grained control over the deployment process, use [`deploy_builder`] instead.*/
+    For more fine-grained control over the deployment process, use [`deploy_builder`] instead.*/
     #[inline]
     pub fn deploy<
         T: alloy_contract::private::Transport + ::core::clone::Clone,
@@ -1594,35 +1398,36 @@ For more fine-grained control over the deployment process, use [`deploy_builder`
         N: alloy_contract::private::Network,
     >(
         provider: P,
-    ) -> impl ::core::future::Future<
-        Output = alloy_contract::Result<stdErrorInstance<T, P, N>>,
-    > {
+    ) -> impl ::core::future::Future<Output = alloy_contract::Result<stdErrorInstance<T, P, N>>>
+    {
         stdErrorInstance::<T, P, N>::deploy(provider)
     }
     /**Creates a `RawCallBuilder` for deploying this contract using the given `provider`
-and constructor arguments, if any.
+    and constructor arguments, if any.
 
-This is a simple wrapper around creating a `RawCallBuilder` with the data set to
-the bytecode concatenated with the constructor's ABI-encoded arguments.*/
+    This is a simple wrapper around creating a `RawCallBuilder` with the data set to
+    the bytecode concatenated with the constructor's ABI-encoded arguments.*/
     #[inline]
     pub fn deploy_builder<
         T: alloy_contract::private::Transport + ::core::clone::Clone,
         P: alloy_contract::private::Provider<T, N>,
         N: alloy_contract::private::Network,
-    >(provider: P) -> alloy_contract::RawCallBuilder<T, P, N> {
+    >(
+        provider: P,
+    ) -> alloy_contract::RawCallBuilder<T, P, N> {
         stdErrorInstance::<T, P, N>::deploy_builder(provider)
     }
     /**A [`stdError`](self) instance.
 
-Contains type-safe methods for interacting with an on-chain instance of the
-[`stdError`](self) contract located at a given `address`, using a given
-provider `P`.
+    Contains type-safe methods for interacting with an on-chain instance of the
+    [`stdError`](self) contract located at a given `address`, using a given
+    provider `P`.
 
-If the contract bytecode is available (see the [`sol!`](alloy_sol_types::sol!)
-documentation on how to provide it), the `deploy` and `deploy_builder` methods can
-be used to deploy a new instance of the contract.
+    If the contract bytecode is available (see the [`sol!`](alloy_sol_types::sol!)
+    documentation on how to provide it), the `deploy` and `deploy_builder` methods can
+    be used to deploy a new instance of the contract.
 
-See the [module-level documentation](self) for all the available methods.*/
+    See the [module-level documentation](self) for all the available methods.*/
     #[derive(Clone)]
     pub struct stdErrorInstance<T, P, N = alloy_contract::private::Ethereum> {
         address: alloy_sol_types::private::Address,
@@ -1639,42 +1444,34 @@ See the [module-level documentation](self) for all the available methods.*/
     /// Instantiation and getters/setters.
     #[automatically_derived]
     impl<
-        T: alloy_contract::private::Transport + ::core::clone::Clone,
-        P: alloy_contract::private::Provider<T, N>,
-        N: alloy_contract::private::Network,
-    > stdErrorInstance<T, P, N> {
+            T: alloy_contract::private::Transport + ::core::clone::Clone,
+            P: alloy_contract::private::Provider<T, N>,
+            N: alloy_contract::private::Network,
+        > stdErrorInstance<T, P, N>
+    {
         /**Creates a new wrapper around an on-chain [`stdError`](self) contract instance.
 
-See the [wrapper's documentation](`stdErrorInstance`) for more details.*/
+        See the [wrapper's documentation](`stdErrorInstance`) for more details.*/
         #[inline]
-        pub const fn new(
-            address: alloy_sol_types::private::Address,
-            provider: P,
-        ) -> Self {
-            Self {
-                address,
-                provider,
-                _network_transport: ::core::marker::PhantomData,
-            }
+        pub const fn new(address: alloy_sol_types::private::Address, provider: P) -> Self {
+            Self { address, provider, _network_transport: ::core::marker::PhantomData }
         }
         /**Deploys this contract using the given `provider` and constructor arguments, if any.
 
-Returns a new instance of the contract, if the deployment was successful.
+        Returns a new instance of the contract, if the deployment was successful.
 
-For more fine-grained control over the deployment process, use [`deploy_builder`] instead.*/
+        For more fine-grained control over the deployment process, use [`deploy_builder`] instead.*/
         #[inline]
-        pub async fn deploy(
-            provider: P,
-        ) -> alloy_contract::Result<stdErrorInstance<T, P, N>> {
+        pub async fn deploy(provider: P) -> alloy_contract::Result<stdErrorInstance<T, P, N>> {
             let call_builder = Self::deploy_builder(provider);
             let contract_address = call_builder.deploy().await?;
             Ok(Self::new(contract_address, call_builder.provider))
         }
         /**Creates a `RawCallBuilder` for deploying this contract using the given `provider`
-and constructor arguments, if any.
+        and constructor arguments, if any.
 
-This is a simple wrapper around creating a `RawCallBuilder` with the data set to
-the bytecode concatenated with the constructor's ABI-encoded arguments.*/
+        This is a simple wrapper around creating a `RawCallBuilder` with the data set to
+        the bytecode concatenated with the constructor's ABI-encoded arguments.*/
         #[inline]
         pub fn deploy_builder(provider: P) -> alloy_contract::RawCallBuilder<T, P, N> {
             alloy_contract::RawCallBuilder::new_raw_deploy(
@@ -1717,10 +1514,11 @@ the bytecode concatenated with the constructor's ABI-encoded arguments.*/
     /// Function calls.
     #[automatically_derived]
     impl<
-        T: alloy_contract::private::Transport + ::core::clone::Clone,
-        P: alloy_contract::private::Provider<T, N>,
-        N: alloy_contract::private::Network,
-    > stdErrorInstance<T, P, N> {
+            T: alloy_contract::private::Transport + ::core::clone::Clone,
+            P: alloy_contract::private::Provider<T, N>,
+            N: alloy_contract::private::Network,
+        > stdErrorInstance<T, P, N>
+    {
         /// Creates a new call builder using this contract instance's provider and address.
         ///
         /// Note that the call can be any function call, not just those defined in this
@@ -1744,9 +1542,7 @@ the bytecode concatenated with the constructor's ABI-encoded arguments.*/
             self.call_builder(&assertionErrorCall {})
         }
         ///Creates a new call builder for the [`divisionError`] function.
-        pub fn divisionError(
-            &self,
-        ) -> alloy_contract::SolCallBuilder<T, &P, divisionErrorCall, N> {
+        pub fn divisionError(&self) -> alloy_contract::SolCallBuilder<T, &P, divisionErrorCall, N> {
             self.call_builder(&divisionErrorCall {})
         }
         ///Creates a new call builder for the [`encodeStorageError`] function.
@@ -1762,9 +1558,7 @@ the bytecode concatenated with the constructor's ABI-encoded arguments.*/
             self.call_builder(&enumConversionErrorCall {})
         }
         ///Creates a new call builder for the [`indexOOBError`] function.
-        pub fn indexOOBError(
-            &self,
-        ) -> alloy_contract::SolCallBuilder<T, &P, indexOOBErrorCall, N> {
+        pub fn indexOOBError(&self) -> alloy_contract::SolCallBuilder<T, &P, indexOOBErrorCall, N> {
             self.call_builder(&indexOOBErrorCall {})
         }
         ///Creates a new call builder for the [`memOverflowError`] function.
@@ -1774,25 +1568,22 @@ the bytecode concatenated with the constructor's ABI-encoded arguments.*/
             self.call_builder(&memOverflowErrorCall {})
         }
         ///Creates a new call builder for the [`popError`] function.
-        pub fn popError(
-            &self,
-        ) -> alloy_contract::SolCallBuilder<T, &P, popErrorCall, N> {
+        pub fn popError(&self) -> alloy_contract::SolCallBuilder<T, &P, popErrorCall, N> {
             self.call_builder(&popErrorCall {})
         }
         ///Creates a new call builder for the [`zeroVarError`] function.
-        pub fn zeroVarError(
-            &self,
-        ) -> alloy_contract::SolCallBuilder<T, &P, zeroVarErrorCall, N> {
+        pub fn zeroVarError(&self) -> alloy_contract::SolCallBuilder<T, &P, zeroVarErrorCall, N> {
             self.call_builder(&zeroVarErrorCall {})
         }
     }
     /// Event filters.
     #[automatically_derived]
     impl<
-        T: alloy_contract::private::Transport + ::core::clone::Clone,
-        P: alloy_contract::private::Provider<T, N>,
-        N: alloy_contract::private::Network,
-    > stdErrorInstance<T, P, N> {
+            T: alloy_contract::private::Transport + ::core::clone::Clone,
+            P: alloy_contract::private::Provider<T, N>,
+            N: alloy_contract::private::Network,
+        > stdErrorInstance<T, P, N>
+    {
         /// Creates a new event filter using this contract instance's provider and address.
         ///
         /// Note that the type can be any event, not just those defined in this contract.
