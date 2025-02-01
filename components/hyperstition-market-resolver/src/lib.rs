@@ -9,7 +9,14 @@ use bindings::{
 
 sol! {
     #[derive(Debug)]
-    struct TriggerInfo {
+    event ResolveMarket(
+        uint64 indexed triggerId,
+        address indexed creator,
+        bytes data
+    );
+
+    #[derive(Debug)]
+    struct TriggerInfoData {
         address lmsrMarketMaker;
         address conditionalTokens;
         bool result;
@@ -29,13 +36,21 @@ impl Guest for Component {
     fn run(trigger_action: TriggerAction) -> std::result::Result<Vec<u8>, String> {
         match trigger_action.data {
             TriggerData::EthContractEvent(TriggerDataEthContractEvent { log, .. }) => {
-                let trigger_info = <TriggerInfo as SolValue>::abi_decode(&log.data, false)
-                    .map_err(|e| format!("Failed to decode TriggerInfo: {}", e))?;
+                let ResolveMarket { data, .. } = layer_wasi::ethereum::decode_event_log_data(
+                    layer_wasi::bindings::compat::EthEventLogData {
+                        topics: log.topics,
+                        data: log.data,
+                    },
+                )
+                .map_err(|e| format!("Failed to decode event log data: {}", e))?;
+
+                let data = <TriggerInfoData as SolValue>::abi_decode(&data, true)
+                    .map_err(|e| format!("Failed to decode trigger data: {}", e))?;
 
                 Ok(ReturnData {
-                    lmsrMarketMaker: trigger_info.lmsrMarketMaker,
-                    conditionalTokens: trigger_info.conditionalTokens,
-                    result: trigger_info.result,
+                    lmsrMarketMaker: data.lmsrMarketMaker,
+                    conditionalTokens: data.conditionalTokens,
+                    result: data.result,
                 }
                 .abi_encode())
 

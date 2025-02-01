@@ -21,17 +21,17 @@ contract HyperstitionMarketFactory is
     mapping(address => TriggerId[]) public triggerIdsByCreator;
     uint64 private _nextTriggerId; // Changed to uint64 to match TriggerId
 
-    event NewTrigger(
-        TriggerId indexed triggerId,
-        address indexed creator,
-        bytes data
-    );
-
     struct TriggerData {
         address lmsrMarketMaker;
         address conditionalTokens;
         bool result;
     }
+
+    event ResolveMarket(
+        TriggerId indexed triggerId,
+        address indexed creator,
+        bytes data
+    );
 
     struct AvsOutputData {
         address lmsrMarketMaker;
@@ -105,6 +105,10 @@ contract HyperstitionMarketFactory is
         );
     }
 
+    address public resolvedLmsrMarketMaker;
+    address public resolvedConditionalTokens;
+    bool public resolvedResult;
+
     /**
      * @dev Handle the AVS oracle resolution event. This should close the market and payout the corresponding outcome tokens based on the result.
      */
@@ -136,10 +140,12 @@ contract HyperstitionMarketFactory is
         return triggersById[triggerId];
     }
 
-    function addTrigger(TriggerData calldata triggerData) external payable {
+    function addTrigger(
+        TriggerData calldata triggerData
+    ) external payable returns (TriggerId triggerId) {
         require(msg.value == 0.1 ether, "Payment must be exactly 0.1 ETH");
 
-        TriggerId triggerId = TriggerId.wrap(uint64(_nextTriggerId++));
+        triggerId = TriggerId.wrap(uint64(_nextTriggerId++));
         bytes memory data = abi.encode(triggerData);
 
         TriggerInfo memory triggerInfo = TriggerInfo({
@@ -151,6 +157,22 @@ contract HyperstitionMarketFactory is
         triggersById[triggerId] = triggerInfo;
         triggerIdsByCreator[msg.sender].push(triggerId);
 
-        emit NewTrigger(triggerId, msg.sender, data);
+        emit ResolveMarket(triggerId, msg.sender, data);
+    }
+
+    // Update helper functions
+    function getTriggerCount(address creator) external view returns (uint256) {
+        return triggerIdsByCreator[creator].length;
+    }
+
+    function getTriggerIdAtIndex(
+        address creator,
+        uint256 index
+    ) external view returns (TriggerId) {
+        require(
+            index < triggerIdsByCreator[creator].length,
+            "Index out of bounds"
+        );
+        return triggerIdsByCreator[creator][index];
     }
 }

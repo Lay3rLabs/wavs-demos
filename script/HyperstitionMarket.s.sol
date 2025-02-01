@@ -275,12 +275,14 @@ contract ResolveHyperstitionMarketTrigger is Script {
             });
 
         // Add trigger (sends 0.1 ETH)
-        factory.addTrigger{value: 0.1 ether}(triggerData);
+        ISimpleTrigger.TriggerId triggerId = factory.addTrigger{
+            value: 0.1 ether
+        }(triggerData);
 
         vm.stopBroadcast();
 
-        // Get the trigger ID (it will be 0 for the first trigger)
-        ISimpleTrigger.TriggerId triggerId = ISimpleTrigger.TriggerId.wrap(0);
+        uint64 tid = ISimpleTrigger.TriggerId.unwrap(triggerId);
+        console.log("Trigger ID:", tid);
 
         // Fetch and log the trigger info
         ISimpleTrigger.TriggerInfo memory info = factory.getTrigger(triggerId);
