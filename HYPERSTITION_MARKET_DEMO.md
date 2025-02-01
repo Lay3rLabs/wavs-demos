@@ -90,7 +90,7 @@ Deploy Hyperstition Market resolver AVS:
 
 ```bash
 wavs-cli deploy-service --trigger eth-contract-event \
-  --trigger-event-name $(cast sig-event "NewTrigger(uint64,address,bytes)" | cut -c 3-) \
+  --trigger-event-name $(cast sig-event "ResolveMarket(uint64,address,bytes)" | cut -c 3-) \
   --trigger-address $HYPERSTITION_FACTORY_ADDRESS \
   --component ./compiled/hyperstition_market_resolver.wasm \
   --submit-address $SERVICE_MANAGER
