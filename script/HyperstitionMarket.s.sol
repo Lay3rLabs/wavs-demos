@@ -29,18 +29,15 @@ contract DeployHyperstitionMarket is Script {
         console.log("Collateral token deployed at:", address(collateralToken));
 
         // Write to .env file
-        string memory path = vm.projectRoot();
-        string memory envContent = vm.readFile(string.concat(path, "/.env"));
-        vm.writeFile(
-            string.concat(path, "/.env"),
-            string.concat(
-                envContent,
-                "\nHYPERSTITION_FACTORY_ADDRESS=",
-                vm.toString(address(factory)),
-                "\nCOLLATERAL_TOKEN_ADDRESS=",
-                vm.toString(address(collateralToken))
-            )
+        string memory path = string.concat(vm.projectRoot(), "/.env");
+        string memory newContent = string.concat(
+            "\nHYPERSTITION_FACTORY_ADDRESS=",
+            vm.toString(address(factory)),
+            "\nCOLLATERAL_TOKEN_ADDRESS=",
+            vm.toString(address(collateralToken))
         );
+        vm.writeLine(path, newContent);
+
         console.log(
             "Updated .env file with HYPERSTITION_FACTORY_ADDRESS and COLLATERAL_TOKEN_ADDRESS"
         );
@@ -64,7 +61,6 @@ contract LaunchHyperstitionMarket is Script {
         factory = HyperstitionMarketFactory(factoryAddress);
         collateralToken = ERC20Mintable(collateralTokenAddress);
 
-        // Add more detailed logging
         console.log("Factory address:", factoryAddress);
         console.log("Collateral token address:", collateralTokenAddress);
 
@@ -85,19 +81,20 @@ contract LaunchHyperstitionMarket is Script {
 
         vm.stopBroadcast();
 
+        // Log the deployment
+        console.log("Conditional tokens address:", address(conditionalTokens));
+        console.log("Market maker address:", address(lmsrMarketMaker));
+
         // Write to .env file
-        string memory path = vm.projectRoot();
-        string memory envContent = vm.readFile(string.concat(path, "/.env"));
-        vm.writeFile(
-            string.concat(path, "/.env"),
-            string.concat(
-                envContent,
-                "\nMARKET_MAKER_ADDRESS=",
-                vm.toString(address(lmsrMarketMaker)),
-                "\nCONDITIONAL_TOKENS_ADDRESS=",
-                vm.toString(address(conditionalTokens))
-            )
+        string memory path = string.concat(vm.projectRoot(), "/.env");
+        string memory newContent = string.concat(
+            "\nMARKET_MAKER_ADDRESS=",
+            vm.toString(address(lmsrMarketMaker)),
+            "\nCONDITIONAL_TOKENS_ADDRESS=",
+            vm.toString(address(conditionalTokens))
         );
+        vm.writeLine(path, newContent);
+
         console.log(
             "Updated .env file with MARKET_MAKER_ADDRESS and CONDITIONAL_TOKENS_ADDRESS"
         );

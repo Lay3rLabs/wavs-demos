@@ -66,6 +66,12 @@ Deploy Hyperstition Market contracts.
 forge script script/HyperstitionMarket.s.sol:DeployHyperstitionMarket --rpc-url http://localhost:8545 --broadcast
 ```
 
+Reload environment variables from .env file:
+
+```bash
+source .env
+```
+
 Deploy core Eigen contracts:
 
 ```bash
@@ -80,10 +86,22 @@ wavs-cli deploy-eigen-service-manager --service-handler $HYPERSTITION_FACTORY_AD
 
 Set the `SERVICE_MANAGER` environment variable with the address of the service manager.
 
+Reload environment variables from .env file:
+
+```bash
+source .env
+```
+
 Launch Hyperstition Market:
 
 ```bash
 forge script script/HyperstitionMarket.s.sol:LaunchHyperstitionMarket --rpc-url http://localhost:8545 --broadcast
+```
+
+Reload environment variables from .env file:
+
+```bash
+source .env
 ```
 
 Deploy Hyperstition Market resolver AVS:
