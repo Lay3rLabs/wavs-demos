@@ -1,6 +1,6 @@
 #[allow(warnings)]
 mod bindings;
-use alloy_sol_types::{sol, SolValue};
+use alloy_sol_types::{sol, SolType, SolValue};
 use anyhow::Result;
 use base64;
 use base64::Engine;
@@ -81,18 +81,21 @@ impl Guest for Component {
                 let creator = trigger_info.creator;
 
                 block_on(|reactor| async move {
-                    // TODO prompt is not decoding correctly
+                    // Decode the ABI-encoded string first
+                    let decoded = alloy_sol_types::sol_data::String::abi_decode(&prompt, false)
+                        .map_err(|e| format!("Failed to decode ABI string: {}", e))?;
+
                     // Query Ollama
-                    let response = query_ollama(&reactor, &prompt.to_string()).await?;
+                    let response = query_ollama(&reactor, &decoded.to_string()).await?;
 
                     // Create NFT metadata
                     let metadata = NFTMetadata {
                         name: "AI Generated NFT".to_string(),
-                        description: response,
+                        description: response.to_string(),
                         image: "ipfs://placeholder".to_string(),
                         attributes: vec![Attribute {
                             trait_type: "Prompt".to_string(),
-                            value: prompt.to_string(),
+                            value: decoded.to_string(),
                         }],
                     };
 
@@ -167,7 +170,8 @@ async fn query_ollama(reactor: &Reactor, prompt: &str) -> Result<String, String>
 
             // Context and length control
             "num_ctx": 4096,          // [512-8192] Context window size
-            "num_predict": 100,       // [-1, 1-N] Max tokens to generate (-1 = infinite)
+            // TODO bump this number when we can support higher per service gas configs
+            "num_predict": 25,       // [-1, 1-N] Max tokens to generate (-1 = infinite)
 
             // Stop sequences (model-specific)
             // "stop": [
