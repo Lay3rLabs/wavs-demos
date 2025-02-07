@@ -54,6 +54,10 @@ contract InitializeNFTWithTrigger is Script {
             "Caller has admin role?",
             nft.hasRole(nft.DEFAULT_ADMIN_ROLE(), vm.addr(deployerPrivateKey))
         );
+        console.log(
+            "Service provider has service provider role?",
+            nft.hasRole(nft.SERVICE_PROVIDER_ROLE(), serviceProvider)
+        );
 
         vm.startBroadcast(deployerPrivateKey);
 
@@ -79,9 +83,7 @@ contract InitializeNFTWithTrigger is Script {
             string.concat(path, "/.env"),
             string.concat(
                 envContent,
-                "\nINITIALIZED_NFT_ADDRESS=",
-                vm.toString(nftAddress),
-                "\nINITIALIZED_SERVICE_PROVIDER=",
+                "\nSERVICE_PROVIDER=",
                 vm.toString(serviceProvider)
             )
         );
