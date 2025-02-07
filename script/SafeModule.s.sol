@@ -7,167 +7,56 @@ import "@gnosis.pm/safe-contracts/contracts/Safe.sol";
 import "@gnosis.pm/safe-contracts/contracts/proxies/SafeProxyFactory.sol";
 import "@gnosis.pm/safe-contracts/contracts/base/ModuleManager.sol";
 
-contract SafeModuleScript is Script {
-    // Remove or modify the constant addresses
+contract DeploySafeModule is Script {
     Safe public safeSingleton;
     SafeProxyFactory public factory;
-
-    // Add state variables to store deployed addresses
     address public deployedSafeAddress;
     address public deployedModuleAddress;
 
-    function setUp() public {}
-
-    function deployContracts() public {
+    function run() public {
         uint256 deployerPrivateKey = vm.envUint("PRIVATE_KEY");
         vm.startBroadcast(deployerPrivateKey);
 
-        // Deploy Safe singleton and factory first
+        // Deploy Safe singleton and factory
         safeSingleton = new Safe();
         factory = new SafeProxyFactory();
         console.log("Deployed Safe singleton at:", address(safeSingleton));
         console.log("Deployed Safe factory at:", address(factory));
 
-        // Get Safe setup parameters from environment
-        address[] memory owners = _getOwners();
-        uint256 threshold = vm.envUint("SAFE_THRESHOLD");
-        address fallbackHandler = vm.envAddress("SAFE_FALLBACK_HANDLER");
-
-        // Check DEPLOY_NEW_SAFE first
+        // Deploy Safe if needed
         bool deployNewSafe = vm.envBool("DEPLOY_NEW_SAFE");
-        console.log("Deploy new Safe:", deployNewSafe);
-
         if (deployNewSafe) {
             deployedSafeAddress = _deploySafe(
-                owners,
-                threshold,
-                fallbackHandler
+                _getOwners(),
+                vm.envUint("SAFE_THRESHOLD"),
+                vm.envAddress("SAFE_FALLBACK_HANDLER")
             );
             console.log("Deployed new Safe at:", deployedSafeAddress);
+
+            // Fund the Safe
+            payable(deployedSafeAddress).transfer(1 ether);
+            console.log("Funded Safe with 1 ETH");
         } else {
-            // Only try to read EXISTING_SAFE_ADDRESS if we're not deploying a new Safe
-            try vm.envAddress("EXISTING_SAFE_ADDRESS") returns (
-                address existingSafe
-            ) {
-                deployedSafeAddress = existingSafe;
-                console.log("Using existing Safe at:", deployedSafeAddress);
-            } catch {
-                revert(
-                    "When DEPLOY_NEW_SAFE is false, EXISTING_SAFE_ADDRESS must be set"
-                );
-            }
+            deployedSafeAddress = vm.envAddress("EXISTING_SAFE_ADDRESS");
+            console.log("Using existing Safe at:", deployedSafeAddress);
         }
 
-        // Fund the Safe proxy (not the singleton or module) with 1 ETH
-        payable(deployedSafeAddress).transfer(1 ether);
-        console.log("Funded Safe proxy at", deployedSafeAddress, "with 1 ETH");
-
-        // Deploy SafeModule with the Safe proxy address
+        // Deploy SafeModule
         SafeModule module = new SafeModule(deployedSafeAddress);
         deployedModuleAddress = address(module);
         console.log("Deployed SafeModule at:", deployedModuleAddress);
-        console.log("Module owner:", module.owner());
-        console.log("Module safe:", module.safe());
 
-        // Fund the module using receive() function
+        // Fund the module
         try module.fundModule{value: 1 ether}() {
-            console.log("Funded module with:", 1 ether, "wei (1 ETH)");
+            console.log("Funded module with 1 ETH");
         } catch Error(string memory reason) {
             console.log("Failed to fund module:", reason);
             revert(reason);
         }
 
-        // Write deployment info to files
         _writeDeploymentToFile();
 
         vm.stopBroadcast();
-    }
-
-    function initializeModule() public {
-        uint256 deployerPrivateKey = vm.envUint("PRIVATE_KEY");
-        vm.startBroadcast(deployerPrivateKey);
-
-        // Get the service manager address from environment
-        address serviceProvider = vm.envAddress("SERVICE_MANAGER_ADDRESS");
-        require(
-            serviceProvider != address(0),
-            "Invalid service provider address"
-        );
-
-        // Get module address - try deployedModuleAddress first, fall back to env var
-        address moduleAddress;
-        if (deployedModuleAddress != address(0)) {
-            moduleAddress = deployedModuleAddress;
-            console.log("Using newly deployed module at:", moduleAddress);
-        } else {
-            moduleAddress = vm.envAddress("WAVS_SAFE_MODULE");
-            console.log("Using existing module from env at:", moduleAddress);
-        }
-        require(moduleAddress != address(0), "No module address found");
-
-        // Get the module instance and verify it exists
-        SafeModule module = SafeModule(moduleAddress);
-        require(address(module).code.length > 0, "No code at module address");
-
-        // Get the Safe address from the module
-        address safeAddress = module.safe();
-        console.log("Safe address from module:", safeAddress);
-        require(safeAddress != address(0), "Invalid Safe address from module");
-
-        // Initialize the module
-        try module.initialize(serviceProvider) {
-            console.log(
-                "Successfully initialized SafeModule with service provider:",
-                serviceProvider
-            );
-        } catch Error(string memory reason) {
-            console.log("Initialization failed with reason:", reason);
-            revert(reason);
-        }
-
-        // If we're working with a new Safe, enable the module automatically
-        bool deployNewSafe = vm.envBool("DEPLOY_NEW_SAFE");
-        if (deployNewSafe) {
-            Safe safe = Safe(payable(safeAddress));
-            _enableModule(safe, moduleAddress);
-            console.log("Enabled module on Safe");
-        } else {
-            // Try to get existing Safe address if needed
-            try vm.envAddress("EXISTING_SAFE_ADDRESS") returns (
-                address existingSafe
-            ) {
-                if (existingSafe != address(0)) {
-                    require(
-                        existingSafe == safeAddress,
-                        "Safe address mismatch"
-                    );
-                    Safe safe = Safe(payable(safeAddress));
-                    _enableModule(safe, moduleAddress);
-                    console.log(
-                        "Enabled module on existing Safe at:",
-                        existingSafe
-                    );
-                } else {
-                    console.log(
-                        "Please enable the module manually through the Safe UI"
-                    );
-                }
-            } catch {
-                console.log(
-                    "Please enable the module manually through the Safe UI"
-                );
-            }
-        }
-
-        vm.stopBroadcast();
-    }
-
-    // Update run function to include new method if needed
-    function run() public {
-        deployContracts();
-        initializeModule();
-        // Note: addNewTrigger() is not included in the default run
-        // as it should be called separately when needed
     }
 
     function _getOwners() internal view returns (address[] memory) {
@@ -205,85 +94,6 @@ contract SafeModuleScript is Script {
         );
 
         return safeAddress;
-    }
-
-    function _enableModule(Safe safe, address moduleAddress) internal {
-        // First check if the Safe exists and has code
-        require(address(safe).code.length > 0, "No code at Safe address");
-
-        // Try to get owners to verify it's a valid Safe
-        try safe.getOwners() returns (address[] memory owners) {
-            require(owners.length > 0, "Safe has no owners");
-
-            bytes memory data = abi.encodeWithSelector(
-                ModuleManager.enableModule.selector,
-                moduleAddress
-            );
-
-            // Execute transaction to enable module
-            safe.execTransaction(
-                address(safe),
-                0,
-                data,
-                Enum.Operation.Call,
-                0,
-                0,
-                0,
-                address(0),
-                payable(address(0)),
-                _generateSingleSignature(safe)
-            );
-        } catch {
-            revert(
-                "Failed to interact with Safe - invalid Safe address or not deployed"
-            );
-        }
-    }
-
-    function _generateSingleSignature(
-        Safe safe
-    ) internal view returns (bytes memory) {
-        // Assumes the deployer is the first owner
-        address owner = safe.getOwners()[0];
-        return abi.encodePacked(uint256(uint160(owner)), uint256(0), uint8(1));
-    }
-
-    function _split(
-        string memory _str,
-        string memory _delimiter
-    ) internal pure returns (string[] memory) {
-        uint count = 1;
-        for (uint i = 0; i < bytes(_str).length; i++) {
-            if (bytes(_str)[i] == bytes(_delimiter)[0]) count++;
-        }
-
-        string[] memory parts = new string[](count);
-        count = 0;
-
-        uint lastIndex = 0;
-        for (uint i = 0; i < bytes(_str).length; i++) {
-            if (bytes(_str)[i] == bytes(_delimiter)[0]) {
-                parts[count] = _substring(_str, lastIndex, i);
-                lastIndex = i + 1;
-                count++;
-            }
-        }
-        parts[count] = _substring(_str, lastIndex, bytes(_str).length);
-
-        return parts;
-    }
-
-    function _substring(
-        string memory _str,
-        uint _start,
-        uint _end
-    ) internal pure returns (string memory) {
-        bytes memory strBytes = bytes(_str);
-        bytes memory result = new bytes(_end - _start);
-        for (uint i = _start; i < _end; i++) {
-            result[i - _start] = strBytes[i];
-        }
-        return string(result);
     }
 
     function _writeDeploymentToFile() internal {
@@ -347,5 +157,146 @@ contract SafeModuleScript is Script {
         console.log("\n=== Environment Variables Updated ===");
         console.log(moduleAddressVar);
         console.log(serviceHandlerVar);
+    }
+
+    function _split(
+        string memory _str,
+        string memory _delimiter
+    ) internal pure returns (string[] memory) {
+        uint count = 1;
+        for (uint i = 0; i < bytes(_str).length; i++) {
+            if (bytes(_str)[i] == bytes(_delimiter)[0]) count++;
+        }
+
+        string[] memory parts = new string[](count);
+        count = 0;
+
+        uint lastIndex = 0;
+        for (uint i = 0; i < bytes(_str).length; i++) {
+            if (bytes(_str)[i] == bytes(_delimiter)[0]) {
+                parts[count] = _substring(_str, lastIndex, i);
+                lastIndex = i + 1;
+                count++;
+            }
+        }
+        parts[count] = _substring(_str, lastIndex, bytes(_str).length);
+
+        return parts;
+    }
+
+    function _substring(
+        string memory _str,
+        uint _start,
+        uint _end
+    ) internal pure returns (string memory) {
+        bytes memory strBytes = bytes(_str);
+        bytes memory result = new bytes(_end - _start);
+        for (uint i = _start; i < _end; i++) {
+            result[i - _start] = strBytes[i];
+        }
+        return string(result);
+    }
+}
+
+contract InitializeSafeModule is Script {
+    function run() public {
+        uint256 deployerPrivateKey = vm.envUint("PRIVATE_KEY");
+        address moduleAddress = vm.envAddress("WAVS_SAFE_MODULE");
+        address serviceProvider = vm.envAddress("SERVICE_MANAGER_ADDRESS");
+
+        console.log("Module address:", moduleAddress);
+        console.log("Service provider:", serviceProvider);
+
+        SafeModule module = SafeModule(moduleAddress);
+        require(address(module).code.length > 0, "No code at module address");
+
+        vm.startBroadcast(deployerPrivateKey);
+
+        try module.initialize(serviceProvider) {
+            console.log("Successfully initialized SafeModule");
+        } catch Error(string memory reason) {
+            console.log("Initialization failed:", reason);
+            revert(reason);
+        }
+
+        // Enable module on Safe if needed
+        address safeAddress = module.safe();
+        bool deployNewSafe = vm.envBool("DEPLOY_NEW_SAFE");
+        if (deployNewSafe || vm.envBool("ENABLE_MODULE")) {
+            Safe safe = Safe(payable(safeAddress));
+            _enableModule(safe, moduleAddress);
+            console.log("Enabled module on Safe at:", safeAddress);
+        }
+
+        vm.stopBroadcast();
+    }
+
+    function _enableModule(Safe safe, address moduleAddress) internal {
+        // First check if the Safe exists and has code
+        require(address(safe).code.length > 0, "No code at Safe address");
+
+        // Try to get owners to verify it's a valid Safe
+        try safe.getOwners() returns (address[] memory owners) {
+            require(owners.length > 0, "Safe has no owners");
+
+            bytes memory data = abi.encodeWithSelector(
+                ModuleManager.enableModule.selector,
+                moduleAddress
+            );
+
+            // Execute transaction to enable module
+            safe.execTransaction(
+                address(safe),
+                0,
+                data,
+                Enum.Operation.Call,
+                0,
+                0,
+                0,
+                address(0),
+                payable(address(0)),
+                _generateSingleSignature(safe)
+            );
+        } catch {
+            revert(
+                "Failed to interact with Safe - invalid Safe address or not deployed"
+            );
+        }
+    }
+
+    function _generateSingleSignature(
+        Safe safe
+    ) internal view returns (bytes memory) {
+        // Assumes the deployer is the first owner
+        address owner = safe.getOwners()[0];
+        return abi.encodePacked(uint256(uint160(owner)), uint256(0), uint8(1));
+    }
+}
+
+contract AddTrigger is Script {
+    function run(string calldata triggerData) public {
+        uint256 deployerPrivateKey = vm.envUint("PRIVATE_KEY");
+        address moduleAddress = vm.envAddress("WAVS_SAFE_MODULE");
+
+        console.log("Adding trigger to module at:", moduleAddress);
+        console.log("Trigger data:", triggerData);
+
+        SafeModule module = SafeModule(moduleAddress);
+        require(address(module).code.length > 0, "No code at module address");
+        require(module.initialized(), "Module not initialized");
+
+        vm.startBroadcast(deployerPrivateKey);
+
+        // Convert string to bytes
+        bytes memory triggerBytes = bytes(triggerData);
+
+        try module.addTrigger{value: 0.1 ether}(triggerBytes) {
+            console.log("Successfully added trigger");
+        } catch Error(string memory reason) {
+            console.log("Failed to add trigger:", reason);
+            revert(reason);
+        }
+
+        vm.stopBroadcast();
     }
 }

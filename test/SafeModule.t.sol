@@ -119,7 +119,13 @@ contract SafeModuleTest is Test {
             alice,
             50e18
         );
-        bytes memory payload = abi.encode(address(token), 0, transferData);
+        SafeModule.TransactionPayload memory txPayload = SafeModule
+            .TransactionPayload({
+                to: address(token),
+                value: 0,
+                data: transferData
+            });
+        bytes memory payload = abi.encode(txPayload);
 
         vm.prank(serviceProvider);
         safeModule.handleAddPayload(payload, "");
@@ -150,7 +156,9 @@ contract SafeModuleTest is Test {
         vm.deal(address(safe), 1 ether);
         uint256 initialBalance = alice.balance;
 
-        bytes memory payload = abi.encode(alice, 0.5 ether, "");
+        SafeModule.TransactionPayload memory txPayload = SafeModule
+            .TransactionPayload({to: alice, value: 0.5 ether, data: ""});
+        bytes memory payload = abi.encode(txPayload);
 
         vm.prank(serviceProvider);
         safeModule.handleAddPayload(payload, "");
@@ -165,7 +173,13 @@ contract SafeModuleTest is Test {
             alice,
             50e18
         );
-        bytes memory payload = abi.encode(address(token), 0, transferData);
+        SafeModule.TransactionPayload memory txPayload = SafeModule
+            .TransactionPayload({
+                to: address(token),
+                value: 0,
+                data: transferData
+            });
+        bytes memory payload = abi.encode(txPayload);
 
         vm.prank(serviceProvider);
         safeModule.handleAddPayload(payload, "");
@@ -186,8 +200,13 @@ contract SafeModuleTest is Test {
             25e18
         );
 
-        bytes memory payload1 = abi.encode(address(token), 0, data1);
-        bytes memory payload2 = abi.encode(address(token), 0, data2);
+        SafeModule.TransactionPayload memory txPayload1 = SafeModule
+            .TransactionPayload({to: address(token), value: 0, data: data1});
+        SafeModule.TransactionPayload memory txPayload2 = SafeModule
+            .TransactionPayload({to: address(token), value: 0, data: data2});
+
+        bytes memory payload1 = abi.encode(txPayload1);
+        bytes memory payload2 = abi.encode(txPayload2);
 
         vm.startPrank(serviceProvider);
         safeModule.handleAddPayload(payload1, "");
