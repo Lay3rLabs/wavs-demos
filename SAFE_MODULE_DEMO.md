@@ -1,15 +1,11 @@
 # Safe Module + WAVS Demo
 
-A variety of WASI components that can be leveraged to extend the functionality of the Gnosis Safe with custom Safe Modules and Guards.
-
 Status: _highly experimental and fun_
 
 TODO:
-- [ ] Fix encodings, use proper events rather than shoving everything into bytes
 - [ ] Need to more reliably parse output from agent
 - [ ] Safe module could have some extra safety features like permissions (should be deployed with a guard)
 - [ ] A simple predicate function component
-- [ ] Update README
 
 Reading and Resources:
 - [Zodiac](https://www.zodiac.wiki/documentation): a bunch of useful extensions to the Safe. If you're looking for examples of extending Safe, Zodiac has a ton of them.
@@ -75,9 +71,9 @@ cp .env.example .env
 make start-all
 ```
 
-### Upload your WAVS Service Manager
+### Setup contracts
 
-Deploy safe.
+Deploy safe + custom module.
 
 ``` bash
 forge script ./script/SafeModule.s.sol --sig "deployContracts()" --rpc-url http://localhost:8545 --broadcast
@@ -100,33 +96,6 @@ Initialize safe with service manager:
 ``` bash
 forge script ./script/SafeModule.s.sol --sig "initializeModule()" -vvvv --rpc-url http://localhost:8545 --broadcast
 ```
-
-Deploy component:
-
-``` bash
-# TODO use environment variables
-wavs-cli deploy-service --trigger eth-contract-event \               
-  --trigger-event-name $(cast sig-event "NewTrigger(bytes)") \
-  --trigger-address <wavs_safe_module> \                       
-  --component ./compiled/dao_agent.wasm \
-  --submit-address <service_manager>
-```
-
-Make a task:
-
-``` bash
-# First encode your trigger data
-TRIGGER_DATA=$(cast abi-encode "f(string)" "We should donate 1 ETH to 0xDf3679681B87fAE75CE185e4f01d98b64Ddb64a3.")
-
-# TODO fix me, script moved to SafeModule.s.sol
-# Then run the forge script
-# forge script script/Trigger.s.sol \
-#     --sig "addTrigger(bytes)" \
-#     $TRIGGER_DATA \
-#     --rpc-url "http://localhost:8545" \
-#     --broadcast
-```
-
 
 ### Upload your WAVS Service Manager
 
@@ -160,10 +129,6 @@ forge script InitializeSafeModule --rpc-url http://localhost:8545 --broadcast
 
 ```bash
 make wasi-build
-
-# TODO: currently broken upstream
-# Verify execution works as expected without deploying
-# wavs-cli exec --component $(pwd)/compiled/eth_trigger_weather.wasm --input Nashville,TN
 ```
 
 ## Deploy Service and Verify
