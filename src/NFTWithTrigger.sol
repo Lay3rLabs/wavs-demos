@@ -9,12 +9,14 @@ import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Burnable.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Pausable.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Votes.sol";
+import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 import {IServiceHandler} from "@wavs/interfaces/IServiceHandler.sol";
 import {ISimpleTrigger} from "./interfaces/ISimpleTrigger.sol";
 
 contract NFTWithTrigger is
     ERC721,
     ERC721Enumerable,
+    ERC721URIStorage,
     ERC721Pausable,
     AccessControl,
     ERC721Burnable,
@@ -27,17 +29,13 @@ contract NFTWithTrigger is
     bytes32 public constant SERVICE_PROVIDER_ROLE =
         keccak256("SERVICE_PROVIDER_ROLE");
 
-    // Update storage variables to use TriggerId
     mapping(TriggerId => TriggerInfo) public triggersById;
     mapping(address => TriggerId[]) public triggerIdsByCreator;
     uint64 private _nextTriggerId; // Changed to uint64 to match TriggerId
 
-    // NFT-specific storage
     uint256 private _nextTokenId;
     address public serviceProvider;
     bool public initialized;
-    // Add mapping for token URIs
-    mapping(uint256 => string) private _tokenURIs;
 
     event NewTrigger(
         TriggerId indexed triggerId,
@@ -49,12 +47,18 @@ contract NFTWithTrigger is
         uint256 indexed tokenId,
         string dataUri
     );
+    event Debug(string message, uint256 tokenId);
+
+    struct ReturnData {
+        address creator;
+        uint64 triggerId;
+        string dataUri;
+    }
 
     constructor() ERC721("TriggerNFT", "TNFT") EIP712("TriggerNFT", "1") {
         // TODO consider what the permissions of this contract should be
         _grantRole(DEFAULT_ADMIN_ROLE, msg.sender);
         _grantRole(PAUSER_ROLE, msg.sender);
-        _grantRole(SERVICE_PROVIDER_ROLE, msg.sender);
 
         // Initialize these values in constructor instead
         initialized = false;
@@ -103,6 +107,15 @@ contract NFTWithTrigger is
         emit NewTrigger(triggerId, msg.sender, data);
     }
 
+    // Add this function to allow withdrawal of collected fees
+    function withdrawFees() external onlyRole(DEFAULT_ADMIN_ROLE) {
+        uint256 balance = address(this).balance;
+        require(balance > 0, "No balance to withdraw");
+
+        (bool success, ) = payable(msg.sender).call{value: balance}("");
+        require(success, "Transfer failed");
+    }
+
     function handleAddPayload(
         bytes calldata data,
         bytes calldata signature
@@ -112,19 +125,22 @@ contract NFTWithTrigger is
             "Only service provider"
         );
 
-        // Decode the parameters using abi.decode
-        (address creator, uint256 triggerId, string memory dataUri) = abi
-            .decode(data, (address, uint256, string));
+        ReturnData memory returnData = abi.decode(data, (ReturnData));
+        TriggerId triggerId = TriggerId.wrap(returnData.triggerId);
 
-        // Mint new NFT
+        require(
+            triggersById[triggerId].creator != address(0),
+            "Trigger does not exist"
+        );
+        require(bytes(returnData.dataUri).length > 0, "URI is empty");
+
+        delete triggersById[triggerId];
         uint256 tokenId = _nextTokenId++;
-        _safeMint(creator, tokenId);
-        _tokenURIs[tokenId] = dataUri;
 
-        // Clean up trigger state
-        delete triggersById[TriggerId.wrap(uint64(triggerId))];
+        _safeMint(returnData.creator, tokenId);
+        _setTokenURI(tokenId, returnData.dataUri);
 
-        emit NFTMinted(creator, tokenId, dataUri);
+        emit NFTMinted(returnData.creator, tokenId, returnData.dataUri);
     }
 
     // Update helper functions
@@ -146,15 +162,10 @@ contract NFTWithTrigger is
     // Add tokenURI override
     function tokenURI(
         uint256 tokenId
-    ) public view virtual override returns (string memory) {
-        require(
-            _ownerOf(tokenId) != address(0),
-            "URI query for nonexistent token"
-        );
-        return _tokenURIs[tokenId];
+    ) public view override(ERC721, ERC721URIStorage) returns (string memory) {
+        return super.tokenURI(tokenId);
     }
 
-    // Required overrides
     function _update(
         address to,
         uint256 tokenId,
@@ -179,7 +190,7 @@ contract NFTWithTrigger is
     )
         public
         view
-        override(ERC721, ERC721Enumerable, AccessControl)
+        override(ERC721, ERC721Enumerable, ERC721URIStorage, AccessControl)
         returns (bool)
     {
         return super.supportsInterface(interfaceId);
@@ -191,5 +202,13 @@ contract NFTWithTrigger is
 
     function CLOCK_MODE() public pure override returns (string memory) {
         return "mode=timestamp";
+    }
+
+    // Do we need this?
+    function _setTokenURI(
+        uint256 tokenId,
+        string memory _tokenURI
+    ) internal override(ERC721URIStorage) {
+        super._setTokenURI(tokenId, _tokenURI);
     }
 }

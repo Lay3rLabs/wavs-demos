@@ -47,16 +47,18 @@ struct OllamaChatMessage {
 
 sol! {
     #[derive(Debug)]
-    struct TriggerInfo {
-        uint256 triggerId;
-        address creator;
-        string prompt;
-    }
+    event NewTrigger(
+        TriggerId indexed triggerId,
+        address indexed creator,
+        bytes data
+    );
+
+    type TriggerId is uint64;
 
     #[derive(Debug)]
     struct ReturnData {
         address creator;
-        uint256 triggerId;
+        uint64 triggerId;
         string dataUri;
     }
 }
@@ -67,15 +69,21 @@ impl Guest for Component {
     fn run(trigger_action: TriggerAction) -> std::result::Result<Vec<u8>, String> {
         match trigger_action.data {
             TriggerData::EthContractEvent(TriggerDataEthContractEvent { log, .. }) => {
-                let trigger_info = <TriggerInfo as SolValue>::abi_decode(&log.data, false)
-                    .map_err(|e| format!("Failed to decode TriggerInfo: {}", e))?;
+                let trigger_info: NewTrigger = layer_wasi::ethereum::decode_event_log_data(
+                    layer_wasi::bindings::compat::EthEventLogData {
+                        topics: log.topics,
+                        data: log.data,
+                    },
+                )
+                .map_err(|e| format!("Failed to decode event log data: {}", e))?;
 
-                let prompt = trigger_info.prompt;
+                let prompt = trigger_info.data;
                 let creator = trigger_info.creator;
 
                 block_on(|reactor| async move {
+                    // TODO prompt is not decoding correctly
                     // Query Ollama
-                    let response = query_ollama(&reactor, &prompt).await?;
+                    let response = query_ollama(&reactor, &prompt.to_string()).await?;
 
                     // Create NFT metadata
                     let metadata = NFTMetadata {
@@ -84,7 +92,7 @@ impl Guest for Component {
                         image: "ipfs://placeholder".to_string(),
                         attributes: vec![Attribute {
                             trait_type: "Prompt".to_string(),
-                            value: prompt,
+                            value: prompt.to_string(),
                         }],
                     };
 
@@ -99,7 +107,7 @@ impl Guest for Component {
                     // Create the return data
                     let return_data = ReturnData {
                         creator,
-                        triggerId: trigger_info.triggerId,
+                        triggerId: trigger_info.triggerId.into(),
                         dataUri: data_uri,
                     };
 
@@ -159,7 +167,7 @@ async fn query_ollama(reactor: &Reactor, prompt: &str) -> Result<String, String>
 
             // Context and length control
             "num_ctx": 4096,          // [512-8192] Context window size
-            "num_predict": 500,       // [-1, 1-N] Max tokens to generate (-1 = infinite)
+            "num_predict": 100,       // [-1, 1-N] Max tokens to generate (-1 = infinite)
 
             // Stop sequences (model-specific)
             // "stop": [
