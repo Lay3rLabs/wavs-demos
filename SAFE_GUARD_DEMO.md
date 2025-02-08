@@ -152,6 +152,11 @@ Deploy safe + custom guard.
 forge script script/SafeGuard.s.sol:DeploySafeGuardScript --rpc-url http://localhost:8545 --broadcast
 ```
 
+This automatically saves the guard address to the `.env` file. Reload with:
+``` bash
+source .env
+```
+
 Deploy core Eigen contracts:
 
 ``` bash
@@ -179,15 +184,23 @@ forge script script/SafeGuard.s.sol:InitializeSafeGuardScript --rpc-url http://l
 Deploy component:
 
 ``` bash
-wavs-cli deploy-service --trigger eth-contract-event \               
+wavs-cli deploy-service --trigger eth-contract-event \
   --trigger-event-name $(cast sig-event "ApproveHash(bytes32, address)") \
-  --trigger-address $SAFE_ADDRESS \                       
-  --component ./compiled/dao_agent.wasm \
+  --trigger-address $SAFE_ADDRESS \
+  --component ./compiled/avs_guard.wasm \
   --submit-address $SERVICE_PROVIDER \
   --service-config '{"fuelLimit":100000000,"maxGas":5000000,"hostEnvs":[],"kv":[],"workflowId":"default","componentId":"default"}'
 ```
 
-Test the service:
+### Test the service
+
+Trigger the validation process:
 ```bash
 forge script script/SafeGuard.s.sol:ApproveSafeTransactionScript --rpc-url http://localhost:8545 --broadcast
 ```
+
+Execute the transaction:
+```bash
+forge script script/SafeGuard.s.sol:ExecuteSafeTransactionScript --rpc-url http://localhost:8545 --broadcast
+```
+

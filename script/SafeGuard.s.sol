@@ -2,6 +2,7 @@
 pragma solidity ^0.8.13;
 
 import "forge-std/Script.sol";
+import "forge-std/console.sol";
 import "../src/SafeGuard.sol";
 import "@gnosis.pm/safe-contracts/contracts/Safe.sol";
 import "@gnosis.pm/safe-contracts/contracts/proxies/SafeProxyFactory.sol";
@@ -119,6 +120,17 @@ contract DeploySafeGuardScript is SafeGuardBaseScript {
         SafeGuard guard = new SafeGuard(payable(safeAddress));
         console.log("Deployed SafeGuard at:", address(guard));
 
+        // Save addresses to .env file
+        string memory envContent = vm.readFile(".env");
+        string memory newEntries = string.concat(
+            "\nSAFE_ADDRESS=",
+            vm.toString(safeAddress),
+            "\nGUARD_ADDRESS=",
+            vm.toString(address(guard))
+        );
+        vm.writeFile(".env", string.concat(envContent, newEntries));
+        console.log("Saved safe and guard addresses to .env file");
+
         vm.stopBroadcast();
     }
 }
@@ -163,7 +175,7 @@ contract ApproveSafeTransactionScript is SafeGuardBaseScript {
     }
 
     function run() public {
-        uint256 ownerPrivateKey = vm.envUint("OWNER_PRIVATE_KEY");
+        uint256 ownerPrivateKey = vm.envUint("PRIVATE_KEY");
         vm.startBroadcast(ownerPrivateKey);
 
         address safeAddress = vm.envAddress("SAFE_ADDRESS");
@@ -173,6 +185,63 @@ contract ApproveSafeTransactionScript is SafeGuardBaseScript {
         bytes32 txHash = _getTxHash(safe);
         safe.approveHash(txHash);
         console.log("Approved transaction hash:", uint256(txHash));
+
+        vm.stopBroadcast();
+    }
+}
+
+// Execute safe transaction script
+contract ExecuteSafeTransactionScript is SafeGuardBaseScript {
+    function _getTxHash(Safe safe) internal view returns (bytes32) {
+        // Pack parameters into a struct to reduce stack usage
+        return
+            safe.getTransactionHash(
+                address(0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266), // to
+                0.1 ether, // value
+                "", // data
+                Enum.Operation.Call, // operation
+                0, // safeTxGas
+                0, // baseGas
+                0, // gasPrice
+                address(0), // gasToken
+                payable(address(0)), // refundReceiver
+                safe.nonce() // nonce
+            );
+    }
+
+    function run() public {
+        uint256 ownerPrivateKey = vm.envUint("PRIVATE_KEY");
+        vm.startBroadcast(ownerPrivateKey);
+
+        Safe safe = Safe(payable(vm.envAddress("SAFE_ADDRESS")));
+
+        // First, fund the Safe with more than needed ETH
+        (bool success, ) = address(safe).call{value: 0.2 ether}("");
+        require(success, "Failed to send ETH to Safe");
+        console.log("Funded Safe with 0.2 ETH");
+
+        // Sign and execute in one step
+        (uint8 v, bytes32 r, bytes32 s) = vm.sign(
+            ownerPrivateKey,
+            _getTxHash(safe)
+        );
+        safe.execTransaction(
+            address(0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266), // to
+            0.1 ether, // value
+            "", // data
+            Enum.Operation.Call, // operation
+            0, // safeTxGas
+            0, // baseGas
+            0, // gasPrice
+            address(0), // gasToken
+            payable(address(0)), // refundReceiver
+            abi.encodePacked(r, s, v) // signature
+        );
+
+        console.log(
+            "Executed transaction to:",
+            address(0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266)
+        );
 
         vm.stopBroadcast();
     }
