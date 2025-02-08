@@ -44,9 +44,8 @@ contract SafeGuardTest is Test {
         uint256 estimatedProcessingTime
     );
     event ValidationStatusUpdated(
-        bytes32 indexed txHash,
-        SafeGuard.ValidationStatus status,
-        string message
+        bytes32 indexed approvedHash,
+        SafeGuard.ValidationStatus status
     );
 
     function setUp() public {
@@ -150,10 +149,10 @@ contract SafeGuardTest is Test {
             Enum.Operation operation
         ) = _getTestTransactionParams();
 
-        // Get current nonce before any operations
+        // Get current nonce before execution
         uint256 nonce = safe.nonce();
 
-        // Calculate the transaction hash for signature
+        // Calculate the transaction hash using current nonce
         bytes32 txHash = safe.getTransactionHash(
             to,
             value,
@@ -164,35 +163,36 @@ contract SafeGuardTest is Test {
             0, // gasPrice
             address(0), // gasToken
             payable(address(0)), // refundReceiver
-            nonce
+            nonce // Use stored nonce
         );
+
+        // Submit validation through service provider
+        vm.prank(serviceProvider);
+        _submitValidation(txHash, true);
+
+        // Verify approved status
+        (SafeGuard.ValidationStatus status, uint256 remainingTime) = guard
+            .getTransactionStatus(txHash);
+        assertEq(uint(status), uint(SafeGuard.ValidationStatus.Approved));
+        assertTrue(remainingTime > 0);
 
         // Get signature for this transaction
         bytes memory signature = _signTransaction(txHash, ownerKey);
 
-        // Try to execute - should fail with AsyncValidationRequired
+        // Now execute the transaction
         vm.startPrank(owner);
-        vm.expectRevert(SafeGuard.AsyncValidationRequired.selector);
-        _executeTransaction(to, value, data, operation, signature);
-        vm.stopPrank();
-
-        // Submit validation through service provider using transaction parameters
-        vm.prank(serviceProvider);
-        _submitValidation(to, value, data, operation, true, "Approved");
-
-        // Verify approved status
-        (
-            SafeGuard.ValidationStatus status,
-            string memory message,
-            uint256 remainingTime
-        ) = guard.getTransactionStatus(to, value, data, operation);
-        assertEq(uint(status), uint(SafeGuard.ValidationStatus.Approved));
-        assertEq(message, "Approved");
-        assertTrue(remainingTime > 0);
-
-        // Execute transaction after validation
-        vm.startPrank(owner);
-        _executeTransaction(to, value, data, operation, signature);
+        safe.execTransaction(
+            to,
+            value,
+            data,
+            operation,
+            0, // safeTxGas
+            0, // baseGas
+            0, // gasPrice
+            address(0), // gasToken
+            payable(address(0)), // refundReceiver
+            signature
+        );
         vm.stopPrank();
     }
 
@@ -253,43 +253,26 @@ contract SafeGuardTest is Test {
         );
     }
 
-    function _submitValidation(
-        address to,
-        uint256 value,
-        bytes memory data,
-        Enum.Operation operation,
-        bool approved,
-        string memory message
-    ) internal {
-        bytes memory validationData = abi.encode(
-            to,
-            value,
-            data,
-            operation,
-            approved,
-            message
-        );
+    function _submitValidation(bytes32 approvedHash, bool approved) internal {
+        SafeGuard.ValidationPayload memory payload = SafeGuard
+            .ValidationPayload({
+                approvedHash: approvedHash,
+                approved: approved
+            });
 
+        bytes memory validationData = abi.encode(payload);
         guard.handleAddPayload(validationData, "");
     }
 
     function _verifyTransactionStatus(
-        address to,
-        uint256 value,
-        bytes memory data,
-        Enum.Operation operation,
+        bytes32 txHash,
         SafeGuard.ValidationStatus expectedStatus,
-        string memory expectedMessage,
         uint256 expectedRemainingTime
     ) internal view {
-        (
-            SafeGuard.ValidationStatus status,
-            string memory message,
-            uint256 remainingTime
-        ) = guard.getTransactionStatus(to, value, data, operation);
+        (SafeGuard.ValidationStatus status, uint256 remainingTime) = guard
+            .getTransactionStatus(txHash);
 
         assertEq(uint(status), uint(expectedStatus));
-        assertEq(message, expectedMessage);
         if (expectedRemainingTime > 0) {
             assertTrue(remainingTime > 0);
         } else {
