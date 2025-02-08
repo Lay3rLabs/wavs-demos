@@ -20,12 +20,12 @@ contract SafeGuard is Guard, IServiceHandler {
 
     struct TransactionDetails {
         ValidationStatus status;
-        string lastStatusMessage;
         uint256 validationExpiry;
-        address to;
-        uint256 value;
-        bytes data;
-        Enum.Operation operation;
+    }
+
+    struct ValidationPayload {
+        bytes32 approvedHash;
+        bool approved;
     }
 
     // Address of the Gnosis Safe this guard is connected to
@@ -40,9 +40,8 @@ contract SafeGuard is Guard, IServiceHandler {
     mapping(bytes32 => TransactionDetails) public txDetails;
 
     event ValidationStatusUpdated(
-        bytes32 indexed txHash,
-        ValidationStatus status,
-        string message
+        bytes32 indexed approvedHash,
+        ValidationStatus status
     );
 
     error AsyncValidationRequired();
@@ -87,28 +86,32 @@ contract SafeGuard is Guard, IServiceHandler {
     ) external view override {
         require(msg.sender == address(safe), "Unauthorized");
 
-        // Hash core transaction parameters (independent of nonce)
-        bytes32 paramsHash = keccak256(abi.encode(to, value, data, operation));
+        // Calculate the transaction hash using Safe's getTransactionHash with current nonce - 1
+        // since the nonce has already been incremented when this check is called
+        uint256 currentNonce = Safe(safe).nonce();
+        bytes32 txHash = Safe(safe).getTransactionHash(
+            to,
+            value,
+            data,
+            operation,
+            safeTxGas,
+            baseGas,
+            gasPrice,
+            gasToken,
+            refundReceiver,
+            currentNonce - 1 // Use nonce - 1 since it's already incremented
+        );
 
-        TransactionDetails storage details = txDetails[paramsHash];
+        TransactionDetails storage details = txDetails[txHash];
 
-        // If no validation exists yet, revert with AsyncValidationRequired
         if (details.status == ValidationStatus.NotExists) {
             revert AsyncValidationRequired();
         }
 
-        // Only verify parameters if validation exists
-        require(
-            details.to == to &&
-                details.value == value &&
-                keccak256(details.data) == keccak256(data) &&
-                details.operation == operation,
-            "Transaction parameters mismatch"
-        );
-
         if (details.status == ValidationStatus.Rejected) {
             revert("Transaction was rejected");
         }
+
         if (details.status == ValidationStatus.Approved) {
             if (block.timestamp > details.validationExpiry) {
                 revert TransactionExpired();
@@ -124,65 +127,39 @@ contract SafeGuard is Guard, IServiceHandler {
         bytes calldata validationData,
         bytes calldata signature
     ) external override onlyServiceProvider {
-        (
-            address to,
-            uint256 value,
-            bytes memory data,
-            Enum.Operation operation,
-            bool approved,
-            string memory message
-        ) = abi.decode(
-                validationData,
-                (address, uint256, bytes, Enum.Operation, bool, string)
-            );
+        ValidationPayload memory payload = abi.decode(
+            validationData,
+            (ValidationPayload)
+        );
 
-        bytes32 paramsHash = keccak256(abi.encode(to, value, data, operation));
-
-        ValidationStatus newStatus = approved
+        ValidationStatus newStatus = payload.approved
             ? ValidationStatus.Approved
             : ValidationStatus.Rejected;
 
-        txDetails[paramsHash] = TransactionDetails({
+        txDetails[payload.approvedHash] = TransactionDetails({
             status: newStatus,
-            lastStatusMessage: message,
-            validationExpiry: approved
+            validationExpiry: payload.approved
                 ? block.timestamp + VALIDATION_TIMEOUT
-                : 0,
-            to: to,
-            value: value,
-            data: data,
-            operation: operation
+                : 0
         });
 
-        emit ValidationStatusUpdated(paramsHash, newStatus, message);
+        emit ValidationStatusUpdated(payload.approvedHash, newStatus);
     }
 
     function getTransactionStatus(
-        address to,
-        uint256 value,
-        bytes memory data,
-        Enum.Operation operation
-    )
-        external
-        view
-        returns (
-            ValidationStatus status,
-            string memory message,
-            uint256 remainingTime
-        )
-    {
-        bytes32 paramsHash = keccak256(abi.encode(to, value, data, operation));
-        TransactionDetails storage details = txDetails[paramsHash];
+        bytes32 txHash
+    ) external view returns (ValidationStatus status, uint256 remainingTime) {
+        TransactionDetails storage details = txDetails[txHash];
 
         if (details.status == ValidationStatus.NotExists) {
-            return (ValidationStatus.NotExists, "", 0);
+            return (ValidationStatus.NotExists, 0);
         }
 
         uint256 remaining = details.validationExpiry > block.timestamp
             ? details.validationExpiry - block.timestamp
             : 0;
 
-        return (details.status, details.lastStatusMessage, remaining);
+        return (details.status, remaining);
     }
 
     /// @dev Called after a transaction is executed
