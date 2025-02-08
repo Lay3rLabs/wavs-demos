@@ -22,6 +22,10 @@ contract SafeGuard is Guard, IServiceHandler {
         ValidationStatus status;
         string lastStatusMessage;
         uint256 validationExpiry;
+        address to;
+        uint256 value;
+        bytes data;
+        Enum.Operation operation;
     }
 
     // Address of the Gnosis Safe this guard is connected to
@@ -83,26 +87,24 @@ contract SafeGuard is Guard, IServiceHandler {
     ) external view override {
         require(msg.sender == address(safe), "Unauthorized");
 
-        // Calculate hash using current nonce
-        bytes32 txHash = Safe(safe).getTransactionHash(
-            to,
-            value,
-            data,
-            operation,
-            safeTxGas,
-            baseGas,
-            gasPrice,
-            gasToken,
-            refundReceiver,
-            Safe(safe).nonce()
-        );
+        // Hash core transaction parameters (independent of nonce)
+        bytes32 paramsHash = keccak256(abi.encode(to, value, data, operation));
 
-        // Store parameters for validation hash calculation
-        bytes32 validationHash = keccak256(
-            abi.encode(to, value, data, operation)
-        );
+        TransactionDetails storage details = txDetails[paramsHash];
 
-        TransactionDetails storage details = txDetails[validationHash];
+        // If no validation exists yet, revert with AsyncValidationRequired
+        if (details.status == ValidationStatus.NotExists) {
+            revert AsyncValidationRequired();
+        }
+
+        // Only verify parameters if validation exists
+        require(
+            details.to == to &&
+                details.value == value &&
+                keccak256(details.data) == keccak256(data) &&
+                details.operation == operation,
+            "Transaction parameters mismatch"
+        );
 
         if (details.status == ValidationStatus.Rejected) {
             revert("Transaction was rejected");
@@ -114,7 +116,7 @@ contract SafeGuard is Guard, IServiceHandler {
             return; // Allow execution if validated and not expired
         }
 
-        // If not validated, revert
+        // If pending or other status, revert
         revert AsyncValidationRequired();
     }
 
@@ -134,27 +136,32 @@ contract SafeGuard is Guard, IServiceHandler {
                 (address, uint256, bytes, Enum.Operation, bool, string)
             );
 
-        bytes32 validationHash = keccak256(
-            abi.encode(to, value, data, operation)
-        );
+        bytes32 paramsHash = keccak256(abi.encode(to, value, data, operation));
 
         ValidationStatus newStatus = approved
             ? ValidationStatus.Approved
             : ValidationStatus.Rejected;
 
-        txDetails[validationHash] = TransactionDetails({
+        txDetails[paramsHash] = TransactionDetails({
             status: newStatus,
             lastStatusMessage: message,
             validationExpiry: approved
                 ? block.timestamp + VALIDATION_TIMEOUT
-                : 0
+                : 0,
+            to: to,
+            value: value,
+            data: data,
+            operation: operation
         });
 
-        emit ValidationStatusUpdated(validationHash, newStatus, message);
+        emit ValidationStatusUpdated(paramsHash, newStatus, message);
     }
 
     function getTransactionStatus(
-        bytes32 txHash
+        address to,
+        uint256 value,
+        bytes memory data,
+        Enum.Operation operation
     )
         external
         view
@@ -164,7 +171,8 @@ contract SafeGuard is Guard, IServiceHandler {
             uint256 remainingTime
         )
     {
-        TransactionDetails storage details = txDetails[txHash];
+        bytes32 paramsHash = keccak256(abi.encode(to, value, data, operation));
+        TransactionDetails storage details = txDetails[paramsHash];
 
         if (details.status == ValidationStatus.NotExists) {
             return (ValidationStatus.NotExists, "", 0);
@@ -186,9 +194,8 @@ contract SafeGuard is Guard, IServiceHandler {
     ) external override {
         require(msg.sender == address(safe), "Unauthorized");
         require(success, "Transaction failed");
-
-        // Clean up validation state after execution
-        delete txDetails[txHash];
+        // Note: We don't clean up state here anymore since it's tied to parameters
+        // not the specific transaction hash
     }
 
     /// @dev Returns whether the contract implements the given interface

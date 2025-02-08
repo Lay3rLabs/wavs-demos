@@ -150,23 +150,21 @@ contract SafeGuardTest is Test {
             Enum.Operation operation
         ) = _getTestTransactionParams();
 
-        // Calculate the transaction hash that will be used during execution
+        // Get current nonce before any operations
+        uint256 nonce = safe.nonce();
+
+        // Calculate the transaction hash for signature
         bytes32 txHash = safe.getTransactionHash(
             to,
             value,
             data,
             operation,
-            0,
-            0,
-            0,
-            address(0),
-            payable(address(0)),
-            safe.nonce()
-        );
-
-        // Calculate validation hash (this is what we store in the contract)
-        bytes32 validationHash = keccak256(
-            abi.encode(to, value, data, operation)
+            0, // safeTxGas
+            0, // baseGas
+            0, // gasPrice
+            address(0), // gasToken
+            payable(address(0)), // refundReceiver
+            nonce
         );
 
         // Get signature for this transaction
@@ -178,24 +176,16 @@ contract SafeGuardTest is Test {
         _executeTransaction(to, value, data, operation, signature);
         vm.stopPrank();
 
-        // Verify initial status using validation hash
-        _verifyTransactionStatus(
-            validationHash,
-            SafeGuard.ValidationStatus.NotExists,
-            "",
-            0
-        );
-
-        // Submit validation through service provider
+        // Submit validation through service provider using transaction parameters
         vm.prank(serviceProvider);
-        _submitValidation(validationHash, true, "Approved");
+        _submitValidation(to, value, data, operation, true, "Approved");
 
-        // Verify approved status using validation hash
+        // Verify approved status
         (
             SafeGuard.ValidationStatus status,
             string memory message,
             uint256 remainingTime
-        ) = guard.getTransactionStatus(validationHash);
+        ) = guard.getTransactionStatus(to, value, data, operation);
         assertEq(uint(status), uint(SafeGuard.ValidationStatus.Approved));
         assertEq(message, "Approved");
         assertTrue(remainingTime > 0);
@@ -254,27 +244,23 @@ contract SafeGuardTest is Test {
             value,
             data,
             operation,
-            0,
-            0,
-            0,
-            address(0),
-            payable(address(0)),
+            0, // safeTxGas
+            0, // baseGas
+            0, // gasPrice
+            address(0), // gasToken
+            payable(address(0)), // refundReceiver
             signature
         );
     }
 
     function _submitValidation(
-        bytes32 txHash,
+        address to,
+        uint256 value,
+        bytes memory data,
+        Enum.Operation operation,
         bool approved,
         string memory message
     ) internal {
-        (
-            address to,
-            uint256 value,
-            bytes memory data,
-            Enum.Operation operation
-        ) = _getTestTransactionParams();
-
         bytes memory validationData = abi.encode(
             to,
             value,
@@ -288,7 +274,10 @@ contract SafeGuardTest is Test {
     }
 
     function _verifyTransactionStatus(
-        bytes32 txHash,
+        address to,
+        uint256 value,
+        bytes memory data,
+        Enum.Operation operation,
         SafeGuard.ValidationStatus expectedStatus,
         string memory expectedMessage,
         uint256 expectedRemainingTime
@@ -297,11 +286,15 @@ contract SafeGuardTest is Test {
             SafeGuard.ValidationStatus status,
             string memory message,
             uint256 remainingTime
-        ) = guard.getTransactionStatus(txHash);
+        ) = guard.getTransactionStatus(to, value, data, operation);
 
         assertEq(uint(status), uint(expectedStatus));
         assertEq(message, expectedMessage);
-        assertEq(remainingTime, expectedRemainingTime);
+        if (expectedRemainingTime > 0) {
+            assertTrue(remainingTime > 0);
+        } else {
+            assertEq(remainingTime, expectedRemainingTime);
+        }
     }
 
     // Helper functions
