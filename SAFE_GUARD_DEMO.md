@@ -4,7 +4,7 @@ Status: _highly experimental and fun_
 
 TODO:
 - [ ] Use a better Safe Guard base like [borg-core](https://github.com/MetaLex-Tech/borg-core)
-- [ ] A simple predicate function component
+- [ ] A more useful predicate function component (instead of just returning true)
 - [ ] Explore a cron trigger that pulls the Safe API
 
 Reading and Resources:

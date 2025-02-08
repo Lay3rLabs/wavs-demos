@@ -88,7 +88,7 @@ source .env
 wavs-cli deploy-eigen-service-manager --service-handler $WAVS_SAFE_MODULE
 ```
 
-Set the `SERVICE_MANAGER_ADDRESS` environment variable with the address of the service manager.
+Set the `SERVICE_PROVIDER` environment variable with the address of the service manager.
 
 Initialize Safe Module with service manager:
 ```bash
@@ -110,7 +110,7 @@ wavs-cli deploy-service --trigger eth-contract-event \
   --trigger-event-name $(cast sig-event "NewTrigger(bytes)") \
   --trigger-address $WAVS_SAFE_MODULE \
   --component ./compiled/autonomous_artist.wasm \
-  --submit-address $SERVICE_MANAGER_ADDRESS \
+  --submit-address $SERVICE_PROVIDER \
   --service-config '{"fuelLimit":100000000,"maxGas":5000000,"hostEnvs":[],"kv":[],"workflowId":"default","componentId":"default"}'
 ```
 

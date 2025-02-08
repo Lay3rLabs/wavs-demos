@@ -202,7 +202,7 @@ contract InitializeSafeModule is Script {
     function run() public {
         uint256 deployerPrivateKey = vm.envUint("PRIVATE_KEY");
         address moduleAddress = vm.envAddress("WAVS_SAFE_MODULE");
-        address serviceProvider = vm.envAddress("SERVICE_MANAGER_ADDRESS");
+        address serviceProvider = vm.envAddress("SERVICE_PROVIDER");
 
         console.log("Module address:", moduleAddress);
         console.log("Service provider:", serviceProvider);
