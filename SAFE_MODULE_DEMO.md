@@ -5,7 +5,6 @@ Status: _highly experimental and fun_
 TODO:
 - [ ] Need to more reliably parse output from agent
 - [ ] Safe module could have some extra safety features like permissions (should be deployed with a guard)
-- [ ] A simple predicate function component
 
 Reading and Resources:
 - [Zodiac](https://www.zodiac.wiki/documentation): a bunch of useful extensions to the Safe. If you're looking for examples of extending Safe, Zodiac has a ton of them.
@@ -72,33 +71,6 @@ make start-all
 ```
 
 ### Setup contracts
-
-Deploy safe + custom module.
-
-``` bash
-forge script ./script/SafeModule.s.sol --sig "deployContracts()" --rpc-url http://localhost:8545 --broadcast
-```
-
-Deploy core Eigen contracts:
-
-``` bash
-wavs-cli deploy-eigen-core
-```
-
-Deploy service manager:
-
-``` bash
-wavs-cli deploy-eigen-service-manager --service-handler $WAVS_SAFE_MODULE
-```
-
-Initialize safe with service manager:
-
-``` bash
-forge script ./script/SafeModule.s.sol --sig "initializeModule()" -vvvv --rpc-url http://localhost:8545 --broadcast
-```
-
-### Upload your WAVS Service Manager
-
 Deploy Safe + custom module:
 ```bash
 forge script DeploySafeModule --rpc-url http://localhost:8545 --broadcast
