@@ -57,7 +57,7 @@ contract SafeSetupScript is Script {
         );
 
         // Deploy SafeGuard with just the Safe address
-        SafeGuard guard = new SafeGuard(safeAddress);
+        SafeGuard guard = new SafeGuard(payable(safeAddress));
         console.log("Deployed SafeGuard at:", address(guard));
 
         // Initialize the guard with service provider

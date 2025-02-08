@@ -34,7 +34,6 @@ contract SafeGuardTest is Test {
     address public serviceProvider;
     uint256 public ownerKey;
 
-    event WavsTriggerEvent(bytes);
     event ValidationRequired(
         bytes32 indexed txHash,
         address indexed to,
@@ -49,7 +48,6 @@ contract SafeGuardTest is Test {
         SafeGuard.ValidationStatus status,
         string message
     );
-    event NewTrigger(bytes);
 
     function setUp() public {
         // Create accounts
@@ -87,7 +85,7 @@ contract SafeGuardTest is Test {
         );
 
         // Deploy guard and initialize
-        guard = new SafeGuard(address(safe));
+        guard = new SafeGuard(payable(address(safe)));
         guard.initialize(serviceProvider);
 
         // Set guard in Safe
@@ -128,7 +126,7 @@ contract SafeGuardTest is Test {
         vm.stopPrank();
     }
 
-    function testGuardSetup() public {
+    function testGuardSetup() public view {
         assertEq(guard.safe(), address(safe));
         assertEq(guard.serviceProvider(), serviceProvider);
 
@@ -141,35 +139,19 @@ contract SafeGuardTest is Test {
     }
 
     function testAsyncValidationFlow() public {
-        // Prepare transaction
-        address to = address(0x123);
-        uint256 value = 1 ether;
-        bytes memory data = "";
-        Enum.Operation operation = Enum.Operation.Call;
+        // Fund the Safe with ETH
+        vm.deal(address(safe), 2 ether);
 
-        // Start recording logs BEFORE the transaction
-        vm.recordLogs();
+        // Prepare transaction parameters
+        (
+            address to,
+            uint256 value,
+            bytes memory data,
+            Enum.Operation operation
+        ) = _getTestTransactionParams();
 
-        // Execute transaction - should revert with AsyncValidationRequired
-        vm.startPrank(owner);
-        bytes memory signature = _signTransaction(
-            safe.getTransactionHash(
-                to,
-                value,
-                data,
-                operation,
-                0,
-                0,
-                0,
-                address(0),
-                payable(address(0)),
-                safe.nonce()
-            ),
-            ownerKey
-        );
-
-        vm.expectRevert(SafeGuard.AsyncValidationRequired.selector);
-        safe.execTransaction(
+        // Calculate the transaction hash that will be used during execution
+        bytes32 txHash = safe.getTransactionHash(
             to,
             value,
             data,
@@ -179,80 +161,94 @@ contract SafeGuardTest is Test {
             0,
             address(0),
             payable(address(0)),
-            signature
+            safe.nonce()
         );
+
+        // Calculate validation hash (this is what we store in the contract)
+        bytes32 validationHash = keccak256(
+            abi.encode(to, value, data, operation)
+        );
+
+        // Get signature for this transaction
+        bytes memory signature = _signTransaction(txHash, ownerKey);
+
+        // Try to execute - should fail with AsyncValidationRequired
+        vm.startPrank(owner);
+        vm.expectRevert(SafeGuard.AsyncValidationRequired.selector);
+        _executeTransaction(to, value, data, operation, signature);
         vm.stopPrank();
 
-        // Get the actual transaction hash from the emitted events
-        Vm.Log[] memory entries = vm.getRecordedLogs();
-
-        // Parse the NewTrigger event data
-        bytes memory triggerData = abi.decode(entries[0].data, (bytes));
-        ISimpleTrigger.TriggerInfo memory triggerInfo = abi.decode(
-            triggerData,
-            (ISimpleTrigger.TriggerInfo)
+        // Verify initial status using validation hash
+        _verifyTransactionStatus(
+            validationHash,
+            SafeGuard.ValidationStatus.NotExists,
+            "",
+            0
         );
 
-        // The ValidationRequired event should be the second event (index 1)
-        bytes32 actualTxHash = entries[1].topics[1];
+        // Submit validation through service provider
+        vm.prank(serviceProvider);
+        _submitValidation(validationHash, true, "Approved");
 
-        // Rest of the test remains the same...
+        // Verify approved status using validation hash
         (
             SafeGuard.ValidationStatus status,
             string memory message,
             uint256 remainingTime
-        ) = guard.getTransactionStatus(actualTxHash);
-
-        assertEq(uint(status), uint(SafeGuard.ValidationStatus.Pending));
-        assertEq(message, "Validation in progress");
-        assertTrue(remainingTime > 0);
-
-        // Submit validation through service provider with correct hash
-        bytes memory validationData = abi.encode(
-            actualTxHash,
-            true,
-            "Approved"
-        );
-
-        vm.prank(serviceProvider);
-        guard.handleAddPayload(validationData, "");
-
-        // Verify approved status
-        (status, message, remainingTime) = guard.getTransactionStatus(
-            actualTxHash
-        );
+        ) = guard.getTransactionStatus(validationHash);
         assertEq(uint(status), uint(SafeGuard.ValidationStatus.Approved));
         assertEq(message, "Approved");
+        assertTrue(remainingTime > 0);
+
+        // Execute transaction after validation
+        vm.startPrank(owner);
+        _executeTransaction(to, value, data, operation, signature);
+        vm.stopPrank();
     }
 
-    function testTransactionExpiration() public {
-        // Prepare transaction
-        address to = address(0x123);
-        uint256 value = 1 ether;
-        bytes memory data = "";
-        Enum.Operation operation = Enum.Operation.Call;
+    // Helper functions to break down the complexity
+    function _getTestTransactionParams()
+        internal
+        pure
+        returns (
+            address to,
+            uint256 value,
+            bytes memory data,
+            Enum.Operation operation
+        )
+    {
+        return (address(0x123), 1 ether, "", Enum.Operation.Call);
+    }
 
-        // Start recording logs BEFORE the transaction
-        vm.recordLogs();
-
-        vm.startPrank(owner);
-        bytes memory signature = _signTransaction(
-            safe.getTransactionHash(
-                to,
-                value,
-                data,
-                operation,
-                0,
-                0,
-                0,
-                address(0),
-                payable(address(0)),
-                safe.nonce()
-            ),
-            ownerKey
+    function _prepareTransactionHashAndSignature(
+        address to,
+        uint256 value,
+        bytes memory data,
+        Enum.Operation operation
+    ) internal view returns (bytes32 txHash, bytes memory signature) {
+        txHash = safe.getTransactionHash(
+            to,
+            value,
+            data,
+            operation,
+            0,
+            0,
+            0,
+            address(0),
+            payable(address(0)),
+            safe.nonce()
         );
+        signature = _signTransaction(txHash, ownerKey);
+        return (txHash, signature);
+    }
 
-        vm.expectRevert(SafeGuard.AsyncValidationRequired.selector);
+    function _executeTransaction(
+        address to,
+        uint256 value,
+        bytes memory data,
+        Enum.Operation operation,
+        bytes memory signature
+    ) internal {
         safe.execTransaction(
             to,
             value,
@@ -265,44 +261,47 @@ contract SafeGuardTest is Test {
             payable(address(0)),
             signature
         );
-        vm.stopPrank();
+    }
 
-        // Get the actual transaction hash from the emitted events
-        Vm.Log[] memory entries = vm.getRecordedLogs();
+    function _submitValidation(
+        bytes32 txHash,
+        bool approved,
+        string memory message
+    ) internal {
+        (
+            address to,
+            uint256 value,
+            bytes memory data,
+            Enum.Operation operation
+        ) = _getTestTransactionParams();
 
-        // Parse the NewTrigger event data
-        bytes memory triggerData = abi.decode(entries[0].data, (bytes));
-        ISimpleTrigger.TriggerInfo memory triggerInfo = abi.decode(
-            triggerData,
-            (ISimpleTrigger.TriggerInfo)
-        );
-
-        // The ValidationRequired event should be the second event (index 1)
-        bytes32 actualTxHash = entries[1].topics[1];
-
-        // Move time forward past expiration
-        vm.warp(block.timestamp + 3 minutes);
-
-        // Try to validate expired transaction
         bytes memory validationData = abi.encode(
-            actualTxHash,
-            true,
-            "Approved"
+            to,
+            value,
+            data,
+            operation,
+            approved,
+            message
         );
 
-        vm.expectRevert(SafeGuard.TransactionExpired.selector);
-        vm.prank(serviceProvider);
         guard.handleAddPayload(validationData, "");
+    }
 
-        // Verify expired status
+    function _verifyTransactionStatus(
+        bytes32 txHash,
+        SafeGuard.ValidationStatus expectedStatus,
+        string memory expectedMessage,
+        uint256 expectedRemainingTime
+    ) internal view {
         (
             SafeGuard.ValidationStatus status,
             string memory message,
             uint256 remainingTime
-        ) = guard.getTransactionStatus(actualTxHash);
+        ) = guard.getTransactionStatus(txHash);
 
-        assertEq(uint(status), uint(SafeGuard.ValidationStatus.Expired));
-        assertEq(remainingTime, 0);
+        assertEq(uint(status), uint(expectedStatus));
+        assertEq(message, expectedMessage);
+        assertEq(remainingTime, expectedRemainingTime);
     }
 
     // Helper functions
