@@ -3,13 +3,15 @@ pragma solidity ^0.8.22;
 
 import {Script} from "forge-std/Script.sol";
 import {console} from "forge-std/console.sol";
-import {HyperstitionMarketFactory, ISimpleTrigger} from "../src/HyperstitionMarketFactory.sol";
+import {HyperstitionMarketFactory} from "../src/HyperstitionMarketFactory.sol";
+import {HyperstitionOracleController, ISimpleTrigger} from "../src/HyperstitionOracleController.sol";
 import {ConditionalTokens} from "@lay3rlabs/conditional-tokens-contracts/ConditionalTokens.sol";
 import {LMSRMarketMaker} from "@lay3rlabs/conditional-tokens-market-makers/LMSRMarketMaker.sol";
 import {ERC20Mintable} from "../src/ERC20Mintable.sol";
 import {IERC20} from "forge-std/interfaces/IERC20.sol";
 
 contract DeployHyperstitionMarket is Script {
+    HyperstitionOracleController public oracle;
     HyperstitionMarketFactory public factory;
     ERC20Mintable public collateralToken;
 
@@ -18,19 +20,23 @@ contract DeployHyperstitionMarket is Script {
 
         vm.startBroadcast(deployerPrivateKey);
 
-        // Deploy the contract
-        factory = new HyperstitionMarketFactory();
+        // Deploy the contracts
+        oracle = new HyperstitionOracleController();
+        factory = oracle.factory();
         collateralToken = new ERC20Mintable("Collateral", "CLL");
 
         vm.stopBroadcast();
 
         // Log the deployment
+        console.log("Oracle controller deployed at:", address(oracle));
         console.log("Factory deployed at:", address(factory));
         console.log("Collateral token deployed at:", address(collateralToken));
 
         // Write to .env file
         string memory path = string.concat(vm.projectRoot(), "/.env");
         string memory newContent = string.concat(
+            "\nHYPERSTITION_ORACLE_CONTROLLER_ADDRESS=",
+            vm.toString(address(oracle)),
             "\nHYPERSTITION_FACTORY_ADDRESS=",
             vm.toString(address(factory)),
             "\nCOLLATERAL_TOKEN_ADDRESS=",
@@ -39,7 +45,7 @@ contract DeployHyperstitionMarket is Script {
         vm.writeLine(path, newContent);
 
         console.log(
-            "Updated .env file with HYPERSTITION_FACTORY_ADDRESS and COLLATERAL_TOKEN_ADDRESS"
+            "Updated .env file with HYPERSTITION_ORACLE_CONTROLLER_ADDRESS, HYPERSTITION_FACTORY_ADDRESS, and COLLATERAL_TOKEN_ADDRESS"
         );
     }
 }
@@ -144,7 +150,7 @@ contract BuyYesHyperstitionMarket is Script {
         bytes32 collectionId = conditionalTokens.getCollectionId(
             bytes32(0),
             conditionId,
-            1
+            2
         );
         uint256 positionId = conditionalTokens.getPositionId(
             IERC20(collateralTokenAddress),
@@ -176,6 +182,44 @@ contract BuyYesHyperstitionMarket is Script {
         );
 
         vm.stopBroadcast();
+    }
+}
+
+contract ResolveHyperstitionMarketTrigger is Script {
+    function run() public {
+        uint256 deployerPrivateKey = vm.envUint("PRIVATE_KEY");
+
+        address oracleAddress = vm.envAddress(
+            "HYPERSTITION_ORACLE_CONTROLLER_ADDRESS"
+        );
+        address marketMakerAddress = vm.envAddress("MARKET_MAKER_ADDRESS");
+        address conditionalTokensAddress = vm.envAddress(
+            "CONDITIONAL_TOKENS_ADDRESS"
+        );
+
+        HyperstitionOracleController oracle = HyperstitionOracleController(
+            oracleAddress
+        );
+
+        vm.startBroadcast(deployerPrivateKey);
+
+        // Create test trigger data using the provided message
+        HyperstitionOracleController.TriggerInputData
+            memory triggerData = HyperstitionOracleController.TriggerInputData({
+                lmsrMarketMaker: marketMakerAddress,
+                conditionalTokens: conditionalTokensAddress,
+                result: true
+            });
+
+        // Add trigger (sends 0.1 ETH)
+        ISimpleTrigger.TriggerId triggerId = oracle.addTrigger{
+            value: 0.1 ether
+        }(triggerData);
+
+        vm.stopBroadcast();
+
+        uint64 tid = ISimpleTrigger.TriggerId.unwrap(triggerId);
+        console.log("Trigger ID:", tid);
     }
 }
 
@@ -211,7 +255,7 @@ contract RedeemHyperstitionMarket is Script {
         bytes32 collectionId = conditionalTokens.getCollectionId(
             bytes32(0),
             conditionId,
-            1
+            2
         );
         uint256 positionId = conditionalTokens.getPositionId(
             IERC20(collateralTokenAddress),
@@ -228,7 +272,7 @@ contract RedeemHyperstitionMarket is Script {
 
         // redeem payout
         uint256[] memory indexSets = new uint256[](1);
-        indexSets[0] = 1;
+        indexSets[0] = 2;
         conditionalTokens.redeemPositions(
             IERC20(collateralTokenAddress),
             bytes32(0),
@@ -246,41 +290,5 @@ contract RedeemHyperstitionMarket is Script {
         );
 
         vm.stopBroadcast();
-    }
-}
-
-contract ResolveHyperstitionMarketTrigger is Script {
-    function run() public {
-        uint256 deployerPrivateKey = vm.envUint("PRIVATE_KEY");
-
-        address factoryAddress = vm.envAddress("HYPERSTITION_FACTORY_ADDRESS");
-        address marketMakerAddress = vm.envAddress("MARKET_MAKER_ADDRESS");
-        address conditionalTokensAddress = vm.envAddress(
-            "CONDITIONAL_TOKENS_ADDRESS"
-        );
-
-        HyperstitionMarketFactory factory = HyperstitionMarketFactory(
-            factoryAddress
-        );
-
-        vm.startBroadcast(deployerPrivateKey);
-
-        // Create test trigger data using the provided message
-        HyperstitionMarketFactory.TriggerInputData
-            memory triggerData = HyperstitionMarketFactory.TriggerInputData({
-                lmsrMarketMaker: marketMakerAddress,
-                conditionalTokens: conditionalTokensAddress,
-                result: true
-            });
-
-        // Add trigger (sends 0.1 ETH)
-        ISimpleTrigger.TriggerId triggerId = factory.addTrigger{
-            value: 0.1 ether
-        }(triggerData);
-
-        vm.stopBroadcast();
-
-        uint64 tid = ISimpleTrigger.TriggerId.unwrap(triggerId);
-        console.log("Trigger ID:", tid);
     }
 }

@@ -8,35 +8,11 @@ import {Whitelist} from "@lay3rlabs/conditional-tokens-market-makers/Whitelist.s
 import {ConditionalTokens} from "@lay3rlabs/conditional-tokens-contracts/ConditionalTokens.sol";
 import {IERC20} from "forge-std/interfaces/IERC20.sol";
 import {Clones} from "@openzeppelin/contracts/proxy/Clones.sol";
-import {IServiceHandler} from "@wavs/interfaces/IServiceHandler.sol";
 import {ERC20Mintable} from "./ERC20Mintable.sol";
-import {ISimpleTrigger} from "./interfaces/ISimpleTrigger.sol";
+import {console} from "forge-std/console.sol";
 
-contract HyperstitionMarketFactory is
-    LMSRMarketMakerFactory,
-    IServiceHandler,
-    ISimpleTrigger
-{
-    mapping(TriggerId => TriggerInfo) public triggersById;
-    uint64 private _nextTriggerId; // Changed to uint64 to match TriggerId
-
-    struct TriggerInputData {
-        address lmsrMarketMaker;
-        address conditionalTokens;
-        bool result;
-    }
-
-    event ResolveMarket(
-        TriggerId indexed triggerId,
-        address indexed creator,
-        bytes data
-    );
-
-    struct AvsOutputData {
-        address lmsrMarketMaker;
-        address conditionalTokens;
-        bool result;
-    }
+contract HyperstitionMarketFactory is LMSRMarketMakerFactory {
+    address public oracle = msg.sender;
 
     function createConditionalTokenAndLMSRMarketMaker(
         string memory uri,
@@ -45,7 +21,7 @@ contract HyperstitionMarketFactory is
         uint64 fee,
         uint256 funding
     )
-        public
+        external
         returns (
             ConditionalTokens conditionalTokens,
             LMSRMarketMaker lmsrMarketMaker
@@ -103,50 +79,23 @@ contract HyperstitionMarketFactory is
     /**
      * @dev Handle the AVS oracle resolution event. This should close the market and payout the corresponding outcome tokens based on the result.
      */
-    function handleAddPayload(
-        bytes calldata data,
-        bytes calldata // signature
-    ) external override {
-        AvsOutputData memory returnData = abi.decode(data, (AvsOutputData));
+    function resolveMarket(
+        LMSRMarketMaker lmsrMarketMaker,
+        ConditionalTokens conditionalTokens,
+        bool result
+    ) external {
+        require(msg.sender == oracle, "Only the oracle can call this function");
 
         // pause the market maker, which this factory owns
-        LMSRMarketMaker(returnData.lmsrMarketMaker).pause();
+        lmsrMarketMaker.pause();
 
         uint256[] memory payouts = new uint256[](2);
         // the first outcome slot is NO
-        payouts[0] = returnData.result ? 0 : 1e18;
+        payouts[0] = result ? 0 : 1e18;
         // the second outcome slot is YES
-        payouts[1] = returnData.result ? 1e18 : 0;
+        payouts[1] = result ? 1e18 : 0;
 
         // resolve the token
-        ConditionalTokens(returnData.conditionalTokens).reportPayouts(
-            bytes32(0),
-            payouts
-        );
-    }
-
-    function addTrigger(
-        TriggerInputData calldata triggerData
-    ) external payable returns (TriggerId triggerId) {
-        require(msg.value == 0.1 ether, "Payment must be exactly 0.1 ETH");
-
-        triggerId = TriggerId.wrap(uint64(_nextTriggerId++));
-        bytes memory data = abi.encode(triggerData);
-
-        TriggerInfo memory triggerInfo = TriggerInfo({
-            triggerId: triggerId,
-            creator: msg.sender,
-            data: data
-        });
-
-        triggersById[triggerId] = triggerInfo;
-
-        emit ResolveMarket(triggerId, msg.sender, data);
-    }
-
-    function getTrigger(
-        TriggerId triggerId
-    ) external view override returns (TriggerInfo memory) {
-        return triggersById[triggerId];
+        conditionalTokens.reportPayouts(bytes32(0), payouts);
     }
 }

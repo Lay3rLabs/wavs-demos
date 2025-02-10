@@ -81,7 +81,7 @@ wavs-cli deploy-eigen-core
 Deploy service manager:
 
 ```bash
-wavs-cli deploy-eigen-service-manager --service-handler $HYPERSTITION_FACTORY_ADDRESS
+wavs-cli deploy-eigen-service-manager --service-handler $HYPERSTITION_ORACLE_CONTROLLER_ADDRESS
 ```
 
 Set the `SERVICE_MANAGER` environment variable with the address of the service manager.
@@ -107,11 +107,7 @@ source .env
 Deploy Hyperstition Oracle AVS that will resolve the market:
 
 ```bash
-wavs-cli deploy-service --trigger eth-contract-event \
-  --trigger-event-name $(cast sig-event "ResolveMarket(uint64,address,bytes)" | cut -c 3-) \
-  --trigger-address $HYPERSTITION_FACTORY_ADDRESS \
-  --component ./compiled/hyperstition_oracle.wasm \
-  --submit-address $SERVICE_MANAGER
+wavs-cli deploy-service --trigger eth-contract-event --trigger-event-name $(cast sig-event "ResolveMarket(uint64,address,bytes)" | cut -c 3-) --trigger-address $HYPERSTITION_ORACLE_CONTROLLER_ADDRESS --component ./compiled/hyperstition_oracle.wasm --submit-address $SERVICE_MANAGER
 ```
 
 Buy YES in the Hyperstition Market:
@@ -123,10 +119,7 @@ forge script script/HyperstitionMarket.s.sol:BuyYesHyperstitionMarket --rpc-url 
 Trigger the Hyperstition Oracle AVS that resolves the market:
 
 ```bash
-forge script script/HyperstitionMarket.s.sol:ResolveHyperstitionMarketTrigger \
-    --sig "run()" \
-    --rpc-url "http://localhost:8545" \
-    --broadcast
+forge script script/HyperstitionMarket.s.sol:ResolveHyperstitionMarketTrigger --sig "run()" --rpc-url http://localhost:8545 --broadcast
 ```
 
 Redeem YES in the resolved Hyperstition Market:
