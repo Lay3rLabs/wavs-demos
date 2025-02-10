@@ -18,10 +18,9 @@ contract HyperstitionMarketFactory is
     ISimpleTrigger
 {
     mapping(TriggerId => TriggerInfo) public triggersById;
-    mapping(address => TriggerId[]) public triggerIdsByCreator;
     uint64 private _nextTriggerId; // Changed to uint64 to match TriggerId
 
-    struct TriggerData {
+    struct TriggerInputData {
         address lmsrMarketMaker;
         address conditionalTokens;
         bool result;
@@ -37,10 +36,6 @@ contract HyperstitionMarketFactory is
         address lmsrMarketMaker;
         address conditionalTokens;
         bool result;
-    }
-
-    constructor() {
-        implementationMaster = new LMSRMarketMaker(address(this));
     }
 
     function createConditionalTokenAndLMSRMarketMaker(
@@ -105,10 +100,6 @@ contract HyperstitionMarketFactory is
         );
     }
 
-    address public resolvedLmsrMarketMaker;
-    address public resolvedConditionalTokens;
-    bool public resolvedResult;
-
     /**
      * @dev Handle the AVS oracle resolution event. This should close the market and payout the corresponding outcome tokens based on the result.
      */
@@ -122,10 +113,10 @@ contract HyperstitionMarketFactory is
         LMSRMarketMaker(returnData.lmsrMarketMaker).pause();
 
         uint256[] memory payouts = new uint256[](2);
-        // the first outcome slot is YES
-        payouts[0] = returnData.result ? 1e18 : 0;
-        // the second outcome slot is NO
-        payouts[1] = returnData.result ? 0 : 1e18;
+        // the first outcome slot is NO
+        payouts[0] = returnData.result ? 0 : 1e18;
+        // the second outcome slot is YES
+        payouts[1] = returnData.result ? 1e18 : 0;
 
         // resolve the token
         ConditionalTokens(returnData.conditionalTokens).reportPayouts(
@@ -134,14 +125,8 @@ contract HyperstitionMarketFactory is
         );
     }
 
-    function getTrigger(
-        TriggerId triggerId
-    ) external view override returns (TriggerInfo memory) {
-        return triggersById[triggerId];
-    }
-
     function addTrigger(
-        TriggerData calldata triggerData
+        TriggerInputData calldata triggerData
     ) external payable returns (TriggerId triggerId) {
         require(msg.value == 0.1 ether, "Payment must be exactly 0.1 ETH");
 
@@ -155,24 +140,13 @@ contract HyperstitionMarketFactory is
         });
 
         triggersById[triggerId] = triggerInfo;
-        triggerIdsByCreator[msg.sender].push(triggerId);
 
         emit ResolveMarket(triggerId, msg.sender, data);
     }
 
-    // Update helper functions
-    function getTriggerCount(address creator) external view returns (uint256) {
-        return triggerIdsByCreator[creator].length;
-    }
-
-    function getTriggerIdAtIndex(
-        address creator,
-        uint256 index
-    ) external view returns (TriggerId) {
-        require(
-            index < triggerIdsByCreator[creator].length,
-            "Index out of bounds"
-        );
-        return triggerIdsByCreator[creator][index];
+    function getTrigger(
+        TriggerId triggerId
+    ) external view override returns (TriggerInfo memory) {
+        return triggersById[triggerId];
     }
 }

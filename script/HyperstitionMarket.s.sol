@@ -56,7 +56,8 @@ contract LaunchHyperstitionMarket is Script {
             "COLLATERAL_TOKEN_ADDRESS"
         );
         uint64 fee = 5e16; // 5% fee
-        uint256 funding = 1e18;
+        // fund with 1,000 collateral tokens
+        uint256 funding = 1_000e18;
 
         factory = HyperstitionMarketFactory(factoryAddress);
         collateralToken = ERC20Mintable(collateralTokenAddress);
@@ -117,6 +118,7 @@ contract BuyYesHyperstitionMarket is Script {
         address conditionalTokensAddress = vm.envAddress(
             "CONDITIONAL_TOKENS_ADDRESS"
         );
+        // buy with 1 collateral token
         int256 buying = 1e18;
 
         marketMaker = LMSRMarketMaker(marketMakerAddress);
@@ -159,8 +161,8 @@ contract BuyYesHyperstitionMarket is Script {
 
         // buy all YES
         int256[] memory outcomeTokenAmounts = new int256[](2);
-        outcomeTokenAmounts[0] = buying;
-        outcomeTokenAmounts[1] = 0;
+        outcomeTokenAmounts[0] = 0;
+        outcomeTokenAmounts[1] = buying;
         int256 netCost = marketMaker.trade(outcomeTokenAmounts, buying);
 
         console.log("Net cost:", netCost);
@@ -264,8 +266,8 @@ contract ResolveHyperstitionMarketTrigger is Script {
         vm.startBroadcast(deployerPrivateKey);
 
         // Create test trigger data using the provided message
-        HyperstitionMarketFactory.TriggerData
-            memory triggerData = HyperstitionMarketFactory.TriggerData({
+        HyperstitionMarketFactory.TriggerInputData
+            memory triggerData = HyperstitionMarketFactory.TriggerInputData({
                 lmsrMarketMaker: marketMakerAddress,
                 conditionalTokens: conditionalTokensAddress,
                 result: true
@@ -280,10 +282,5 @@ contract ResolveHyperstitionMarketTrigger is Script {
 
         uint64 tid = ISimpleTrigger.TriggerId.unwrap(triggerId);
         console.log("Trigger ID:", tid);
-
-        // Fetch and log the trigger info
-        ISimpleTrigger.TriggerInfo memory info = factory.getTrigger(triggerId);
-        console.log("Trigger created by:", info.creator);
-        console.logBytes(info.data);
     }
 }

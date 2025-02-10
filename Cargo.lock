@@ -2432,7 +2432,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "hyperstition-market-resolver"
+name = "hyperstition-oracle"
 version = "0.1.0"
 dependencies = [
  "alloy-primitives",

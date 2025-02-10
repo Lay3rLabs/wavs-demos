@@ -104,13 +104,13 @@ Reload environment variables from .env file:
 source .env
 ```
 
-Deploy Hyperstition Market resolver AVS:
+Deploy Hyperstition Oracle AVS that will resolve the market:
 
 ```bash
 wavs-cli deploy-service --trigger eth-contract-event \
   --trigger-event-name $(cast sig-event "ResolveMarket(uint64,address,bytes)" | cut -c 3-) \
   --trigger-address $HYPERSTITION_FACTORY_ADDRESS \
-  --component ./compiled/hyperstition_market_resolver.wasm \
+  --component ./compiled/hyperstition_oracle.wasm \
   --submit-address $SERVICE_MANAGER
 ```
 
@@ -120,7 +120,7 @@ Buy YES in the Hyperstition Market:
 forge script script/HyperstitionMarket.s.sol:BuyYesHyperstitionMarket --rpc-url http://localhost:8545 --broadcast
 ```
 
-Trigger the Hyperstition Market resolver AVS:
+Trigger the Hyperstition Oracle AVS that resolves the market:
 
 ```bash
 forge script script/HyperstitionMarket.s.sol:ResolveHyperstitionMarketTrigger \

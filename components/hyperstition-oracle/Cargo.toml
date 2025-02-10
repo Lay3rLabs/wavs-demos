@@ -1,5 +1,5 @@
 [package]
-name = "hyperstition-market-resolver"
+name = "hyperstition-oracle"
 edition.workspace = true
 version.workspace = true
 authors.workspace = true
@@ -33,7 +33,7 @@ strip = true
 lto = true
 
 [package.metadata.component]
-package = "component:eth-autonomous-artist"
+package = "component:hyperstition-oracle"
 
 [package.metadata.component.target]
 world = "layer-trigger-world"
