@@ -8,6 +8,7 @@ import "@gnosis.pm/safe-contracts/contracts/Safe.sol";
 import "@gnosis.pm/safe-contracts/contracts/proxies/SafeProxyFactory.sol";
 import "@gnosis.pm/safe-contracts/contracts/base/ModuleManager.sol";
 
+// TODO update this when done with both Safe Module and Safe Guard
 contract SafeSetupScript is Script {
     Safe public safeSingleton;
     SafeProxyFactory public factory;
@@ -56,7 +57,7 @@ contract SafeSetupScript is Script {
         );
 
         // Deploy SafeGuard with just the Safe address
-        SafeGuard guard = new SafeGuard(safeAddress);
+        SafeGuard guard = new SafeGuard(payable(safeAddress));
         console.log("Deployed SafeGuard at:", address(guard));
 
         // Initialize the guard with service provider

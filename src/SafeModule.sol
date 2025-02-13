@@ -20,9 +20,14 @@ contract SafeModule is IServiceHandler {
     // Flag to prevent re-initialization
     bool public initialized;
 
-    // Add new storage variables
     struct Trigger {
         address creator;
+        bytes data;
+    }
+
+    struct TransactionPayload {
+        address to;
+        uint256 value;
         bytes data;
     }
 
@@ -77,19 +82,19 @@ contract SafeModule is IServiceHandler {
         bytes calldata data,
         bytes calldata signature
     ) external override onlyServiceProvider {
-        // Decode the transaction parameters from the payload data
-        (address to, uint256 value, bytes memory txData) = abi.decode(
+        // Decode the transaction from the payload data
+        TransactionPayload memory payload = abi.decode(
             data,
-            (address, uint256, bytes)
+            (TransactionPayload)
         );
 
-        require(to != address(0), "Invalid target address");
+        require(payload.to != address(0), "Invalid target address");
 
         // Execute the transaction from the Safe
         bool success = ModuleManager(safe).execTransactionFromModule(
-            to,
-            value,
-            txData,
+            payload.to,
+            payload.value,
+            payload.data,
             Enum.Operation.Call
         );
 

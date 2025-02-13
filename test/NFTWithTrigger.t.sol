@@ -70,20 +70,26 @@ contract NFTWithTriggerTest is Test {
         // Get triggerId
         ISimpleTrigger.TriggerId triggerId = nft.getTriggerIdAtIndex(user, 0);
 
-        // Prepare mint data
-        string memory dataUri = "ipfs://test";
-        bytes memory mintData = abi.encode(user, triggerId, dataUri);
+        // Prepare mint data using ReturnData struct
+        NFTWithTrigger.ReturnData memory returnData = NFTWithTrigger
+            .ReturnData({
+                creator: user,
+                triggerId: uint64(ISimpleTrigger.TriggerId.unwrap(triggerId)),
+                dataUri: "ipfs://test"
+            });
+
+        bytes memory mintData = abi.encode(returnData);
         bytes memory signature = ""; // Empty signature for this test
 
         // Handle payload as service provider
         vm.prank(serviceProvider);
         vm.expectEmit(true, true, true, true);
-        emit NFTMinted(user, 0, dataUri);
+        emit NFTMinted(user, 0, "ipfs://test");
         nft.handleAddPayload(mintData, signature);
 
         // Verify NFT was minted
         assertEq(nft.ownerOf(0), user);
-        assertEq(nft.tokenURI(0), dataUri);
+        assertEq(nft.tokenURI(0), "ipfs://test");
     }
 
     function test_HandlePayloadRevertsForNonServiceProvider() public {

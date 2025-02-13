@@ -90,7 +90,8 @@ wavs-cli deploy-service --trigger eth-contract-event \
   --trigger-event-name $(cast sig-event "NewTrigger(uint64,address,bytes)") \
   --trigger-address $NFT_ADDRESS \
   --component ./compiled/autonomous_artist.wasm \
-  --submit-address $SERVICE_PROVIDER
+  --submit-address $SERVICE_PROVIDER \
+  --service-config '{"fuelLimit":100000000,"maxGas":5000000,"hostEnvs":[],"kv":[],"workflowId":"default","componentId":"default"}'
 ```
 
 Make a task:
@@ -100,5 +101,5 @@ forge script script/DeployNFTWithTrigger.s.sol:TestTrigger \
     --sig "run(string)" \
     "How can I be a great artist?" \
     --rpc-url "http://localhost:8545" \
-    --broadcast
+    --broadcast --gas-limit 100000000
 ```

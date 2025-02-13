@@ -2,67 +2,17 @@
 pragma solidity ^0.8.13;
 
 import "forge-std/Script.sol";
+import "forge-std/console.sol";
 import "../src/SafeGuard.sol";
 import "@gnosis.pm/safe-contracts/contracts/Safe.sol";
 import "@gnosis.pm/safe-contracts/contracts/proxies/SafeProxyFactory.sol";
 
-contract SafeGuardScript is Script {
+// Base contract with shared functionality
+contract SafeGuardBaseScript is Script {
     Safe public safeSingleton;
     SafeProxyFactory public factory;
 
     function setUp() public {}
-
-    function run() public {
-        // Get deployment private key and start broadcasting
-        uint256 deployerPrivateKey = vm.envUint("PRIVATE_KEY");
-        vm.startBroadcast(deployerPrivateKey);
-
-        // Deploy Safe singleton and factory first if needed
-        safeSingleton = new Safe();
-        factory = new SafeProxyFactory();
-        console.log("Deployed Safe singleton at:", address(safeSingleton));
-        console.log("Deployed Safe factory at:", address(factory));
-
-        // Get the service provider address from environment
-        address serviceProvider = vm.envAddress("SERVICE_PROVIDER");
-
-        // Get Safe setup parameters from environment
-        address[] memory owners = _getOwners();
-        uint256 threshold = vm.envUint("SAFE_THRESHOLD");
-        address fallbackHandler = vm.envAddress("SAFE_FALLBACK_HANDLER");
-
-        // Deploy new Safe if DEPLOY_NEW_SAFE is true
-        address safeAddress;
-        if (vm.envBool("DEPLOY_NEW_SAFE")) {
-            safeAddress = _deploySafe(owners, threshold, fallbackHandler);
-            console.log("Deployed new Safe at:", safeAddress);
-        } else {
-            safeAddress = vm.envAddress("EXISTING_SAFE_ADDRESS");
-            console.log("Using existing Safe at:", safeAddress);
-        }
-
-        // Deploy SafeGuard with just the Safe address
-        SafeGuard guard = new SafeGuard(safeAddress);
-        console.log("Deployed SafeGuard at:", address(guard));
-
-        // Initialize the guard with service provider
-        guard.initialize(serviceProvider);
-        console.log(
-            "Initialized SafeGuard with service provider:",
-            serviceProvider
-        );
-
-        // If we're working with a new Safe, set the guard automatically
-        if (vm.envBool("DEPLOY_NEW_SAFE")) {
-            Safe safe = Safe(payable(safeAddress));
-            _setGuard(safe, address(guard));
-            console.log("Set guard on Safe");
-        } else {
-            console.log("Please set the guard manually through the Safe UI");
-        }
-
-        vm.stopBroadcast();
-    }
 
     function _deploySafe(
         address[] memory owners,
@@ -86,33 +36,6 @@ contract SafeGuardScript is Script {
         );
 
         return safeAddress;
-    }
-
-    function _setGuard(Safe safe, address guard) internal {
-        bytes memory data = abi.encodeWithSelector(
-            GuardManager.setGuard.selector,
-            guard
-        );
-
-        safe.execTransaction(
-            address(safe),
-            0,
-            data,
-            Enum.Operation.Call,
-            0,
-            0,
-            0,
-            address(0),
-            payable(address(0)),
-            _generateSingleSignature(safe)
-        );
-    }
-
-    function _generateSingleSignature(
-        Safe safe
-    ) internal view returns (bytes memory) {
-        address owner = safe.getOwners()[0];
-        return abi.encodePacked(uint256(uint160(owner)), uint256(0), uint8(1));
     }
 
     function _getOwners() internal view returns (address[] memory) {
@@ -163,5 +86,163 @@ contract SafeGuardScript is Script {
             result[i - _start] = strBytes[i];
         }
         return string(result);
+    }
+}
+
+// Deploy contracts script
+contract DeploySafeGuardScript is SafeGuardBaseScript {
+    function run() public {
+        uint256 deployerPrivateKey = vm.envUint("PRIVATE_KEY");
+        vm.startBroadcast(deployerPrivateKey);
+
+        // Deploy Safe singleton and factory first if needed
+        safeSingleton = new Safe();
+        factory = new SafeProxyFactory();
+        console.log("Deployed Safe singleton at:", address(safeSingleton));
+        console.log("Deployed Safe factory at:", address(factory));
+
+        // Get Safe setup parameters from environment
+        address[] memory owners = _getOwners();
+        uint256 threshold = vm.envUint("SAFE_THRESHOLD");
+        address fallbackHandler = vm.envAddress("SAFE_FALLBACK_HANDLER");
+
+        // Deploy new Safe if DEPLOY_NEW_SAFE is true
+        address safeAddress;
+        if (vm.envBool("DEPLOY_NEW_SAFE")) {
+            safeAddress = _deploySafe(owners, threshold, fallbackHandler);
+            console.log("Deployed new Safe at:", safeAddress);
+        } else {
+            safeAddress = vm.envAddress("EXISTING_SAFE_ADDRESS");
+            console.log("Using existing Safe at:", safeAddress);
+        }
+
+        // Deploy SafeGuard with just the Safe address
+        SafeGuard guard = new SafeGuard(payable(safeAddress));
+        console.log("Deployed SafeGuard at:", address(guard));
+
+        // Save addresses to .env file
+        string memory envContent = vm.readFile(".env");
+        string memory newEntries = string.concat(
+            "\nSAFE_ADDRESS=",
+            vm.toString(safeAddress),
+            "\nGUARD_ADDRESS=",
+            vm.toString(address(guard))
+        );
+        vm.writeFile(".env", string.concat(envContent, newEntries));
+        console.log("Saved safe and guard addresses to .env file");
+
+        vm.stopBroadcast();
+    }
+}
+
+// Initialize guard script
+contract InitializeSafeGuardScript is SafeGuardBaseScript {
+    function run() public {
+        uint256 deployerPrivateKey = vm.envUint("PRIVATE_KEY");
+        vm.startBroadcast(deployerPrivateKey);
+
+        address guardAddress = vm.envAddress("GUARD_ADDRESS");
+        address serviceProvider = vm.envAddress("SERVICE_PROVIDER");
+
+        SafeGuard guard = SafeGuard(guardAddress);
+        guard.initialize(serviceProvider);
+        console.log(
+            "Initialized SafeGuard with service provider:",
+            serviceProvider
+        );
+
+        vm.stopBroadcast();
+    }
+}
+
+// Create and approve safe transaction script
+contract ApproveSafeTransactionScript is SafeGuardBaseScript {
+    function _getTxHash(Safe safe) internal view returns (bytes32) {
+        // Pack parameters into a struct to reduce stack usage
+        return
+            safe.getTransactionHash(
+                address(0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266), // to
+                0.1 ether, // value
+                "", // data
+                Enum.Operation.Call, // operation
+                0, // safeTxGas
+                0, // baseGas
+                0, // gasPrice
+                address(0), // gasToken
+                payable(address(0)), // refundReceiver
+                safe.nonce() // nonce
+            );
+    }
+
+    function run() public {
+        uint256 ownerPrivateKey = vm.envUint("PRIVATE_KEY");
+        vm.startBroadcast(ownerPrivateKey);
+
+        address safeAddress = vm.envAddress("SAFE_ADDRESS");
+        Safe safe = Safe(payable(safeAddress));
+
+        // Get and approve transaction hash
+        bytes32 txHash = _getTxHash(safe);
+        safe.approveHash(txHash);
+        console.log("Approved transaction hash:", uint256(txHash));
+
+        vm.stopBroadcast();
+    }
+}
+
+// Execute safe transaction script
+contract ExecuteSafeTransactionScript is SafeGuardBaseScript {
+    function _getTxHash(Safe safe) internal view returns (bytes32) {
+        // Pack parameters into a struct to reduce stack usage
+        return
+            safe.getTransactionHash(
+                address(0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266), // to
+                0.1 ether, // value
+                "", // data
+                Enum.Operation.Call, // operation
+                0, // safeTxGas
+                0, // baseGas
+                0, // gasPrice
+                address(0), // gasToken
+                payable(address(0)), // refundReceiver
+                safe.nonce() // nonce
+            );
+    }
+
+    function run() public {
+        uint256 ownerPrivateKey = vm.envUint("PRIVATE_KEY");
+        vm.startBroadcast(ownerPrivateKey);
+
+        Safe safe = Safe(payable(vm.envAddress("SAFE_ADDRESS")));
+
+        // First, fund the Safe with more than needed ETH
+        (bool success, ) = address(safe).call{value: 0.2 ether}("");
+        require(success, "Failed to send ETH to Safe");
+        console.log("Funded Safe with 0.2 ETH");
+
+        // Sign and execute in one step
+        (uint8 v, bytes32 r, bytes32 s) = vm.sign(
+            ownerPrivateKey,
+            _getTxHash(safe)
+        );
+        safe.execTransaction(
+            address(0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266), // to
+            0.1 ether, // value
+            "", // data
+            Enum.Operation.Call, // operation
+            0, // safeTxGas
+            0, // baseGas
+            0, // gasPrice
+            address(0), // gasToken
+            payable(address(0)), // refundReceiver
+            abi.encodePacked(r, s, v) // signature
+        );
+
+        console.log(
+            "Executed transaction to:",
+            address(0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266)
+        );
+
+        vm.stopBroadcast();
     }
 }
