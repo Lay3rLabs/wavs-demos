@@ -22,7 +22,7 @@ sol! {
 struct Component;
 
 impl Guest for Component {
-    fn run(trigger_action: TriggerAction) -> std::result::Result<Vec<u8>, String> {
+    fn run(trigger_action: TriggerAction) -> std::result::Result<Option<Vec<u8>>, String> {
         match trigger_action.data {
             TriggerData::EthContractEvent(TriggerDataEthContractEvent { log, .. }) => {
                 // Decode event
@@ -31,7 +31,7 @@ impl Guest for Component {
 
                 // Return true. Normally you would like to have some other logic in the component
                 // to decide if the transaction should be approved or not.
-                Ok(ValidationPayload { approvedHash, approved: true }.abi_encode())
+                Ok(Some(ValidationPayload { approvedHash, approved: true }.abi_encode()))
             }
             _ => Err("Unsupported trigger data".to_string()),
         }

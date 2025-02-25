@@ -39,7 +39,7 @@ sol! {
 struct Component;
 
 impl Guest for Component {
-    fn run(trigger_action: TriggerAction) -> std::result::Result<Vec<u8>, String> {
+    fn run(trigger_action: TriggerAction) -> std::result::Result<Option<Vec<u8>>, String> {
         match trigger_action.data {
             TriggerData::EthContractEvent(TriggerDataEthContractEvent { log, .. }) => {
                 // Decode the ABI-encoded string first
@@ -64,7 +64,7 @@ impl Guest for Component {
                             // Return a no-op transaction if no tool call is found
                             let no_op = create_no_op_transaction("No action needed");
                             let payload = create_payload_from_safe_tx(&no_op)?;
-                            return Ok(payload.abi_encode().to_vec());
+                            return Ok(Some(payload.abi_encode().to_vec()));
                         }
                     };
 
@@ -79,14 +79,14 @@ impl Guest for Component {
                         let no_op =
                             create_no_op_transaction("Invalid or missing destination address");
                         let payload = create_payload_from_safe_tx(&no_op)?;
-                        return Ok(payload.abi_encode().to_vec());
+                        return Ok(Some(payload.abi_encode().to_vec()));
                     }
 
                     let payload = create_payload_from_safe_tx(&transaction)?;
 
                     println!("Payload: {:?}", payload);
 
-                    Ok(payload.abi_encode().to_vec())
+                    Ok(Some(payload.abi_encode().to_vec()))
                 });
             }
             // TriggerData::CosmosContractEvent(TriggerDataCosmosContractEvent { .. }) => {}

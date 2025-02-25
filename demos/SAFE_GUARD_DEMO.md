@@ -101,9 +101,18 @@ make build
 make test
 ```
 
-### Start Anvil and WAVS
+### Start Environment
 
-> On MacOS Docker, ensure you've either enabled host networking (Docker Engine -> Settings -> Resources -> Network -> 'Enable Host Networking') or installed [docker-mac-net-connect](https://github.com/chipmk/docker-mac-net-connect) via `brew install chipmk/tap/docker-mac-net-connect && sudo brew services start chipmk/tap/docker-mac-net-connect`.
+Start an ethereum node (anvil), the WAVS service, and deploy [eigenlayer](https://www.eigenlayer.xyz/) contracts to the local network.
+
+> [!NOTE]
+> If you are running on a Mac with an ARM chip, you will need to do the following:
+> - Set up Rosetta: `softwareupdate --install-rosetta`
+> - Enable Rosetta (Docker Desktop: Settings -> General -> enable "Use Rosetta for x86_64/amd64 emulation on Apple Silicon")
+>
+> Configure one of the following network options:
+> - Docker Desktop: Settings -> Resources -> Network -> 'Enable Host Networking'
+> - `brew install chipmk/tap/docker-mac-net-connect && sudo brew services start chipmk/tap/docker-mac-net-connect`
 
 ```bash
 # Copy over the .env file.

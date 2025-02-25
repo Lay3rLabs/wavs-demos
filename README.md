@@ -1,4 +1,4 @@
-# WAVS Demo Services
+# [WAVS](https://docs.wavs.xyz) Demo Services
 
 <!-- ![Rust](https://github.com/gakonst/foundry-rust-template/workflows/Rust/badge.svg)
 ![Solidity](https://github.com/gakonst/foundry-rust-template/workflows/Solidity/badge.svg) -->
@@ -21,29 +21,34 @@ Comprehensive demos for developing WAVS (WebAssembly AVS) applications using Rus
 ## System Requirements
 
 <details>
-<summary>Core (Docker, Compose, Make, JQ, NodeJS v21+)</summary>
+<summary>Core (Docker, Compose, Make, JQ, Node v21+)</summary>
 
 ### Docker
+
 - **MacOS**: `brew install --cask docker`
 - **Ubuntu**: `sudo apt -y install docker.io`
 - [Docker Documentation](https://docs.docker.com/get-started/get-docker/)
 
 ### Docker Compose
+
 - **MacOS**: Already installed with Docker installer
 - **Linux**: `sudo apt-get install docker-compose-v2`
 - [Compose Documentation](https://docs.docker.com/compose/)
 
 ### Make
+
 - **MacOS**: `brew install make`
 - **Linux**: `sudo apt -y install make`
 - [Make Documentation](https://www.gnu.org/software/make/manual/make.html)
 
 ### JQ
+
 - **MacOS**: `brew install jq`
 - **Ubuntu**: `sudo apt -y install jq`
 - [JQ Documentation](https://jqlang.org/download/)
 
 ### Node.js
+
 - **Required Version**: v21+
 - [Installation via NVM](https://github.com/nvm-sh/nvm?tab=readme-ov-file#installing-and-updating)
 </details>
@@ -78,7 +83,7 @@ rustup target add wasm32-wasip2
 <details>
 <summary>Cargo Components</summary>
 
-## Install Cargo Components
+### Install Cargo Components
 
 ```bash
 # Install required cargo components
@@ -87,6 +92,20 @@ cargo install cargo-component warg-cli wkg --locked
 
 # Configure default registry
 wkg config --default-registry wa.dev
+```
+
+</details>
+
+<details>
+<summary>Foundry</summary>
+
+### Install Foundry
+
+https://book.getfoundry.sh/getting-started/installation
+
+```bash
+curl -L https://foundry.paradigm.xyz | bash
+foundryup
 ```
 
 </details>

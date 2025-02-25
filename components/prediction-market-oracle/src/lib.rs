@@ -11,7 +11,7 @@ struct Component;
 export!(Component with_types_in bindings);
 
 impl Guest for Component {
-    fn run(action: TriggerAction) -> std::result::Result<Vec<u8>, String> {
+    fn run(action: TriggerAction) -> std::result::Result<Option<Vec<u8>>, String> {
         let (trigger_info, data) = decode_trigger_event(action.data)?;
 
         let bitcoin_price = block_on(get_price_feed(1))?;
@@ -19,12 +19,12 @@ impl Guest for Component {
         // Resolve the market as YES if the price of Bitcoin is over $1.
         let result = bitcoin_price > 1.0;
 
-        Ok(encode_trigger_output(
+        Ok(Some(encode_trigger_output(
             trigger_info.triggerId,
             data.lmsrMarketMaker,
             data.conditionalTokens,
             result,
-        ))
+        )))
     }
 }
 

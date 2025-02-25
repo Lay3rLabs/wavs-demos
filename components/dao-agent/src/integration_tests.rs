@@ -94,7 +94,7 @@ mod tests {
             },
         };
 
-        let result = Component::run(trigger).expect("Failed to process trigger");
+        let result = Component::run(trigger).expect("Failed to process trigger").unwrap();
 
         let decoded = <TransactionPayload as alloy_sol_types::SolValue>::abi_decode(&result, false)
             .expect("Failed to decode transaction payload");

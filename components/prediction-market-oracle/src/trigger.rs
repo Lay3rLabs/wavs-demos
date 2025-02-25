@@ -12,8 +12,8 @@ pub fn decode_trigger_event(
             let event: solidity::NewTrigger =
                 decode_event_log_data!(log).map_err(|e| e.to_string())?;
 
-            let trigger_info =
-                solidity::TriggerInfo::abi_decode(&event._0, false).map_err(|e| e.to_string())?;
+            let trigger_info = solidity::TriggerInfo::abi_decode(&event._triggerInfo, false)
+                .map_err(|e| e.to_string())?;
 
             let data = solidity::TriggerInputData::abi_decode(&trigger_info.data, false)
                 .map_err(|e| format!("Failed to decode trigger data: {}", e))?;

@@ -673,7 +673,7 @@ checksum = "ace50bade8e6234aa140d9a2f552bbee1db4d353f69b8217bc503490fc1a9f26"
 
 [[package]]
 name = "autonomous-artist"
-version = "0.3.0-beta"
+version = "0.3.0-rc1"
 dependencies = [
  "alloy-primitives",
  "alloy-sol-macro",
@@ -950,7 +950,7 @@ dependencies = [
 
 [[package]]
 name = "dao-agent"
-version = "0.3.0-beta"
+version = "0.3.0-rc1"
 dependencies = [
  "alloy-primitives",
  "alloy-sol-types",
@@ -1129,7 +1129,7 @@ dependencies = [
 
 [[package]]
 name = "eth-price-oracle"
-version = "0.3.0-beta"
+version = "0.3.0-rc1"
 dependencies = [
  "alloy-sol-macro",
  "alloy-sol-types",
@@ -2284,7 +2284,7 @@ dependencies = [
 
 [[package]]
 name = "prediction-market-oracle"
-version = "0.3.0-beta"
+version = "0.3.0-rc1"
 dependencies = [
  "alloy-primitives",
  "alloy-sol-macro",
@@ -2663,7 +2663,7 @@ checksum = "6ea1a2d0a644769cc99faa24c3ad26b379b786fe7c36fd3c546254801650e6dd"
 
 [[package]]
 name = "safe-guard"
-version = "0.3.0-beta"
+version = "0.3.0-rc1"
 dependencies = [
  "alloy-primitives",
  "alloy-sol-types",
@@ -3439,9 +3439,9 @@ dependencies = [
 
 [[package]]
 name = "wavs-wasi-chain"
-version = "0.3.0-beta"
+version = "0.3.0-rc1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "7c11214acaad030f493d8d3286451d9554d5ebef451710499076e8e36f3fd8e0"
+checksum = "cfa297209480a64b0623ce5e07ea861283b4683b4b4e0c3bb0ff68b421f8f460"
 dependencies = [
  "alloy-json-rpc",
  "alloy-primitives",
