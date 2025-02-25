@@ -1,5 +1,5 @@
 [package]
-name = "fetch-url"
+name = "ipfs-upload"
 edition.workspace = true
 version.workspace = true
 license.workspace = true
@@ -11,15 +11,15 @@ repository.workspace = true
 crate-type = ["cdylib", "rlib"]
 
 [dependencies]
+anyhow = {workspace = true} 
 wit-bindgen-rt = {workspace = true}
 alloy-sol-macro = {workspace = true}
 alloy-sol-types = {workspace = true}
-wasi = {workspace = true}
 wavs-wasi-chain = {workspace = true}
-const-hex = {workspace = true}
-anyhow = {workspace = true}
+serde = {workspace = true}
+serde_json = {workspace = true}
 wstd = {workspace = true}
 
 [package.metadata.component]
-package = "wavs:fetch-url"
+package = "wavs:ipfs-upload"
 target = "wavs:worker/layer-trigger-world@0.3.0-alpha2"
