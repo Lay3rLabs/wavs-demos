@@ -15,7 +15,7 @@ use std::{
     path::Path,
 };
 use wavs_wasi_chain::http::{fetch_bytes, http_request_get};
-use wstd::http::{body::IncomingBody, Body, Client, IntoBody, Request};
+use wstd::http::{IntoBody, Request};
 use wstd::io::AsyncRead;
 use wstd::runtime::block_on;
 
@@ -50,7 +50,7 @@ impl Guest for Component {
 }
 
 /// downloads a file from a given URL and saves it to the specified local path
-pub async fn download_file(url: &str, file_name: &str) -> Result<String> {
+async fn download_file(url: &str, file_name: &str) -> Result<String> {
     let request = http_request_get(url)?;
     let file_bytes = fetch_bytes(request).await?;
 
@@ -65,11 +65,7 @@ pub async fn download_file(url: &str, file_name: &str) -> Result<String> {
 }
 
 /// Uploads a file using multipart request to IPFS
-pub async fn upload_to_ipfs(
-    file_path: &str,
-    ipfs_url: &str,
-    api_key: &str,
-) -> Result<IpfsResponse> {
+async fn upload_to_ipfs(file_path: &str, ipfs_url: &str, api_key: &str) -> Result<IpfsResponse> {
     let mut file = File::open(file_path)?;
     let mut file_bytes = Vec::new();
     file.read_to_end(&mut file_bytes)?;
