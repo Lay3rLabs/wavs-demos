@@ -3641,14 +3641,16 @@ checksum = "1e9df38ee2d2c3c5948ea468a8406ff0db0b29ae1ffde1bcf20ef305bcc95c51"
 
 [[package]]
 name = "wstd"
-version = "0.5.1"
+version = "0.5.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "26293c0587d2203a141282311221f9ba0048425a04b21d9fcff8fc62fc8ecd75"
+checksum = "6515b13373b9dfbbe62e4426972253a15b74d93b1e2e95f92bbb2801c239a1d3"
 dependencies = [
  "futures-core",
  "http",
  "itoa",
  "pin-project-lite",
+ "serde",
+ "serde_json",
  "slab",
  "wasi 0.14.1+wasi-0.2.3",
  "wstd-macro",
@@ -3656,9 +3658,9 @@ dependencies = [
 
 [[package]]
 name = "wstd-macro"
-version = "0.5.1"
+version = "0.5.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "75a8316f91fc3e508b03fdc979dec4ceeddb29744fc1c2c2ed825e00159f96f9"
+checksum = "23d1758ed5cdf081802c60bc000a9cb90db8bcdf140fa8a7251a22b32af37d7b"
 dependencies = [
  "quote",
  "syn 2.0.98",

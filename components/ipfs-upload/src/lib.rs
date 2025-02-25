@@ -8,6 +8,7 @@ use bindings::{
     wavs::worker::layer_types::{TriggerData, TriggerDataEthContractEvent},
     Guest, TriggerAction,
 };
+use serde::Deserialize;
 use std::{
     fs::File,
     io::{Read, Write},
@@ -15,33 +16,30 @@ use std::{
 };
 use wavs_wasi_chain::http::{fetch_bytes, http_request_get};
 use wstd::http::{body::IncomingBody, Body, Client, IntoBody, Request};
-use wstd::io::empty;
+use wstd::io::AsyncRead;
 use wstd::runtime::block_on;
 
 struct Component;
 
 impl Guest for Component {
-    fn run(trigger_action: TriggerAction) -> std::result::Result<Vec<u8>, String> {
+    fn run(trigger_action: TriggerAction) -> std::result::Result<Option<Vec<u8>>, String> {
         match trigger_action.data {
             TriggerData::EthContractEvent(TriggerDataEthContractEvent { log, .. }) => {
                 let event: Upload =
                     wavs_wasi_chain::decode_event_log_data!(log).map_err(|e| e.to_string())?;
 
-                let res = block_on(async move {
-                    let file_path = download_file(&event.data_uri, &event.file_name).await?;
+                block_on(async move {
+                    let file_path = download_file(&event.data_uri, &event.file_name)
+                        .await
+                        .map_err(|e| e.to_string())?;
 
-                    let res = upload_to_ipfs(&file_path, &event.ipfs_url, &event.api_key).await?;
+                    let res = upload_to_ipfs(&file_path, &event.ipfs_url, &event.api_key)
+                        .await
+                        .map_err(|e| e.to_string())?;
 
-                    Ok(res)
-                });
-
-                match res {
-                    Ok(uploaded_file_path) => {
-                        let message = Response { uri: uploaded_file_path };
-                        Ok(message.abi_encode())
-                    }
-                    Err(e) => Err(e.to_string()),
-                }
+                    let message = Response { name: res.name, hash: res.hash, size: res.size };
+                    Ok(Some(message.abi_encode()))
+                })
             }
             TriggerData::CosmosContractEvent(_) => {
                 Err("expected eth event, got cosmos".to_string())
@@ -66,12 +64,12 @@ pub async fn download_file(url: &str, file_name: &str) -> Result<String> {
     Ok(full_path)
 }
 
-/// Uploads a file using multipart/form-data to IPFS
+/// Uploads a file using multipart request to IPFS
 pub async fn upload_to_ipfs(
     file_path: &str,
     ipfs_url: &str,
     api_key: &str,
-) -> Result<IncomingBody> {
+) -> Result<IpfsResponse> {
     let mut file = File::open(file_path)?;
     let mut file_bytes = Vec::new();
     file.read_to_end(&mut file_bytes)?;
@@ -96,21 +94,32 @@ pub async fn upload_to_ipfs(
         .header("Content-Type", &format!("multipart/form-data; boundary={}", boundary))
         .body(request_body.into_body())?;
 
-    let response = wstd::http::Client::new().send(request).await?;
+    let mut response = wstd::http::Client::new().send(request).await?;
 
     if response.status().is_success() {
-        println!("File successfully uploaded to IPFS: {:?}", response);
-        Ok(response)
+        let mut body_buf = Vec::new();
+        response.body_mut().read_to_end(&mut body_buf).await?;
+        let ipfs_response: IpfsResponse = serde_json::from_slice(&body_buf)?;
+        Ok(ipfs_response)
     } else {
         Err(anyhow::anyhow!("Failed to upload to IPFS. Status: {:?}", response.status()))
     }
+}
+
+#[derive(Debug, Deserialize)]
+struct IpfsResponse {
+    name: String,
+    hash: String,
+    size: String,
 }
 
 sol! {
     event Upload(string data_uri, string file_name, string ipfs_url, string api_key);
 
     struct Response {
-        string uri;
+        string name;
+        string hash;
+        string size;
     }
 }
 
