@@ -1,0 +1,25 @@
+[package]
+name = "fetch-url"
+edition.workspace = true
+version.workspace = true
+license.workspace = true
+authors.workspace = true
+rust-version.workspace = true
+repository.workspace = true
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+wit-bindgen-rt = {workspace = true}
+alloy-sol-macro = {workspace = true}
+alloy-sol-types = {workspace = true}
+wasi = {workspace = true}
+wavs-wasi-chain = {workspace = true}
+const-hex = {workspace = true}
+anyhow = {workspace = true}
+wstd = {workspace = true}
+
+[package.metadata.component]
+package = "wavs:fetch-url"
+target = "wavs:worker/layer-trigger-world@0.3.0-alpha2"
